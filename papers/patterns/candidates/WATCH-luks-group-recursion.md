@@ -1,0 +1,12 @@
+# WATCH - Luks-framework group recursion (isomorphism via permutation groups)
+
+- Family: candidates
+- Shape: encode the combinatorial problem (graph isomorphism) as a permutation-group problem (string isomorphism / coset intersection under group action); recurse on the group's composition series (bounded simple sections); the group theory carries the complexity bound.
+- Evidence: M1 Luks (ORIGIN firing, sub-chunk 13a): "Isomorphism of graphs of bounded valence can be tested in polynomial time" (J. Comput. System Sci. 25(1): 42-65 (1982), DOI 10.1016/0022-0000(82)90009-5) - the color-automorphism reduction + composition-series divide-and-conquer. M2 Babai (SECOND firing, same sub-chunk): "Graph isomorphism in quasipolynomial time" (STOC 2016: 684-697, DOI 10.1145/2897518.2897542 + arXiv:1512.03547) - the same framework, extended by the Design Lemma (split-or-Johnson) and Local Certificates to general GI.
+- Status: WATCH (opened 2026-10-13, sub-chunk 13a) - a COVERAGE-GAP engine, NOT a P43+ candidate under the current Atlas index: it matches NO Atlas pattern (P25 records the reduction move, P18 the algorithmic character, P4 the recursion, but the load-bearing engine - bounded simple sections, primitive-group observations, the Johnson-scheme dichotomy - is finite permutation-group theory). Two in-corpus firings in one sub-chunk is the survey's fastest recurrence evidence for a coverage gap; the chunk-14 synthesis decides whether the Atlas needs a named pattern for it (alongside the Wilson/L4 and Gleason/L12 gaps) or a cross-reference to group theory.
+- Watch: the engine repeats throughout the GI literature outside the corpus (Babai-Kantor-Luks 1983; the Neuen-Schweitzer small-degree improvements; the ICALP 2018 tree-width line making "heavy use of the group theoretic techniques introduced by Luks (JCSS 1982) and Babai (STOC 2016)").
+- Cross-links: P25 (the encoding move); P18 (proof = procedure); the 12a L1 partial (designs -> groups - combinatorics and group theory carried together, now as an algorithm).
+
+## Synthesis call (chunk 15, 2026-10-13)
+
+**Verdict: COVERAGE-GAP ENGINE - not a pattern promotion.** Two in-corpus firings (M1 origin, M2 extension) inside one isomorphism column, and the load-bearing engine (bounded simple sections, primitive-group observations, the Johnson-scheme dichotomy) matches no Atlas P-ID. RECOMMENDATION: a coverage-gap cross-reference for the Atlas session, alongside the Wilson/L4 and Gleason/L12 gaps. Full reasoning: papers/ANALYSIS.md sections 2 and 5.
