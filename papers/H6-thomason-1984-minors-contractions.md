@@ -1,0 +1,8 @@
+# H6 - Thomason (1984): An extremal function for contractions of graphs
+
+- Metadata (web-verified 2026-10-13): A. Thomason, "An extremal function for contractions of graphs", Math. Proc. Camb. Phil. Soc. 95(2): 261-265 (1984), DOI 10.1017/S0305004100061521. OPEN PDF located: Cambridge Core. YEAR CORRECTED vs seed (2001): the seed's year belongs to the companion A. Thomason, "The extremal function for complete minors", J. Combin. Theory Ser. B 81(2) (2001): 318-327, where the sharp asymptotic constant is determined - companion recorded. Sources: Cambridge Core PDF (Volume 95 Issue 2), Semantic Scholar (1984, 95, 261-265), ADS (pub date 1983), ScienceDirect companion page.
+- Summary (general-knowledge level, flagged sketch): average degree of order t sqrt(log t) forces a K_t minor; the extremal function for contractions is pinned to the right order. Jointly with Kostochka (H7), the independent co-discovery - the standard citation is the Kostochka-Thomason bound.
+- Decisive moves: (1) [P34] contraction is the operation: the Hadwiger number is bounded below by a function of average degree, with the proof contracting dense pieces toward a K_t; (2) [P12] probabilistic selection: random subsets of vertices in dense regions are sampled and contracted - the random-construction pattern firing inside a structural proof; (3) [P4] induction on t; (4) [P10] density bookkeeping through the induction. Expected P34: HIT.
+- New-pattern candidates: none.
+- Full text: not fetched - OPEN Cambridge Core PDF located.
+- Corrections log: YEAR corrected 2001 -> 1984 (the seed's year belongs to the JCTB 2001 companion, which is recorded); pages pinned 261-265.

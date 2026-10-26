@@ -1,0 +1,8 @@
+# H8 - Robertson-Seymour (1986): Graph minors. V. Excluding a planar graph
+
+- Metadata (web-verified 2026-10-13): N. Robertson and P. D. Seymour, "Graph minors. V. Excluding a planar graph", J. Combin. Theory Ser. B 41(1): 92-114 (1986), DOI 10.1016/0095-8956(86)90030-4, MR854606. Sources: AMS Colloquium Publications vol. 65 endmatter (41 (1986), no. 1, 92-114, DOI, MR), Princeton collaborate record (Vol 41, No 1, 08.1986), ACM DL, ScienceDirect.
+- Summary (general-knowledge level, flagged sketch): the cornerstone theorem of the Graph Minors series: for every planar graph H there is a number w(H) such that every graph with no H minor can be constructed from graphs of at most w vertices by piecing them together in a tree structure - excluding a planar graph forces bounded treewidth. The engine is the grid machinery of the earlier papers: large treewidth forces a large grid minor, and a large enough grid contains every planar graph.
+- Decisive moves: (1) [P34] minor chasing at full depth: the grid-minor machinery is the deepest P34 instance in the corpus - treewidth is converted into an explicit minor, then the minor is converted back into structure; (2) [P25] structural reduction: the conclusion is a tree-decomposition into bounded pieces, the minor-closed decomposition theorem; (3) [P4] induction through the decomposition. Expected P34: HIT - with H6/H7 this gives minor chasing three firings in-batch.
+- New-pattern candidates: none.
+- Full text: not fetched - ScienceDirect paywalled; the theorem is documented in open survey literature (graph minors surveys).
+- Corrections log: none vs seed; volume/pages pinned 41(1): 92-114.

@@ -1,0 +1,8 @@
+# H5 - Erdos (1962): On the number of complete subgraphs contained in certain graphs
+
+- Metadata (web-verified 2026-10-13): P. Erdos, "On the number of complete subgraphs contained in certain graphs", Magyar Tud. Akad. Mat. Kutato Int. Kozl. 7: 459-464 (1962) (= Publ. Math. Inst. Hung. Acad. Sci. 7). Sources: MathSciNet MR0151956 (pages 459-464), the author's own publication list at renyi.hu (459-464), Cambridge PDF reference (459-464). Two Springer secondary references give 459-474 - recorded as a citation error in secondary sources.
+- Summary (general-knowledge level, flagged sketch): the supersaturation origin: a graph with edge density exceeding the Turan density by a fixed amount contains not just one but a positive-density number of copies of the forbidden clique. The concept of supersaturation - beyond the threshold, copies come in bulk - was born here.
+- Decisive moves: (1) [P4] induction on the clique size r; (2) [P10] averaging over neighborhoods: each r-clique has a large common neighborhood in expectation, because the average degree into the clique's vertex set is forced up by the excess edge count; (3) [P2] double counting of clique-neighborhood incidences closes the induction step. Expected P10: HIT. Batch-lineage observation: supersaturation (this paper) is the conceptual ancestor of counting-removal (silent P31: G5 origin, G8 flagship) - recorded as a teaching lineage for the Atlas's P31 entry.
+- New-pattern candidates: none.
+- Full text: not fetched - the proof is documented in open textbooks and survey material.
+- Corrections log: pages pinned 459-464 (MathSciNet + the author's own list); the 459-474 variant recorded as a secondary-source citation error.

@@ -1,0 +1,8 @@
+# H3 - Kovari-Sos-Turan (1954): On a problem of K. Zarankiewicz
+
+- Metadata (web-verified 2026-10-13): T. Kovari, V. Sos, P. Turan, "On a problem of K. Zarankiewicz", Colloq. Math. 3(1): 50-57 (1954), DOI 10.4064/cm-3-1-50-57. Sources: EUDML record (Colloquium Mathematicae 3, no. 1, 50-57), IM PAN journal page (with DOI), SpringerLink reference, real.mtak.hu repository record.
+- Summary (general-knowledge level, flagged sketch): the Zarankiewicz problem: the maximum number of 1s in an n-by-n 0-1 matrix with no s-by-t all-1 submatrix - equivalently ex-bipartite for K_{s,t} - is at most roughly (s-1)^{1/t} n^{2-1/t} + (t-1)n. The birth of the degenerate (bipartite) extremal regime that G3 flagged as the limit theorem's blind spot.
+- Decisive moves: (1) [P2] double counting pairs (vertex, s-subset of its neighborhood): count once by summing binomial terms over vertices, once by bounding how often each s-set can be contained in a neighborhood; (2) [P10] convexity/averaging: the sum of binom(d(v), s) is bounded below via convexity in the degrees; (3) [P9] pigeonhole: some s-set of vertices has many common neighbors, forcing K_{s,t} when the edge count is too high. Expected P19, P9: P9 HIT; P19 MISSED - the engine is double counting plus convexity, not rank/linear algebra (algebraic proofs exist only later). Recorded honestly.
+- New-pattern candidates: none. Batch-lineage note: H3's engine reappears inside Szemeredi-Trotter (H12).
+- Full text: not fetched - open EUDML/journal record located; the counting proof is documented in open textbooks.
+- Corrections log: none vs seed; volume/pages pinned 3(1): 50-57.
