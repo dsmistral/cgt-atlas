@@ -1,0 +1,14 @@
+# CAND-B5 - Hypergraph containers
+
+- Family: candidates
+- Shape: bound the number of independent sets by sealing them into few containers
+- Evidence: B7 (Balogh-Morris-Samotij) + B8 (Saxton-Thomason) - independent discoveries, same batch; multiple problem domains inside (Ramsey, sum-free, H-free counting); chunk-18 extension corpus: P1 (Kleitman-Winston 1982, the IMPLICIT ORIGIN) + P2 (Samotij 2015, the expository bridge) + P3/P4 (18b, the flagship applications)
+- Gate status: single batch; multi-domain within. SYNTHESIS CALL - judge multi-domain within-batch recurrence against the letter of the two-batch gate (same situation as CAND-C1). Chunk-18 update: the two-batch gate CROSSES in the extension corpus (batch B + batch P).
+
+## Synthesis call (chunk 15, 2026-10-13)
+
+**Verdict: DEMOTED in-corpus - not proposed.** B7 (Balogh-Morris-Samotij) and B8 (Saxton-Thomason) are independent discoveries with multi-domain recurrence, but the letter of the two-batch gate governs: one batch. EXTERNAL-EVIDENCE RECOMMENDATION for the Atlas session (the container method is a modern field workhorse). Full reasoning: papers/ANALYSIS.md section 1.
+
+## Extension-corpus update (chunk 18, 2026-10-13)
+
+The chunk-15 verdict (DEMOTED in-corpus - single batch) stands as the planned-corpus record; the extension corpus changes the evidence. The 18a census (quoted in papers/BATCH-P.md): P1 Kleitman-Winston 1982 - the IMPLICIT ORIGIN firing (every C4-free graph sealed into a small family via a bounded certificate; survey-level attribution: Samotij's EJC survey "first employed more than three decades ago by Kleitman and Winston", the ICM containers survey "introduced (implicitly) the container method for graphs"; the deterministic degree-ordering face; venue corrected at gather - Discrete Math. 41(2): 167-172); P2 Samotij 2015 - the expository bridge (the KW/Sapozhenko algorithm presented as the survey's method, real bounds derived; the article's self-described survey character recorded honestly). The 18b close (same day): the arc is COMPLETE - P3 Morris-Saxton 2016 (genuine, the flagship: "The number of C_{2l}-free graphs", Adv. Math. 298 (2016) 534-580 - Erdos's even-cycle conjecture confirmed via the B7/B8 containers + the new balanced supersaturation theorem) and P4 Balogh-Liu-Sharifzadeh-Treglown 2018 (genuine, the ARITHMETIC face: "Sharp bound on the number of maximal sum-free subsets of integers", JEMS 20(8) (2018) 1885-1911 - Green's container lemma the primary engine, the companion PAMS 143(11) (2015) paper's Lemma 2.1 explicitly derivable from B7/B8; the two-faces datum recorded with no double credit). THE LOAD-BEARING TEST'S LETTER IS SATISFIED IN-SURVEY: firings across two different batches (B: B7/B8 the origins; P: P1 the ancestor + P2 the bridge + P3/P4 the flagships). The promotion decision (and the P43+ numbering question) belongs to the user-approved Atlas session; this survey records the upgraded evidence.
