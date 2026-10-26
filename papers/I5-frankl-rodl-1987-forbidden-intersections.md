@@ -1,0 +1,8 @@
+# I5 - Frankl, Rodl (1987): Forbidden intersections
+
+- Metadata (web-verified 2026-10-13): P. Frankl, V. Rodl, "Forbidden intersections", Trans. Amer. Math. Soc. 300(1): 259-286 (1987), MR0871675. Sources: AMS page https://www.ams.org/journals/tran/1987-300-01/S0002-9947-1987-0871675-6/ (open PDF); engine account per the survey literature (Keevash, arXiv:1402.6294, lineage notes).
+- Summary (general-knowledge level, flagged sketch): the forbidden-intersections theorem: if any two members of a family of subsets of an n-set have intersection size differing from a single forbidden value l (with l/n bounded away from 0 and 1), then the family has size at most c^n for some c < 2 - an exponential bound below the trivial 2^n. The result is a milestone of extremal set theory with coding-theoretic consequences.
+- Decisive moves: (1) [P10 HIT] the original engine: encode sets as vectors in {+1,-1}^n on the sphere; forbidden intersection sizes become forbidden inner products, and a sphere-averaging / anticode argument bounds the measure of the family; (2) [P19 MISS - honest] and [P30 MISS - honest] the batch's richest miss: although I3/I4 suggest the linear-algebra rank engine and the statement smells of regularity machinery, NEITHER fires in the original proof; later re-proofs via dependent random choice are recorded in the survey literature.
+- New-pattern candidates: none (the sphere-coding/anticode engine is recorded as a teaching face of P10, not a new load-bearing pattern).
+- Full text: not fetched - open AMS PDF located; flagged-sketch level sufficient; scope rule unused.
+- Corrections log: none vs seed; the seed's venue "verify" flag resolved (Trans. AMS 300: 259-286).

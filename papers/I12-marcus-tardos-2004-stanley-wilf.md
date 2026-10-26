@@ -1,0 +1,8 @@
+# I12 - Marcus, Tardos (2004): Excluded permutation matrices and the Stanley-Wilf conjecture
+
+- Metadata (web-verified 2026-10-13): A. Marcus, G. Tardos, "Excluded permutation matrices and the Stanley-Wilf conjecture", J. Combin. Theory Ser. A 107(1): 153-160 (2004), DOI 10.1016/j.jcta.2004.04.002. Sources: ScienceDirect DOI page https://www.sciencedirect.com/science/article/pii/S0097316504000512; open author PDF https://www.epflepf.com/adam/papers/permmat/MarcusTardos_permmat.pdf; UMN seminar scan https://www-users.cse.umn.edu/~reiner/REU/REU2017notes/MarcusTardos.pdf.
+- Summary (general-knowledge level, flagged sketch): the number of n-permutations avoiding any fixed pattern is at most C^n for a constant C depending only on the pattern - the Stanley-Wilf conjecture. The proof reduces it to the Furedi-Hajnal conjecture: a 0-1 matrix avoiding a fixed k x k permutation matrix has at most a linear number of 1s.
+- Decisive moves: (1) [P4 HIT] the critical-matrix induction: repeatedly strip rows and columns of low density; what remains contains a small "critical matrix" that must appear as a block; an induction on the number of substitutions of the critical matrix into the rest of the matrix gives the linear bound - the entire proof is an elementary structural induction, remarkably cheap against a conjecture that had resisted generating-function machinery; (2) [P23 MISS - honest] the expected compression/shifting engine does NOT appear: pattern-avoidance machinery intuition suggested compression, but no shifting is used.
+- New-pattern candidates: none.
+- Full text: not fetched - open author PDF and UMN scan located; flagged-sketch level sufficient; scope rule unused.
+- Corrections log: none vs seed.

@@ -1,0 +1,8 @@
+# I7 - Alon (1999): Combinatorial Nullstellensatz
+
+- Metadata (web-verified 2026-10-13): N. Alon, "Combinatorial Nullstellensatz", Combin. Probab. Comput. 8(1-2): 7-29 (1999). Sources: Cambridge Core article page https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/abs/combinatorial-nullstellensatz/E32C7ED059D6B92C6C67E18CC716872A (abstract confirms scope and page range); Princeton PURE research listing (vol. 8, no. 1-2, pp. 7-29).
+- Summary (general-knowledge level, flagged sketch): the flagship manifesto of the polynomial method: if a polynomial over a field has total degree equal to the sum of the exponents of a monomial with nonzero coefficient, then the polynomial cannot vanish on a product of finite sets each larger than the corresponding exponent. The paper collects applications across combinatorial number theory, graph theory and combinatorics: Cauchy-Davenport, Erdos-Heilbronn and Dias da Silva-Hamidoune, zero-sum problems, additive Latin transversals, and graph-coloring certificates.
+- Decisive moves: (1) [P22 HIT] the flagship firing: encode combinatorial objects as points of a grid; build a polynomial vanishing on the grid except at a would-be witness; degree bookkeeping then forces the witness to exist (or the desired value to be attained); (2) lineage note: the paper systematizes the coefficient arguments of I6 and becomes the template engine for I8 (Kakeya), I9 (CLP) and I10 (slice rank) - the polynomial method's coming-of-age arc lives inside this batch.
+- New-pattern candidates: none.
+- Full text: not fetched - Cambridge Core abstract and secondary literature sufficient at flagged-sketch level; scope rule unused.
+- Corrections log: none vs seed.

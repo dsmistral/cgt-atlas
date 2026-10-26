@@ -1,0 +1,8 @@
+# I4 - Frankl, Wilson (1981): Intersection theorems with geometric consequences
+
+- Metadata (web-verified 2026-10-13): P. Frankl, R. M. Wilson, "Intersection theorems with geometric consequences", Combinatorica 1(4): 357-368 (1981), DOI 10.1007/BF02579457. Sources: SpringerLink article page https://link.springer.com/article/10.1007/BF02579457 (abstract confirms the modulo-p statement).
+- Summary (general-knowledge level, flagged sketch): the modulo-p intersection theorem: if all members of a family of k-subsets of an n-set have size congruent to mu0 mod p, and every pairwise intersection is congruent to one of s residues mu1, ..., mus mod p (p prime), then the family has at most C(n, s) members. Geometric consequences: explicit constructions - diameter-realizing set systems and the Frankl-Wilson graphs - with Borsuk-type consequences and explicit superpolynomial Ramsey lower bounds.
+- Decisive moves: (1) [P19 HIT + P22 HIT] the flagship engine, firing both patterns at once: multilinear polynomials over F_p attached to incidence vectors, with a rank/dimension count of the polynomial space bounding the family - the seed expected both P19 and P22 and both are confirmed; (2) [P11] the geometric consequences deliver explicit constructions: the Frankl-Wilson graphs give deterministic Ramsey graphs (explicit lower bounds) rather than probabilistic existence; (3) lineage note: this modulo-p engine powers the forbidden-intersections program (I5) and feeds the Kahn-Kalai threshold lineage (B5).
+- New-pattern candidates: none.
+- Full text: not fetched - SpringerLink abstract confirms the theorem statements; proofs standard in textbooks; scope rule unused.
+- Corrections log: none vs seed; seed title confirmed on the SpringerLink page.

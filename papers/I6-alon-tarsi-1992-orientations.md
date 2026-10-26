@@ -1,0 +1,8 @@
+# I6 - Alon, Tarsi (1992): Colorings and orientations of graphs
+
+- Metadata (web-verified 2026-10-13): N. Alon, M. Tarsi, "Colorings and orientations of graphs", Combinatorica 12(2): 125-134 (1992), DOI 10.1007/BF01204715. Sources: SpringerLink open PDF https://link.springer.com/content/pdf/10.1007/BF01204715.pdf (abstract confirms the orientation/choosability result).
+- Summary (general-knowledge level, flagged sketch): bounds on the chromatic and choice numbers via orientations: if the edges of a graph can be oriented with maximum outdegree < k and the difference between the number of even and odd spanning Eulerian subdigraphs is nonzero, then the graph is k-choosable. The paper introduces what is now called the Alon-Tarsi number, an orientation-based upper bound for the choice number, with applications including planar-bipartite 3-choosability and degree-type list-coloring bounds.
+- Decisive moves: (1) [P22 HIT] the algebraic core: for the graph polynomial (product over edges of (x_i - x_j)), the relevant top-degree coefficient equals (up to sign) the even-minus-odd count of spanning Eulerian subdigraphs - a polynomial coefficient carries the combinatorial parity information that forces a list coloring; (2) [P15] topical application to list coloring (choosability), converting orientation structure into coloring certificates. Watch-item note: the Kempe-chain/fan-recoloring pattern does NOT fire here - the engine is algebraic coefficient counting, not Kempe chains (recorded for the watch-item ledger).
+- New-pattern candidates: none.
+- Full text: not fetched - open Springer PDF located; flagged-sketch level sufficient; scope rule unused.
+- Corrections log: none vs seed.
