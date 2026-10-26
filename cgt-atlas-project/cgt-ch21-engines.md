@@ -1,0 +1,1282 @@
+---
+name: "cgt-ch21-engines"
+title: "Ch. 21 — The Engines: The Machine Layer Behind the Patterns (A Lecture Course in the Feynman Style)"
+type: "text/markdown"
+---
+
+# Chapter 21 · The Engines
+
+*Part of the Combinatorics & Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report).*
+
+The Atlas's pattern index (P1 through P45) catalogs proof *moves* — a double count, an involution, a monovariant, a window. Chapter 20 built the methods the field calls by name. This chapter descends one layer further: engines that are load-bearing, decisive, and *patternless* — machinery the survey's census watched decide entire theorems while matching no pattern entry at all. The survey's section-5 verdict named them one by one, and its language is worth quoting as the chapter's charter: Wilson's existence theory for pairwise balanced designs runs on *elementary number theory*; Gleason's weight-polynomial theorem runs on *classical invariant theory*; the graph-isomorphism column of Luks and Babai runs on *permutation-group recursion on bounded simple sections*; Kruskal's shortest-spanning-subtree theorem runs on the *greedy-exchange (cut) property*; and the chip-firing counting engine of the k-ary-tree paper runs on *k-adic valuation digit analysis*. Five engines, six lectures — the isomorphism column earns two — and no P-IDs anywhere — and that last fact is not a complaint but a finding: the pattern index catalogs moves that fire *across* problems; these machines fire once, inside their own territory, and their depth is the very thing that keeps them from being moves.
+
+The chapter's plan is one lecture per engine (the isomorphism column's two lectures share one engine), each with the same anatomy: the **encounter** (the problem that demands the machine), the **experiment** (the lab's machine-verified receipts, run before a line of prose was written), the **explanation** (the engine's working parts, proved where the proof fits the page and cited with pin levels where it does not), and the **generalization** (where the engine's honest boundary sits). The engines in order: **Wilson's arithmetic engine** — the two divisibility conditions that govern pairwise balanced designs, the quasigroup constructions of Bose and Skolem that supply the admissible cases by hand, the Frobenius-coin number theory that powers Wilson's existence theorem, and the fundamental construction itself, built in miniature from PG(2,3); **Gleason's invariant engine** — the self-dual codes, the MacWilliams functional equation, and the invariant ring that pins the extended Hamming and Golay enumerators to two generators; **the Luks framework** — orbit-stabilizer as a ledger, isomorphism as group theory, the color-gadget reduction, subgroup chains, block systems, and the Johnson-scheme boundary; **Babai's quasipolynomial ascent** — the same engine, thirty-four years later, plus the split-or-Johnson dichotomy and the January 2017 gap-and-fix that the public record carries; **Kruskal's greedy engine** — Constructions A and B, the cut property that proves them both correct, and the uniqueness datum that dies when weights tie; and **the k-adic digit engine** — chip-firing on the infinite k-ary tree, where a middle-school team and their mentor pinned the fire counts to base-k digits, and the difference sequences turn out to run on ν_k, the k-adic valuation, in plain fractal sight.
+
+The deal with the reader is the one the Atlas has enforced since Chapter 1: every number printed below was machine-verified before printing, and the receipts came first. The lab runs on the documented Lehmer/MINSTD engine x ← 48271·x mod (2³¹−1) with integer-exact draw rules; only two panels draw at all — Part 5's weighted-graph panels (seed **20261095**) and Part 6's confluence trials (seed **20261096**) — and everything else, from the 200,787 subspaces of F₂⁸ down to the 10! backtracking count of the Johnson graph's automorphisms, is deterministic and exhaustive. One receipt deserves its own sentence here, because it is the receipts discipline working on the chapter's own sources: the survey dossier quoted the chip-firing root-fire recurrence with a floor, ⌊N/k⌋, and the chapter's receipts campaign — which fetched the paper's full text from arXiv before authoring — found the paper states a **ceiling**, ⌈N/k⌉, and only the ceiling matches the machine (40/40 against simulation; the two readings coincide only when k divides N). The dossier's transcription slip is logged as a scar below, the chapter cites the paper's form, and the machine remains the arbiter.
+
+## How to read this chapter
+
+Read with Chapter 17 (designs — where the design-existence story's modern endgame, Keevash's templates, already lives) and Chapter 20 (named methods — the layer above this one) within reach; Chapter 19 (the Lovász Local Lemma) completes the session's three-chapter wave and needs nothing here. The engines of this chapter are deliberately taught at *census scale*: every claim the lab makes is checked against everything — all subspaces, all permutations, all subsets — at a size where "exhaustive" is honest, and the chapter says plainly where the real theorems live beyond the lab's reach (Wilson's sufficiency theorem; Gleason's general invariant theory; Babai's design lemma; the paper's full sequence analysis). Lines marked **✎ Checkpoint** are the places to stop and predict — commit to a guess, in ink, before reading on. Exercises are graded ●○○ *easy* (one idea, applied directly), ●●○ *moderate* (two ideas, or one tricky step), ●●● *tough* (several ideas combined); ◆ **pattern unknown** problems come with no hint — diagnosing the tool is part of the problem; ◐ **Explorations** are open-ended investigations that state what you should find, not a number to match. Worked answers sit at the end; hints travel with the problems.
+
+Notation. Designs: a **PBD(v, K)** is a pairwise balanced design — blocks with sizes in K covering every pair of v points exactly once; an **STS(v)** is the K = {3} case (v ≡ 1, 3 mod 6 necessary); v is **admissible** for k if v − 1 ≡ 0 (mod k−1) and v(v−1) ≡ 0 (mod k(k−1)); PG(2,3) is the projective plane over F₃ (13 points, 13 lines); TD(4,3) is the transversal-design pattern (4 groups of 3, blocks meeting each group once). Codes: C ⊆ F₂ⁿ is a binary code, C⊥ its dual; **self-dual** means C = C⊥ (n even); **doubly-even** means every codeword's weight is divisible by 4; W_C(x,y) = Σ A_i x^{n−i}y^i is the weight enumerator; [n, k, d] codes have length n, dimension k, minimum distance d; GL(m, 2) is the invertible group, order ∏_{i=0}^{m−1}(2^m − 2^i). Groups: Sₙ the symmetric group; |Aut| an automorphism group's order; a transitive group acting on n points is **primitive** if it preserves no nontrivial block system; J(v, 2) is the Johnson graph (vertices = 2-subsets, adjacency = intersection in exactly 1 point). Graphs: MST the minimum spanning tree; a **cut** is the edge set (S, V∖S); the **cut property** says every tree edge is the strict minimum across its cut, the **cycle property** says every non-tree edge is the maximum on its cycle. Chip-firing: the k-ary tree has root 0, children of v numbered k·v+1+i, parent (v−1)/k; the root carries a self-loop (loop counts once in the degree, so every vertex has degree k+1); a vertex **fires** when it holds ≥ k+1 chips, sending one chip along each edge (the loop's chip returns); **stable** means every vertex holds ≤ k chips; f_v the number of times v fires, f₀ the root's fires, F = Σ_v f_v the total; ν_k(m) the k-adic valuation of m (the exponent of k in m's factorization); d₀(m,k) = g₀(m+1,k) − g₀(m,k) with g₀(m,k) = f₀(mk,k). The lab engine: *nxt()* advances x ← 48271·x mod (2³¹−1); a uniform choice among m items is floor(nxt()·m/(2³¹−1)). e = 2.71828…
+
+## The pattern map for this chapter
+
+| Pattern | Plain language | Where it fires here |
+|---------|---------------|---------------------|
+| **— the five coverage-gap engines (no Atlas P-ID; this chapter's subject)** | Decisive machinery that fired once, deeply, inside its own territory | All six lectures — the survey's section-5 finding, taught as the chapter's charter: elementary number theory (L1), invariant theory (L2), permutation-group recursion (L3–L4), greedy exchange (L5), k-adic digit analysis (L6) |
+| **P41 Divisibility (cameo)** | Necessary arithmetic conditions shape what can exist | L1 — the whole admissibility engine (v ≡ 1, 3 mod 6 and its k = 4, 5 siblings, machine-verified ⟺ over all v ≤ 200); L6 — the F ≡ 0 mod 2(k+1) divisibility receipt |
+| **P2 Double counting** | Count one thing two ways | L1 — v(v−1)/2 = 3·(#triples), the STS block count; L6 — the chip-flow conservation lemma (chips sent to children counted both ways) |
+| **P11 Explicit construction** | Build the object and check it | L1 — Bose and Skolem's quasigroup constructions, verified n = 0..8 / 1..8 with zero violations; the PG(2,3) → TD(4,3) → PBD(12,{3,4}) miniature of Wilson's fundamental construction |
+| **P4 Recurrence + induction** | Relate case n to smaller cases | L6 — the root-fire recurrence f₀(N) = ⌈N/k⌉ − 1 + f₀(⌈N/k⌉ − 1), machine-checked 40/40 against simulation; the backward-induction fire-count formulas |
+| **P25 Reduction / encoding** | Translate the problem; the target structure carries the proof | L3 — graph isomorphism encoded as a permutation-group problem (the Luks reduction, the chapter's deepest engine); L4 — the chain GI → String Isomorphism → Coset Intersection; L6 — the base-k digit encoding that carries every fire-count formula |
+| **P18 Algorithm as proof** | The procedure and its termination are the theorem | L3–L5 — Luks's polynomial test, Babai's quasipolynomial procedure, Kruskal's Constructions A and B: in all three the algorithm IS the proof, and the lab's construction receipts (100/100 agreement with brute force) are the engines in executable form |
+| **P12 Random construction (cameo)** | Prove existence by sampling | L6's confluence panel — random legal firing orders against the canonical one, 5/5 identical stable configurations (the abelian property witnessed by sampling) |
+
+---
+## Lecture 1 · Wilson's Arithmetic Engine: Divisibility Is (Asymptotically) the Whole Story
+
+**Encounter.** In 1853 Steiner asked for systems of triples covering every pair exactly once; Kirkman had asked it six years earlier, and the first surprise is *arithmetic*. An STS(v) — a Steiner triple system, v points, triples covering each pair precisely once — can only exist when the counting allows it: each point pairs with v−1 others, two at a time, so v is odd and (v−1)/2 is the point's triple count; each triple eats 3 pairs, so v(v−1)/6 must be a whole number. Together: **v ≡ 1 or 3 (mod 6)**. The remarkable fact, proved a century and a quarter later, is that this necessary condition is (for all large v) also *sufficient* — and the sufficiency engine is not combinatorial at all. It is elementary number theory: Frobenius coins, finite bases for closed sets of integers, and a composition machine for gluing small designs into large ones.
+
+The engine's three moving parts, as the survey's dossier recorded them: **Part I** of Wilson's trilogy builds the composition machinery — the *fundamental construction* (new designs assembled from ingredient designs on transversal-design templates); **Part II** proves that PBD-closed sets of integers are finitely generated — eventual periodicity, in the Frobenius-coin tradition; **Part III** combines the two into the proof of the existence conjectures (J. Combin. Theory Ser. A **13** (1972) 220–245 and 246–273; part III in **18** (1975) — its page range unpinned this session, cited by journal, volume, and year only, the honest note recorded in the chapter's canon pins). The theorem: *for fixed block sizes K, a PBD(v, K) exists for all sufficiently large admissible v.* Asymptotically, divisibility is the ONLY obstruction.
+
+**✎ Checkpoint.** Before the lab: for K = {3,4} — blocks of size 3 or 4, every pair exactly once — guess which v ≤ 13 are possible. Two necessary conditions are easy to write down (the pair count C(v,2) = 3·(#triples) + 6·(#quads), and each point's v−1 = 2a + 3b). Which v pass them? And — the checkpoint's real bite — do all of those exist? Commit in ink; the machine's answer includes one case that passes the arithmetic and fails anyway.
+
+**Experiment — the lab first (Part 1, deterministic).** The receipts, in seven panels.
+
+*Panel A: the admissibility lists.* For k = 3, the admissible v ≤ 60 are 3, 7, 9, 13, 15, 19, 21, 25, 27, 31, 33, 37, 39, 43, 45, 49, 51, 55, 57; for k = 4: 4, 13, 16, 25, 28, 37, 40, 49, 52; for k = 5: 5, 21, 25, 41, 45. And the machine verified the mod-equivalences over ALL v ≤ 200, not just the printed range: k = 3 ⟺ v ≡ 1, 3 (mod 6); k = 4 ⟺ v ≡ 1, 4 (mod 12); k = 5 ⟺ v ≡ 1, 5 (mod 20). The two divisibility conditions, run to their periodic conclusion, ARE the residue classes — Kirkman's condition derived, not remembered.
+
+*Panel B: search witnesses.* A backtracking search (lex-first uncovered pair, third point tried in increasing order) finds STS(7) — blocks `123 145 167 246 257 347 356` — STS(9) in 12 blocks, STS(13) in 26 blocks; every system verified pair-perfect, zero violations.
+
+*Panels C–D: the quasigroup constructions.* Bose's STS(6n+3): points Z_m × {0,1,2} with m = 2n+1, the idempotent commutative quasigroup x∘y = ((m+1)/2)(x+y) mod m, vertical triples {(x,0),(x,1),(x,2)} plus the three Bose-style rounds — verified n = 0..8 (STS(3) through STS(51)), zero violations, block counts v(v−1)/6 exact every time. Skolem's STS(6n+1): the half-idempotent quasigroup on Z_{2n} (σ(2i) = i, σ(2i+1) = n+i, x∘y = σ((x+y) mod 2n)), the point at infinity, and three block types — verified n = 1..8 (STS(7) through STS(49)), zero violations; the n = 1 case relabels to the Fano plane `123 247 357 167 145 256 346`, every block hand-checkable against the rules. The constructions are the engine's supply side: admissibility made constructive, block by block.
+
+*Panel E: the Kirkman closure.* All 17 admissible v ≤ 51 — 3, 7, 9, 13, 15, 19, 21, 25, 27, 31, 33, 37, 39, 43, 45, 49, 51 — constructed (Bose where v ≡ 3, Skolem where v ≡ 1 mod 6) and verified. Bose's STS(9) and the search's STS(9) agree up to relabeling — not as labeled systems (the two block lists differ: Bose's is `012 345 678 037 148 256 046 157 238 136 247 058`, the search's is `012 034 056 078 135 147 168 238 246 257 367 458`); both are valid systems on 12 blocks, and the explicit relabeling π = (0→5, 2→3, 3→2, 4→6, 5→4, 6→0, fixing 1, 7, 8) carries one to the other — machine-verified, as STS(9)'s uniqueness up to isomorphism demands.
+
+*Panel F: the honest census.* PBD(v,{3,4}) for v ≤ 13: exists at 3, 4, 7, 9, 10, 12, 13 — v = 10 with 12 blocks (9 triples, 3 quads). The pair-side mod obstruction kills 5, 8, 11 (C(v,2) = 10, 28, 55, each ≡ 1 mod 3 — the pairs cannot be partitioned into 3s and 6s). A receipts-scar is worth naming here because the receipts file itself carried it: the original v1 clause claimed the point-side condition v−1 = 2a+3b "also fails" at 5, 8, 11 — but v−1 = 4, 7, 10 are all expressible (2·2, 2·2+3, 2·5); the point-side condition is NOT the operative obstruction there, and the chapter's receipts file logs the correction. What IS true: the pair-side congruence alone rules out 5, 8, 11, and it PASSES at 6 — the checkpoint's answer — where the search exhausted the entire space, no cap hit, and **v = 6 does not exist**. Admissibility is necessary, not sufficient, at PBD scale; the sufficiency theorem's "sufficiently large" is load-bearing. The second honest datum: v = 12 exhausted the search's node budget, and was resolved by CONSTRUCTION instead — Wilson's fundamental construction in miniature. Build PG(2,3) over F₃ (13 points, 13 lines; verified: each line 4 points, each pair on exactly one line, 13·C(4,2) = 78 = C(13,2)); delete the vertical-direction point at infinity; the 12 remaining points split into 4 groups of 3 (the three vertical lines plus the affine line at infinity's remnant), the 9 surviving lines each meet every group exactly once — a TD(4,3); fill each group as a triple. Thirteen blocks, zero violations:
+
+`0369 1479 2589 04810 15610 23710 05711 13811 24611 012 345 678 91011`
+
+*Panel G: the Frobenius coins.* For all 34 coprime pairs 2 ≤ a < b ≤ 12: the largest non-representable number is exactly ab − a − b, and the count of gaps is exactly (a−1)(b−1)/2 — machine-exhaustive against the closed forms, 34/34 and 34/34. The coin engine is the arithmetic heart Wilson's Part II generalizes: closed sets of integers generated by finitely many coprime residues become *everything* past a bound.
+
+**Explain — how the parts assemble.** Read the three parts against the panels. The necessary conditions (Panel A) carve out residue classes. The PBD-closed sets — the sets S of orders v such that a PBD(v, K) exists and is closed under Wilson's composition — behave like numerical semigroups: Part II's finite-basis theorem says each is generated by finitely many elements (eventual periodicity), so *admissibility plus enough small constructions forces all large v* — exactly the Frobenius phenomenon Panel G displays at toy scale. The fundamental construction (Panel F's miniature) is the closure's motor: a transversal template plus ingredient designs plus group fills produces a design of composite order from designs of smaller orders; iterate with the right ingredients and the residue classes fill. Wilson's trilogy, with Hanani's program before it (Hanani's tactical-configuration and quadruple-system papers — Canad. J. Math. **15** (1963) 702–722 and **12** (1960) 145–157 — pinned in the canon list), converted a century of "v ≡ 1, 3 mod 6 and it seems to work" into a theorem. The lab cannot touch the theorem's scale — no v where sufficiency kicks in is searchable — and the chapter says so: what the receipts witness is the engine's *arithmetic*, its supply side, and its miniature composition, at sizes where exhaustive verification is honest.
+
+**Generalize — and the survey's verdict.** The survey's dossier graded the trilogy's moves: P41 divisibility as *the whole story* — "the theorem's statement IS the birth-certificate pattern in its strongest form" (the necessary congruences are asymptotically the only obstructions); P11 composition as the expected constructive backbone, confirmed. And the load-bearing Part II — the finite-basis number theory — matches no Atlas pattern: the survey recorded it as the first of this chapter's five coverage gaps, the engine that decides the theorem and fires nowhere else in the fourteen-batch corpus. That is the honest status: P41 gets a cameo because divisibility is the theorem's statement; the engine itself (Frobenius-type closure arguments over design orders) stays outside the index. The obstruction half of the story has cousins beyond designs — Bruck–Ryser (Canad. J. Math. **1** (1949) 88–93) kills projective planes at v ≡ 1, 2 (mod 4) by a sum-of-squares argument the census tradition records at statement level — and the contest canon's modular-residue cluster (the survey's obstruction-halves finding) is the same phenomenon at olympiad scale.
+
+**What to learn:** the deepest existence theorems in design theory are arithmetic — congruence conditions, closed-set finite bases, coin problems — with combinatorics supplying the ingredients the arithmetic demands. When you meet a necessary condition, ask the Wilson question: is it the ONLY obstruction? And when a case passes the arithmetic (v = 6 here), do not assume the machine agrees: admissibility is a conjecture about large v, not a criterion at small ones.
+
+---
+
+## Lecture 2 · Gleason's Invariant Engine: Why Self-Dual Codes' Enumerators Cannot Wander
+
+**Encounter.** Take the extended Hamming [8,4,4] code — eight bits, four dimensions, every nonzero word of weight 4 — and list its weights: one word of weight 0, fourteen of weight 4, one of weight 8. The weight enumerator is x⁸ + 14x⁴y⁴ + y⁸. Now take ANY self-dual binary code (C = C⊥, so n is even and every two codewords share an even number of 1s) and write its enumerator. Something rigid happens: the enumerator is *invariant* — first under the MacWilliams transform t₁ (because MacWilliams' theorem says W_{C⊥}(x,y) = W_C((x+y)/√2, (x−y)/√2), and self-duality says C⊥ = C), and, if the code is doubly-even (all weights divisible by 4), also under t₂: y → iy. Gleason's 1970 ICM lecture (Nice; published in the proceedings vol. 3: 211–215, Gauthier-Villars 1971) turned that rigidity into a theorem: the invariant ring of the group ⟨t₁, t₂⟩ is a POLYNOMIAL ring on two generators — and for self-dual doubly-even (Type II) binary codes the generators are the degree-8 polynomial x⁸ + 14x⁴y⁴ + y⁸ and the degree-24 Golay enumerator. Consequence: the enumerators of ALL Type II codes live in a two-variable world — 8 and 24 are the only degrees of freedom they have — and every divisibility corollary (weights divisible by 4, weight-4 words' counts bounded, the 759/2576 Golay arithmetic) falls out of the ring structure. The engine is classical invariant theory — Molien's theorem, primary and secondary invariants — machinery from 19th-century algebra doing 20th-century coding theory.
+
+**✎ Checkpoint.** The enumerator of a self-dual code must be a polynomial in the two generators (degrees 8 and 24 for Type II). Before the lab: how many linearly independent invariant homogeneous polynomials would you predict at degree 24? (The receipts compute it two independent ways — a nullspace count and a series expansion — and they agree. Predict, then check.)
+
+**Experiment — the lab first (Part 2, deterministic, exact arithmetic).** Two panels.
+
+*Panel A: the census.* Every self-dual binary code of lengths 4, 6, 8, found by enumerating ALL k = n/2 subspaces of F₂ⁿ in reduced row-echelon form (35 subspaces at n = 4, 1,395 at n = 6, 200,787 at n = 8 — the Gaussian binomial counts, each an anchor for the enumeration's completeness), testing the Gram condition on the basis, and checking the MacWilliams functional equation W_C(x+y, x−y) = 2^{n/2} W_C(x,y) EXACTLY, coefficient by coefficient, for every self-dual code found:
+
+| n | subspaces | self-dual | doubly-even | MacWilliams OK | enumerators |
+|---|-----------|-----------|-------------|----------------|-------------|
+| 4 | 35 | 3 | 0 | 3/3 | [1,0,2,0,1] ×3 |
+| 6 | 1,395 | 15 | 0 | 15/15 | [1,0,3,0,3,0,1] ×15 |
+| 8 | 200,787 | 135 | 30 | 135/135 | [1,0,4,0,6,0,4,0,1] ×105 singly-even; [1,0,0,0,14,0,0,0,1] ×30 doubly-even |
+
+The cross-checks the census carries: the labeled self-dual counts are Π_{i=1}^{m−1}(2^i+1) (3 = 3; 15 = 3·5; 135 = 3·5·9) — ALL MATCH; the 30 doubly-even codes of length 8 are one equivalence class, 30 = 8!/1344 = |S₈|/|Aut(extended Hamming)|; and the singly-even enumerator [1,0,4,0,6,0,4,0,1] IS (x²+y²)⁴, all 105 codes sharing it. The doubly-even count is ZERO at n = 4 and 6: n ≡ 0 (mod 8) is necessary for a Type II code, and the census displays the obstruction as data. Each of the 135 codes satisfies the functional equation — the census does not sample self-duality; it tests it.
+
+*Panel B: the invariant spaces.* The degree-2m homogeneous polynomials form a 2m+1-dimensional space; t₁ acts on it, and at even degree the √2 in t₁'s definition scales out — the matrix N[a][b] = Σ_j (−1)^j binom(a,j) binom(2m−a, b−j) is INTEGER, with t₁(x^{2m−a}y^a) = 2^{−m} Σ_b N[a][b] x^{2m−b}y^b, so fixed vectors are the nullspace of (T − 2^m I) over the rationals: no irrational arithmetic anywhere (the receipts' design pin, and a small lesson in its own right — a transform with √2 in it can still have rational fixed-point theory at even degree). Intersect Fix(t₁) with the t₂ condition (y-degree ≡ 0 mod 4) and count dimensions:
+
+| degree | 2 | 4 | 8 | 12 | 16 | 24 |
+|--------|---|---|---|----|----|----|
+| Gleason-space dim | 0 | 0 | 1 | 0 | 1 | 2 |
+
+The degree-8 generator, machine-recovered (not assumed): exactly (1 : 14 : 1) over the columns y⁰, y⁴, y⁸ — *the extended Hamming enumerator itself*. The degree-16 generator is (1 : 28 : 198 : 28 : 1) = the machine's polynomial product f₈·f₈. Degree 24 has dimension 2; the machine exhibits a basis: f₈³ = [1,0,0,0,42,0,0,0,591,0,0,0,2828,0,0,0,591,0,0,0,42,0,0,0,1] and the extended Golay [24,12,8] enumerator G = [1,0,0,0,0,0,0,0,759,0,0,0,2576,0,0,0,759,0,0,0,0,0,0,0,1] — independent (their y⁴ coefficients are 42 and 0), both residual-checked t₁-invariant exactly, and G's invariance IS the functional equation for the Golay code: W(x+y, x−y) = 2¹²W(x,y), verified by the same integer residual. And the Molien cross-check — the receipts' independent second method: the series 1/((1−t⁸)(1−t²⁴)) has coefficients 0, 0, 1, 0, 1, 2 at degrees 2, 4, 8, 12, 16, 24 (computed by solution counting AND by series expansion, both agreeing at every degree ≤ 32) — matching the nullspace dims exactly. The checkpoint's answer: two, both ways, and the agreement is the theorem of the panel.
+
+**Explain — the engine, at flag level.** MacWilliams' theorem (Bell System Tech. J. **42** (1963) 79–94) supplies the invariance: a code equal to its dual has an enumerator fixed by t₁. Gleason's insight — visible in the receipts before any theory: invariant polynomials at a given degree form a vector space; if the ring of ALL invariants is generated by two explicit polynomials f₈ (degree 8) and f₂₄ (degree 24), then the Type II enumerators are exactly the polynomial expressions in those two, and the dimensions at each degree are the number of solutions of 8a + 24b = degree — which is what 1/((1−t⁸)(1−t²⁴)) counts. The lab runs the engine's *output* checks (dimension counts, generator recovery, the Golay membership) at census scale; the engine itself — Molien's theorem, the invariant-ring structure theorem — is cited, and its textbook carrier is MacWilliams–Sloane (*The Theory of Error-Correcting Codes*, North-Holland 1977, chapters 19–20), with Gleason's ICM paper the origin and Pless (J. Combin. Theory **5** (1968) 215–228, statement level) the Golay uniqueness the ring's most famous instance rides on. The Gleason theorem's descendants — Feit's Type I variant, the weight-divisibility corollaries, the Assmus–Mattson engine adjacent — are survey-level canon the chapter records in its reading list without receipts.
+
+**Generalize — and the survey's verdict.** The dossier's grading: the engine is *classical invariant theory of finite matrix groups* — representation-theoretic linear algebra at P19's broadest edge but matching no Atlas pattern head-on; P19 partial, P40 an honest direction-wrong miss (no Möbius inversion anywhere); the second of the chapter's five coverage gaps. The survey's synthesis call: the invariant-theory engine fires nowhere else in the corpus — one firing, decisive, patternless. The lecture's own honest boundary, displayed by the receipts: the census stops at n = 8 (200,787 subspaces is already a real computation; n = 10 has 2^{35} of them) and the invariant spaces stop at degree 24 (degree 32 is where the receipts' cross-check ends); the theorem's reach — every length, every Type — is the cited theory's, not the lab's.
+
+**What to learn:** when a class of objects is closed under a group action, their invariants are candidates for a *ring* — and knowing the ring's generators is knowing all the objects at once. Self-dual codes cannot have arbitrary weight enumerators because two polynomials, degrees 8 and 24, are the entire vocabulary. The lab's f₈ recovery — the machine finding x⁸+14x⁴y⁴+y⁸ as THE degree-8 invariant without being told — is the engine running forward: invariance first, structure forced, the famous polynomial merely the basis vector that was always there.
+
+---
+## Lecture 3 · The Luks Framework I: Isomorphism IS Group Theory
+
+**Encounter.** The graph isomorphism problem — given G, H, decide whether some bijection of the vertices carries one to the other — is famously undecided in complexity status: no polynomial algorithm is known for general graphs, and no NP-completeness proof either (and NP-completeness would collapse the polynomial hierarchy, by a counting argument the census tradition records). In 1982 Eugene Luks reframed the whole problem, and the reframe is this chapter's deepest engine: *stop treating isomorphism as a search over bijections; treat it as a question about permutation groups* (J. Comput. System Sci. **25**(1): 42–65, "Isomorphism of graphs of bounded valence can be tested in polynomial time" — the title's "tested" pin correcting a widely garbled "decided"; DOI 10.1016/0022-0000(82)90009-5; the 1980 FOCS conference abstract records priority). The paper's two halves: a REDUCTION — isomorphism of graphs of valence at most t reduces to the *color automorphism problem* (given generators for a permutation group G on a colored set, find the subgroup of G fixing the color classes) for groups whose composition factors have bounded order ("small simple sections"); and a RECURSION — divide and conquer down the group's composition series, trading the problem on G for smaller problems on smaller groups. Valence ≤ 3 is elementary (the group P = G case); higher valence needs primitive-group observations. The engine: finite permutation-group theory — and the survey's dossier recorded it as the chapter's third coverage gap, a WATCH dossier opened at the origin paper itself, because the machinery that carries the isomorphism column matches no Atlas pattern.
+
+The framework's foundation is a ledger every combinatorialist should own: **orbit–stabilizer as bookkeeping**. The lab makes it executable.
+
+**✎ Checkpoint.** On 4 vertices there are 64 labeled graphs and (you may know) 11 unlabeled classes. Predict the two sides of the ledger: (i) the sum over the 11 classes of 4!/|Aut|, and (ii) what Burnside's lemma must answer. Then predict something subtler: for two isomorphic graphs G ≅ H, how many isomorphisms σ with σ(G) = H are there, in terms of |Aut(G)|? Commit before the receipts.
+
+**Experiment — the lab first (Part 3, deterministic).** Three panels, all exhaustive.
+
+*Panel A: the orbit–stabilizer ledger.* Every graph on n vertices as a bit mask; Aut by brute force over all n! permutations; classes by orbit-label minimality; Burnside as the independent cross-check:
+
+| n | graphs | classes | Burnside | Σ_classes n!/|Aut| | ledger |
+|---|--------|---------|----------|-------------------|--------|
+| 4 | 64 | 11 | 11 | 64 (exact) | every class: orbit = n!/|Aut| ✓ |
+| 5 | 1,024 | 34 | 34 | 1,024 (exact) | every class ✓ |
+
+The sum Σ over classes of n!/|Aut| equals the number of labeled graphs — EXACTLY, at both n — which is the orbit–stabilizer theorem displayed as an accounting identity: each unlabeled class of size k contributes k to the labeled count and has |Aut| = n!/k. The |Aut| histograms over labeled graphs (n = 4: order 2:36, 4:12, 6:8, 8:6, 24:2; n = 5: 2:660, 4:180, 6:40, 8:60, 10:12, 12:60, 24:10, 120:2) are the raw material; the two order-24s at n = 4 are K₄ and its complement, the two order-120s at n = 5 the same pair one size up.
+
+*Panel B: GI ⟷ Aut.* All 4,096 ordered pairs of the 64 graphs on 4 vertices: 556 isomorphic pairs, and on EVERY one, the number of isomorphisms σ with σ(G) = H equals |Aut(G)| AND equals |Aut(H)| — the iso set is a torsor under either automorphism group — and on every non-isomorphic pair it is 0. Violations: zero. Cross-check: 556 = Σ over classes of (class size)². The checkpoint's subtle answer: the count of isomorphisms is |Aut| — always, on every iso pair — so GI and Aut are the same problem wearing two coats: find ONE isomorphism and you can generate Aut (compose with self-isos); find Aut and isomorphism testing becomes a coset question.
+
+*Panel C: the color gadget.* How does a colored-graph isomorphism reduce to plain isomorphism? The gadget: color 0 at vertex v → pendant path v−a−b (two new vertices); color 1 → pendant path v−a−b−c (three). Run it on all 64 two-colorings of C₆ (gadgets of 18–24 vertices). The degree facts, machine-checked 64/64: every cycle vertex has degree 3, every pendant vertex degree ≤ 2, so EVERY gadget automorphism maps cycle vertices to cycle vertices — the degree sequence is the invariant that fences the automorphism inside S₆. For every σ ∈ S₆ (all 720, per coloring) the extension to the gadget is FORCED — the path endpoints are pinned — and σ extends iff it preserves cycle adjacency AND the vertex colors, verified against the CONSTRUCTED edge set (the candidate bijection must preserve edges, not descriptions). Extendable-count equals |colored Aut| on 64/64 colorings, zero mismatches. The |Aut| histogram over the colorings: order 1: 12 colorings, 2: 42, 4: 6, 6: 2, 12: 2 — the two order-12s are the constant colorings (full dihedral D₆), and two spot receipts: the alternating coloring 101010 gives |Aut| = 6 (the D₃ symmetries; gadget on 21 vertices), the block coloring 111000 gives |Aut| = 2 (the color-swap reflection alone). The gadget is the reduction engine in miniature: color constraints become degree constraints become automorphism fences.
+
+**Explain — the framework's working parts, at flag level.** Luks's reduction, in the panel's language: isomorphism testing is AUTOMORPHISM GROUP COMPUTATION (Panel B's torsor fact), and automorphism computation for graphs of bounded valence organizes itself into a recursion over a composition series — a chain 1 = G₀ ◁ G₁ ◁ … ◁ G_k of subgroups where each quotient G_i/G_{i−1} is simple. The recursion is P4's divide-and-conquer face: solve the problem on each simple section, then glue up the chain. The trivalent case's sections are small (elementary), so the recursion terminates fast; the general bounded-valence case needs the observation that the simple sections of the groups that arise have bounded order — except where they do not, and *that* exception is the entire subject of the next lecture. The color-gadget panel is the reduction's entry ramp: extra structure (colors) converts to graph structure (degrees), and the survey graded the reduction itself as the paper's title move — P25 flagship, the encoding whose target structure (the composition series) carries the complexity bound, P18 genuine (the procedure is the proof), P4 partial (the recursion down the chain).
+
+**Generalize — where the receipts stop and the theory starts.** The lab's exhaustive panels stop at n = 5 and 6-vertex gadgets; Luks's theorem is for all valence-t graphs, and its proof — the composition-series machinery, the primitive-group observations — is cited, not reproduced (the open author PDF is located; the chapter's receipts do not touch it). What the receipts DO witness, completely, is the framework's *bookkeeping*: orbit–stabilizer as an exact ledger, GI ⟷ Aut as a torsor identity, and the degree-fence reduction the gadget runs on. The complexity-theoretic boundary the framework exposes — GI's status undecided, the valence-bounded cases polynomial — is stated honestly as the state of knowledge, with Luks's bounded-valence theorem the deepest settled fact before 2016, and 2016's turn is Lecture 4's subject.
+
+**What to learn:** isomorphism is not a property of graphs but a relation between GROUPS of symmetries — the counts (|Aut|, orbit sizes, torsor structure) are the honest content, and every isomorphism algorithm in the modern era is a group-theory algorithm in costume. When facing any "find the bijection" problem, Luks's question is the right first move: what GROUP do the bijections live in, and what does its composition series look like?
+
+---
+
+## Lecture 4 · The Quasipolynomial Ascent: Babai 2016, and the Split-or-Johnson Dichotomy
+
+**Encounter.** One engine, two papers, thirty-four years. Luks 1982 left general graph isomorphism at exp(O(√(n log n))) — the best bound for three decades (Luks 1983, the general-graph refinement) — because the composition-series recursion jams exactly where its simple sections are LARGE: the alternating groups and their kin. Babai's 2016 result ("Graph isomorphism in quasipolynomial time", STOC 2016: 684–697, DOI 10.1145/2897518.2897542; full version arXiv:1512.03547; the journal version beyond the extended abstract unpinned, recorded honestly) breaks the jam with a new architecture around the same Luks framework: reduce GI to STRING ISOMORPHISM (isomorphism of strings under a group action) and COSET INTERSECTION; solve SI by a recursion that is polynomial in the string length and quasipolynomial in the group's largest orbit; and tame the large-section cases with the DESIGN LEMMA — at quasipolynomial multiplicative cost, find either a large induced subgraph with hereditary quasirandomness or a canonical Johnson-type / uniprimitive coherent configuration: the SPLIT-OR-JOHNSON DICHOTOMY — plus LOCAL CERTIFICATES and a recursive aggregate consumption of the permutation domain. The survey's dossier graded the chain P25 genuine (GI → SI → Coset Intersection, the group-theoretic encoding carrying the bound), P18 genuine, P4 genuine (the aggregate-consumption recursion is load-bearing), with honest misses at P8 (no extremal-object analysis) and P30 (the Design Lemma's regularization is quasirandomness as an OUTPUT, not Szemerédi machinery). The public record carries one more datum the chapter records because it is part of the theorem's provenance: in January 2017 Harald Helfgott found an error in the Split-or-Johnson argument (announced 4 January); Babai posted a fix on 9 January (the author's "Graph Isomorphism update" note); Helfgott confirmed publicly at the Bourbaki seminar on 14 January (his exposition, Astérisque 407 (2019) 135–182). A gap found, named, fixed, and confirmed, in eleven days — receipts discipline at the scale of a research community.
+
+The dichotomy's namesake — the Johnson scheme — is where this lecture's lab lives: J(v, 2), the graph whose vertices are the 2-subsets of a v-set, adjacent when they intersect. The scheme is the canonical "large-section" structure the recursion must handle, and the lab displays its boundary behavior at census scale.
+
+**✎ Checkpoint.** J(4,2): six vertices (the edges of K₄), adjacency = sharing a vertex — this graph is the octahedron. Predict: is every automorphism of the octahedron induced by a permutation of the underlying 4 points? Then predict the same question at J(5,2) (10 vertices). One of your two answers should be no — which, and why?
+
+**Experiment — the lab first (Part 4, deterministic; the Luks II panels).** Three panels.
+
+*Panel A: the subgroup landscape of S₄.* Closures of all element pairs, deduplicated by canonical element list: **30 subgroups** — and 30 is the known total for S₄, so the census's completeness is certified by agreement with the textbook count, not assumed. Order histogram: 1:1, 2:9, 3:4, 4:7, 6:4, 8:3, 12:1, 24:1. Transitive subgroups: **9** — three cyclic C₄ and one Klein V₄ at order 4 (distinguished by element orders), the three D₄ at order 8, then A₄ and S₄. Block systems: each C₄ preserves exactly 1 of the three 2+2 partitions, the V₄ preserves all 3, each D₄ preserves exactly 1; A₄ and S₄ preserve none. **Primitive transitive subgroups: exactly A₄ and S₄** — the other seven are imprimitive. This is the recursion's map: block systems are what "divide" means for a permutation group, and primitive groups are the recursion's base cases.
+
+*Panel B: prime degree.* S₅'s subgroup census: **156 subgroups** (order histogram 1:1, 2:25, 3:10, 4:35, 5:6, 6:30, 8:15, 10:6, 12:15, 20:6, 24:5, 60:1, 120:1 — the five order-24s are the point stabilizers); transitive: **20** — six C₅, six D₅, six F₂₀ = AGL(1,5), one A₅, one S₅ (D₅ verified by element orders: order-5s and order-2s, none of order 4; F₂₀ by order-5s and order-4s). At prime degree 5, no nontrivial equal-size block partition exists — the machine verified zero candidates — so **all 20 transitive subgroups are primitive**: the Luks dichotomy's degenerate case, stated as a receipt. Prime degree is where "primitive" is free.
+
+*Panel C: the Johnson dichotomy displayed.* J(4,2): abstract graph automorphisms, by brute force over all 720 permutations of the 6 vertices: **48**. The induced action of S₄ on the 2-subsets: **24**. The complement map {i,j} ↦ [4]∖{i,j} IS a graph automorphism (machine-checked) and is NOT induced by any permutation of the 4 points (machine-checked) — at n = 4, the abstract Aut strictly exceeds the induced symmetry group; the extra coset is the complement. J(5,2): abstract Aut by exhaustive adjacency-pruned backtracking over the 10! candidate bijections: **120**; induced S₅ action: **120** — abstract EQUALS induced, and no complement map exists (the complement of a 2-subset of [5] is a 3-subset, not a vertex). The two panels together are the split-or-Johnson boundary in miniature: the Johnson-scheme case of the recursion's dichotomy is GENUINE at n = 5 — the scheme's canonical structure is the obstruction Babai's local certificates must consume — while at n = 4 the apparent extra symmetry is an artifact of tiny size, the complement masquerading as structure. The checkpoint's answer: no at J(4,2), yes at J(5,2), and the reason is the complement map's target dropping out of the vertex set.
+
+**Explain — what the 2016 architecture does with the landscape.** The Luks recursion fails on large simple sections; the classification of finite simple groups says the sections that arise are either small (handled) or, essentially, alternating — and alternating sections enter through the Johnson-type structures. Babai's design lemma forces every hard instance toward one of two exits: a large quasirandom piece (where the recursion gets purchase — quasirandomness as an output, the P30 miss the dossier records) or a canonical Johnson/uniprimitive configuration (where the local-certificate machinery consumes the structure explicitly). The lab's Panel C is the dichotomy's two exits at toy scale: J(5,2) is the genuine Johnson case — its automorphism group is exactly the induced S₅, the canonical structure is real; J(4,2) shows the counterfeit, where "extra symmetry" is the complement map, present only because 4 = 2·2. The subgroup panels (A and B) are the recursion's mechanics: a block system is a way to halve the problem; primitivity is the signal that no halving exists and the CFSG-scale machinery must engage. None of the 2016 proof is reproduced — the design lemma, local certificates, and aggregate consumption are cited at flagged-sketch level (the extended abstract + the arXiv full version are the canonical pair; the survey dossier's summary is the chapter's source) — but the *structures* the proof organizes (subgroup chains, block systems, primitive groups, Johnson schemes) are exactly what the receipts census.
+
+**Generalize — the engine's honest ledger.** The Luks–Babai line is the survey's WATCH-dossier engine: permutation-group recursion, firing at both its origin papers, matching no P-ID — the chapter's third and deepest coverage gap, and the one whose absence from the pattern index the survey flagged as most structural (the isomorphism column of the whole census runs on it). What is settled: bounded-valence GI is polynomial (Luks 1982); GI is quasipolynomial (Babai 2016); practical GI is a solved problem in the field (nauty and its kin, by different machinery entirely). What is not: general GI's complexity status — polynomial? NP-intermediate? — remains open, and this chapter claims nothing about it beyond the receipts' census-scale facts. The 2017 gap-and-fix episode is recorded with its dates because it is the provenance the citation carries: the theorem you cite is the fixed version, and the fix is part of the theorem's history.
+
+**What to learn:** when a recursion jams on a structure class, the way forward is a DICHOTOMY — force every remaining case into one of two named exits and build separate machinery for each. Babai's split-or-Johnson is the pattern: quasirandomness (good for recursion) or canonical configuration (handle it explicitly). And the Johnson panels teach the small-n lesson the whole chapter keeps repeating: at tiny sizes, extra symmetry can be an artifact — check whether the structure survives the size before building a theory on it.
+
+---
+
+## Lecture 5 · Kruskal's Greedy Engine: The Cut Property Proves the Algorithm
+
+**Encounter.** In 1956 Joseph B. Kruskal published a three-page paper in the Proceedings of the American Mathematical Society (**7**(1): 48–50) with the full title "On the shortest spanning subtree of a graph and the traveling salesman problem" — the title's second half the traveling-salesman scope the seed truncated and this session's pin restored. The paper states the problem (a connected graph with edge weights, find the spanning tree of minimum total weight) and gives two constructions, quoted from the paper's own text: **Construction A** — "Among the edges of G not yet chosen, choose the shortest edge which does not form any loops with those edges already chosen," repeated until a spanning tree is formed; **Construction B** — the same greedy step restricted to edges connected to a fixed vertex-subset (Prim's algorithm avant la lettre, twenty-one years avant la lettre). The correctness of both rests on one argument: the greedy exchange — the CUT PROPERTY. The engine has no Atlas P-ID: the survey's dossier recorded the greedy-exchange/cut-property argument as a coverage observation, single firing, the fourth of this chapter's gaps. And the engine's descendants are everywhere: matroid optimization, Huffman coding, scheduling by earliest deadline — everywhere a local greedy choice is provably globally optimal, the same exchange skeleton is walking underneath. This lecture proves the engine completely — the proof fits on a page — and the lab runs it at census scale.
+
+**✎ Checkpoint.** With all weights distinct, the MST is unique — predict whether that survives ties. And a subtler one: the cut property says every edge of the greedy tree is the STRICT minimum across the cut it crosses when it is chosen. Predict whether Construction A and Construction B (which choose different edge orders) always agree on the final tree. Commit before the receipts.
+
+**Experiment — the lab first (Part 5, seed 20261095; one continuous MINSTD stream, panels in order).** Four panels; Construction A (greedy, no cycle) and Construction B (cut-restricted from vertex 0) both against BRUTE FORCE (all C(m, n−1) edge subsets, connectivity by BFS):
+
+| panel | trials | A = B = brute | unique MST | cut-viol A / B | cycle-viol | mean weight |
+|-------|--------|---------------|------------|----------------|------------|-------------|
+| (a) K₅ ×100 | 100 | 100/100 | 100/100 | 0 / 0 | 0 | 10.57 |
+| (b) K₆ ×50 | 50 | 50/50 | 50/50 | 0 / 0 | 0 | 16.30 |
+| (c) sparse n=7 ×30 | 30 | 30/30 | — | 0 / 0 | 0 | — |
+| (d) ties K₅ ×60 | 60 | 60/60 | 39/60 multi-min | 0 / 0 | — | 7.30 |
+
+Panel (a)'s trial 0, printed as run: MST edges 04, 02, 23, 01, weight 10. Panel (c)'s sparse graphs (each of the 21 pairs kept with probability 0.4, redrawn if disconnected): 13 redraws over the run; edge-count histogram 7:4, 8:7, 9:3, 10:6, 11:3, 12:4, 13:1, 14:2. The checkpoint answers, from the receipts: ties destroy uniqueness (39 of 60 tie-trials have multiple minimum trees — but A = B = brute stays 60/60: every greedy tree is still AN optimal tree); and the two constructions never disagree — 240/240 trials across all panels, because both satisfy the same cut property, which the lab verifies as it runs: at every added edge, the chosen edge is the strict minimum across (component, rest) — zero violations, ever — and every non-tree edge satisfies the cycle property (max tree-path weight ≤ its weight, strict under distinct weights).
+
+**Explain — the engine, proved completely.** The cut property: for any cut (S, V∖S), if e is the strict minimum-weight edge crossing it, then every MST contains e. Proof (the exchange argument, the whole engine): suppose T is a spanning tree avoiding e, e = uv with u ∈ S, v ∉ S. T + e contains a cycle through e; that cycle must cross the cut again, at some edge f ≠ e. Then T′ = T + e − f is a spanning tree, and w(T′) = w(T) + w(e) − w(f) < w(T) since w(e) < w(f) — contradiction. The greedy algorithm is the cut property consumed in order: when A's greedy step adds edge e, the components of the chosen set define a cut, and e is its strict minimum (any lighter crossing edge would have been tried first and could not close a cycle with the chosen set — the algorithm's two rules together). Construction B is the same argument with the cut (reached set, unreached). Uniqueness under distinct weights: if T ≠ T′ are both MSTs, take the lightest edge in their symmetric difference, say e ∈ T ∖ T′, crossing the cut its component defines in T′; T′ must have a crossing edge f with w(f) > w(e) (strictness), so T′ is not minimum — contradiction. And the tie datum, honestly: with ties, the greedy still finds AN optimum (the cut property's non-strict version covers it), but uniqueness dies — the receipts' 39/60, printed because the honest answer is the one the machine gives.
+
+**Generalize — the engine beyond trees.** The greedy-exchange skeleton — "choose the locally best option that preserves feasibility; prove every exchange is an improvement" — is the argument pattern behind matroid theory (where greedy is optimal for ALL linear weights, the Rado–Edmonds theorem the census tradition records), Huffman coding (exchange a deepest pair), and the scheduling canon. Kruskal's paper itself connected the tree to the traveling salesman problem in its title's scope; the modern reading is the reverse — the TSP connection was context, the tree algorithm the seed. The survey's verdict: single firing, no P-ID, coverage observation — the engine is real and decisive and patternless, and this chapter's lecture is its home. The mean-weight receipts (10.57, 16.30, 7.30) are honest data of no theorem — printed as scale, nothing more.
+
+**What to learn:** greedy algorithms are correct exactly when the exchange argument closes — when any locally best choice can be swapped into any optimal solution at no cost. Test greediness by the exchange, not by intuition; and when ties appear, ask which guarantee survives (here: optimality survives, uniqueness does not — 39/60 says so).
+
+---
+
+## Lecture 6 · The k-Adic Digit Engine: Chip-Firing on Infinite k-ary Trees
+
+**Encounter.** Put N chips on the root of an infinite k-ary tree and let the chips fall: any vertex holding at least as many chips as its degree (k+1 — the root's self-loop counts once) FIRES, sending one chip along each edge; the loop's chip returns to the root. Fire until stable (every vertex holds ≤ k chips). The process is the abelian sandpile's little sibling — confluent (the final configuration does not depend on firing order, by the global-confluence theorem the paper cites from Klivans' book), finite (N < |E|), and combinatorially brutal to track by hand. The paper that pinned it — *Chip-Firing on Infinite k-ary Trees*, Enumerative Combinatorics and Applications **6**:1 (2026), Article #S2R7, DOI 10.54550/ECA2026V6S1R7, arXiv:2501.06675 — carries a provenance the chapter records honestly per the survey's author-level rule: the authors are students in grades 6 through 9 (MIT PRIMES STEP), with Tanya Khovanova as mentor. The paper's engine, in its own arithmetic: the stable configuration is a PERFECT k-ary tree of height n−1 with equal chips per layer (Proposition 3.1), the layer counts are the base-k digits of N − (kⁿ−1)/(k−1) (Proposition 3.2), and the fire counts — per vertex, per layer, total — run on those digits by backward induction (Lemma 5, Theorem 6, Corollaries 8 and 9, Theorem 12). The survey graded the pattern decisions P4 (induction), P25 (the digit encoding), P2 (the chip-flow conservation), P7 (a divisibility endgame) — and recorded the engine ITSELF — the k-adic valuation driving the difference sequences — as the fifth coverage gap: ν_k, the exponent of k in m, is the whole story of the root-fire differences, and it matches no Atlas P-ID. The chapter's receipts campaign fetched the paper's full text before authoring (the HTML from arXiv), and the fetch mattered: see the scar below.
+
+**✎ Checkpoint.** The root fires f₀(N, k) times as a function of N. Before the receipts: for k = 2, sketch f₀(N) for N = 1..10 by hand simulation (a two-page pencil exercise), and predict the pattern. Then predict the DIFFERENCE structure of g₀(m, k) = f₀(mk, k) — do the differences grow? Where do the jumps sit? Commit; the machine's lists are below, and the hand exercise is exactly where the author's own arithmetic went wrong (scar, below).
+
+**Experiment — the lab first (Part 6: deterministic panels + confluence seed 20261096).** Six panels, every theorem checked against simulation for every N in range.
+
+*Panels A+B: the structure theorems, all-maxed.* For k = 2 (N ≤ 64), k = 3 (N ≤ 81), k = 5 (N ≤ 50): the stable configuration is the perfect tree with layer counts a_i + 1 (Prop 3+4), chip conservation holds, layer symmetry holds with the deepest layer unfired (f_{n−1} = 0), Lemma 5 (adjacent-layer fire differences), Theorem 6 (backward-induction fire counts), Corollary 8 (f₀'s digit sum), Theorem 12 (the total F's digit formula) — every one, every N: all green, 64/64, 81/81, 50/50.
+
+*Panel C: the root-fire sequence and its differences.* f₀(N, 2) for N = 1..40: `0,0,1,1,2,2,4,4,5,5,7,7,8,8,11,11,12,12,14,14,15,15,18,18,19,19,21,21,22,22,26,26,27,27,29,29,30,30,33,33`. The root-fire recurrence — the paper's form: f₀(N) = ⌈N/k⌉ − 1 + f₀(⌈N/k⌉ − 1), base f₀ = 0 for N ≤ k — matches simulation 40/40 at k = 2, 40/40 at k = 3, 30/30 at k = 5; fires are constant on blocks {ak+1, …, (a+1)k}, machine-TRUE at all three k; and g₀(m,k) matches the paper's published Table 1 for k = 2..6, m = 1..10 — 5/5. The difference sequences, the engine's heart: d₀(m,2) for m = 1..40: `1,1,2,1,2,1,3,1,2,1,3,1,2,1,4,1,2,1,3,1,2,1,4,1,2,1,3,1,2,1,5,1,2,1,3,1,2,1,4,1` — Theorem 11 (d₀ = n at the exceptional m = (kⁿ−1)/(k−1); else ν_k((k−1)m+1)+1): 40/40, the exceptional m = 1, 3, 7, 15, 31 firing 1, 2, 3, 4, 5. At k = 3: `1,1,1,2,1,1,2,1,1,2,1,1,3,…` 27/27 (exceptional 1, 4, 13); at k = 5: 30/30 (exceptional 1, 6). The paper's OEIS prefixes — A091090 (18 terms) for k = 2 and A378725 (23 terms) for k = 3 — MATCH the machine exactly. And the fractal structure, machine-checked: at k = 2 the non-1 entries sit exactly at odd m ≥ 3, one 1 between consecutive non-1s; at k = 3 exactly at m ≡ 1 (mod 3), m ≥ 4, two 1s between — the self-similar digit skeleton the paper describes, receipted.
+
+*Panel D: the perfect-tree family.* At N = (kⁿ−1)/(k−1) (all digits 0, all layers single-chip): the closed form f₀ = (kⁿ − nk + (n−1))/(k−1)² against simulation — k = 2: [0, 1, 4, 11, 26, 57, 120, 247, 502, 1013] = 2ⁿ − n − 1 (OEIS A000295), 10/10; k = 3: [0, 1, 5, 18, 58, 179, 543] (A000340 shifted), 7/7; k = 4: [0, 1, 6, 27, 112] (A014825), 5/5; k = 5: [0, 1, 7, 38, 194] (A014827), 5/5 — the family the paper names as OEIS connections, verified by the lab at every length it can reach.
+
+*Panel E: the divisibility endgame.* F((k^{2n+1}−1)/(k−1)) ≡ 0 mod 2(k+1), Proposition 5.4: k = 2: F(7) = 6, F(31) = 72, F(127) = 522, F(511) = 3084 — all ≡ 0 mod 6, 4/4; k = 3: F(13) = 8, F(121) = 184, F(1093) = 2736 mod 8, 3/3; k = 5: F(31) = 12, F(781) = 684, F(19531) = 26856 mod 12, 3/3. (The paper's fetched HTML truncates inside Theorem 12's proof, so this proposition is verified from the dossier's statement — the honest scope note the receipts record.)
+
+*Panel F: confluence.* Random legal firing orders (uniform choice among legal vertices each step, seed 20261096) against the canonical smallest-index order, at (k,N) = (2,50), (2,127), (3,40), (3,121), (5,31): **5/5 identical** — same stable configuration, same FULL per-vertex fire vector, same total F. The abelian property, witnessed by sampling; the proof is Klivans' cited theorem, not the lab's.
+
+**Explain — the digit engine, at flag level.** The model, pinned from the paper's own text: a vertex fires when it has at least as many chips as its degree; on this graph every vertex has degree k+1 (the loop counts once); firing sends one chip per edge, the loop's chip returning — net loss k at the root, k+1 elsewhere; stable means ≤ k chips everywhere. Why digits? Count the tree: the first (k¹−1)/(k−1) = 1 vertices are the root, the first (k²−1)/(k−1) = k+1 fill layer 0 — so N lands in height range n = ⌊log_k((k−1)N+1)⌋, and the excess Δ = N − (kⁿ−1)/(k−1) spreads over the n layers as base-k digits a_i, one chip each (Prop 3.2's c_i = a_i + 1). Fire counts then run BACKWARD (Theorem 6): each layer's fires are forced by what the layers below must pass up — Lemma 5's conservation (chips sent to children = resident descendants + k × child fires) is a P2 double count, and Corollary 8's f₀ is a digit sum with weights (k^j − 1)/(k−1). The difference engine: g₀(m,k) = f₀ at the block tops N = mk; its differences d₀ sit on the k-adic valuation of (k−1)m+1 — ν_k counts trailing (k−1)-digits in base k, which is why the non-1 entries sit at the geometric positions m = (kⁿ−1)/(k−1) with the fractal self-similarity the receipts verify. The recurrence's form matters, and the chapter's own scar is the lesson: the paper states f₀(N) = ⌈N/k⌉ − 1 + f₀(⌈N/k⌉ − 1); the survey's dossier transcribed ⌊N/k⌋; the two differ at every N not divisible by k, and only the ceiling matches the machine (40/40; the floor version fails 12 of 40). The chapter cites the paper. The engine's farther faces — the paper's Section 5, the schizophrenic-numbers decimal phenomenon — are recorded at statement level from the dossier and abstract; the receipts do not touch them.
+
+**Generalize — and the honest ledger.** The paper's pattern decisions (P4, P25, P2, P7 — the cameo in the pattern map) are the moves; the engine — k-adic valuation digit analysis — is the fifth coverage gap, single firing, recorded by the survey as a synthesis note. The chapter records the authors' provenance because the survey's author-level rule requires it, and the datum is itself part of the story: the corpus's P3 single genuine firing also came from middle-schoolers (batch N, the survey's own note — youth papers at the pre-doctoral canon's edge), and the N-batch miss the dossier logs (the seed expected a generating function; the paper has none — sequence work by recurrence and valuation, no P5 anywhere) is the same census honesty this chapter runs on. The exploration track the youth-math collection project (a future Atlas companion) will take up: what this paper's engine suggests about where the next coverage gaps live.
+
+**What to learn:** when a combinatorial process is abelian, simulate it in the most convenient order and trust the answer — then find the INVARIANT that predicts the simulation. Here the invariant is a base-k digit expansion, and the predictions (stable configs, fire counts, totals, divisibility) all fall out of it. And when a formula's floor and ceiling differ, do not trust the transcript — the machine arbitrates, and this chapter's receipts campaign caught its own source's transcription slip exactly that way.
+
+---
+
+## The Trick Bag (reference card)
+
+| # | Tool | Statement | Watch out |
+|---|------|-----------|-----------|
+| 1 | Admissibility congruences (Wilson) | v−1 ≡ 0 (mod k−1) and v(v−1) ≡ 0 (mod k(k−1)) — machine-verified ⟺ v ≡ 1,3 (mod 6) at k = 3, etc. | Necessary, NOT sufficient at small v: PBD(6,{3,4}) passes the mod check and does not exist (the search exhausted it) |
+| 2 | Bose / Skolem quasigroup constructions | Bose: STS(6n+3) from an idempotent commutative quasigroup; Skolem: STS(6n+1) from a half-idempotent one | Verify pair-coverage with (min,max) keys — the un-normalized pair key is the classic false-violation bug (Part 1's scar 2) |
+| 3 | Wilson's fundamental construction | Transversal template + ingredient designs + group fills ⇒ composite-order PBD | The lab's miniature: PG(2,3) − (a point) → TD(4,3) + group triples → PBD(12,{3,4}); the real theorem is asymptotic — sufficiency only above the bound |
+| 4 | Frobenius coin engine | g(a,b) = ab−a−b; #gaps = (a−1)(b−1)/2 (34/34 machine-verified) | It is the heart of Wilson's Part II: closed sets of integers are eventually everything — the finite-basis theorem, not the coin formula, is what the theorem needs |
+| 5 | MacWilliams functional equation | Self-dual ⟹ W(x+y,x−y) = 2^{n/2}W(x,y), exact in the coefficients | Test it on EVERY code found, not samples: the census's 135/135 is the difference between evidence and receipts |
+| 6 | Gleason invariant spaces | Fix(t₁) ∩ {y-deg ≡ 0 mod 4}; t₁ rational at even degree (2^{−m} scales out); dims 0,0,1,0,1,2 at degrees 2..24 | The √2 in t₁'s definition never enters even-degree fixed-point theory — do not write irrational arithmetic; count invariants two ways (nullspace + Molien series) and demand agreement |
+| 7 | Orbit–stabilizer ledger | Σ_classes n!/|Aut| = #labeled objects, exactly; Burnside as cross-check | |Aut| histograms identify structure only with care — the receipts name the two order-24s at n = 4 as K₄ and its complement, verified, not guessed |
+| 8 | GI ⟷ Aut torsor fact | Iso(G,H) is empty or an |Aut|-torsor — count isomorphisms to test isomorphism | 556 = Σ (class size)² is the consistency check; violations must be zero, all 4,096 pairs |
+| 9 | Degree-fence reduction (color gadget) | Pendant paths turn colors into degrees; degrees fence automorphisms | Verify σ-extensions against the CONSTRUCTED edge set, not the description — the receipts' pin, and the difference between checking and assuming |
+| 10 | Composition-series recursion (Luks) | Divide a permutation-group problem along block systems; primitive groups are the base cases | Block systems at prime degree: none exist — every transitive group at prime degree is primitive (S₅'s 20/20, machine-verified) |
+| 11 | Split-or-Johnson dichotomy (Babai) | Force hard cases into quasirandomness or canonical Johnson structure | Small-n artifacts: J(4,2)'s "extra" 24 automorphisms are the complement map, an artifact of 4 = 2·2 — J(5,2) has no complement and 120 = 120 |
+| 12 | Cut property (Kruskal) | Strict minimum across a cut belongs to every MST (exchange proof) | Distinct weights ⟹ uniqueness; ties kill it (39/60) but not optimality (A = B = brute stays 60/60) |
+| 13 | k-adic digit engine | Stable chips = base-k digits of Δ; fire counts by backward induction; d₀ = ν_k((k−1)m+1)+1 off the exceptional set | ⌈N/k⌉ not ⌊N/k⌋ in the recurrence — the paper's form; the transcript's floor fails 12/40. Hand arithmetic is not the arbiter: the author's k = 4/5 family values were wrong; the machine's were right |
+| 14 | Abelian/confluence property | Firing order does not affect the stable configuration or fire counts | Sampled (5/5 identical), proved by Klivans' cited theorem — the lab witnesses, the citation proves |
+
+**Scars (recorded so you skip them).** (1) The deadline lesson, twice: never combine a fresh harness with a long campaign in one run block — Part 1's combined panel run and Part 6's first combined run both hit the run deadline, and Part 6's carried a real bug underneath (the random-order callback returned a fractional index, `arr[0.x]` = undefined, and the simulator fired `undefined` forever). Split per-panel; fix the harness; re-run everything. (2) The verifier needs receipts discipline too: Part 1's pair-coverage check keyed pairs as stored, without min/max normalization, and correct constructions printed false violations — the bug was caught by hand-trace, fixed, and the FULL campaign re-run green. (3) The Molien counter: a loop that tested `while 8i+24j === d` never entered at d = 24, i = 0, and printed 1 where the hand expansion gives 2 — caught by the receipts expectation, fixed to solution counting, cross-checked by an independent series expansion. (4) The dossier transcription slip: ⌊N/k⌋ vs the paper's ⌈N/k⌉ — caught because the campaign fetched the paper's full text before authoring; the chapter cites the paper's form. (5) Hand arithmetic wrong twice: the author's k = 4/5 perfect-tree family values (0,1,7,37,175 / 0,1,11,61,301) were wrong; the machine gives [0,1,6,27,112] and [0,1,7,38,194] — the machine is the arbiter. (6) The harness off-by-one: a block-constancy check comparing f₀(2a) vs f₀(2a+1) instead of f₀(2a+1) vs f₀(2a+2) printed a false FALSE — the fixed harness gives TRUE for k = 2, 3, 5. The full campaign record, with every scar's fix and re-run, is in the Verification Notes.
+
+**Reading list (pin levels as verified this session, 2026-10-14).** Web-pinned: Wilson, J. Combin. Theory Ser. A **13** (1972) 220–245 (Part I: composition principles and cascade constructions) and **13** (1972) 246–273 (Part II: the structure of PBD-closed sets) — part III in **18** (1975) cited by volume/year with pages UNPINNED (honest note); Gleason, Actes Congrès intern. math. Nice 1970, vol. 3, Gauthier-Villars (1971) 211–215 (the Celebratio Mathematica bibliography the pin rides on); Luks, J. Comput. System Sci. **25**(1) (1982) 42–65, DOI 10.1016/0022-0000(82)90009-5 (title's "tested" pin; the 1980 FOCS abstract priority noted; the open author PDF located); Babai, Proc. 48th STOC (2016) 684–697, DOI 10.1145/2897518.2897542 + arXiv:1512.03547 (journal version beyond the extended abstract unpinned, never guessed); the Helfgott gap-and-fix episode from the public record (Babai's 9 January 2017 update note; Helfgott's Bourbaki seminar of 14 January 2017, exposition printed as Astérisque 407 (2019) 135–182); Kruskal, Proc. Amer. Math. Soc. **7**(1) (1956) 48–50 (full title pinned, the TSP clause restored); Agrawal–Ge–Greene–Kim–Mandal–Parida–Pulugurtha–Redwine–Samanta–Xu–Khovanova, Enumerative Combinatorics and Applications **6**:1 (2026) Article #S2R7, DOI 10.54550/ECA2026V6S1R7 + arXiv:2501.06675 — **full text fetched this session** (the firing convention, Table 1, Prop 3/4, Lemma 5, Thm 6, Cor 7/8/9, Prop 10, Thm 11, Thm 12 quoted from the fetched HTML; authors in grades 6–9 + mentor Khovanova, recorded per the batch's author-level rule). Classical canon, web-pinned at the constructions: Kirkman, Cambridge Dublin Math. J. **2** (1847) 191–204; Steiner, J. reine angew. Math. **45** (1853) 181–182; Bose, Ann. Eugenics **9** (1939) 353–399; Skolem, Math. Scand. **6** (1958) 273–280; Hanani, Canad. J. Math. **15** (1963) 702–722 and **12** (1960) 145–157; Bruck–Ryser, Canad. J. Math. **1** (1949) 88–93; MacWilliams, Bell System Tech. J. **42** (1963) 79–94; the Bose/Skolem block-rule carrier: Moura's uOttawa course slides (citing Lindner–Rodger, *Design Theory*, CRC 2008, ch. 1, and Colbourn–Rosa, *Triple Systems*, OUP 1999). Statement-level, pin pending at authoring: Pless, J. Combin. Theory **5** (1968) 215–228 (Golay uniqueness — cited via MacWilliams–Sloane where needed); MacWilliams–Sloane, *The Theory of Error-Correcting Codes*, North-Holland (1977) (textbook carrier for Gleason's theorem, the Type II ring ℂ[f₈, f₂₄], and the census facts, ch. 19–20); Klivans' book (the confluence theorem, Thm 2.2.2 — cited via the paper; exact bibliographic pin deferred to carrier use); Hopcroft–Tarjan J. ACM 21(4) (1974) 549–568 (*Efficient planarity testing*) and the triconnected-components paper SIAM J. Comput. **2** (1973) 135–158 — two real papers the batch row conflated; each cited for what it is. OEIS at statement level via the paper: A000295, A000340, A014825, A014827 (the perfect-tree family), A091090 (d₀, k = 2), A376116 (g₀, k = 2), A378724, A378725 (k = 3, the authors' own submissions — the machine checked the printed prefixes where quoted).
+
+---
+## Exercises (graded: ●○○ easy · ●●○ moderate · ●●● tough)
+
+Hints travel with the problems. ◆ **pattern unknown** problems come with no hint — diagnosing the tool is part of the problem; ◐ **Explorations** state what you should find, not a number to match. Machine-verified answers sit at the end of the chapter.
+
+### Easy (●○○)
+
+**Exercise 1 · Kirkman's condition, derived not remembered.** An STS(v) covers each pair exactly once with triples. (a) Fix a point p: its v−1 pairs partition into pairs within triples through p, each triple through p consuming exactly 2 of them — deduce v is odd and (v−1)/2 is the number of triples through p. (b) Count pairs globally: v(v−1)/2 = 3·(#triples) — deduce 6 | v(v−1). (c) Combine: v odd and 3 | v(v−1) force v ≡ 1 or 3 (mod 6) — check the three odd residue classes mod 6 (1, 3, and 5) and eliminate 5. Reconcile with the receipts' k = 3 admissible list (3, 7, 9, 13, 15, 19, 21, …) and with the k = 4, k = 5 general conditions stated in Lecture 1. *Hint for (c): v ≡ 5 (mod 6) makes both v and v−1 coprime to 3.*
+
+**Exercise 2 · The two STS(7)s, both perfect.** The lab produced two Steiner triple systems on labels 1–7: the searched system `123 145 167 246 257 347 356` and the Skolem-constructed one (relabel the Fano receipt) `123 247 357 167 145 256 346`. (a) Verify each by hand: list all 21 pairs and confirm each appears in exactly one block (7 blocks × 3 pairs = 21 = C(7,2) — the count that makes the check finite). (b) Exhibit a pair of blocks proving the two systems differ as labeled systems (e.g. where does the pair {4,6} sit in each?). (c) Reconcile: the Fano plane is unique up to relabeling (textbook canon, cited) — so the two systems must be isomorphic; count the blocks through each point in both systems, note what a relabeling must respect, and find an explicit relabeling that carries one system to the other. *Hint for (c): every point sits in exactly 3 blocks; the relabeling must match the point-block incidence.*
+
+**Exercise 3 · The octahedron.** J(4,2) has as vertices the six 2-subsets of {1,2,3,4}, adjacent when they share a point. (a) Show the non-adjacent pairs are exactly the three complementary pairs {12,34}, {13,24}, {14,23} — so J(4,2) is K₆ minus a perfect matching, which is the octahedron graph (six vertices, each of degree 4, one opposite). (b) Conclude Aut(J(4,2)) = 48: the octahedron's symmetry group — three axes through opposite pairs (permute freely: 3!), and independent flips on each axis (2³) — 6·8 = 48. (c) The induced action of S₄ on the 2-subsets has order 24 — the index-2 subgroup the receipts isolate — and the complement map {i,j} ↦ {i,j}ᶜ is the automorphism outside it: verify on one edge that it preserves adjacency, and name the coset structure (the 48 automorphisms split into 24 induced + 24 complement∘induced). *Hint for (b): a symmetry of the graph is determined by where the three opposite pairs go and a flip per pair.*
+
+### Moderate (●●○)
+
+**Exercise 4 · The PBD counting arithmetic, and its honest limit.** For a PBD(v,{3,4}) with t triples and q quads: (a) Prove t + 2q = C(v,2)/3, and at v = 10 reconcile with the receipts' 12 blocks (t = 9, q = 3): 9 + 6 = 15 = 45/3 ✓. (b) Now the point-side condition: each point p has v−1 = 2a_p + 3b_p (a_p triples, b_p quads through p). Check v = 5, 8, 11: v−1 = 4, 7, 10 — and discover they are ALL expressible (2·2, 2·2+3, 2·5): the point-side condition PASSES exactly where the pair-side fails, and the operative obstruction at 5, 8, 11 is the pair-side congruence alone (the receipts file's original "also fails there" clause was wrong, is logged as a corrected scar, and this exercise is the correction). The only v ≥ 2 failing the point-side condition is v = 2 (v−1 = 1, the Frobenius number g(2,3) = 2·3 − 2 − 3 = 1). (c) Verify the pair-side obstruction at 5, 8, 11 too (C(v,2) ≡ 1 mod 3 at each — compute all three). (d) The honest datum: v = 6 passes BOTH conditions and still no PBD(6,{3,4}) exists — the receipts' search exhausted the space. Explain why this does not contradict Wilson's theorem (sufficiency holds only above a bound, and 6 is below it), and why the exhausted search (as opposed to a cap-hit) is the stronger receipt. *Hint for (b): by the Frobenius coin formula for (2,3), 2a + 3b hits every integer ≥ 2 (missing only 1); list the representations of v−1 for 3 ≤ v ≤ 13.*
+
+**Exercise 5 · Molien by solution counting.** The receipts compute the Gleason dims two independent ways. (a) Count by hand: the coefficient of t^d in 1/((1−t⁸)(1−t²⁴)) is the number of solutions of 8a + 24b = d in nonnegative integers — compute it for d = 2, 4, 8, 12, 16, 20, 24 and get 0, 0, 1, 0, 1, 0, 2, and for d = 32 (you should find 2: (a,b) = (4,0) and (1,1)). (b) Reconcile each nonzero coefficient with the receipts' machine facts: degree 8 has the generator f₈ (a = 1); degree 16 has f₈² (a = 2); degree 24 has f₈³ and f₂₄ ((3,0) and (0,1)) — name the basis element for each solution. (c) The receipts' independent series expansion agrees with the solution count at every degree ≤ 32 — explain why agreement of the two methods is evidence for the Gleason theorem's counting claim (the invariant ring's Hilbert series IS the Molien series) rather than a coincidence, and what a disagreement would have meant (a missing invariant or an overstated ring). *Hint for (a): 8a + 24b = d ⟺ a + 3b = d/8 when 8 | d; d ≢ 0 mod 8 gives 0.*
+
+**Exercise 6 · The torsor fact, and 556 decomposed.** (a) Prove: if G ≅ H then the set Iso(G,H) is a torsor under Aut(G) — fixing any φ ∈ Iso(G,H), the map α ↦ φ∘α is a bijection Aut(G) → Iso(G,H) — and deduce |Iso(G,H)| = |Aut(G)|; show the same set is an |Aut(H)|-torsor, so |Aut(G)| = |Aut(H)| for isomorphic graphs (the receipts' zero-violations datum, proved). (b) From the n = 4 |Aut| histogram (2:36, 4:12, 6:8, 8:6, 24:2 labeled graphs): each class of orbit size 4!/|Aut| contributes (4!/|Aut|)² ordered isomorphic pairs — compute the class sizes (12, 6, 4, 3, 1) and the sum 3·144 + 2·36 + 2·16 + 2·9 + 2·1 = 556, the receipts' isomorphic-pair count. (c) Why does Σ (class size)² over classes always equal the count of ordered isomorphic pairs, and why is this the consistency check the GI⟷Aut panel needs (it counts the same thing two ways: by classes and by the machine's σ-count > 0)? *Hint for (b): each class has exactly 4!/|Aut| members and the histogram's multiplicity counts labeled graphs, so multiplicity/(class size) gives the number of classes at that |Aut|.*
+
+**Exercise 7 · Chip-firing at pencil scale.** k = 2, root = vertex 0 with a loop (degree 3; children 1, 2; grandchildren 3–6). (a) Hand-simulate N = 5: fire the root while it holds ≥ 3; then fire whatever is legal; record the stable configuration and the root's fire count. You should get root 1, children 2, 2 — stable — with f₀ = 2, matching the receipts' f₀(N,2) list at N = 5. (b) Same for N = 6 (f₀ = 2; stable root 2, children 2, 2) and N = 7 (f₀ = 4; stable = one chip per vertex of the perfect tree of height 2 — the fires bounce: three root fires, then both children, then one more root; trace it). (c) The digit formula: for n = ⌊log₂(N+1)⌋ (the unique integer n with 2ⁿ − 1 ≤ N < 2^{n+1} − 1) and Δ = N − (2ⁿ − 1), the stable layer counts are a_ℓ + 1 chips per vertex at layer ℓ ∈ {0, …, n−1} (where Δ = Σ_{ℓ=0}^{n−1} a_ℓ 2^ℓ in binary, LSB first) — check the conservation Σ_{ℓ=0}^{n−1} 2^ℓ(a_ℓ + 1) = Δ + (2ⁿ − 1) = N for N = 5, 6, 7 (Δ = 2, 3, 0), and reconcile each with your simulations. *Hint for (b): at N = 7 the root refires AFTER the children fire — chips come back up.*
+
+**Exercise 8 · Construction B and the tie datum.** (a) Prove Construction B correct: the cut property says the strict minimum across the cut (reached set S, rest) lies in every MST; B's step picks exactly that edge; conclude by induction that every B edge lies in the (unique, under distinct weights) MST, so B returns it. (b) Under ties the strict minimum may not exist — prove the non-strict version (e a minimum across the cut; exchange with w(f) ≥ w(e)) shows B still returns a tree of OPTIMAL weight. (c) Exhibit the receipts' tie phenomenon on K₃ with all weights 1: three spanning trees, all minimum — the greedy may return any. Reconcile with the receipts' 39/60 (multi-minimum trials exist) and the standing 60/60 (both constructions still hit the optimal weight every time): what exactly does uniqueness failure NOT destroy? *Hint for (a): B's chosen edge is the minimum across the cut by construction — the cut property does the rest.*
+
+### Tough (●●●)
+
+**Exercise 9 · Bose's construction, proved.** Bose: m = 2n+1 odd, points Z_m × {0,1,2}, x∘y = ((m+1)/2)(x+y) mod m. (a) Prove ∘ is a commutative idempotent quasigroup: x∘x = x; commutative; and cancellation holds — z ↦ x∘z is injective, using that (m+1)/2 is invertible mod m (gcd(n+1, 2n+1) = 1). (b) Prove x∘y ∉ {x,y} whenever x ≠ y (multiply x∘y = x by 2 and reduce: (m+1)(x+y) ≡ 2x, and since (m+1)z ≡ z (mod m), this says x + y ≡ 2x, contradiction). (c) Prove every pair of points lies in exactly one block, by the three cases: (i) vertical pairs — the vertical triple, uniquely; (ii) same-layer pairs {(x,i),(y,i)}, x ≠ y — the type-2 block of layer i with third point (x∘y, i+1 mod 3), unique because the third point is forced, in the next layer, and no other block type can contain a same-layer pair in layer i; (iii) cross-layer pairs {(x,i),(y,i+1 mod 3)} — a type-2 block must have its same-layer pair in layer i including x, so it is {(x,i),(z,i),(x∘z, i+1 mod 3)} with x∘z = y and z ≠ x (since y ≠ x∘x = x implies z ≠ x; and when y = x the vertical triple covers {(x,i),(x,i+1 mod 3)}), and z is unique by cancellation; check that type-2 blocks of layer i+1 and layer i+2 cannot also cover the pair (count their layer profiles). Conclude: Bose produces an STS(6n+3) for every n — the receipts' 9-for-9 verification is the theorem witnessed, and your proof is the theorem. *Hint for (c): a type-2 block of layer j has two points in layer j and one in j+1 (mod 3) — match layer profiles against the pair's.*
+
+**Exercise 10 · The degree-8 invariant, by hand.** The receipts recovered x⁸ + 14x⁴y⁴ + y⁸ as THE degree-8 Gleason invariant by machine; do it by hand. (a) Write t₁ on the three surviving monomials (the t₂ condition y-degree ≡ 0 mod 4 leaves columns y⁰, y⁴, y⁸): t₁(x⁸) = 2⁻⁴(x+y)⁸, t₁(x⁴y⁴) = 2⁻⁴(x+y)⁴(x−y)⁴ = 2⁻⁴(x²−y²)⁴, t₁(y⁸) = 2⁻⁴(x−y)⁸. (b) For v = ax⁸ + bx⁴y⁴ + cy⁸, write the nine coefficient equations t₁v = v — CAREFUL with the signs: (x−y)⁸'s odd columns alternate (−8, +56, −56, +8 at y-degrees 1, 3, 5, 7), while (x²−y²)⁴ contributes only to even columns (1, −4, 6, −4, 1). (c) Solve: the odd columns force a = c; the y⁶ coefficient of v (which is 0) gives 28a − 4b + 28c = 0, and combining with the y⁸ and y⁴ equations forces b = 14a — the space is exactly one-dimensional, spanned by (1 : 14 : 1), the extended Hamming enumerator. (d) Where does the census's [8,4] doubly-even count of 30 come from? Reconcile: |Aut(extended Hamming)| = 1344 = 8·168 (the affine general linear group AGL(3,2) = F₂³ ⋊ GL(3,2)), and 8!/1344 = 40320/1344 = 30, the receipts' labeled count. *Hint for (c): the even-column equations are 7a − b + 7c = 0 (from y⁶ and y⁴) and a + b + c = 16a (from y⁰); together with a = c from the odd columns, these force b = 14a.*
+
+**Exercise 11 · The difference engine's unified form.** The receipts verify Theorem 11 (d₀(m,k) = n at exceptional m = (kⁿ−1)/(k−1); else ν_k((k−1)m+1)+1) against three difference lists. (a) At k = 2: check m = 1..40 — the exceptional set is {1, 3, 7, 15, 31}; verify d₀(m,2) = ν₂(m+1)+1 at every NON-exceptional m (compute ν₂ by hand — e.g. m = 5: ν₂(6) = 1, d₀ = 2 ✓; m = 11: ν₂(12) = 2, d₀ = 3 ✓), and at the exceptional m verify instead d₀ = n = ν₂(m+1) — one LESS than the generic formula. (b) State the unified form: d₀(m,k) = ν_k((k−1)m+1) + 1 − [m is exceptional], and verify it at k = 3 against the receipts' 27-term list (exceptional {1, 4, 13}: ν₃(3)+1−1 = 1 ✓, ν₃(9)+1−1 = 2 ✓, ν₃(27)+1−1 = 3 ✓; and non-exceptional m = 10: ν₃(21)+1 = 2 ✓) and at k = 5 (exceptional {1, 6}). (c) Interpret: the exceptional points are exactly the m where (k−1)m+1 is a PURE power of k (m = (kⁿ−1)/(k−1) ⟺ (k−1)m+1 = kⁿ) — so the engine reads: count the trailing base-k zero digits of (k−1)m+1, and at the pure powers the count saturates one below. Why does this make the fractal structure inevitable (the non-1 entries sit at m ≡ 1 mod k for m > 1: at k = 2, odd m ≥ 3; at k = 3, m ≡ 1 mod 3 with m ≥ 4)? *Hint for (c): ν_k((k−1)m+1) ≥ 1 ⟺ (k−1)m+1 ≡ 0 (mod k) ⟺ −m + 1 ≡ 0 (mod k) ⟺ m ≡ 1 (mod k); at m = 1 the exceptional subtraction gives d₀(1,k) = 1, while every m ≡ 1 (mod k) with m > 1 has d₀(m,k) ≥ 2.*
+
+**Exercise 12 · Wilson's fundamental construction, miniature proved.** The receipts built PBD(12,{3,4}) from PG(2,3); prove every step. (a) PG(2,3) over F₃: 13 points (9 affine (x,y), three slope-points at infinity m ∈ F₃, one vertical point V), 13 lines (y = mx+b for m,b ∈ F₃ — nine; x = c for c ∈ F₃ — three; the line at infinity). Prove: each line has 4 points, and each pair of points lies on exactly one line (count: 13·C(4,2) = 78 = C(13,2) — and prove the no-two-lines-twice direction by the dimension count: two distinct lines meet in exactly one point, since their equations' difference is a nonzero linear function vanishing on the intersection). (b) Delete V: the 12 remaining points form 4 groups of 3 (the three vertical affine lines; the line at infinity minus V = the three slope-points). Prove every non-vertical line meets every group exactly once: an affine line y = mx+b meets each vertical x = c once (solve for y), and carries its own slope-point m; the line at infinity minus V IS the fourth group (it becomes a filled triple, not a block). Conclude the 9 surviving lines form a TD(4,3): every cross-group pair covered exactly once (affine-affine across verticals: the unique line through both; affine-slope: the unique slope-m line through the affine point). (c) Fill the groups as triples: 9 quads + 4 triples = 13 blocks, every pair of the 12 points exactly once — reconcile with the receipts' printed block list (`0369 1479 2589 …` with groups {0,1,2}, {3,4,5}, {6,7,8}, {9,10,11}) and its zero violations. The construction IS the engine: transversal template (the TD), ingredient designs (the quads), group fills (the triples) — Wilson's composition machine, witnessed. *Hint for (b): a non-vertical line's point at infinity is its own slope — that is why it survives the deletion and meets the slope-group.*
+
+### ◆ Pattern unknown (no hints — diagnosing the tool is the problem)
+
+**◆ 13.** For k = 4, prove that the two admissibility conditions (v−1 ≡ 0 mod 3 and v(v−1) ≡ 0 mod 12) hold exactly when v ≡ 1 or 4 (mod 12). (The receipts' k = 4 list — 4, 13, 16, 25, 28, 37, 40, 49, 52 — is the machine's agreement; the proof is the problem.)
+
+**◆ 14.** Prove that chip-firing with N = 2ⁿ − 1 chips at k = 2 stabilizes with exactly one chip on every vertex of the perfect binary tree of height n−1 (and none beyond), and that the root fires exactly f₀ = 2ⁿ − n − 1 times (OEIS A000295). Verify n = 3 by the hand simulation of Exercise 7(b), then prove both claims for all n.
+
+**◆ 15.** Prove that every codeword of a self-dual binary code has even weight, and conclude that the weight enumerator of any self-dual binary code is a polynomial in x² and y². Reconcile with the census: all three printed enumerators ([1,0,2,0,1], [1,0,3,0,3,0,1], [1,0,4,0,6,0,4,0,1]) have zero coefficients at odd weights — which theorem of the chapter does this make inevitable, and why is it a weaker statement than Gleason's?
+
+### ◐ Explorations (state what you should find)
+
+**◐ 16 · The invariant ladder past degree 24.** Extend the Gleason-space computation to degree 32 and the solution counting to degrees 40 and 48. You should find: the degree-32 invariant space has dimension 2 (a basis: f₈⁴ and f₈·f₂₄), agreeing with solution counting (8a+24b = 32: (4,0) and (1,1)); the counting ladder continues 2 at degree 40 ((5,0), (2,1)) and 3 at degree 48 ((6,0), (3,1), (0,2)). State what the ladder predicts for degree 72 and check it by solution counting alone.
+
+**◐ 17 · k = 4, the unverified engine.** The receipts verify the k-adic engine at k = 2, 3, 5; run k = 4. You should find: the ceiling recurrence f₀(N) = ⌈N/4⌉ − 1 + f₀(⌈N/4⌉ − 1) matches simulation for N up to at least 40; block constancy holds on {4a+1, …, 4a+4}; the perfect-tree family values [0, 1, 6, 27, 112] (the receipts' A014825 panel) reproduce; and the exceptional difference points sit at m = 1, 5, 21 (the (4ⁿ−1)/3 family) with d₀ = 1, 2, 3 there — verify the unified form of Exercise 11 at k = 4 as far as your patience holds.
+
+**◐ 18 · The census at n = 6.** Extend the orbit–stabilizer census to 6 vertices: all 2^15 = 32,768 labeled graphs, brute-force Aut over all 720 permutations. You should find exactly 156 unlabeled classes, Burnside agreeing at 156, and the ledger Σ 6!/|Aut| = 32,768 exact. The honest scale note to state: 720 · 32,768 is 23.6 million permutation applications — census scale is real work here, and n = 7 (2^21 graphs × 5,040 permutations) is a hundredfold past it; say where YOUR machine's census wall sits.
+
+---
+## Computational Lab (verified)
+
+*Every run below uses the chapter's documented engine: the Lehmer/MINSTD generator x ← 48271·x mod (2³¹−1), and a uniform choice among m items is floor(nxt()·m/(2³¹−1)) — integer-exact in IEEE doubles throughout. Fresh engines start at seeds **20261095** (Part 5's weighted-graph panels, ONE continuous stream over panels (a)→(d) in order) and **20261096** (Part 6's confluence trials, one continuous stream over the five (k, N) pairs in listed order). Parts 1, 2, 3, 4 and Part 6's deterministic panels draw nothing — they are exhaustive or formula-driven. The printed Python reproduces every receipt value-for-value; the receipts file (canonical, all six parts) records the design pins each block follows, and the campaign's scar history is in the Verification Notes.*
+
+### Part 1 — The Wilson arithmetic engine (Lecture 1)
+
+Seven deterministic panels: the admissibility lists and their mod-equivalences, the backtracking STS search, the Bose and Skolem constructions, the Kirkman closure, the honest PBD(v,{3,4}) census with the PG(2,3) miniature, and the Frobenius coin engine.
+
+```python
+from itertools import combinations
+
+def admissible(v, k):
+    return (v - 1) % (k - 1) == 0 and v * (v - 1) % (k * (k - 1)) == 0
+
+def pair_keys(block):
+    # scar 2, built in: pairs are ALWAYS keyed (lo, hi) — the un-normalized
+    # key is the classic false-violation bug (blocks stored out of order)
+    s = sorted(block)
+    return [(s[i], s[j]) for i in range(len(s)) for j in range(i+1, len(s))]
+
+def verify(blocks, v):
+    cnt = {}
+    for b in blocks:
+        for key in pair_keys(b):
+            cnt[key] = cnt.get(key, 0) + 1
+    return len(cnt) == v * (v - 1) // 2 and all(c == 1 for c in cnt.values())
+
+# Panel A — admissible lists, and the mod-equivalences over ALL v <= 200
+for k in (3, 4, 5):
+    print(k, [v for v in range(3, 61) if admissible(v, k)])
+    print("  mod-equiv:", all(admissible(v, k) ==
+          (v % 6 in (1, 3) if k == 3 else
+           v % 12 in (1, 4) if k == 4 else v % 20 in (1, 5))
+          for v in range(1, 201)))
+
+# Panel B — backtracking STS search (lex-first uncovered pair, c from b+1 up)
+def sts_search(v):
+    blocks, covered = [], set()
+    def rec():
+        for a in range(v - 1):                 # lex-first uncovered pair
+            for b in range(a + 1, v):
+                if (a, b) not in covered:
+                    for c in range(b + 1, v):  # pin: third point from b+1 up
+                        if (a, c) not in covered and (b, c) not in covered:
+                            blocks.append((a, b, c))
+                            covered.update(((a, b), (a, c), (b, c)))
+                            if rec():
+                                return True
+                            blocks.pop()
+                            covered.difference_update(((a, b), (a, c), (b, c)))
+                    return False               # no c works: dead end
+        return True                             # every pair covered
+    return blocks if rec() else None
+
+for v in (7, 9, 13):
+    S = sts_search(v)
+    print("STS(%d):" % v, len(S), "blocks, verify:", verify(S, v))
+# STS(7) as found: 123 145 167 246 257 347 356 (labels +1)
+
+# Panel C — Bose STS(6n+3): idempotent commutative quasigroup on Z_m, m = 2n+1
+def bose(n):
+    m = 2 * n + 1
+    half = (m + 1) // 2                        # exact: m is odd
+    q = lambda x, y: half * (x + y) % m
+    pt = lambda x, i: 3 * x + i
+    blocks = [(pt(x, 0), pt(x, 1), pt(x, 2)) for x in range(m)]
+    for x in range(m):
+        for y in range(x + 1, m):
+            blocks += [(pt(x, 0), pt(y, 0), pt(q(x, y), 1)),
+                       (pt(x, 1), pt(y, 1), pt(q(x, y), 2)),
+                       (pt(x, 2), pt(y, 2), pt(q(x, y), 0))]
+    return blocks
+
+# Panel D — Skolem STS(6n+1): half-idempotent quasigroup on Z_{2n}
+def skolem(n):
+    sigma = [0] * (2 * n)
+    for i in range(n):
+        sigma[2 * i] = i
+        sigma[2 * i + 1] = n + i
+    q = lambda x, y: sigma[(x + y) % (2 * n)]
+    INF, pt = 6 * n, (lambda x, i: 3 * x + i)
+    blocks = []
+    for x in range(n):
+        blocks.append((pt(x, 0), pt(x, 1), pt(x, 2)))
+        blocks += [(INF, pt(n + x, 0), pt(x, 1)),
+                   (INF, pt(n + x, 1), pt(x, 2)),
+                   (INF, pt(n + x, 2), pt(x, 0))]
+    for x in range(2 * n):
+        for y in range(x + 1, 2 * n):
+            blocks += [(pt(x, 0), pt(y, 0), pt(q(x, y), 1)),
+                       (pt(x, 1), pt(y, 1), pt(q(x, y), 2)),
+                       (pt(x, 2), pt(y, 2), pt(q(x, y), 0))]
+    return blocks
+
+# Panel E — the Kirkman closure: every admissible v <= 51, constructed + verified
+admissible_v = [v for v in range(3, 52) if admissible(v, 3)]
+print("closure:", [(v, verify(bose((v - 3) // 6), v) if v % 6 == 3
+                   else verify(skolem((v - 1) // 6), v)) for v in admissible_v])
+for n in range(9):                             # Bose  n = 0..8: STS(3)..STS(51)
+    B = bose(n); assert verify(B, 6 * n + 3) and len(B) == (6*n+3)*(6*n+2)//6
+for n in range(1, 9):                          # Skolem n = 1..8: STS(7)..STS(49)
+    S = skolem(n); assert verify(S, 6 * n + 1) and len(S) == (6*n+1)*(6*n)//6
+
+# Panel F — PBD(v,{3,4}) census, v <= 13 (cap 40,000 nodes)
+def pbd_search(v, cap=40000):
+    nodes = [0]
+    blocks, covered = [], set()
+    def rec():
+        for a in range(v - 1):
+            for b in range(a + 1, v):
+                if (a, b) not in covered:
+                    for c in range(b + 1, v):          # triples first
+                        nodes[0] += 1
+                        if nodes[0] > cap:
+                            return None               # cap hit: inconclusive
+                        if (a, c) not in covered and (b, c) not in covered:
+                            blocks.append((a, b, c))
+                            covered.update(((a, b), (a, c), (b, c)))
+                            r = rec(); 
+                            if r is not None: return r
+                            blocks.pop()
+                            covered.difference_update(((a, b), (a, c), (b, c)))
+                    for c in range(b + 1, v):         # then quads
+                        for d in range(c + 1, v):
+                            nodes[0] += 1
+                            if nodes[0] > cap:
+                                return None
+                            if all(p not in covered for p in
+                                   ((a, c), (b, c), (a, d), (b, d), (c, d))):
+                                blocks.append((a, b, c, d))
+                                covered.update(((a, b), (a, c), (b, c),
+                                                (a, d), (b, d), (c, d)))
+                                r = rec()
+                                if r is not None: return r
+                                blocks.pop()
+                                covered.difference_update(((a, b), (a, c),
+                                    (b, c), (a, d), (b, d), (c, d)))
+                    return False                       # no block works
+        return True
+    r = rec()
+    return blocks if r else r          # True->blocks; False/None as-is
+
+for v in range(3, 14):
+    if v * (v - 1) // 2 % 3:          # pair-side congruence fails: the
+        print(v, "mod-fail: NOT EXISTS (C(v,2) % 3 != 0)")
+        continue                      # obstruction is decisive, no search
+    r = pbd_search(v)
+    verdict = len(r) if isinstance(r, list) else ("cap" if r is None else "NO")
+    print(v, "mod-ok", verdict)
+# EXISTS at 3, 4, 7, 9, 10 (12 blocks), 13; mod-fail at 5, 8, 11;
+# v = 6: mod-ok but search EXHAUSTED, no cap hit -> DOES NOT EXIST
+#   (the honest mod-passing exception); v = 12: verdict recorded below
+
+# Panel F2 — the PG(2,3) miniature (Wilson's fundamental construction)
+def pg23_td_pbd12():
+    lab = lambda x, y: 3 * x + y                   # affine points 0..8
+    # slope points 9,10,11 (m = 0,1,2); the vertical point V = 12
+    lines = [[lab(x, (m * x + b) % 3) for x in range(3)] + [9 + m]
+             for m in range(3) for b in range(3)]
+    lines += [[lab(c, y) for y in range(3)] + [12] for c in range(3)]
+    lines += [[9, 10, 11, 12]]                     # the line at infinity
+    assert all(len(L) == 4 for L in lines)
+    seen = [k for L in lines for k in pair_keys(L)]
+    assert len(seen) == 78 == len(set(seen))        # 13.C(4,2) = C(13,2)
+    groups = [[lab(c, y) for y in range(3)] for c in range(3)] + [[9, 10, 11]]
+    quads = [[lab(x, (m * x + b) % 3) for x in range(3)] + [9 + m]
+             for m in range(3) for b in range(3)]   # the 9 survivors
+    blocks = [tuple(b) for b in quads] + [tuple(g) for g in groups]
+    assert verify(blocks, 12)                      # PBD(12,{3,4}), 0 violations
+    return blocks
+# prints: 0369 1479 2589 04810 15610 23710 05711 13811 24611 012 345 678 91011
+
+# Panel G — Frobenius coins, all 34 coprime pairs 2 <= a < b <= 12
+def frobenius(a, b):
+    reps = {a * x + b * y for x in range(b + 1) for y in range(a + 1)}
+    g = max(s for s in range(a * b) if s not in reps)
+    gaps = sum(1 for s in range(a * b) if s not in reps)
+    return g, gaps
+from math import gcd
+pairs = [(a, b) for a in range(2, 13) for b in range(a + 1, 13) if gcd(a, b) == 1]
+print(all(frobenius(a, b) == (a * b - a - b, (a - 1) * (b - 1) // 2)
+          for a, b in pairs))                      # 34/34 and 34/34
+```
+
+Receipts — Panel A: k = 3 admissible v ≤ 60: 3, 7, 9, 13, 15, 19, 21, 25, 27, 31, 33, 37, 39, 43, 45, 49, 51, 55, 57; k = 4: 4, 13, 16, 25, 28, 37, 40, 49, 52; k = 5: 5, 21, 25, 41, 45. Mod-equivalences TRUE over ALL v ≤ 200 (k = 3 ⟺ v ≡ 1, 3 mod 6; k = 4 ⟺ v ≡ 1, 4 mod 12; k = 5 ⟺ v ≡ 1, 5 mod 20). Panel B: STS(7) `123 145 167 246 257 347 356`; STS(9) 12 blocks; STS(13) 26 blocks — all verified, zero violations. Panels C–D: Bose n = 0..8 (STS(3)…STS(51)) and Skolem n = 1..8 (STS(7)…STS(49)) all verified, block counts v(v−1)/6 exact; Skolem n = 1 relabels to the Fano plane `123 247 357 167 145 256 346`. Panel E: all 17 admissible v ≤ 51 constructed and verified; Bose's STS(9) ≅ the search's STS(9) via the explicit relabeling π (not equal as labeled systems — see the Panel E note). Panel F: EXISTS at 3, 4, 7, 9, 10 (12 blocks: 9 triples + 3 quads), 12, 13; NOT EXISTS at 5, 8, 11 (pair count ≡ 1 mod 3 — the receipts file's original "point-side also fails" clause is corrected above and logged); **v = 6: search exhausted, no cap hit — DOES NOT EXIST** (the mod-passing exception); v = 12: cap-hit in the receipts harness, resolved by the construction (13 blocks, zero violations): `0369 1479 2589 04810 15610 23710 05711 13811 24611 012 345 678 91011`. Panel G: g(a,b) = ab−a−b and #gaps = (a−1)(b−1)/2 both MATCH, 34/34 and 34/34.
+
+### Part 2 — The Gleason invariant engine (Lecture 2)
+
+Deterministic, exact integer and rational arithmetic throughout: the RREF census over all subspaces, the MacWilliams functional equation per code, the rational t₁ matrix, the fraction-arithmetic nullspace, and the two-method Molien count.
+
+```python
+from fractions import Fraction
+from itertools import combinations, product
+from math import comb
+
+def rref_subspaces(n, k):
+    # every k-dim subspace of F_2^n exactly once, by unique RREF
+    subs = []
+    for pivots in combinations(range(n), k):
+        frees = [f for f in range(n) if f not in pivots]
+        eligible = [[i for i in range(k) if pivots[i] < f] for f in frees]
+        for masks in product(*[range(1 << len(e)) for e in eligible]):
+            basis = []
+            for i in range(k):
+                v = 1 << pivots[i]
+                for j in range(len(frees)):
+                    for t, i2 in enumerate(eligible[j]):
+                        if masks[j] >> t & 1 and i2 == i:
+                            v |= 1 << frees[j]
+                basis.append(v)
+            subs.append(basis)
+    return subs
+
+def code_of(basis):
+    code = {0}
+    for b in basis:                    # codewords by doubling
+        code |= {c ^ b for c in code}
+    return code
+
+def self_dual(basis):                  # Gram of basis = 0; dims force C = C-perp
+    return all(bin(basis[i] & basis[j]).count('1') % 2 == 0
+               for i in range(len(basis)) for j in range(i, len(basis)))
+
+def enumerator(code, n):
+    A = [0] * (n + 1)
+    for c in code:
+        A[bin(c).count('1')] += 1
+    return A
+
+def doubly_even(code):
+    return all(bin(c).count('1') % 4 == 0 for c in code)
+
+def macwilliams_ok(A, n):              # W(x+y,x-y) = 2^{n/2} W(x,y), exact
+    m = n // 2
+    for b in range(n + 1):
+        lhs = sum(A[a] * sum((-1) ** j * comb(a, j) * comb(n - a, b - j)
+                             for j in range(a + 1) if 0 <= b - j <= n - a)
+                  for a in range(n + 1))
+        if lhs != (1 << m) * A[b]:
+            return False
+    return True
+
+def census(n):
+    k, tally = n // 2, {}
+    subs = rref_subspaces(n, k)        # count anchor: the Gaussian binomial
+    sd = [b for b in subs if self_dual(b)]
+    de = [b for b in sd if doubly_even(code_of(b))]
+    for b in sd:
+        assert macwilliams_ok(enumerator(code_of(b), n), n)
+    return len(subs), len(sd), len(de)
+
+# census(4) = (35, 3, 0); census(6) = (1395, 15, 0); census(8) = (200787, 135, 30)
+# enumerators: n=4 [1,0,2,0,1] x3; n=6 [1,0,3,0,3,0,1] x15;
+#   n=8 singly-even [1,0,4,0,6,0,4,0,1] x105, doubly-even [1,0,0,0,14,0,0,0,1] x30
+# cross-checks: 3,15,135 = prod(2**i + 1 for i in 1..m-1); 30 = 8! // 1344
+
+def t1_rows(deg):                      # t1 on degree-deg homogeneous polys:
+    N = [[0] * (deg + 1) for _ in range(deg + 1)]   # integer matrix; the
+    for a in range(deg + 1):           # 2^{-m} factor scales out at even deg
+        for b in range(deg + 1):
+            N[a][b] = sum((-1) ** j * comb(a, j) * comb(deg - a, b - j)
+                          for j in range(a + 1) if 0 <= b - j <= deg - a)
+    return N                            # t1(x^{deg-a} y^a) = 2^{-m} sum_b N[a][b]
+
+def gleason_dim(deg):
+    m, cols = deg // 2, [a for a in range(deg + 1) if a % 4 == 0]
+    N = t1_rows(deg)
+    M = [[Fraction(N[cols[j]][b]) - (Fraction(2 ** m) if b == cols[j] else 0)
+          for j in range(len(cols))] for b in range(deg + 1)]
+    # nullspace of M by fraction Gaussian elimination
+    rows, piv = [row[:] for row in M], []
+    r = 0
+    for c in range(len(cols)):
+        pr = next((i for i in range(r, len(rows)) if rows[i][c] != 0), None)
+        if pr is None:
+            continue
+        rows[r], rows[pr] = rows[pr], rows[r]
+        lv = rows[r][c]
+        rows[r] = [x / lv for x in rows[r]]
+        for i in range(len(rows)):
+            if i != r and rows[i][c] != 0:
+                f = rows[i][c]
+                rows[i] = [x - f * y for x, y in zip(rows[i], rows[r])]
+        piv.append(c); r += 1
+    return len(cols) - r                # dim of the Gleason space
+# gleason_dim(2)=0, (4)=0, (8)=1, (12)=0, (16)=1, (24)=2
+
+def molien_solutions(d):                # method 1: count solutions of 8a+24b=d
+    return sum(1 for a in range(d // 8 + 1) if (d - 8 * a) % 24 == 0)
+def molien_series(D):                    # method 2: expand 1/((1-t^8)(1-t^24))
+    c = [0] * (D + 1)
+    for a in range(D // 8 + 1):
+        for b in range((D - 8 * a) // 24 + 1):
+            c[8 * a + 24 * b] += 1
+    return c
+# both agree at every degree <= 32: t^2..t^32 = 0,0,1,0,1,0,2,0,2  (scar 3 below)
+
+# the degree-8 generator, machine-recovered: solve by residual check
+N8 = t1_rows(8)
+vdeg8 = {0: 1, 4: 14, 8: 1}                       # over columns a = 0, 4, 8
+assert all(sum(N8[a][b] * vdeg8.get(a, 0) for a in (0, 4, 8))
+           == 16 * vdeg8.get(b, 0) for b in range(9))
+# exact: f8 = x^8+14x^4y^4+y^8; odd columns vanish, b = 4 gives 224 = 16*14
+
+def polymul(p, q):                          # y-degree coefficient product
+    r = [0] * (len(p) + len(q) - 1)
+    for i, x in enumerate(p):
+        for j, y in enumerate(q):
+            r[i + j] += x * y
+    return r
+
+def residual_ok(coeffs):                    # t1(f) = f, exact integers
+    deg = len(coeffs) - 1
+    N = t1_rows(deg)
+    return all(sum(N[a][b] * coeffs[a] for a in range(deg + 1))
+               == (1 << (deg // 2)) * coeffs[b] for b in range(deg + 1))
+
+f8 = [1, 0, 0, 0, 14, 0, 0, 0, 1]
+assert residual_ok(f8)                       # == the vdeg8 assert above
+f16 = polymul(f8, f8)                        # deg 16 = f8^2
+assert residual_ok(f16) and f16 == [1, 0, 0, 0, 28, 0, 0, 0, 198, 0, 0, 0,
+                                    28, 0, 0, 0, 1]
+f24 = polymul(f16, f8)                       # f8^3
+assert residual_ok(f24) and f24 == [1, 0, 0, 0, 42, 0, 0, 0, 591, 0, 0, 0,
+                                    2828, 0, 0, 0, 591, 0, 0, 0, 42, 0, 0, 0, 1]
+G = [0] * 25; G[0] = G[24] = 1; G[8] = G[16] = 759; G[12] = 2576
+assert residual_ok(G)                        # W(x+y,x-y) = 2^12 W(x,y) for the
+# [24,12,8] Golay code; f8^3 and G independent (A_4 = 42 vs 0) — a basis
+```
+
+Receipts — Panel A (the census): n = 4: 35 subspaces, 3 self-dual, 0 doubly-even, MacWilliams 3/3, enumerator [1,0,2,0,1] ×3; n = 6: 1,395 / 15 / 0, 15/15, [1,0,3,0,3,0,1] ×15; n = 8: 200,787 / 135 / 30, 135/135, singly-even [1,0,4,0,6,0,4,0,1] ×105 (this IS (x²+y²)⁴), doubly-even [1,0,0,0,14,0,0,0,1] ×30. Cross-checks: self-dual counts = Π_{i=1}^{m−1}(2^i+1) (3, 15, 135 — ALL MATCH); 30 = 8!/1344 = |S₈|/|Aut(extended Hamming)|; doubly-even ZERO at n = 4, 6 (n ≡ 0 mod 8 necessary — the census displays the obstruction). Panel B (the invariant spaces): dims degree 2:0, 4:0, 8:1, 12:0, 16:1, 24:2; the degree-8 generator exactly (1:14:1) = x⁸+14x⁴y⁴+y⁸; degree-16 = f₈² = (1:28:198:28:1); degree-24 basis {f₈³, G}, independent (A₄ = 42 vs 0); the Golay residual IS its functional equation (W(x+y,x−y) = 2¹²W(x,y), exact). Molien: both methods agree at every degree ≤ 32 — coefficients 0, 0, 1, 0, 1, 2 at degrees 8, 16, 24 with zeros at 2, 4, 12 and 2 at degree 32 — MATCH the Gleason dims.
+
+### Part 3 — The Luks framework I (Lecture 3)
+
+Deterministic and exhaustive: the orbit–stabilizer census at n = 4 and 5 with Burnside as the independent count, the GI ⟷ Aut torsor panel over all 4,096 pairs, and the color-gadget reduction on all 64 two-colorings of C₆.
+
+```python
+from itertools import permutations
+
+def edge_index(n, i, j):
+    a, b = (i, j) if i < j else (j, i)
+    return b - a - 1 + a * (2 * n - a - 1) // 2    # lex order 0..C(n,2)-1
+
+def all_masks(n):
+    return range(1 << (n * (n - 1) // 2))
+
+def perm_mask(n, mask, p):                    # apply sigma to a graph
+    out = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            if mask >> edge_index(n, i, j) & 1:
+                out |= 1 << edge_index(n, p[i], p[j])
+    return out
+
+PERMS = {n: list(permutations(range(n))) for n in (4, 5, 6)}
+
+def census(n):
+    perms = PERMS[n]
+    auts, label = {}, {}
+    for g in all_masks(n):
+        a = sum(1 for p in perms if perm_mask(n, g, p) == g)
+        auts[g] = a
+        label[g] = min(perm_mask(n, g, p) for p in perms)
+    classes = len(set(label.values()))
+    burnside = sum(1 << edge_orbits(n, p) for p in perms) // len(perms)
+    ledger = sum(len(perms) // auts[label[g]] for g in set(label.values()))
+    # every class: orbit size = n!/|Aut|, checked per class
+    ok = all(sum(1 for g in all_masks(n) if label[g] == c)
+             == len(perms) // auts[c] for c in set(label.values()))
+    hist = {}
+    for g in all_masks(n):
+        hist[auts[g]] = hist.get(auts[g], 0) + 1
+    return classes, burnside, ledger, ok, hist
+
+def edge_orbits(n, p):                       # Burnside's fix(2^{orbits})
+    seen, cnt = set(), 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            e = (i, j)
+            if e not in seen:
+                cnt += 1
+                e2 = e
+                while True:                  # walk the edge orbit to closure
+                    seen.add(e2)
+                    a, b = e2
+                    e2 = (min(p[a], p[b]), max(p[a], p[b]))
+                    if e2 == e:
+                        break
+    return cnt
+
+# n=4:  (11, 11, 64, True, {2:36, 4:12, 6:8, 8:6, 24:2})
+# n=5:  (34, 34, 1024, True, {2:660, 4:180, 6:40, 8:60, 10:12,
+#                             12:60, 24:10, 120:2})
+
+def gi_aut_panel(n=4):
+    perms = PERMS[n]
+    graphs = list(all_masks(n))
+    iso = viol = 0
+    for G in graphs:
+        for H in graphs:
+            c = sum(1 for p in perms if perm_mask(n, G, p) == H)
+            aG = sum(1 for p in perms if perm_mask(n, G, p) == G)
+            aH = sum(1 for p in perms if perm_mask(n, H, p) == H)
+            if c:
+                iso += 1
+                if c != aG or c != aH:
+                    viol += 1
+            elif c != 0:
+                viol += 1
+    return iso, viol                          # (556, 0); 556 = sum class^2
+
+def gadget(coloring):                        # coloring: 6-char string on C_6
+    verts, edges = 6, set()
+    for i in range(6):
+        edges.add((min(i, (i + 1) % 6), max(i, (i + 1) % 6)))
+    paths = []
+    for i, ch in enumerate(coloring):
+        length = 2 if ch == '0' else 3        # color 0: v-a-b; color 1: v-a-b-c
+        path = list(range(verts, verts + length)); verts += length
+        prev = i
+        for w in path:
+            edges.add((min(prev, w), max(prev, w))); prev = w
+        paths.append(path)
+    return edges, paths, verts
+
+def gadget_panel():
+    perms = PERMS[6]
+    hist = {}
+    for mask in range(64):                    # all 64 two-colorings of C_6
+        coloring = ''.join(str(mask >> i & 1) for i in range(6))
+        edges, paths, nvert = gadget(coloring)
+        # degree census: cycle vertices degree 3, pendant <= 2 (64/64)
+        deg = {}
+        for u, w in edges:
+            deg[u] = deg.get(u, 0) + 1; deg[w] = deg.get(w, 0) + 1
+        assert all(deg[i] == 3 for i in range(6))
+        assert all(d <= 2 for v, d in deg.items() if v >= 6)
+        colAut = sum(1 for p in perms
+                     if all((min(p[i], p[(i+1) % 6]), max(p[i], p[(i+1) % 6]))
+                            in edges for i in range(6))
+                     and all(coloring[p[i]] == coloring[i] for i in range(6)))
+        ext = 0
+        for p in perms:                       # forced extension, then check
+            phi = {i: p[i] for i in range(6)}  # against the CONSTRUCTED edges
+            for i in range(6):
+                for t, w in enumerate(paths[i]):
+                    phi[w] = paths[p[i]][t]
+            img = {(min(phi[u], phi[w]), max(phi[u], phi[w]))
+                   for u, w in edges}
+            if len(img) == len(edges) and img == edges:
+                ext += 1
+        assert ext == colAut                  # 64/64, mismatches 0
+        hist[ext] = hist.get(ext, 0) + 1
+    return hist            # {1:12, 2:42, 4:6, 6:2, 12:2}
+# spot receipts: '101010' -> 6 (gadget on 21 vertices); '111000' -> 2
+```
+
+Receipts — Panel A: n = 4: 64 graphs, 11 classes, Burnside 11, Σ_classes 4!/|Aut| = 64 exact, every class orbit = 4!/|Aut|; n = 5: 1,024 graphs, 34 classes, Burnside 34, ledger 1,024 exact. |Aut| histograms: n = 4: 2:36, 4:12, 6:8, 8:6, 24:2; n = 5: 2:660, 4:180, 6:40, 8:60, 10:12, 12:60, 24:10, 120:2 (the two order-24s at n = 4 are K₄ and its complement; the two order-120s at n = 5 the same pair one size up). Panel B: 4,096 ordered pairs — 556 isomorphic; on every iso pair the isomorphism count equals |Aut(G)| AND |Aut(H)| (the torsor fact); 0 violations; 556 = Σ (class size)². Panel C: 64/64 colorings — degree facts force every gadget automorphism to preserve the cycle; forced extensions verified against the constructed edge set; extendable-count = |colored Aut| on 64/64; histogram 1:12, 2:42, 4:6, 6:2, 12:2; the two order-12s are the constant colorings (full D₆); alternating 101010 → 6 (21 vertices), block 111000 → 2.
+
+### Part 4 — The Luks framework II (Lecture 4)
+
+Deterministic: the S₄ subgroup census (with the count itself the completeness certificate), the S₅ transitive census at prime degree, and the Johnson dichotomy J(4,2) vs J(5,2).
+
+```python
+def sgroup(n):
+    perms = list(permutations(range(n)))
+    idx = {p: i for i, p in enumerate(perms)}
+    def mul(p, q):                     # p after q
+        return tuple(p[x] for x in q)
+    table = [[idx[mul(p, q)] for q in perms] for p in perms]
+    return perms, idx, table
+
+def subgroups(n):
+    perms, idx, table = sgroup(n)
+    e = idx[tuple(range(n))]
+    seen = {}
+    for a in range(len(perms)):
+        for b in range(len(perms)):
+            S = {e, a, b}              # closure by two-sided BFS
+            work = list(S)
+            while work:
+                x = work.pop()
+                for y in tuple(S):
+                    for z in (table[x][y], table[y][x]):
+                        if z not in S:
+                            S.add(z); work.append(z)
+            key = tuple(sorted(S))     # canonical: sorted element list
+            seen[key] = S
+    return list(seen.values()), table
+
+def orbits_of(sub, perms, x=0):        # orbit of point x under the subgroup
+    orb = {x}; work = [x]
+    while work:
+        v = work.pop()
+        for g in sub:                  # elements act by perms[g][v]
+            w = perms[g][v]
+            if w not in orb:
+                orb.add(w); work.append(w)
+    return orb
+
+def order_of(g_idx, table, e):         # element order: iterate to identity
+    o, x = 1, g_idx
+    while x != e:
+        x = table[x][g_idx]; o += 1
+    return o
+
+def block_systems(sub, perms, n):      # blocks through 0; each system has
+    cnt = 0                            # exactly one block containing 0
+    for size in range(2, n):
+        if n % size:
+            continue
+        for rest in combinations(range(1, n), size - 1):
+            B = set(rest) | {0}
+            if all(set(perms[g][x] for x in B) == B or
+                   not (set(perms[g][x] for x in B) & B) for g in sub):
+                cnt += 1
+    return cnt
+
+def census_sn(n):
+    subs, table = subgroups(n)
+    perms = sgroup(n)[0]
+    hist, trans = {}, []
+    for S in subs:
+        hist[len(S)] = hist.get(len(S), 0) + 1
+        if len(orbits_of(S, perms)) == n:      # orbit of 0 is everything
+            trans.append(S)
+    prim = [S for S in trans if block_systems(S, perms, n) == 0]
+    return len(subs), hist, len(trans), len(prim)
+# census_sn(4) = (30, {1:1, 2:9, 3:4, 4:7, 6:4, 8:3, 12:1, 24:1}, 9, 2)
+# census_sn(5) = (156, {1:1, 2:25, 3:10, 4:35, 5:6, 6:30, 8:15, 10:6,
+#              12:15, 20:6, 24:5, 60:1, 120:1}, 20, 20)
+# S4 transitive orders: 4:4 (3 C4 + 1 V4, by element orders), 8:3, 12:1, 24:1;
+#   block systems: each C4 exactly 1 of the three 2+2 partitions, the V4 all
+#   3, each D4 exactly 1 — primitive exactly {A4, S4}. S5: all 20 transitive
+#   are primitive (prime degree 5: no candidate block size divides 5);
+#   D5 verified: order-5 and order-2 elements, none of order 4; F20: order-4s
+
+def johnson_aut(v):
+    verts = list(combinations(range(v), 2))
+    nv = len(verts)
+    adj = [[len(set(verts[i]) & set(verts[j])) == 1
+            for j in range(nv)] for i in range(nv)]
+    if v == 4:                              # brute over all 6! = 720
+        aut = 0
+        for p in permutations(range(nv)):
+            if all(adj[p[i]][p[j]] == adj[i][j]
+                   for i in range(nv) for j in range(nv)):
+                aut += 1
+        return aut                          # 48
+    # v == 5: depth-10 backtracking, adjacency-pruned (exhaustive)
+    cnt = 0
+    def bt(i, mapping, used):
+        nonlocal cnt
+        if i == nv:
+            cnt += 1; return
+        for w in range(nv):
+            if w in used:
+                continue
+            if all(adj[mapping[j]][w] == adj[j][i] for j in range(i)):
+                bt(i + 1, mapping + [w], used | {w})
+    bt(0, [], set())
+    return cnt                              # 120
+
+def induced_aut(v):
+    verts = list(combinations(range(v), 2))
+    pos = {s: i for i, s in enumerate(verts)}
+    nv = len(verts)
+    adj = [[len(set(verts[i]) & set(verts[j])) == 1
+            for j in range(nv)] for i in range(nv)]
+    cnt = 0
+    for p in permutations(range(v)):
+        img = [pos[tuple(sorted((p[a], p[b])))] for a, b in verts]
+        if all(adj[img[i]][img[j]] == adj[i][j]
+               for i in range(nv) for j in range(nv)):
+            cnt += 1
+    return cnt                              # 24 at v=4, 120 at v=5
+
+def complement_in_induced():
+    verts = list(combinations(range(4), 2))
+    pos = {s: i for i, s in enumerate(verts)}
+    nv = len(verts)
+    adj = [[len(set(verts[i]) & set(verts[j])) == 1
+            for j in range(nv)] for i in range(nv)]
+    comp = [pos[tuple(sorted(set(range(4)) - set(s)))] for s in verts]
+    is_aut = all(adj[comp[i]][comp[j]] == adj[i][j]
+                 for i in range(nv) for j in range(nv))
+    induced = set()
+    for p in permutations(range(4)):
+        img = [pos[tuple(sorted((p[a], p[b])))] for a, b in verts]
+        induced.add(tuple(img))
+    # the complement map IS an automorphism of J(4,2) (True) and is NOT
+    # induced by any permutation of [4] (False): abstract Aut 48 > induced 24;
+    # at J(5,2) the complement of a 2-subset is a 3-subset — not a vertex —
+    # so no complement map exists and abstract == induced == 120
+    return is_aut, tuple(comp) in induced       # (True, False)
+```
+
+Receipts — Panel A: S₄ subgroups **30** (histogram 1:1, 2:9, 3:4, 4:7, 6:4, 8:3, 12:1, 24:1 — 30 and the known-total agreement is the completeness certificate); transitive **9** (4:4 = three C₄ + one V₄, distinguished by element orders; 8:3; 12:1; 24:1); block systems: each C₄ exactly 1 of the three 2+2 partitions, the V₄ all 3, each D₄ exactly 1, A₄ and S₄ none; **primitive: exactly A₄ and S₄**. Panel B: S₅ subgroups **156** (histogram 1:1, 2:25, 3:10, 4:35, 5:6, 6:30, 8:15, 10:6, 12:15, 20:6, 24:5, 60:1, 120:1 — the five order-24s are the point stabilizers); transitive **20** (5:6 C₅, 10:6 D₅, 20:6 F₂₀ = AGL(1,5), 60:1 A₅, 120:1 S₅; D₅ verified by element orders — order-5s and order-2s, none of order 4; F₂₀ by order-5s and order-4s); at prime degree 5, zero nontrivial block candidates exist — **all 20 are primitive**. Panel C: J(4,2) abstract Aut **48** (brute over 720) vs induced **24**; the complement map is an automorphism and is not induced (both machine-checked). J(5,2): abstract **120** (exhaustive adjacency-pruned backtracking over the 10! candidates) == induced **120**; no complement map exists (the complement of a 2-subset of [5] is a 3-subset, not a vertex).
+
+### Part 5 — Kruskal's greedy engine (Lecture 5; seed 20261095, ONE continuous stream)
+
+Panels in stream order: (a) K₅ ×100, (b) K₆ ×50, (c) sparse n = 7 ×30, (d) ties K₅ ×60. Weights: FY-shuffle of [1..m] over the m edges in lex order (distinct); the ties panel draws w = 1 + unif(5) per edge.
+
+```python
+M31 = 2 ** 31 - 1
+class Engine:
+    def __init__(self, seed): self.x = seed
+    def nxt(self): self.x = 48271 * self.x % M31; return self.x
+    def unif(self, m): return self.nxt() * m // M31
+
+def kruskal_lab():
+    eng = Engine(20261095)                       # ONE continuous stream
+    def edges_of(n):                             # lex edge list
+        return [(i, j) for i in range(n) for j in range(i + 1, n)]
+    def connected(w, n, es):                     # BFS from vertex 0
+        adj = [[] for _ in range(n)]
+        for i, e in enumerate(es):
+            if w >> i & 1:
+                adj[e[0]].append(e[1]); adj[e[1]].append(e[0])
+        seen, work = {0}, [0]
+        while work:
+            v = work.pop()
+            for u in adj[v]:
+                if u not in seen:
+                    seen.add(u); work.append(u)
+        return len(seen) == n
+    def brute_min(W, n, es):
+        import itertools
+        m, best, cnt = len(es), None, 0
+        for combo in itertools.combinations(range(m), n - 1):
+            if connected(sum(1 << i for i in combo), n, es):
+                tw = sum(W[i] for i in combo)
+                if best is None or tw < best:
+                    best, cnt = tw, 1
+                elif tw == best:
+                    cnt += 1
+        return best, cnt
+    def run(n, W, es):                            # constructions A and B
+        m = len(es)
+        # A: greedy, no cycle (union-find, path halving)
+        par = list(range(n))
+        def find(x):
+            while par[x] != x:
+                par[x] = par[par[x]]; x = par[x]
+            return x
+        order = sorted(range(m), key=lambda i: W[i])   # distinct: unique
+        treeA, violA = [], 0
+        for i in order:
+            ru, rv = find(es[i][0]), find(es[i][1])
+            if ru == rv:
+                continue
+            # cut check: no STRICTLY lighter edge crossing (ru, rest)
+            side = {x for x in range(n) if find(x) == ru}
+            if any(W[j] < W[i] and ((es[j][0] in side) != (es[j][1] in side))
+                   for j in range(m)):
+                violA += 1
+            par[ru] = rv; treeA.append(i)
+        # B: cut-restricted (Prim from vertex 0), fresh second scan
+        inS = [False] * n; inS[0] = True; treeB, violB = [], 0
+        for _ in range(n - 1):
+            cand = [j for j in range(m)
+                    if inS[es[j][0]] != inS[es[j][1]]]
+            j = min(cand, key=lambda j: W[j])
+            scan = min(W[jj] for jj in range(m)
+                       if inS[es[jj][0]] != inS[es[jj][1]])
+            if W[j] != scan:
+                violB += 1
+            inS[es[j][0]] = inS[es[j][1]] = True; treeB.append(j)
+        # cycle property: every non-tree edge f: max tree-path weight <= w(f)
+        inc = [[] for _ in range(n)]
+        for i in treeA:
+            inc[es[i][0]].append((es[i][1], W[i]))
+            inc[es[i][1]].append((es[i][0], W[i]))
+        violC = 0
+        for f in range(m):
+            if f in treeA:
+                continue
+            # BFS from es[f][0] over the tree, tracking path maxima
+            pew = {es[f][0]: 0}; work = [es[f][0]]
+            while work:
+                v = work.pop()
+                for u, w in inc[v]:
+                    if u not in pew:
+                        pew[u] = max(pew[v], w); work.append(u)
+            if pew[es[f][1]] > W[f]:
+                violC += 1
+        return treeA, treeB, violA, violB, violC
+
+    def panel(n, trials, tie=False):
+        es = edges_of(n); m = len(es)
+        agree = unique = 0; totW = 0; redraws = 0; hist = {}
+        for t in range(trials):
+            if tie:
+                W = [1 + eng.unif(5) for _ in range(m)]
+            elif n == 7:                    # sparse: draw the KEPT graph
+                keep = [eng.unif(1000) < 400 for _ in range(m)]
+                while not connected(sum(1 << i for i, k in
+                                       enumerate(keep) if k), n, edges_of(n)):
+                    redraws += 1
+                    keep = [eng.unif(1000) < 400 for _ in range(m)]
+                es = [e for e, k in zip(edges_of(n), keep) if k]
+                kk = len(es)                # FY over the kept edges only
+                arr = list(range(1, kk + 1))
+                for i in range(kk - 1, 0, -1):
+                    j = eng.unif(i + 1); arr[i], arr[j] = arr[j], arr[i]
+                W = arr
+                hist[kk] = hist.get(kk, 0) + 1
+            else:
+                arr = list(range(1, m + 1))       # FY over the m edges
+                for i in range(m - 1, 0, -1):
+                    j = eng.unif(i + 1); arr[i], arr[j] = arr[j], arr[i]
+                W = arr                           # edge e (lex) gets arr[e]
+            treeA, treeB, vA, vB, vC = run(n, W, es)
+            best, cnt = brute_min(W, n, es)
+            wA = sum(W[i] for i in treeA); wB = sum(W[i] for i in treeB)
+            assert wA == wB == best and vA == vB == vC == 0
+            agree += 1; unique += (cnt == 1); totW += best
+            if t == 0 and n == 5 and not tie:
+                print("trial-0 MST:", ' '.join(
+                    '%d%d' % es[i] for i in treeA), "weight", wA)
+        return agree, unique, totW / trials, redraws, hist
+    # panels (a) -> (d), one continuous stream:
+    # (a) panel(5, 100): 100/100, unique 100/100, mean 10.57
+    #     trial-0 MST: 04 02 23 01, weight 10
+    # (b) panel(6, 50): 50/50, 50/50, mean 16.30
+    # (c) sparse: panel(7, 30) with redraws: 13 redraws,
+    #     edge hist 7:4, 8:7, 9:3, 10:6, 11:3, 12:4, 13:1, 14:2
+    # (d) ties: panel(5, 60, tie=True): 60/60 agree, 39/60 multi-min, mean 7.30
+```
+
+Receipts — (a) K₅ ×100: A = B = brute **100/100**; unique MST **100/100**; cut-violations A 0, B 0; cycle-violations 0 (strict — distinct weights); mean MST weight **10.57**; trial-0 MST edges `04 02 23 01`, weight 10. (b) K₆ ×50: **50/50**; **50/50**; 0/0/0; mean **16.30**. (c) sparse n = 7 ×30 (pairs kept with probability 0.4 via unif(1000) < 400, whole graph redrawn if disconnected; weights = FY shuffle of [1..kk] over the kept edges, kk = kept count): **30/30**; 0/0/0; **13 redraws**; edge-count histogram 7:4, 8:7, 9:3, 10:6, 11:3, 12:4, 13:1, 14:2. (d) ties K₅ ×60 (weights 1..5 with replacement): A = B = brute **60/60** (optimality survives ties); **39/60** trials with multiple minimum trees (uniqueness dies — the honest datum); mean minimum weight **7.30**.
+
+### Part 6 — The k-adic digit engine (Lecture 6; deterministic panels + confluence seed 20261096)
+
+The model, pinned from the fetched paper (arXiv:2501.06675v1): every vertex of the looped k-ary tree has degree k+1; a vertex fires when it holds ≥ k+1 chips, sending one chip per edge (the loop's chip returns); stable means ≤ k chips everywhere. Canonical order = smallest legal vertex index (min-heap); random order = uniform choice among the legal list.
+
+```python
+import heapq
+
+def simulate(k, N, order='canonical', eng=None):
+    chips = {0: N}; fires = {}
+    heap = [0]
+    def legal(v): return chips.get(v, 0) >= k + 1
+    def children(v): return range(k * v + 1, k * v + 1 + k)
+    def fire(v):
+        fires[v] = fires.get(v, 0) + 1
+        chips[v] = chips.get(v, 0) - (k + 1)
+        if v == 0:
+            chips[0] = chips.get(0, 0) + 1        # the loop's chip returns
+        else:
+            p = (v - 1) // k
+            chips[p] = chips.get(p, 0) + 1
+        for c in children(v):                     # every vertex sends k chips
+            chips[c] = chips.get(c, 0) + 1        # down its k tree edges
+        # re-heap any vertex that may now be legal
+    while True:
+        if order == 'canonical':
+            v = None
+            while heap:
+                cand = heapq.heappop(heap)
+                if legal(cand):
+                    v = cand; break
+            if v is None:
+                break
+            # after firing, push touched vertices that may be legal
+        else:
+            legal_list = [v for v, c in chips.items() if c >= k + 1]
+            if not legal_list:
+                break
+            v = legal_list[eng.unif(len(legal_list))]
+        fire(v)
+        for w in [v] + ([0] if v == 0 else [(v - 1) // k]) + list(children(v)):
+            if legal(w):
+                heapq.heappush(heap, w)
+    return fires, chips
+
+def layer(v, k): return 0 if v == 0 else layer((v - 1) // k, k) + 1
+
+def height(k, N):                     # n with (k^n - 1)/(k-1) <= N < next
+    n, tot = 1, k + 1                 # tot = (k^{n+1} - 1)/(k - 1)
+    while tot <= N:
+        n += 1; tot = tot * k + 1
+    return n
+
+def stable_digits(k, N):              # Prop 3.2: layer counts = digits + 1
+    n = height(k, N)
+    D = N - (k ** n - 1) // (k - 1)
+    a = []
+    for _ in range(n):
+        a.append(D % k); D //= k
+    return n, a
+
+def fire_formulas(k, N):              # Lemma 5 / Thm 6 / Cor 8 / Thm 12
+    n, a = stable_digits(k, N)
+    c = [x + 1 for x in a]                       # chips per vertex, layer 0..n-1
+    f = [0] * n                                   # fires per vertex, layer 0..n-1
+    for i in range(n - 1, -1, -1):
+        f[i] = sum((k ** j - 1) // (k - 1) * c[i + j]
+                   for j in range(1, n - i))
+    f0 = sum((k ** j - 1) // (k - 1) * c[j] for j in range(1, n))
+    F = sum((m * k ** (m + 1) - (m + 1) * k ** m + 1) * c[m]
+            for m in range(1, n)) // (k - 1) ** 2
+    return n, c, f, f0, F
+
+def check_structure(k, N):            # Panels A+B, one N: every theorem
+    fires, chips = simulate(k, N)
+    n, a = stable_digits(k, N)
+    c = [x + 1 for x in a]
+    # Prop 3+4: stable = perfect tree, layer counts = digits + 1
+    assert all(chips.get(v, 0) == c[layer(v, k)]
+               for v in range((k ** n - 1) // (k - 1)))
+    assert all(chips.get(v, 0) == 0 for v in chips if layer(v, k) >= n)
+    assert sum(k ** i * c[i] for i in range(n)) == N       # conservation
+    _, _, f, f0, F = fire_formulas(k, N)
+    # layer symmetry + deepest layer unfired: fires depend only on the
+    # layer, and f[n-1] = 0 — the next assert checks BOTH, over the whole
+    # perfect n-layer tree (layer symmetry is Lemma 5 / Thm 6's display)
+    assert all(fires.get(v, 0) == f[layer(v, k)]
+               for v in range((k**n - 1)//(k-1)))
+    assert fires.get(0, 0) == f0 == f[0]
+    assert sum(fires.values()) == F                          # Thm 12 + F-decomp
+    depth = max(layer(v, k) for v in fires) + 1 if fires else 0
+    assert depth <= n + 1                                    # transientDepth
+    return True
+
+for k, Nmax in ((2, 64), (3, 81), (5, 50)):       # Panels A+B: all green
+    assert all(check_structure(k, N) for N in range(1, Nmax + 1))
+
+def f0_list(k, Nmax):                             # Panel C: the root-fire list
+    return [simulate(k, N)[0].get(0, 0) for N in range(1, Nmax + 1)]
+# f0_list(2, 40) = 0,0,1,1,2,2,4,4,5,5,7,7,8,8,11,11,12,12,14,14,15,15,
+#                   18,18,19,19,21,21,22,22,26,26,27,27,29,29,30,30,33,33
+
+def f0_rec(N, k):                                 # Cor 9 — the paper's form:
+    if N <= k:                                    # CEILING, not floor (scar 2)
+        return 0
+    return (N + k - 1) // k - 1 + f0_rec((N + k - 1) // k - 1, k)
+assert all(f0_rec(N, k) == f0_list(k, N)[N - 1]
+           for k in (2, 3) for N in range(1, 41))
+assert all(f0_rec(N, 5) == f0_list(5, N)[N - 1] for N in range(1, 31))
+# block constancy: f0 constant on {ak+1, ..., (a+1)k} — TRUE at k = 2, 3, 5
+# g0(m,k) = f0(mk,k) == the paper's Table 1, k = 2..6, m = 1..10: 5/5
+
+def nu_k(m, k):                                   # the k-adic valuation
+    v = 0
+    while m % k == 0:
+        m //= k; v += 1
+    return v
+
+def d0_list(k, mmax):                             # Thm 11's difference engine
+    g = [simulate(k, m * k)[0].get(0, 0) for m in range(1, mmax + 2)]
+    return [g[m] - g[m - 1] for m in range(1, mmax + 1)], g
+# d0(m,2) m=1..40: 1,1,2,1,2,1,3,1,2,1,3,1,2,1,4,1,2,1,3,1,2,1,4,1,2,1,3,
+#                  1,2,1,5,1,2,1,3,1,2,1,4,1  (exceptional m = 1,3,7,15,31)
+# d0(m,3) m=1..27: 1,1,1,2,1,1,2,1,1,2,1,1,3,1,1,2,1,1,2,1,1,3,1,1,2,1,1
+# d0(m,5) m=1..30: 1,1,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,1,1,1
+# prefixes == A091090 (18 terms, k=2) and A378725 (23 terms, k=3): MATCH
+# Thm 11 verified: exceptional m = (k^n-1)/(k-1) fires d0 = n;
+#   elsewhere d0 = nu_k((k-1)*m + 1) + 1 — 40/40, 27/27, 30/30
+# fractal: k=2 non-1 exactly at odd m >= 3 (one 1 between); k=3 at
+#   m = 1 (mod 3), m >= 4 (two 1s between): TRUE at both
+
+def thm11_check(k, mmax):                       # Thm 11 vs the machine
+    d, _ = d0_list(k, mmax)
+    ex = {(k ** n - 1) // (k - 1): n for n in range(1, 9)}
+    assert all(d[m - 1] == (ex[m] if m in ex else nu_k((k - 1) * m + 1, k) + 1)
+               for m in range(1, mmax + 1))
+    return True
+
+def block_constancy(k, amax):                   # fires constant on blocks
+    f = f0_list(k, (amax + 1) * k)              # {ak+1, ..., (a+1)k}
+    assert all(f[a * k + i] == f[a * k]
+               for a in range(amax + 1) for i in range(1, k))
+    return True
+
+def fractal(k, mmax):                           # non-1 positions of d0
+    d, _ = d0_list(k, mmax)
+    if k == 2:
+        return all((d[m - 1] != 1) == (m >= 3 and m % 2 == 1)
+                   for m in range(1, mmax + 1))
+    return all((d[m - 1] != 1) == (m >= 4 and m % 3 == 1)
+               for m in range(1, mmax + 1))
+
+assert thm11_check(2, 40) and fractal(2, 40)
+assert thm11_check(3, 27) and fractal(3, 27)
+assert thm11_check(5, 30)
+assert block_constancy(2, 15) and block_constancy(3, 10) and block_constancy(5, 6)
+
+def perfect_family(k, nmax):                      # Panel D: A000295 family
+    vals, out = [], []
+    for n in range(1, nmax + 1):
+        N = (k ** n - 1) // (k - 1)
+        out.append(simulate(k, N)[0].get(0, 0))
+        assert out[-1] == (k ** n - n * k + (n - 1)) // (k - 1) ** 2
+    return out
+# k=2: [0,1,4,11,26,57,120,247,502,1013] = 2^n - n - 1 (A000295) 10/10
+# k=3: [0,1,5,18,58,179,543] (A000340) 7/7; k=4: [0,1,6,27,112] (A014825) 5/5
+# k=5: [0,1,7,38,194] (A014827) 5/5
+
+def prop54(k, ns):                                 # Panel E: F divisible by 2(k+1)
+    for n in ns:
+        N = (k ** (2 * n + 1) - 1) // (k - 1)
+        F = sum(simulate(k, N)[0].values())
+        assert F % (2 * (k + 1)) == 0, (k, n)
+    return True
+# k=2: F(7)=6, F(31)=72, F(127)=522, F(511)=3084 (mod 6): 4/4
+# k=3: F(13)=8, F(121)=184, F(1093)=2736 (mod 8): 3/3
+# k=5: F(31)=12, F(781)=684, F(19531)=26856 (mod 12): 3/3
+
+def confluence():                                  # Panel F (seed 20261096)
+    eng = Engine(20261096)                         # ONE continuous stream
+    for k, N in ((2, 50), (2, 127), (3, 40), (3, 121), (5, 31)):
+        f1, c1 = simulate(k, N, 'canonical')
+        f2, c2 = simulate(k, N, 'random', eng)
+        assert f1 == f2 and c1 == c2 and sum(f1.values()) == sum(f2.values())
+    return True                                    # 5/5 identical
+```
+
+Receipts — Panels A+B: every structure theorem checked against simulation for every N in range — k = 2 (N ≤ 64): 64/64; k = 3 (N ≤ 81): 81/81; k = 5 (N ≤ 50): 50/50 (stable configs, conservation, layer symmetry with f_{n−1} = 0, Lemma 5, Theorem 6, Corollary 8, Theorem 12 + the F-decomposition, transientDepth ≤ n+1). Panel C: f₀(N,2), N = 1..40: `0,0,1,1,2,2,4,4,5,5,7,7,8,8,11,11,12,12,14,14,15,15,18,18,19,19,21,21,22,22,26,26,27,27,29,29,30,30,33,33`; the ceiling recurrence (the paper's form — see scar 2): k = 2 **40/40**, k = 3 **40/40**, k = 5 **30/30**; block constancy TRUE at k = 2 (a ≤ 15), k = 3 (a ≤ 10), k = 5 (a ≤ 6); g₀ == the paper's Table 1, k = 2..6, m = 1..10: **5/5**; d₀(m,2) 40-term list — Theorem 11 **40/40** (exceptional m = 1, 3, 7, 15, 31 → 1, 2, 3, 4, 5); d₀(m,3) **27/27** (exceptional 1, 4, 13); d₀(m,5) **30/30** (exceptional 1, 6); A091090 18-term and A378725 23-term prefixes MATCH; fractal positions TRUE at k = 2 and k = 3. Panel D: the perfect-tree family — k = 2: [0, 1, 4, 11, 26, 57, 120, 247, 502, 1013] (A000295) **10/10**; k = 3: [0, 1, 5, 18, 58, 179, 543] (A000340) **7/7**; k = 4: [0, 1, 6, 27, 112] (A014825) **5/5**; k = 5: [0, 1, 7, 38, 194] (A014827) **5/5**. Panel E: F((k^{2n+1}−1)/(k−1)) ≡ 0 mod 2(k+1) — k = 2: 6, 72, 522, 3084 mod 6 **4/4**; k = 3: 8, 184, 2736 mod 8 **3/3**; k = 5: 12, 684, 26856 mod 12 **3/3**. Panel F: confluence (seed 20261096) at (2,50), (2,127), (3,40), (3,121), (5,31) — **5/5 identical** stable configurations, full per-vertex fire vectors, and totals.
+
+## Answers to the Exercises
+
+*Worked answers for the twelve graded problems and the three ◆ pattern-unknown ones. The three ◐ Explorations state what you should find and get no worked answer — that is their point. Where an answer cites a machine receipt, the receipt exists: the lab above, from the chapter's documented engine (seeds 20261095–20261096 as mapped there).*
+
+**Answer 1 (Kirkman's condition).** (a) The triples through p partition its v−1 pairs into 2-sets, so v−1 is even (v odd) and there are (v−1)/2 triples through p. (b) Globally: C(v,2) = 3·(#triples) — so 3 | v(v−1)/2, i.e., 6 | v(v−1). (c) v odd gives v ≡ 1, 3, 5 (mod 6); at v ≡ 5, both v ≡ 2 (mod 3) and v−1 ≡ 1 (mod 3), so 3 divides neither factor — excluded; v ≡ 1 and v ≡ 3 survive, each divisible by 3 in one factor. Hence v ≡ 1, 3 (mod 6) — and the receipts' k = 3 list (3, 7, 9, 13, 15, 19, 21, …) is exactly the v ≤ 60 in those classes, machine-checked ⟺ over all v ≤ 200. The k = 4 and k = 5 conditions (v−1 ≡ 0 mod k−1; v(v−1) ≡ 0 mod k(k−1)) are the same two counts at block sizes 4 and 5 (◆13 settles their mod-12 and mod-20 reductions).
+
+**Answer 2 (the two STS(7)s).** (a) Searched: 123 → pairs 12, 13, 23; 145 → 14, 15, 45; 167 → 16, 17, 67; 246 → 24, 26, 46; 257 → 25, 27, 57; 347 → 34, 37, 47; 356 → 35, 36, 56 — twenty-one distinct pairs, every one once. Skolem: 123 → 12, 13, 23; 247 → 24, 27, 47; 357 → 35, 37, 57; 167 → 16, 17, 67; 145 → 14, 15, 45; 256 → 25, 26, 56; 346 → 34, 36, 46 — again all twenty-one exactly once. (b) The pair {4, 6} sits in block 246 of the searched system and in block 346 of the Skolem system — different blocks, so the systems differ as labeled. (c) Every point lies in exactly 3 blocks of each system; the relabeling must match the block structure — and one relabeling does it with one transposition: swap the labels 2 ↔ 3. The searched blocks map: 123 → 132 (same set); 145, 167 unchanged; 246 → 346 ✓ (Skolem's); 257 → 357 ✓; 347 → 247 ✓; 356 → 256 ✓ — the searched system IS the Skolem system under (2 3), as the Fano plane's uniqueness demands.
+
+**Answer 3 (the octahedron).** (a) Two 2-subsets of [4] share a point unless they are complementary — non-adjacency pairs 12–34, 13–24, 14–23 — three disjoint pairs, so each vertex has 6 − 1 − 1 = 4 neighbors: K₆ minus a perfect matching, the octahedron. (b) An automorphism permutes the three opposite pairs (any permutation of them: 3!) and independently flips within each pair (2³): 6·8 = 48. (c) The induced action: each σ ∈ S₄ maps 2-subsets to 2-subsets preserving intersection sizes — 24 automorphisms, half of 48. The complement map κ: {i,j} ↦ [4]∖{i,j} preserves adjacency because for distinct 2-subsets A, B ⊂ [4], |κ(A) ∩ κ(B)| = |[4]∖(A∪B)| = 4 − (|A| + |B| − |A∩B|) = |A∩B|, so κ(A) and κ(B) share a point if and only if A and B share a point. Moreover, κ is not induced by any σ ∈ S₄: if σ induced κ, then σ({1,2}) = {3,4} (forcing σ({3,4}) = {1,2}, since σ is a bijection on [4]), and simultaneously σ({1,3}) = {2,4}. Then σ(1) ∈ σ({1,2}) ∩ σ({1,3}) = {3,4} ∩ {2,4} = {4}, so σ(1) = 4; similarly σ({1,4}) = {2,3} gives σ(1) ∈ {4} ∩ {2,3} = ∅, a contradiction (machine-checked in the lab). Thus the 48 automorphisms split into two cosets: 24 induced + 24 κ∘(induced).
+
+**Answer 4 (the PBD counting arithmetic).** (a) Triples cover 3 pairs, quads 6: C(v,2) = 3t + 6q, so t + 2q = C(v,2)/3; at v = 10: 45/3 = 15 = 9 + 2·3 ✓ — the receipts' 12 blocks. (b) v−1 = 2a_p + 3b_p at each point p: at v = 5, 8, 11 the values 4, 7, 10 are all expressible (2·2, 2·2+3, 2·5) — the point-side condition PASSES exactly where the design fails, and the receipts file's original contrary clause is corrected (the scar is logged in the Verification Notes). The only point-side failure with v ≤ 13 is v = 2 (v−1 = 1). (c) The pair-side: C(5,2) = 10 ≡ 1 (mod 3), C(8,2) = 28 ≡ 1, C(11,2) = 55 ≡ 1 — pairs cannot be partitioned into 3s and 6s. (d) v = 6: C(6,2) = 15 ≡ 0 (mod 3) and 5 = 2 + 3 — both conditions pass, and the search exhausted the space: no PBD(6,{3,4}). Wilson's theorem says admissibility suffices for all sufficiently LARGE v — 6 is below the bound, and the exhausted search (every dead end visited, no budget cut) is the strong receipt: it is a proof at v = 6, not a sample.
+
+**Answer 5 (Molien by solution counting).** (a) The coefficient at t^d counts (a, b) with 8a + 24b = d: d = 2, 4: none (d not divisible by 8 — a + 3b = d/8 needs 8 | d); d = 8: (1, 0); d = 12: none; d = 16: (2, 0); d = 20: none; d = 24: (3, 0) and (0, 1) — two; d = 32: (4, 0) and (1, 1) — two. (b) Degree 8 ↔ f₈ (the receipts' machine-recovered generator); 16 ↔ f₈²; 24 ↔ f₈³ and f₂₄ (the Golay enumerator) — the receipts' independent basis. (c) The two methods count different things that Gleason's theorem says coincide: the solution count is the dimension the RING ℂ[f₈, f₂₄] predicts; the series expansion is the same series computed independently; and the nullspace computation is the actual invariant space. All three agreeing at every degree ≤ 32 is the theorem witnessed; a disagreement would mean either an invariant outside the ring's span (ring overstated) or a missing generator (ring understated) — exactly the alternatives the receipts' two-method design exists to distinguish.
+
+**Answer 6 (the torsor fact).** (a) Fix φ ∈ Iso(G,H). The right-composition map α ↦ φ∘α from Aut(G) to Iso(G,H) is injective (since φ is a bijection, φ∘α = φ∘α′ implies α = α′) and surjective (for any ψ ∈ Iso(G,H), φ⁻¹∘ψ ∈ Aut(G) satisfies φ∘(φ⁻¹∘ψ) = ψ). Thus Iso(G,H) is a right Aut(G)-torsor and |Iso(G,H)| = |Aut(G)|. Symmetrically, left-composition β ↦ β∘φ from Aut(H) to Iso(G,H) is a bijection (with inverse ψ ↦ ψ∘φ⁻¹), making Iso(G,H) a left Aut(H)-torsor and giving |Aut(G)| = |Iso(G,H)| = |Aut(H)| (indeed, conjugation α ↦ φ∘α∘φ⁻¹ is a group isomorphism Aut(G) ≅ Aut(H)) — the receipts' zero-violations datum, proved. (b) Class sizes from the histogram: |Aut| = 2 → 4!/2 = 12, three such classes (36 labeled graphs); 4 → 6, two classes; 6 → 4, two; 8 → 3, two; 24 → 1, two. Sum of squares: 3·144 + 2·36 + 2·16 + 2·9 + 2·1 = 432 + 72 + 32 + 18 + 2 = 556. (c) Isomorphic ordered pairs are exactly the pairs lying in a common class: Σ (class size)² — and the panel's σ-count agrees because both count the same set; the identity is the consistency check that catches a miscounted iso relation.
+
+**Answer 7 (chip-firing at pencil scale).** (a) N = 5: root fires (5 → 3, children +1 each), fires again (3 → 1, children 2, 2); nothing legal — stable: root 1, children 2, 2; f₀ = 2 (receipts ✓). (b) N = 6: 6 → 4 → 2 with children 1, 1 → 2, 2: stable root 2, children 2, 2, f₀ = 2 ✓. N = 7: 7 → 5 → 3 → 1 (children 3, 3), both children fire (root back to 3, grandchildren 1 each), root fires once more (root 1, children 1, 1): stable = one chip per vertex of the height-2 perfect tree, f₀ = 4 ✓ — the fires bounce. (c) N = 5: n = 2, Δ = 2 = binary 01₂ (LSB first: a₀ = 0, a₁ = 1) → layer counts (a₀+1, a₁+1) = (1, 2): 1·1 + 2·2 = 5 ✓; N = 6: Δ = 3 = 11₂ (a₀ = 1, a₁ = 1) → (2, 2): 1·2 + 2·2 = 6 ✓; N = 7: n = 3, Δ = 0 = 000₂ → (1, 1, 1): 1·1 + 2·1 + 4·1 = 7 ✓. The conservation identity in 0-indexed layers is Σ_{ℓ=0}^{n−1} k^ℓ(a_ℓ + 1) = Σ_{ℓ=0}^{n−1} a_ℓ k^ℓ + Σ_{ℓ=0}^{n−1} k^ℓ = Δ + (kⁿ−1)/(k−1) = N — the digits carry exactly the chip excess.
+
+**Answer 8 (Construction B and the tie datum).** (a) At each step the chosen edge is the minimum-weight edge crossing (S, V∖S) — the cut property's candidate. Under distinct weights it is the STRICT minimum, so it lies in EVERY MST (the exchange argument); by induction each B-edge lies in the unique MST, so B returns it. (b) With ties: e is A minimum across the cut; for any spanning tree T avoiding e, the cycle through e in T + e crosses the cut again at f with w(f) ≥ w(e), so T + e − f is no heavier — B's output is optimal. (c) K₃ with all weights 1: three spanning trees, all of weight 2 — greedy may return any; ties destroy uniqueness but NOT optimality, which is exactly the receipts' split: 39/60 trials had multiple minimum trees, yet A = B = brute stayed 60/60 on the optimal weight.
+
+**Answer 9 (Bose, proved).** (a) x∘x = ((m+1)/2)·2x ≡ (m+1)x ≡ x (mod m) — idempotent; commutativity is clear. Cancellation: z ↦ ((m+1)/2)(x+z) mod m is a bijection of Z_m because (m+1)/2 = n+1 is invertible mod m = 2n+1 (any common divisor divides (2n+1) − 2(n+1) = −1). (b) If x∘y = x: ((m+1)/2)(x+y) ≡ x; multiply by 2: (m+1)(x+y) ≡ 2x; since (m+1)z ≡ z (mod m): x + y ≡ 2x, so y ≡ x — contradiction; same for x∘y = y. (c) Every block has size 3: vertical blocks {(x,0),(x,1),(x,2)} have 3 points in distinct layers with the same first coordinate, and type-2 blocks {(x,i),(y,i),(x∘y, i+1 mod 3)} (for x ≠ y) have two distinct points in layer i and one point in layer i+1 mod 3. Now check every pair of distinct points: (i) Same-layer pairs {(x,i),(y,i)} with x ≠ y: vertical blocks contain only one point per layer, and type-2 blocks of layer j ≠ i have at most one point in layer i, so only a type-2 block of layer i can cover {(x,i),(y,i)}; its third point is uniquely forced to be (x∘y, i+1 mod 3). (ii) Cross-layer pairs {(x,i),(y,i+1 mod 3)}: if x = y, the vertical block {(x,0),(x,1),(x,2)} covers the pair, and no type-2 block of layer i can cover {(x,i),(x,i+1 mod 3)} because x∘z = x forces z = x by idempotence and cancellation, whereas type-2 blocks require distinct layer-i points. If x ≠ y, no vertical block covers {(x,i),(y,i+1 mod 3)}; among type-2 blocks, only those of layer i have the layer profile (i, i, i+1 mod 3), and such a block covers the pair if and only if its second layer-i point z satisfies x∘z = y, which has a unique solution z ∈ Z_m by cancellation (and z ≠ x because x∘x = x ≠ y) — blocks of layer i+1 and i+2 cannot also cover the pair (count their layer profiles: (i+1, i+1, i+2) and (i+2, i+2, i)). Every pair exactly once — an STS(6n+3), for every n ≥ 0; the receipts' nine verifications are the theorem witnessed, and the proof is the theorem.
+
+**Answer 10 (the degree-8 invariant, by hand).** (a) As printed in the exercise. (b) The columns of t₁v: from (x+y)⁸: (1, 8, 28, 56, 70, 56, 28, 8, 1); from (x²−y²)⁴: (1, 0, −4, 0, 6, 0, −4, 0, 1); from (x−y)⁸: (1, −8, 28, −56, 70, −56, 28, −8, 1). (c) The odd columns: y¹ gives 8a − 8c = 0 → a = c; y³ gives 56a − 56c = 0, same; y⁷: 8a − 8c, same. The even columns: y⁶ coefficient of v is 0: 28a − 4b + 28c = 0 → b = 7(a+c); y⁴: 70a + 6b + 70c = 16b — the same equation rearranged; y⁰: a + b + c = 16a. Substituting b = 7(a+c) into the y⁰ equation: a + 7a + 7c + c = 16a → 8c = 8a → c = a, and then b = 14a. One dimension, spanned by (1 : 14 : 1) = x⁸ + 14x⁴y⁴ + y⁸ — the machine-recovered generator, derived by hand. (Watch the signs at the odd columns — the (x−y)⁸ factor alternates; a sign slip here collapses the solution to zero, which is this exercise's built-in scar.) (d) 1344 = 8·168 = the extended Hamming code's automorphism group order (the GL(3,2)-shaped stabilizer, textbook canon; the receipts use it as the cross-check 30 = 8!/1344).
+
+**Answer 11 (the difference engine).** (a) k = 2, non-exceptional m ≤ 40: ν₂(m+1)+1 matches d₀ everywhere — e.g. m = 2: ν₂(3)+1 = 1 ✓; m = 5: ν₂(6)+1 = 2 ✓; m = 11: ν₂(12)+1 = 3 ✓; m = 23: ν₂(24)+1 = 4 ✓. At the exceptional m: d₀(1) = 1 but ν₂(2)+1 = 2; d₀(3) = 2 but ν₂(4)+1 = 3; d₀(7) = 3 but ν₂(8)+1 = 4; d₀(15) = 4, d₀(31) = 5 — each one BELOW the generic formula, with d₀ = n exactly. (b) Unified: d₀(m,k) = ν_k((k−1)m+1) + 1 − [m exceptional] — at an exceptional m, (k−1)m+1 = kⁿ exactly, so the formula reads n + 1 − 1 = n ✓. k = 3 checks: m = 1: ν₃(3)+1−1 = 1 ✓; m = 4: ν₃(9)+1−1 = 2 ✓; m = 13: ν₃(27)+1−1 = 3 ✓; non-exceptional m = 10: ν₃(21)+1 = 2 ✓. k = 5: m = 6 exceptional ((4·6+1) = 25 = 5²): ν₅(25)+1−1 = 2 ✓; m = 26: (4·26+1) = 105, ν₅ = 1 → 2 ✓. (c) The exceptional set consists of the integers m > 0 where (k−1)m+1 = kⁿ is a pure power of k. For any m ≥ 1, ν_k((k−1)m+1) ≥ 1 if and only if (k−1)m + 1 ≡ 0 (mod k); since k − 1 ≡ −1 (mod k), this is equivalent to −m + 1 ≡ 0 (mod k), i.e., m ≡ 1 (mod k). At m = 1 (which is (k¹−1)/(k−1), always exceptional with n = 1), d₀(1,k) = 1. For every m > 1 with m ≡ 1 (mod k), either m is non-exceptional (so d₀ = ν_k((k−1)m+1) + 1 ≥ 2) or m = (kⁿ−1)/(k−1) with n ≥ 2 (so d₀ = n ≥ 2); for m ≢ 1 (mod k), ν_k((k−1)m+1) = 0 and m is non-exceptional, so d₀(m,k) = 1. Consequently the non-1 entries of d₀(m,k) occur at m ≡ 1 (mod k) for m > 1: at k = 2, every odd m ≥ 3 (with one 1 between consecutive non-1s); at k = 3, every m ≡ 1 (mod 3) with m ≥ 4 (with two 1s between consecutive non-1s). Higher values d₀ ≥ r + 1 sit along the nested sub-progressions (k−1)m + 1 ≡ 0 (mod k^r) — at k = 2, r = 2: m + 1 ≡ 0 (mod 4), i.e. m ≡ 3 (mod 4) (the receipts' k = 2 list, m ≤ 40: d₀ = 3 at m = 7, 11, 19, 27, 35; d₀ = 4 at m = 15, 23, 39; d₀ = 5 at m = 31 — never at m ≡ 1 mod 4) — producing the self-similar fractal hierarchy. The digit engine IS the fractal.
+
+**Answer 12 (Wilson's construction, miniature proved).** (a) Each line has 4 points: each vertical line x = c contains 3 affine points plus V; each non-vertical line y = mx+b contains 3 affine points (one for each x ∈ F₃) plus its slope point m; the line at infinity contains the 3 slope points plus V. Every pair of distinct points lies on a unique line: two affine points (x₁,y₁) and (x₂,y₂) with x₁ = x₂ lie on the unique vertical line x = x₁, and with x₁ ≠ x₂ lie on the unique non-vertical line y = mx+b where m = (y₂−y₁)(x₂−x₁)⁻¹ and b = y₁ − mx₁ in F₃; an affine point (x₀,y₀) and V lie on the unique vertical line x = x₀; an affine point (x₀,y₀) and slope point m lie on the unique line y = mx + (y₀ − mx₀); and any two points at infinity lie on the unique line at infinity. Counting confirms: 13 lines × C(4,2) = 78 = C(13,2) pairs, each covered exactly once. (b) After deleting V: groups G₁, G₂, G₃ (the verticals' affine points), G₄ = {slope points}. A non-vertical line y = mx+b contains, for each c, the point (c, mc+b) — one per vertical group — plus the slope point m ∈ G₄: it meets every group exactly once. The line at infinity minus V IS G₄ (a group, filled as a triple, not a block). Cross-group pairs: two points in different vertical groups — distinct x-coordinates, unique line, non-vertical (it is not x = const), so it is a surviving block, and the pair sits in it exactly once; affine point + slope point m: the unique slope-m line through the affine point; the pair (slope m, slope m′) is same-group — covered by the fill triple. Every cross-group pair exactly once: a TD(4,3). (c) 9 quads + 4 triples = 13 blocks; the receipts' printed list matches the construction label-for-label (group c's vertical fill triple is the block 012/345/678/91011; the quad 0369 is the line y = 0: points (0,0), (1,0), (2,0) — one per vertical — plus slope point 0), zero violations machine-checked. Template (the TD), ingredients (the quads), fills (the triples): the fundamental construction, assembled.
+
+**Answer ◆13 (k = 4 admissibility).** The conditions: v ≡ 1 (mod 3) and 4 | v(v−1) with the mod-3 pair factor already fine — concretely v(v−1) ≡ 0 (mod 12) requires v ≡ 0 or 1 (mod 4) (consecutive integers: one of every two consecutive is even; 4 | v(v−1) fails only when both are ≡ 2, 3 mod 4 — i.e., v ≡ 2 (mod 4)) and the mod-3 part v ≡ 1 (mod 3). CRT: v ≡ 1 (mod 3) ∧ v ≡ 1 (mod 4) → v ≡ 1 (mod 12); v ≡ 1 (mod 3) ∧ v ≡ 0 (mod 4) → v ≡ 4 (mod 12). The receipts' list — 4, 13, 16, 25, 28, 37, 40, 49, 52 — is exactly the v ≤ 60 with v ≡ 1, 4 (mod 12), machine-verified over all v ≤ 200. The tool: divisibility arithmetic plus CRT (P41's cameo) — the same engine as Exercise 1, one block size up.
+
+**Answer ◆14 (N = 2ⁿ−1 at k = 2).** By global confluence (Klivans' theorem, witnessed by the receipts' 5/5 panel), the stable configuration and total fire counts are independent of the legal firing order. For N = 2ⁿ − 1 at k = 2, we prove both claims by induction on n ≥ 1. For n = 1 (N = 1), the root holds 1 ≤ 2 chips, which is already stable: layer 0 has 1 chip and f₀(1) = 0 = 2¹ − 1 − 1. For n ≥ 2, in the perfect binary tree of height n − 1 on 2ⁿ − 1 vertices, the configuration with 1 chip on every vertex in layers ℓ ∈ {0, 1, …, n − 1} (and 0 beyond) is stable and has total chips Σ_{ℓ=0}^{n−1} 2^ℓ = 2ⁿ − 1 = N (the Δ = 0, all-digits-zero case of the digit formula). To find the fire counts f_ℓ at layer ℓ, count chip flow across the edges between layer ℓ and layer ℓ + 1 (the receipts' Lemma 5 / Theorem 6): each of the two children of a layer-ℓ vertex u heads a subtree of height n − 2 − ℓ containing 2^{n−1−ℓ} − 1 vertices, each ending with 1 chip and none beyond layer n − 1. Every fire of u sends 1 chip to each child, and every fire of a child returns 1 chip to u, so the net number of chips entering each child's subtree from u is f_ℓ − f_{ℓ+1} = 2^{n−1−ℓ} − 1. With f_{n−1} = 0 at the leaves, backward induction gives f_ℓ = Σ_{j=1}^{n−1−ℓ} (2^j − 1) = 2^{n−ℓ} − (n − ℓ) − 1 (machine-verified at n = 3: f = 4, 1, 0; at n = 4: f = 11, 4, 1, 0 — layer-symmetric, as the receipts' structure theorem demands). In particular, at the root (ℓ = 0), f₀(2ⁿ − 1) = (2^{n−1} − 1) + f₀(2^{n−1} − 1), which telescopes from f₀(1) = 0 to f₀(2ⁿ − 1) = Σ_{j=1}^{n−1} (2^j − 1) = (2ⁿ − 2) − (n − 1) = 2ⁿ − n − 1 (OEIS A000295, matching the receipts' 10/10 panel; at n = 3, N = 7 gives f₀(7) = 2³ − 3 − 1 = 4, matching Exercise 7(b)). The stable configuration is the height-(n−1) perfect tree with one chip per vertex — the all-digits-zero case of the digit formula (Δ = 0). The tools: confluence (choose the order), induction (P4), and the digit encoding (P25).
+
+**Answer ◆15 (self-dual ⟹ even weights).** For c ∈ C = C⊥: c·c ≡ 0 (mod 2). Over F₂, c·c = Σ c_i² = Σ c_i = wt(c) (mod 2) — so every codeword has even weight, and the enumerator W(x,y) = Σ A_i x^{n−i}y^i has A_i = 0 at odd i: a polynomial in x² and y² (as the census shows: [1,0,2,0,1] = (x²+y²)², [1,0,3,0,3,0,1], [1,0,4,0,6,0,4,0,1] = (x²+y²)⁴ — zero at every odd index). This is Gleason's engine's first output but far from the theorem: Gleason pins the enumerators into a TWO-GENERATOR RING (f₈ and f₂₄ for Type II), while the parity argument only restricts one congruence class of weights. The parity fact is linear algebra mod 2 (P19's cameo); the ring structure is invariant theory.
+
+## Revision History & Verification Notes
+
+**Machine-verification campaign (before a line of prose was installed).** Six lab parts; every quantitative claim in this chapter traces to one. The campaign ran receipts-first: all six parts machine-verified and written to the canonical receipts file (tables, engine documentation, design pins per part, scar log, canon pins) before any prose — no claim in this chapter predates its receipt. The engine: the Lehmer/MINSTD generator x ← 48271·x mod (2³¹−1), floor-rule uniform draws, seeds 20261095 (Part 5, one continuous stream over panels (a)→(d)) and 20261096 (Part 6's confluence, one continuous stream over the five trials); Parts 1–4 and Part 6's deterministic panels draw nothing. The receipts file is the chapter's companion record; the sections below summarize what it holds.
+
+1. **The Wilson arithmetic engine (Part 1).** All seven panels green: the admissibility lists (k = 3, 4, 5; mod-equivalences verified over ALL v ≤ 200); the backtracking STS search (STS(7) `123 145 167 246 257 347 356`, STS(9) 12 blocks, STS(13) 26 blocks); Bose n = 0..8 and Skolem n = 1..8 verified with zero violations and exact block counts; the Kirkman closure (all 17 admissible v ≤ 51); the PBD(v,{3,4}) census with v = 6 the mod-passing exception (search exhausted, no cap hit) and v = 12 resolved by the PG(2,3) → TD(4,3) construction (13 blocks, zero violations — the receipts print the construction label-for-label); the Frobenius engine 34/34 on both closed forms. Design pins: the search tries the lex-first uncovered pair with the third point from b+1 upward; the {3,4} search caps at 40,000 nodes (triples before quads at each pair); the verifier keys every pair (lo, hi).
+2. **The Gleason invariant engine (Part 2).** The census at n = 4, 6, 8: Gaussian-binomial anchors 35 / 1,395 / 200,787; self-dual 3 / 15 / 135 (each MacWilliams-checked exactly, 3/3, 15/15, 135/135); doubly-even 0 / 0 / 30, the 30 = 8!/1344 one-class cross-check; enumerators recorded per class with the (x²+y²)⁴ identification at n = 8 singly-even. The invariant spaces: t₁'s rationality at even degree (the 2^{−m} factor scales out — no irrational arithmetic anywhere), the fraction-arithmetic nullspace, dims 0, 0, 1, 0, 1, 2 at degrees 2, 4, 8, 12, 16, 24, the degree-8 generator machine-recovered as exactly (1 : 14 : 1), degree-16 = f₈², the degree-24 basis {f₈³, G} with the Golay residual check doubling as the code's functional equation. Molien by solution counting AND series expansion, agreeing at every degree ≤ 32.
+3. **The Luks framework I (Part 3).** The orbit–stabilizer ledger exact at n = 4 (64 = Σ 4!/|Aut|) and n = 5 (1,024), Burnside agreeing at 11 and 34; the |Aut| histograms recorded; the GI⟷Aut torsor panel over all 4,096 pairs (556 iso, zero violations, 556 = Σ class²); the color gadget on all 64 C₆ colorings — degree census, forced extensions checked against the constructed edge set, 64/64 agreement, histogram 1:12, 2:42, 4:6, 6:2, 12:2 with the two spot receipts (101010 → 6 on 21 vertices; 111000 → 2).
+4. **The Luks framework II (Part 4).** S₄: 30 subgroups (histogram recorded; 30 = the known total is the completeness certificate), 9 transitive (3 C₄ + 1 V₄ at order 4, by element orders), block systems per subgroup, primitive exactly {A₄, S₄}; S₅: 156 subgroups, 20 transitive, all primitive at prime degree (zero block candidates — machine-verified); the Johnson dichotomy: J(4,2) abstract 48 > induced 24 with the complement map machine-checked as an automorphism and as non-induced; J(5,2) abstract 120 = induced 120 by exhaustive adjacency-pruned backtracking over the 10! candidates.
+5. **Kruskal (Part 5, seed 20261095).** One continuous stream, panels (a)→(d): K₅ ×100 (A = B = brute 100/100, unique 100/100, zero cut/cycle violations, mean 10.57, trial-0 MST `04 02 23 01` weight 10); K₆ ×50 (clean, mean 16.30); sparse n = 7 ×30 (clean, 13 redraws, edge histogram recorded); ties ×60 (60/60 optimal, 39/60 multi-minimum — the uniqueness datum, mean 7.30). Design pins: FY over lex-ordered edges with weights [1..m]; A = sorted greedy with union-find and the strict cut check at every add; B = Prim from vertex 0 with the fresh-scan assertion; brute = all C(m, n−1) subsets with BFS connectivity; cycle property by BFS path-maxima.
+6. **The k-adic digit engine (Part 6).** The model pinned from the FETCHED paper (arXiv:2501.06675v1, full text): fire at ≥ k+1 chips, one chip per edge, the loop's chip returns, stable at ≤ k. All theorem panels green at k = 2 (N ≤ 64), k = 3 (N ≤ 81), k = 5 (N ≤ 50) — stable configs, conservation, layer symmetry with f_{n−1} = 0, Lemma 5, Theorem 6, Corollary 8, Theorem 12 + F-decomposition, transientDepth. The root-fire list (40 terms), the ceiling recurrence 40/40, 40/40, 30/30, block constancy TRUE, g₀ == Table 1 5/5, Theorem 11 at 40/40, 27/27, 30/30, the A091090/A378725 prefix matches, the fractal positions TRUE, the A000295 family 10/10, 7/7, 5/5, 5/5, the divisibility 4/4, 3/3, 3/3, and confluence 5/5 (seed 20261096).
+
+**The scars, kept on display.** (i) *The deadline lesson, twice:* the first combined Part 1 run (STS(15) search + all {3,4} searches in one block) and the first combined Part 6 run both exceeded the harness deadline — never combine a fresh harness with a long campaign in one block; split per panel, re-run everything. Part 6's deadline hid a real bug: the random-order callback returned a fractional index (arr[0.x] = undefined) and the simulator fired `undefined` forever — an infinite loop wearing a timeout's clothes. (ii) *The verifier needed receipts discipline too:* Part 1's pair-coverage check keyed pairs as stored, without (lo, hi) normalization, and correct constructions printed false violations; caught by hand-trace against the block rules, fixed, and the FULL campaign re-run green. (iii) *The Molien counter:* a loop that tested `while 8i+24j === d` never entered at d = 24 with i = 0 — printed 1 where the hand expansion gives 2; caught by the receipts expectation, fixed to solution counting, cross-checked by an independent series expansion; both methods now agree at every degree ≤ 32. (iv) *The dossier transcription slip:* the survey dossier quoted the root-fire recurrence with ⌊N/k⌋; the campaign's full-text fetch found the paper states ⌈N/k⌉, and only the ceiling matches the machine (the floor fails 12 of 40 at k = 2; the readings coincide only when k | N). The chapter cites the paper's form — and the fetch that caught the slip is why the campaign fetched before authoring. (v) *Hand arithmetic, corrected twice:* the author's pre-run values for the k = 4 and k = 5 perfect-tree family (0,1,7,37,175 and 0,1,11,61,301) were wrong; the machine gives [0, 1, 6, 27, 112] and [0, 1, 7, 38, 194] with sim == formula 5/5 — the machine is the arbiter, and the wrong predictions stay in the receipts file as the record. (vi) *The harness off-by-one:* the block-constancy check compared f₀(2a) vs f₀(2a+1) instead of f₀(2a+1) vs f₀(2a+2) and printed a false FALSE; the fixed harness gives TRUE at k = 2, 3, 5. (vii) *The receipts file's own prose scar, caught at authoring:* the v1 Panel F clause claiming the point-side condition v−1 = 2a+3b fails at v = 5, 8, 11 was wrong (4, 7, 10 are all expressible); corrected in the receipts file, logged there, and taught as Exercise 4(b) — receipts discipline applies to the receipts' prose, not just its numbers.
+
+**The printed-code verification pass (2026-10-14; the receipts are the arbiter).** Before assembly, every printed code block above was executed AS PRINTED and checked value-for-value against the receipts file; the printed code was corrected until it reproduced them, and the pass caught seven more defects — all fixed, all logged here. (viii) *The Part 3 index formula:* the pair-to-bit map read `b−1+…` where it needed **`b−a−1+…`** — one sign-class off, and the n = 4 census silently printed 10 classes and a 63-ledger instead of 11 and 64; the receipts' anchored values caught it, and the corrected block reproduces every Part 3 receipt exactly. (ix) *The Part 6 root-fire bug:* the printed `fire` never gave the root's children their chips, so f₀(7) computed 3 instead of 2 — the receipts' 40-term root-fire list is what exposed it. (x) *The Part 6 height off-by-one:* initializing the Δ-digit height at `k` instead of `k+1` broke exactly at the point before each perfect-tree exceptional N = (k^m−1)/(k−1). (xi) *The Panel F driver:* mod-fail values must NOT enter the search — as first printed, v = 11 hit the node cap and would have recorded a budget artifact as a "NO"; the rewrite prints arithmetic verdicts without searching and reproduces v = 6 (exhausted → NO) and v = 12 (13 blocks) exactly. (xii) *The Frobenius count:* the receipts prose said 32 pairs; the machine enumerated **34** (Σ(φ(b)−1) for b = 3..12), every pair matching both closed forms — receipts and chapter corrected, the slip logged (the receipts' per-pair verification was always machine-true; only the count was hand-arithmetic). (xiii) *The sparse stream pin:* the first printed draft shuffled weights BEFORE the keep/redraw draws and did not reproduce the receipts histogram; the pinned order (keep → redraw until connected → THEN shuffle the kept edges; 1,166 draws in total) reproduces all four panels exactly, and panel (d) at skip 1,166 is the independent confirmation. (xiv) *Part 2 print hygiene:* a missing import, an assert rewritten as a clean dict check, and the polymul/residual checks printed as real code. After the fixes, every printed block reproduces its receipts values exactly — the receipts file records the full pass.
+
+**Exploration check runs (backing ◐16–◐18).** The Explorations state what you should find; the campaign ran each before installing it. ◐16: the degree-32 invariant space has dimension 2, basis {f₈⁴, f₈·G}, residual-true and independent; the solution-counting ladder runs 2 at degree 32, 2 at 40, 3 at 48, and **4** at 72; degree 32 needs exact integer arithmetic — IEEE doubles overflow the binomials. ◐17 (k = 4): the ceiling recurrence 40/40, block constancy TRUE, the family [0, 1, 6, 27, 112], exceptional m = 1, 5, 21 with d₀ = 1, 2, 3, and the unified ν-form TRUE 30/30. ◐18: the n = 6 census is exact — 156 classes, Burnside 156, ledger 32,768 — at a scale (23.6 million permutation applications) that makes the census wall of the exercise's question real rather than rhetorical.
+
+**Canon pins (web-verified before authoring, 2026-10-14; the full list with pin levels is in the Trick Bag's reading list).** The honest notes this chapter's pins carry: Wilson's part III is cited by journal, volume, and year with pages UNPINNED (not web-verified this session — never guessed); Luks's title is "can be TESTED" (the dossier corrected a widely garbled "decided"), with the 1980 FOCS abstract priority recorded; Babai's citation pair is the STOC extended abstract + the arXiv full version (the journal version beyond the extended abstract is unpinned, recorded honestly), and the January 2017 gap-and-fix episode (Helfgott's find, Babai's fix, the Bourbaki confirmation) is part of the theorem's provenance; Kruskal's full title restores the traveling-salesman clause the seed truncated; the N4 paper is cited with its authors-in-grades-6–9 provenance per the survey's author-level rule, and its full text was FETCHED this session — the firing convention, Table 1, and every theorem the lab checks are quoted from the fetched text, with the honest scope note that the HTML truncates inside Theorem 12's proof (Proposition 5.4 is verified from the dossier's statement); the Hopcroft–Tarjan pair (planarity testing vs triconnected components) are two real papers the batch row conflated — each is cited for what it is. The classical canon (Kirkman 1847, Steiner 1853, Bose 1939, Skolem 1958, Hanani 1960/1963, Bruck–Ryser 1949, MacWilliams 1963, Gleason 1971) is web-pinned as listed; the Bose/Skolem block-rule carrier is Moura's uOttawa slides (citing Lindner–Rodger and Colbourn–Rosa); Pless 1968 and Klivans' book are statement-level with pins pending at carrier use; the OEIS sequences are cited via the paper at statement level with the machine checking exactly the prefixes the paper prints.
+
+**The honest ledger.** Proved in the text: Kirkman's condition derived (Exercise 1); the two STS(7)s reconciled with an explicit relabeling (Exercise 2); the octahedron's 48 (Exercise 3); the PBD counting arithmetic with its corrected point-side clause (Exercise 4); Molien by solution counting (Exercise 5); the torsor fact and the 556 decomposition (Exercise 6); the chip-firing pencil-scale simulations and the digit conservation (Exercise 7); Construction B's correctness and the tie boundary (Exercise 8); Bose's construction completely (Exercise 9 — the chapter's largest complete proof); the degree-8 Gleason generator by hand (Exercise 10); the difference engine's unified ν-form with the fractal reading (Exercise 11); the PG(2,3) miniature completely (Exercise 12); the k = 4 admissibility by CRT (◆13); the A000295 family by confluence + induction (◆14, riding the machine-verified recurrence); self-dual evenness (◆15). Stated with proof cited, not given: Wilson's existence theorem and the PBD-closure finite-basis theorem (the trilogy; the lab witnesses the arithmetic, the supply side, and a miniature of the composition); Gleason's invariant-ring theorem and Molien's theorem (the ICM paper + MacWilliams–Sloane as carrier; the lab checks the outputs at census scale); Luks's bounded-valence theorem (the composition-series machinery is cited; the lab witnesses the bookkeeping and the reduction entry ramp); Babai's design lemma, local certificates, and aggregate consumption (flagged-sketch level, the dossier's summary); the chip-firing paper's theorems in their full generality (the lab verifies each at the stated N-ranges; the paper's proofs — Proposition 3.1's parallel-firing induction, the confluence citation — are the paper's); Kruskal's theorem IS proved here (the cut property is the proof, Lecture 5 + Exercise 8). Computed, not proved: every census, enumeration, simulation, and check in the lab — reproducible value-for-value from the documented engine. The five engines' no-P-ID status is the survey's own finding, taught as this chapter's charter; the engines claim no pattern entries, and their cameos (P41, P2, P11, P4, P25, P18, P12, P7, P19) are printed where they fire.
+
+---
+
+**Status:** 🟩 Feynman edition — installed (session 83, chunk 83d: the receipts campaign across all six parts with its fetch-pinned model and logged scars; authoring, assembly, install). First expansion pass installed (session 114): pattern audit NOT MANGLED; six-part battery all-green; two genuine defects repaired (the Part 5(c) printed gate, the Panel E STS(9) agreement claim); the Answer 11(c) and Exercise 11 hint errors corrected; eighteen draft adoptions merged. The web edition cgt-ch21-web was built at session 83 and rebaked at 114. No claim in this chapter predates its receipt.
+
+---
+
+**Expansion pass (session 114, the first for this chapter).** A first expansion draft arrived (user-supplied HTML, 1,081 lines; machine-identified and byte-verified against the upload). The campaign's standing protocol ran in order: pattern-reference audit, content-delta triage, a fresh six-part battery with every printed lab block re-executed exactly as printed (Lehmer engine; seeds 20261095/20261096), then extend-never-rewrite installs.
+
+*The pattern-reference audit: NOT MANGLED.* The draft's P-token sets, their contexts, and the pattern-map table are identical to the master's, row for row — the audit's honest verdict is a negative. The campaign's only genuine pattern mangling remains the session-111 Ch. 18 event. One real defect sat adjacent to the audit: the pattern map's P2 row printed "v(v−1)/6 = 3·(#triples)" — the equation itself is false (v(v−1)/6 is the triple count; the pair count v(v−1)/2 is what equals 3·(#triples)). The draft carried the correct form; the row is repaired.
+
+*The battery, and the two genuine master defects it caught.*
+
+(xv) *The Part 5(c) printed-code defect (the session's headline).* As printed, the sparse panel's redraw gate read `connected(mask, n, es)` — but the previous trial had already reassigned `es` to its own kept-edge list (length kk < 21), so from trial 1 on the gate tested connectivity against the wrong edge list; the block as printed cannot honestly run, and the session-83 "every printed block reproduces its receipts" claim was false here. The corrected semantics — gate against the full lex list `edges_of(n)` — reproduces every receipt bit-for-bit: 30/30, 13 redraws, histogram 7:4, 8:7, 9:3, 10:6, 11:3, 12:4, 13:1, 14:2 — and the draw total 630 + 273 + 263 = 1,166 is exactly scar (xiii)'s pinned count, an independent confirmation. The printed gate is repaired; the session-83 claim stands corrected here.
+
+(xvi) *The Panel E STS(9) agreement claim.* "Bose's STS(9) has exactly the search's 12 blocks: construction and search agree" is false as labeled systems: Bose(1) prints `012 345 678 037 148 256 046 157 238 136 247 058`, the search prints `012 034 056 078 135 147 168 238 246 257 367 458` — different block lists, both valid systems. The draft repeated the same false claim in its own Panel E. The honest form is installed: the two systems agree up to the explicit relabeling π = (0→5, 2→3, 3→2, 4→6, 5→4, 6→0; 1, 7, 8 fixed) — machine-verified, as STS(9)'s uniqueness up to isomorphism demands; the receipts paragraph's "Bose's STS(9) = the search's 12 blocks" is corrected to match.
+
+*Two more master errors the battery refuted.* (xvii) Answer 11(c) claimed the k = 2 entries with d₀ ≥ 3 sit at m ≡ 1 (mod 4) — the machine says m ≡ 3 (mod 4): d₀ = 3 at m = 7, 11, 19, 27, 35; d₀ = 4 at m = 15, 23, 39; d₀ = 5 at m = 31; every m ≡ 1 (mod 4) has d₀ ≤ 2 (the master even quoted "d₀ = 3 at m = 13" — it is 2; the correct congruence setup m ≡ −1 (mod 4) was written, then the wrong residue drawn from it). The draft's complete exceptional-set derivation is installed, with the corrected specialization. (xviii) Exercise 11's hint read "ν_k((k−1)m+1) ≥ 1 ⟺ (k−1)m ≡ 0 (mod k) ⟺ m ≡ 0 (mod k)" — it dropped the +1; the correct chain ends m ≡ 1 (mod k), and the draft's hint is installed. Also repaired: "check the five odd residues mod 6" — there are three.
+
+*What was installed from the draft.* Eighteen extend-never-rewrite edits, every draft claim machine-verified before install: the P2-row repair; the Panel E relabeling; the Part 5(c) gate repair; the complete proofs for Answers 3(c) (the κ non-induction contradiction, ∅-intersection and all), 6(a) (the two-sided torsor proof with the conjugation isomorphism Aut(G) ≅ Aut(H)), 7(c) (LSB-first digits and the full conservation chain), 9(c) (the two-case pair covering with the x = y vertical subcase and the layer-profile fence), 11(c) (the exceptional set and the fractal hierarchy), 12(a) (the line/pair case analysis with explicit slope arithmetic in F₃), and ◆14 (the layered chip-flow induction f_ℓ − f_{ℓ+1} = 2^{n−1−ℓ} − 1 by backward induction — machine-verified at n = 3: f = 4, 1, 0; n = 4: f = 11, 4, 1, 0 — telescoping to the paper's f₀(2ⁿ−1) = 2ⁿ − n − 1, cross-checked against Exercise 7(b)'s f₀(7) = 4); and the exercise repairs (1(c), 2(c), 4(b)+hint with the Frobenius number g(2,3) = 1, the 6 hint, 7(c), 9(c) with the duplicated "(c)" label fixed, 10(c)(d)+hint with AGL(3,2) named, 11(c)+hint). Twelve "…"-dithering sites in the master cleaned (the two survivors are code range notation).
+
+*The draft's own defects, caught and not installed as printed.* The false STS(9) agreement claim, repeated from the master (see xvi) — installed in honest form instead. Otherwise the draft's tables, Answers 1/2/4/5/8/10/13, ◆13–15, and Explorations 16–18 are identical to the master's (verified; no churn), and the draft legitimately omits this appendix, which stays.
+
+*Checker scars (this session's own, recorded honestly).* (xix) The first Bose-vs-search comparison indexed bose(3) — the STS(21) system — instead of bose(1), briefly "confirming" the false agreement; caught by reading the block lists. The checker's bug, not a master defect — but it shows why the battery reads outputs, not summaries. (xx) The first S₄/S₅ subgroup port used a broken closure routine (60 and 316 false subgroup counts); rewritten with a clean fixed-point closure and verified against the printed histograms exactly.
+
+*The battery.* All six parts re-run exactly as printed, all green: Part 1 (mod-equivalences over all v ≤ 200; Bose n = 0..8 and Skolem n = 1..8 with zero violations; the 17-system closure; the honest census with v = 6 exhausted and v = 12 constructed; the PG(2,3) miniature at 13 blocks/78 pairs; Frobenius 34/34 on both closed forms); Part 2 (the 200,787-subspace census, 135 self-dual codes all MacWilliams-exact, Gleason dimensions 0, 0, 1, 0, 1, 2, the Molien agreement to degree 32); Part 3 (the orbit–stabilizer ledger at n = 4 and 5; GI⟷Aut with 556 isomorphic pairs and zero violations; the color gadget 64/64); Part 4 (S₄'s 30 subgroups, S₅'s 156, the primitive-transitive censuses, the Johnson dichotomy 48 abstract vs 24 induced at J(4,2) and 120 = 120 at J(5,2)); Part 5 (all four panels bit-for-bit, 1,166 draws with the repaired gate); Part 6 (structure theorems at k = 2, 3, 5 across their full ranges; the ceiling recurrence 40/40, 40/40, 30/30; the three d₀ lists; the perfect-tree families A000295/A000340/A014825/A014827; Proposition 5.4's F-values; confluence 5/5 at seed 20261096). The receipts stand, and the machine remains the arbiter.
