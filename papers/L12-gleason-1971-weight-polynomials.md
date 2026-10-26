@@ -1,0 +1,12 @@
+# L12 - Gleason: weight polynomials of self-dual codes
+
+- Metadata: Andrew M. Gleason, "Weight polynomials of self-dual codes and the MacWilliams identities", in Actes du Congres International des Mathematiciens (Nice, 1-10 September 1970), vol. 3: 211-215; published by Gauthier-Villars (1971). Verified via the Celebratio Mathematica curated Gleason bibliography (the authoritative record: pp. 211-215, ICM 1970 proceedings vol. 3) and the survey literature. Seed year 1971 CONFIRMED as the publication year; the congress year 1970 recorded alongside it.
+- Abstract or faithful summary (summarized, flagged sketch): a tutorial treatment proving the MacWilliams theorem and GLEASON'S THEOREM: the weight enumerators of binary and ternary self-dual codes are polynomials in two specific polynomials each (per the survey literature's description). The engine is CLASSICAL INVARIANT THEORY: the enumerator of a self-dual code is invariant under a finite matrix group (the MacWilliams transform plus coordinate permutations), and the invariant ring is a polynomial ring on two generators (Molien-type counting, primary/secondary invariants). The consequence: strong structural constraints on the enumerators of self-dual codes, with divisibility corollaries.
+- The decisive moves:
+  1. [invariant theory - NO Atlas P-ID, honest gap] The engine is the invariant theory of finite matrix groups - representation-theoretic linear algebra at the P19 family's broadest edge, but matching no Atlas pattern head-on; recorded as a genuine coverage gap for the chunk-14 synthesis (the second such gap in Batch L, after Wilson's PBD-closure number theory).
+  2. [P19 partial] The invariance-under-a-group argument and the enumerator algebra are linear algebra in the family's broad sense.
+  3. [P40 honest miss] No Mobius inversion anywhere in the argument - the seed's P40 expectation was direction-wrong.
+- New-pattern candidates: none (the invariant-theory engine is a synthesis call on Atlas coverage, not a P43+ candidate - it fires nowhere else in the corpus).
+- Full text: not fetched; the theorem is standard survey material (the Gleason-theorem generalizations literature describes the proof architecture); scope rule unused.
+- Corrections log: venue PINNED (the ICM 1970 Nice proceedings vol. 3, pp. 211-215, Gauthier-Villars 1971, per the Celebratio Mathematica bibliography) - the seed's "(verify)" resolved; year 1971 = publication year, 1970 = congress year.
+

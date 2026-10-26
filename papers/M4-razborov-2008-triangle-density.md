@@ -1,0 +1,12 @@
+# M4 - Razborov: the minimal density of triangles in graphs
+
+- Metadata: Alexander A. Razborov, "On the minimal density of triangles in graphs", Combinatorics, Probability and Computing 17(4): 603-618 (2008). Verified via the Cambridge Core record and the author's own research page (Vol. 17, No 4, 2008, pages 603-618; the author posts a Maple worksheet helping verify the paper's calculations). VENUE CORRECTED: the seed's "Algebra i Analiz" is wrong - the paper is in CP&C (the author's page is authoritative).
+- Abstract or faithful summary (summarized, flagged sketch): for a fixed rho in [0,1], what is (asymptotically) the minimal possible density g3(rho) of triangles in a graph with edge density rho? The problem is completely solved: g3(rho) is given by an explicit piecewise formula (parameterized by an integer tied to the interval containing rho), with the extremal structures the corresponding complete multipartite-type blow-ups. The proof works in the flag-algebra framework developed in M3: the density inequality is certified by semidefinite/sum-of-squares data, supplemented by structural analysis of the extremal configurations.
+- The decisive moves:
+  1. [WATCH flag algebras - SECOND firing] the calculus applied at full scale - the landmark application that made flag algebras a standard tool of computer-assisted extremal combinatorics. Both firings (M3 origin, M4 application) are WITHIN Batch M: the cross-batch recurrence test cannot be satisfied in-corpus; the chunk-14 synthesis call mirrors the CAND-B5 single-batch precedent (external descendants decide).
+  2. [P25 genuine] the flag-algebra encoding again - the density problem translated into the algebra's positivity constraints (expected by seed; the framework's second in-corpus firing).
+  3. [P19 partial] the sum-of-squares/Cauchy-Schwarz engine inside the proof - the same partial face as at M3.
+  4. [P37 partial] the SDP certificates carry the inequality - the Delsarte-LP lineage's density-era descendant repeats.
+- New-pattern candidates: none new; the flag-algebras WATCH dossier is updated (second firing recorded; single-batch caveat per the precedent).
+- Full text: not fetched (the author's page hosts the PDF + the verification worksheet - scope rule unused; the Cambridge abstract + the author's record + survey material suffice at flagged sketch).
+- Corrections log: VENUE corrected: Algebra i Analiz (seed) -> Combin. Probab. Comput.; vol/issue/pages pinned (17(4): 603-618 (2008)) via Cambridge Core + the author's research page.

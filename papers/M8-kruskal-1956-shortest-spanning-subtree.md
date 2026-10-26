@@ -1,0 +1,10 @@
+# M8 - Kruskal: shortest spanning subtree
+
+- Metadata: Joseph B. Kruskal, "On the shortest spanning subtree of a graph and the traveling salesman problem", Proc. Amer. Math. Soc. 7(1): 48-50 (1956). Verified via the PAMS record and three citing bibliographies agreeing on vol. 7, pp. 48-50; an open PDF (Yale, kruskal-1956) located. FULL TITLE pinned: the seed truncated at "of a graph" - the actual title continues "and the traveling salesman problem"; vol(1)/pages pinned.
+- Abstract or faithful summary (summarized, flagged sketch; partly the paper's own text via the open record): the paper states the shortest-spanning-subtree problem and gives two constructions quoted from the paper's own text - CONSTRUCTION A: "Among the edges of G not yet chosen, choose the shortest edge which does not form any loops with those edges already chosen", repeated until a spanning tree is formed, which is in fact a shortest spanning tree; CONSTRUCTION B: the same greedy step restricted to edges connected to a fixed vertex-subset. The traveling-salesman problem appears in the title's scope (application context). Correctness rests on the greedy exchange (cut) argument.
+- The decisive moves:
+  1. [P18 genuine] Constructions A and B ARE the proof: procedure + termination = theorem (expected by seed).
+  2. [greedy-exchange engine - NO Atlas P-ID, honest observation] the correctness argument is the greedy exchange (the cut property): an engine with no dedicated pattern among the 42 - recorded as a coverage observation for synthesis (single firing in this sub-chunk; whether Batch D's greedy-scope papers recorded related evidence is a synthesis-reconciliation question).
+- New-pattern candidates: none (the coverage observation is a synthesis note, not a WATCH - single firing).
+- Full text: not fetched (the open PDF located - scope rule unused; the paper's own construction text is quoted via the open record).
+- Corrections log: FULL TITLE pinned (the seed's truncation completed); vol(1)/pages pinned (7(1): 48-50 (1956)).

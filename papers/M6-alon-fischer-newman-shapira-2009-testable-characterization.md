@@ -1,0 +1,11 @@
+# M6 - Alon-Fischer-Newman-Shapira: a combinatorial characterization of the testable graph properties
+
+- Metadata: Noga Alon, Eldar Fischer, Ilan Newman, and Asaf Shapira, "A combinatorial characterization of the testable graph properties: It's all about regularity", SIAM J. Comput. 39(1): 143-167 (2009); preliminary version in STOC'06. Verified via two independent bibliographies (the DROPS outerplanar-testing paper; the Theory of Computing open-access bibliography) agreeing on 39(1):143-167, 2009. SUBTITLE pinned ("It's all about regularity" - the seed lacked it); year CONFIRMED.
+- Abstract or faithful summary (summarized, flagged sketch): a common thread in dense-graph property testing is the use of Szemeredi's regularity lemma; the paper shows this is not a coincidence. First result: the property defined by having any given Szemeredi-partition is testable with a constant number of queries. Main result: a combinatorial characterization - a property is testable if and only if it is "regular-reducible" (estimable from the regularity profile). Testability is thus characterized combinatorially, resolving the two-sided-error case of the area's characterization problem (per the sibling Alon-Shapira one-sided paper's framing).
+- The decisive moves:
+  1. [P30 flagship] the title move: testability IS regularity - the characterization is stated in regularity terms; the strongest possible designed-batch firing for the watch-M test.
+  2. [P18 genuine] the testers are the procedures; constant-query randomized algorithms carry the characterization's two directions.
+  3. [P25 partial] a property encoded by its regularity profile - the characterization is an encoding statement (regular-reducibility).
+- New-pattern candidates: none.
+- Full text: not fetched; the SIAM record + bibliographies suffice at flagged sketch; scope rule unused.
+- Corrections log: SUBTITLE pinned ("It's all about regularity"); vol/issue/pages pinned (39(1): 143-167 (2009)); the STOC'06 preliminary-version priority noted; the sibling Alon-Shapira "A characterization of the (natural) graph properties testable with one-sided error" (SIAM J. Comput. 37 (2008): 1703-1727) recorded as the companion paper, per the Assmus-Mattson companion precedent.
