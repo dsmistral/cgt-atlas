@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 7 &middot; Extremal Set Systems &#8212; A Lecture Course in the Feynman Style</title>
+<style>
+  :root { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; }
+  body { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; line-height: 1.55; background: #fff; }
+  h1 { font-size: 1.9rem; margin: 2.2rem 0 0.8rem; }
+  h2 { font-size: 1.45rem; margin: 2rem 0 0.6rem; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; }
+  h3 { font-size: 1.2rem; margin: 1.6rem 0 0.5rem; }
+  h4 { font-size: 1.05rem; margin: 1.3rem 0 0.4rem; }
+  pre, code { font-family: 'Courier New', Courier, monospace; }
+  code { background: #f2f2f2; padding: 0.05em 0.3em; border-radius: 3px; font-size: 0.92em; }
+  pre { white-space: pre; tab-size: 4; break-inside: avoid; page-break-inside: avoid;
+        overflow-x: auto; border: 1px solid #ddd; background: #fafafa; padding: 0.7rem 0.9rem;
+        font-size: 0.85rem; line-height: 1.35; }
+  blockquote { border-left: 3px solid #888; margin: 1rem 0; padding: 0.2rem 1rem; color: #333; }
+  table { border-collapse: collapse; margin: 1rem 0; break-inside: avoid; page-break-inside: avoid; }
+  th, td { border: 1px solid #bbb; padding: 0.35rem 0.6rem; text-align: left; }
+  th { background: #f0f0f0; }
+  .fig { margin: 1rem 0; text-align: center; break-inside: avoid; page-break-inside: avoid; }
+  .fig svg { max-width: 100%; height: auto; }
+  hr { border: 0; border-top: 1px solid #ccc; margin: 2rem 0; }
+  .banner { background: #eef6ff; border: 1px solid #bcd6f0; border-radius: 6px;
+            padding: 0.8rem 1rem; font-size: 0.9rem; font-family: system-ui, sans-serif; margin-bottom: 1.5rem; }
+  @page { size: A4; margin: 16mm 15mm; }
+  @media print {
+    body { max-width: none; padding: 0; font-size: 10.5pt; }
+    .no-print { display: none; }
+    pre { font-size: 8.8pt; }
+    h1, h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<main id="content">
+<h1>Chapter 7 · Extremal Set Systems</h1>
+<p><em>Part of the Combinatorics &amp; Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report).</em></p>
+<p>How many sets can you choose before structure is forced? An antichain forces the middle level; an intersecting family forces a star; cross-intersecting pairs force Bollobás's inequality — and every one of these falls to the same engine: <strong>count the right pairs</strong>. This edition is a lecture course in five lectures: Sperner's theorem three ways (with the symmetric chain decomposition actually built, not cited), Bollobás's two-families theorem with the honest skew landscape, Katona's circle method with the sharp interval lemma complete — the notorious mixed sub-case included — EKR uniqueness proved in full for every n ≥ 2k+1 via anchored adjacent transpositions, and shifting, complete with its closing induction by splitting on the top element n. The chapter's second thread — sumsets (the staircase, Cauchy–Davenport in two complete proofs, Kneser's theorem, the Erdős–Ginzburg–Ziv theorem) and shadows (the Kruskal–Katona theorem through Keevash's clique-form proof, Daykin's complement mirror as a third EKR proof, the Hilton–Milner and Ahlswede–Khachatrian gateways, union-closed lore) — lives in Chapter 9, "Sumsets and Shadows: the Completed Arcs". Every proof in this chapter is complete; every claimed number is machine-checked; the figure is drawn from verified data.</p>
+<h2>How to read this chapter</h2>
+<p><strong>Notation.</strong> [n] = {1, …, n}; 2^[n] is its power set, and C([n], k) is the collection of k-subsets of [n]. C(n, k) is the binomial coefficient (comb(n, k) in the lab code). A <em>family</em> F is a set of sets; <em>k-uniform</em> means every member has size k. A <em>chain</em> is a family of pairwise comparable sets; an <em>antichain</em> has no two comparable. <em>Intersecting</em> means every two members meet. For the circle lectures, points live on a cycle ℤ_n of n positions and dist(x, y) = min(|x−y|, n−|x−y|) is cyclic distance. Letters are re-stated locally where a lecture needs its own.</p>
+<p><strong>The exercises are graded:</strong> ●○○ <em>easy</em> (a direct application of one lecture idea), ●●○ <em>moderate</em> (two ideas, or one tricky step), ●●● <em>tough</em> (several chapter ideas combined). Hints travel with the problems; worked answers sit at the very end of the chapter. Try honestly before reading a hint. Beyond the graded set, ◆ <strong>pattern-unknown</strong> problems name no method and carry no hint: diagnosing which tool fits is part of the problem. And ◐ <strong>Explorations</strong> at the end are open-ended investigations with no single right answer — research training, not test preparation.</p>
+<h2>The pattern table for this chapter</h2>
+<table><tr><th>Pattern</th><th>Plain language</th><th>Where you meet it</th></tr><tr><td><strong>P2 Double counting (chains / permutations / circles)</strong></td><td>Count pairs (object, witness-arrangement) two ways; the inequality falls out of the mismatch</td><td>L1, L2, L3, L4</td></tr><tr><td><strong>P17 Duality / specialization</strong></td><td>One inequality, many shadows: Bollobás → LYM → Sperner by plugging in special pairs</td><td>L2, Ch. 9 L4</td></tr><tr><td><strong>P8 Extremal circle structure</strong></td><td>Intersecting arcs trap their start points inside a short window; the window has exactly 2k−1 slots</td><td>L3, L4</td></tr><tr><td><strong>P23 Compression / shifting</strong></td><td>Deform the family toward a canonical shape without losing the property or the count</td><td>L5</td></tr><tr><td><strong>P4 Induction</strong></td><td>Peel the extreme element; one new element per step</td><td>L5, Ch. 9 L1</td></tr><tr><td><strong>P22 Polynomial method</strong></td><td>A polynomial vanishing on a grid, priced by its degrees — the same engine as Chapter 6</td><td>Ch. 9 L1</td></tr><tr><td><strong>P24 Shadow pricing (Kruskal–Katona)</strong></td><td>Price a family by its own real parameter x: a k-family of size C(x, k) forces every j-shadow to size ≥ C(x, j) — equality only at integer x and the complete families</td><td>Ch. 9 L4</td></tr></table>
+<hr>
+<h2>Lecture 1 · Sperner's Theorem: The Middle Level, Three Ways</h2>
+<p><strong>Problem.</strong> The largest family of subsets of [n] with <strong>no two comparable</strong> (an <em>antichain</em>) has size <strong>C(n, ⌊n/2⌋)</strong> — the middle level(s).</p>
+<h3>1.1 Method 1 — Counting maximal chains (P2, full)</h3>
+<p>A <em>maximal chain</em> is ∅ ⊂ {x₁} ⊂ {x₁, x₂} ⊂ … ⊂ [n]. It is determined by the <strong>order in which elements enter</strong>, so there are exactly n! chains. A chain passes through a fixed k-set A in k!·(n−k)! orders: order A's k elements first (k! ways), then the remaining n−k (that many ways).</p>
+<p>Now count pairs (chain, member of F on that chain). Each chain meets an antichain <strong>at most once</strong> — two members on one chain would be comparable. So:</p>
+<p>Σ_{A∈F} |A|!·(n−|A|)! ≤ n!.</p>
+<p>Divide by n!:</p>
+<p><strong>LYM inequality.</strong> Σ_{A∈F} 1/C(n, |A|) ≤ 1.</p>
+<p>Finish: C(n, k) ≤ C(n, ⌊n/2⌋) for every k, so each term satisfies 1/C(n,|A|) ≥ 1/C(n, mid), and therefore</p>
+<p>|F| = Σ_{A∈F} 1 ≤ C(n, mid) · Σ_{A∈F} 1/C(n,|A|) ≤ C(n, mid). ∎</p>
+<p><strong>Equality.</strong> Take the middle level itself: every term lands at exactly 1/C(n, mid), and the LYM sum is exactly 1. (When n is odd there are two middle levels, both of size C(n, (n−1)/2) = C(n, (n+1)/2); each saturates alone.) A worthwhile ✎: check that the full union of the two middle levels when n is odd is <em>not</em> an antichain — the smaller sets sit inside the bigger ones across levels — while partial mixes can be ({1} together with {2,3} at n = 3 is one).</p>
+<h3>1.2 Method 2 — The symmetric chain decomposition, actually built (full)</h3>
+<p>The second proof needs a structure the reference edition only cited: a partition of 2^[n] into chains that each run from some level r straight up to level n−r, one set per level along the way. This is the <em>symmetric chain decomposition</em> (SCD) of de Bruijn–Tengbergen–Kruyswijk — and it has a two-line recursive construction that we can verify, not just believe.</p>
+<p><strong>The doubling construction.</strong> Suppose 2^[n−1] has an SCD. Each chain C = (A₁ ⊂ A₂ ⊂ … ⊂ A_l) is symmetric: |A₁| + |A_l| = n−1, and sizes grow by exactly one per step. From C, keep:</p>
+<ul><li><strong>the extended chain</strong> A₁ ⊂ … ⊂ A_l ⊂ A_l ∪ {n}, and (when l ≥ 2)</li><li><strong>the reflected chain</strong> A₁ ∪ {n} ⊂ A₂ ∪ {n} ⊂ … ⊂ A_{l−1} ∪ {n}.</li></ul>
+<p><strong>Every subset of [n] lands in exactly one new chain.</strong> A set S avoiding n lies in exactly one old chain, as some A_i; if i &lt; l it appears only in the extended chain (the reflected chain only carries sets that <em>contain</em> n); if i = l it is the second-to-top of the extended chain — again exactly once. A set S containing n is T ∪ {n} for exactly one T ⊆ [n−1]: if T = A_l it is the top of the extended chain; if T = A_i with i ≤ l−1 it sits in the reflected chain. One home for everybody: a partition. ✓</p>
+<p><strong>Symmetry survives.</strong> Extended chain: |A₁| + |A_l ∪ {n}| = |A₁| + |A_l| + 1 = n. Reflected chain: |A₁∪{n}| + |A_{l−1}∪{n}| = |A₁| + 1 + |A_{l−1}| + 1, and |A_{l−1}| = |A_l| − 1 (sizes step by one), so this is |A₁| + |A_l| + 1 = n. Both start at level r and end at level n−r. ✓</p>
+<p><strong>Base case.</strong> 2^[1]: the single chain ∅ ⊂ {1}, symmetric (0 + 1 = 1). Induction up, and 2^[n] has an SCD for every n. ∎</p>
+<p><strong>How many chains?</strong> C(n, ⌊n/2⌋) — the middle binomial itself. Count chain <em>starts</em> by level: a chain starting at level r ends at n−r, so it passes through level j exactly when r ≤ j ≤ n−r, i.e. r ≤ min(j, n−j). Every set at level j lies on exactly one chain, so Σ_{r ≤ min(j,n−j)} starts(r) = C(n, j). Subtracting the equation for j−1: starts(j) = C(n, j) − C(n, j−1) for j ≤ n/2. Telescoping: total chains = Σ_{r=0}^{⌊n/2⌋} starts(r) = C(n, ⌊n/2⌋). ✓ (✎: run the telescoping for n = 5 by hand — starts 1, 4, 5 at levels 0, 1, 2, total 10 = C(5,2).)</p>
+<p><strong>Sperner, second proof.</strong> An antichain meets each chain at most once, so |F| ≤ number of chains = C(n, mid). ∎ Same bound, and now the extremal structure is vivid: the middle level works <em>because</em> it is a full transversal of the chains — one set per chain, no waste.</p>
+<h3>1.3 Erdős's generalization: banning chains of length k+1 (full)</h3>
+<p>Suppose F contains <strong>no k+1 pairwise comparable sets</strong> (an antichain is the k = 1 case). Both proofs adapt, and the SCD route needs no exchange argument.</p>
+<p><strong>Weighted LYM (P2).</strong> A maximal chain meets F in at most k members — the members along one chain are pairwise comparable, and k+1 of them would make a chain of length k+1. The pair-counting of §1.1 now reads Σ_{A∈F} |A|!·(n−|A|)! ≤ k·n!, i.e.</p>
+<p><strong>Σ_{A∈F} 1/C(n, |A|) ≤ k.</strong></p>
+<p><strong>The size bound, via the SCD.</strong> Each chain c contributes at most min(k, |c|) members — a chain of length |c| can host at most |c| members anyway, and more than k would make a (k+1)-chain:</p>
+<p>|F| ≤ Σ_c min(k, |c|).</p>
+<p>Now evaluate the sum. Write min(k, |c|) = Σ_{j=1..k} [|c| ≥ j]. A symmetric chain starting at level r has length |c| = n−2r+1, so |c| ≥ j holds iff r ≤ ⌊(n+1−j)/2⌋. Summing over chains and telescoping exactly as in §1.2 (for each j ≤ n+1, the number of chains starting at level ≤ ⌊(n+1−j)/2⌋ is C(n, ⌊(n+1−j)/2⌋)):</p>
+<p><strong>Σ_c min(k, |c|) = Σ_{j=1..k} C(n, ⌊(n+1−j)/2⌋) — the k middle binomial coefficients.</strong></p>
+<p>Indeed, as j runs from 1 to k (for k ≤ n+1), the index m_j = ⌊(n+1−j)/2⌋ steps down through ⌊n/2⌋, ⌊(n−1)/2⌋, …; whenever the same value m appears twice (for consecutive j where n+1−j is odd and then even), using the level symmetry C(n, m) = C(n, n−m) pairs one copy of C(n, m) with level m and the other with its complementary level n−m, so the sum is the exact sum of the sizes of the k middle levels of 2^[n].</p>
+<p><strong>Sharpness.</strong> Any union of k levels of 2^[n] contains no chain of length k+1 — a chain can take at most one set per level — and choosing the k middle levels achieves the exact sum Σ_{j=1..k} C(n, ⌊(n+1−j)/2⌋). ∎</p>
+<p>For n = 4, k = 2: bound 6 + 4 = 10, achieved by levels 1 and 2 (or levels 2 and 3). For n = 5, k = 2: 10 + 10 = 20, achieved by levels 2 and 3. The exhaustive census in the lab confirms these maxima over <em>all</em> families, not just the constructions, for n = 4 and every k.</p>
+<h3>1.4 What to learn</h3>
+<p>LYM is a <em>weighted</em> pigeonhole: every set costs at least the middle-level price 1/C(n, mid), and the total budget is 1. The SCD converts the same statement into an unweighted one — one member per chain — which is why it survives the generalization to banned long chains so gracefully. And the doubling construction is worth remembering as a pattern: <strong>build the recursive object explicitly, then let the counting verify it</strong>. Dozens of theorems in extremal set theory are LYM in disguise; the next lecture shows the master example.</p>
+<hr>
+<h2>Lecture 2 · Bollobás's Two-Families Theorem</h2>
+<p><strong>Problem.</strong> Pairs of sets (A₁,B₁), …, (A_m,B_m) with <strong>A_i ∩ B_i = ∅</strong> but <strong>A_i ∩ B_j ≠ ∅ for all i ≠ j</strong>. Write a_i = |A_i|, b_i = |B_i|. Then</p>
+<p><strong>Σ_i 1/C(a_i + b_i, a_i) ≤ 1.</strong></p>
+<h3>2.1 The permutation proof (P2, full)</h3>
+<p>Take a uniform random permutation of the ground set and let E_i be the event that <strong>all of A_i precedes all of B_i</strong> in it. Among the a_i + b_i relevant elements, every relative order is equally likely, and the orders that work are exactly those with the a_i elements of A_i first; so</p>
+<p>P(E_i) = a_i!·b_i!/(a_i+b_i)! = 1/C(a_i+b_i, a_i).</p>
+<p><strong>The events are disjoint.</strong> Suppose E_i and E_j both hold, i ≠ j. By hypothesis pick x ∈ A_i ∩ B_j and y ∈ A_j ∩ B_i (both intersections are nonempty). E_i forces every element of A_i before every element of B_i — in particular x before y. E_j forces every element of A_j before every element of B_j — in particular y before x. No permutation does both. ∎</p>
+<p>So P(∪ E_i) = Σ P(E_i) ≤ 1 — the theorem. ∎ <strong>Complete, and short enough to hold in your head.</strong></p>
+<h3>2.2 LYM as a corollary (P17, full)</h3>
+<p>Given an antichain F ⊆ 2^[n], set A = A and B = [n] ∖ A for each member A ∈ F. Then A ∩ B = ∅ ✓. Incomparability says A ∖ A′ ≠ ∅ and A′ ∖ A ≠ ∅ for distinct members A, A′ ∈ F — that is, A ∩ B′ = A ∖ A′ ≠ ∅ and A′ ∩ B = A′ ∖ A ≠ ∅ ✓. Bollobás applies with a + b = n:</p>
+<p>Σ_{A∈F} 1/C(n, |A|) ≤ 1 — the LYM inequality, and Sperner follows as in §1.1. <strong>One theorem, three shadows</strong> (Bollobás, LYM, Sperner); the pattern-index dream, live.</p>
+<h3>2.3 Tightness, saturation, and a warning</h3>
+<p><strong>Tight.</strong> Let the ground set be [m] and take the m pairs Aᵢ = {i}, Bᵢ = [m] ∖ {i}. Then Aᵢ ∩ Bᵢ = ∅ ✓, and for i ≠ j the element i lies in Aᵢ ∩ B_j ✓. The sum is m · 1/C(m, 1) = 1 — <strong>exactly 1</strong>. The lab verifies this and an exhaustive sweep of small instances; the bound is never exceeded and is attained by the star-like arrangements.</p>
+<p><strong>A warning about weakenings.</strong> If you keep only the "forward" cross-conditions Aᵢ ∩ B_j ≠ ∅ for i &lt; j (dropping i &gt; j), the theorem as stated is <strong>false</strong> — the sum can exceed 1: take A₁ = {1}, B₁ = ∅ and A₂ = {2}, B₂ = {1}. The forward condition A₁ ∩ B₂ = {1} ∩ {1} ≠ ∅ holds, yet 1/C(1,1) + 1/C(2,1) = 3/2. And the obvious rescue attempt fails too: keeping the sizes small does not help. On [3] the pairs (A₁, B₁) = ({1}, {2}), (A₂, B₂) = ({2}, {1}), (A₃, B₃) = ({3}, {1, 2}) satisfy every skew condition <em>and</em> Aᵢ ≠ ∅ <em>and</em> |Aᵢ| ≤ |Bᵢ| for all three, yet Σ 1/C(|Aᵢ|+|Bᵢ|, |Aᵢ|) = 1/2 + 1/2 + 1/3 = <strong>4/3</strong> (Exercise 14 asks you to verify this by hand). What survives is the honest landscape, stated in full in the Trick Bag: the <strong>uniform</strong> skew bound — all |Aᵢ| = a, |Bᵢ| = b gives m ≤ C(a+b, a) (Frankl 1982; also Kalai 1984) — and, for non-uniform pairs on the ground set [n], the <strong>Hegedüs–Frankl bound</strong> Σ 1/C(|Aᵢ|+|Bᵢ|, |Aᵢ|) ≤ n+1 (2023), sharp at the complement pairs. The machine census is the referee: the exhaustive maxima are n+1 with no hypotheses, n with Aᵢ ≠ ∅, and 1, 4/3, 2 at n = 2, 3, 4 under Aᵢ ≠ ∅ <em>and</em> |Aᵢ| ≤ |Bᵢ| — the sum genuinely grows, and no size condition brings it back to 1.</p>
+<h3>2.4 What to learn</h3>
+<p>Bollobás is the strongest form of the "one budget per witness" principle in this chapter: the budget Σ 1/C(a+b, a) is spent by <em>pairs</em>, and the witness arrangements are <em>permutations</em>. Note the asymmetry with L1: there, chains are deterministic objects counted twice; here, a single random permutation pays for every pair at once, and disjointness of events is the whole proof. When a problem hands you set pairs with a disjointness condition <em>inside</em> each pair and intersection conditions <em>across</em> pairs, this is the theorem to try first.</p>
+<hr>
+<h2>Lecture 3 · The Circle Method: Katona's Interval Lemma and EKR</h2>
+<p><strong>Problem (Erdős–Ko–Rado).</strong> A family F of k-subsets of [n], <strong>pairwise intersecting</strong>, n ≥ 2k. Then |F| ≤ <strong>C(n−1, k−1)</strong> — achieved by the <em>star</em> (all k-sets containing a fixed element).</p>
+<p>The proof arranges [n] on a circle at random and counts. The engine is a lemma about arcs, and this lecture proves it completely — including the mixed sub-case that the reference edition had to flag.</p>
+<h3>3.1 Arcs and their starts (P8, full)</h3>
+<p>Put the n points on a circle ℤ_n and fix a clockwise direction. A <em>k-arc</em> is a set of k consecutive points; identify it by its <strong>start</strong>. For two k-arcs with starts s, t ∈ ℤ_n:</p>
+<p><strong>Claim.</strong> The arcs intersect ⟺ dist(s, t) ≤ k−1.</p>
+<p><em>Proof.</em> (⇐) Say the clockwise distance from s to t is d ≤ k−1 (the other case is symmetric). Then t ≡ s+d (mod n) itself lies in the arc starting at s (which covers s, s+1, …, s+k−1 (mod n)), and t lies in its own arc. A shared point. (⇒) Let z be a shared point of the two k-arcs starting at s and t. Then z ≡ s+u (mod n) and z ≡ t+v (mod n) for integers u, v ∈ {0, 1, …, k−1}. Subtracting gives s−t ≡ v−u (mod n) with −(k−1) ≤ v−u ≤ k−1, so the cyclic distance between s and t is dist(s, t) = |v−u| ≤ k−1. ∎</p>
+<p>So an intersecting family of arcs is exactly a set S ⊆ ℤ_n of start points with <strong>pairwise cyclic distances ≤ k−1</strong>. Geometry has become arithmetic on a cycle.</p>
+<h3>3.2 The interval lemma, complete (the mixed sub-case included)</h3>
+<p><strong>Katona's interval lemma.</strong> If S ⊆ ℤ_n has pairwise cyclic distances ≤ k−1, then |S| ≤ k. (Requires n ≥ 2k.)</p>
+<p><em>Proof.</em> If S = ∅ the bound is trivial; otherwise fix an anchor s₀ ∈ S. Every other point of S lies in the <strong>window</strong> [s₀−k+1, s₀+k−1] (mod n) — the 2k−1 positions within cyclic distance k−1 of s₀ — because all pairwise distances to s₀ are ≤ k−1. (Here n ≥ 2k matters: 2k−1 ≤ n−1, so the window's 2k−1 positions are all distinct on the cycle.) Split the window's interior into:</p>
+<ul><li><strong>forward offsets</strong> A = {a ∈ [1, k−1] : s₀+a ∈ S},</li><li><strong>backward offsets</strong> B = {b ∈ [1, k−1] : s₀−b ∈ S}.</li></ul>
+<p>Take a ∈ A and b ∈ B. The two points s₀+a and s₀−b have cyclic distance min(a+b, n−a−b). Now <strong>a + b = k is forbidden</strong>: it would give cyclic distance min(k, n−k) = k &gt; k−1 (using n ≥ 2k). So no a ∈ A pairs with any b ∈ B at sum exactly k:</p>
+<p><strong>A ∩ (k − B) = ∅</strong>, where k − B = {k − b : b ∈ B}.</p>
+<p>Both A and k − B live inside the k−1 slots [1, k−1], disjointly:</p>
+<p>|A| + |B| = |A| + |k − B| ≤ k − 1, and |S| = 1 + |A| + |B| ≤ k. ∎</p>
+<p>That is the whole proof — the "mixed sub-case" (forward and backward starts coexisting) is exactly the A ∩ (k−B) = ∅ step, and it costs one line once the window and the reflected set k−B are on the table. Without the reflection trick, the naive bound is |A|, |B| ≤ k−1 each, giving 2k−1; the reflection k − B is what fuses the two groups into one budget.</p>
+<p><strong>Figure 1 draws the proof</strong>: an equality configuration on the circle, the window, and the offset strip where A and k−B tile [1, k−1] disjointly.</p>
+<div class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 365" font-family="Georgia, 'Times New Roman', serif">
+  <rect x="0" y="0" width="880" height="365" fill="#ffffff"/>
+  <text x="240" y="26" text-anchor="middle" font-size="17" fill="#111827">n = 10, k = 4: starts S = {8, 9, 0, 1}</text>
+  <circle cx="240" cy="175" r="110" fill="none" stroke="#9ca3af" stroke-width="2"/>
+  <path d="M 118.2 214.4 A 128 128 0 1 1 361.8 214.4" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 5"/>
+  <line x1="112" y1="217" x2="125" y2="212" stroke="#dc2626" stroke-width="2"/>
+  <line x1="355" y1="212" x2="368" y2="217" stroke="#dc2626" stroke-width="2"/>
+  <text x="240" y="322" text-anchor="middle" font-size="13" fill="#dc2626">window [s&#8320;&#8722;3, s&#8320;+3] = {7, 8, 9, 0, 1, 2, 3}: 2k&#8722;1 = 7 slots</text>
+  <circle cx="240" cy="65" r="13" fill="#2563eb" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="240" y="70" text-anchor="middle" font-size="13" fill="#ffffff">0</text>
+  <circle cx="305" cy="86" r="13" fill="#2563eb" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="305" y="91" text-anchor="middle" font-size="13" fill="#ffffff">1</text>
+  <circle cx="345" cy="141" r="13" fill="#ffffff" stroke="#374151" stroke-width="2"/>
+  <text x="345" y="146" text-anchor="middle" font-size="13" fill="#111827">2</text>
+  <circle cx="345" cy="209" r="13" fill="#ffffff" stroke="#374151" stroke-width="2"/>
+  <text x="345" y="214" text-anchor="middle" font-size="13" fill="#111827">3</text>
+  <circle cx="305" cy="264" r="13" fill="#ffffff" stroke="#374151" stroke-width="2"/>
+  <text x="305" y="269" text-anchor="middle" font-size="13" fill="#111827">4</text>
+  <circle cx="240" cy="285" r="13" fill="#ffffff" stroke="#374151" stroke-width="2"/>
+  <text x="240" y="290" text-anchor="middle" font-size="13" fill="#111827">5</text>
+  <circle cx="175" cy="264" r="13" fill="#ffffff" stroke="#374151" stroke-width="2"/>
+  <text x="175" y="269" text-anchor="middle" font-size="13" fill="#111827">6</text>
+  <circle cx="135" cy="209" r="13" fill="#ffffff" stroke="#374151" stroke-width="2"/>
+  <text x="135" y="214" text-anchor="middle" font-size="13" fill="#111827">7</text>
+  <circle cx="135" cy="141" r="13" fill="#2563eb" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="135" y="146" text-anchor="middle" font-size="13" fill="#ffffff">8</text>
+  <circle cx="175" cy="86" r="13" fill="#2563eb" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="175" y="91" text-anchor="middle" font-size="13" fill="#ffffff">9</text>
+  <text x="240" y="102" text-anchor="middle" font-size="12" fill="#2563eb">anchor s&#8320; = 0</text>
+  <text x="660" y="26" text-anchor="middle" font-size="17" fill="#111827">the offset strip [1, k&#8722;1]</text>
+  <rect x="550" y="125" width="60" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="580" y="156" text-anchor="middle" font-size="16" fill="#1e3a8a">1</text>
+  <rect x="630" y="125" width="60" height="50" fill="#ffffff" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="660" y="156" text-anchor="middle" font-size="16" fill="#dc2626">2</text>
+  <rect x="710" y="125" width="60" height="50" fill="#ffffff" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="740" y="156" text-anchor="middle" font-size="16" fill="#dc2626">3</text>
+  <text x="580" y="197" text-anchor="middle" font-size="13" fill="#2563eb">A = {1}</text>
+  <text x="700" y="197" text-anchor="middle" font-size="13" fill="#dc2626">k&#8722;B = {2, 3}</text>
+  <text x="660" y="233" text-anchor="middle" font-size="13" fill="#111827">a + b = 4 is forbidden &#8658; A &#8745; (k&#8722;B) = &#8709;</text>
+  <text x="660" y="255" text-anchor="middle" font-size="13" fill="#111827">equality: A &#8851; (k&#8722;B) = {1, 2, 3}, so |A| + |B| = 3 = k&#8722;1</text>
+  <text x="660" y="277" text-anchor="middle" font-size="13" fill="#111827">backward offsets B = {1, 2} reflect by b &#8614; k&#8722;b</text>
+  <text x="440" y="350" text-anchor="middle" font-size="14" fill="#374151">Figure 1 &#183; Katona's window: starts trapped within distance k&#8722;1 of the anchor, and the forbidden sum a + b = k</text>
+</svg></div>
+<p>The verification record checks the lemma exhaustively: for every 2k ≤ n ≤ 16 (k ≥ 2), the maximum size of a start set with pairwise distances ≤ k−1 is exactly k — 0 violations across every subset of every cycle.</p>
+<h3>3.3 Equality: consecutive starts and the unique common point (n &gt; 2k)</h3>
+<p>Equality analysis drives uniqueness, so we do it now, completely.</p>
+<p><strong>Lemma (structure of equality).</strong> Suppose n &gt; 2k and |S| = k in the interval lemma. Then S is a set of <strong>k consecutive points</strong> of the cycle, and the k arcs starting at S share <strong>exactly one common point</strong>.</p>
+<p><em>Proof.</em> Equality gives |A| + |B| = k−1 with A and k−B <em>disjoint</em> subsets of [1, k−1] — so they tile it: <strong>A ⊔ (k−B) = [1, k−1]</strong>. The extra room n ≥ 2k+1 bans one more sum: a + b = k+1 gives cyclic distance min(k+1, n−k−1), and n−k−1 ≥ k, so the distance is ≥ k &gt; k−1 — forbidden. Hence also <strong>A ∩ (k+1−B) = ∅</strong>.</p>
+<p>Now let b ∈ B with b ≥ 2, and suppose b−1 ∉ B. From the tiling, k−b+1 = k−(b−1) ∉ k−B, so k−b+1 ∈ A. But (k−b+1) + b = k+1 — a forbidden sum with b ∈ B, contradicting A ∩ (k+1−B) = ∅. So <strong>B is downward-closed</strong>: b ∈ B, b ≥ 2 ⟹ b−1 ∈ B, i.e. B = {1, …, β} for some β ≥ 0 (with B = ∅ when β = 0). The tiling then forces A = {1, …, k−1−β}.</p>
+<p>So S = {s₀} ∪ {s₀+1, …, s₀+k−1−β} ∪ {s₀−1, …, s₀−β} = {s₀−β, …, s₀+k−1−β} (mod n): k consecutive points on the cycle. Write these k consecutive starts as u_i ≡ s₀−β+i (mod n) for i = 0, 1, …, k−1, where the arc starting at u_i is A_{u_i} = {u_i+r (mod n) : 0 ≤ r ≤ k−1}. Every arc A_{u_i} contains the point z ≡ u₀+(k−1) ≡ s₀+k−1−β (mod n), since z ≡ u_i+(k−1−i) (mod n) and 0 ≤ k−1−i ≤ k−1. Conversely, any point in A_{u₀} has the form u₀+r (mod n) with 0 ≤ r ≤ k−1 (and since n &gt; 2k &gt; k, these k points are distinct modulo n). For any r &lt; k−1, its clockwise offset from u_{k−1} ≡ u₀+k−1 (mod n) is r−(k−1) ≡ n−(k−1−r) (mod n). Because 1 ≤ k−1−r ≤ k−1 and n ≥ 2k+1, we have n−(k−1−r) ≥ n−(k−1) ≥ k+2 &gt; k−1, so u₀+r (mod n) ∉ A_{u_{k−1}}. Thus A_{u₀} ∩ A_{u_{k−1}} = {z}, and the k arcs share <strong>exactly one common point</strong> z. ∎</p>
+<p>At exactly n = 2k the tiling still holds but the (k+1)-ban disappears, and non-consecutive equality configurations exist: for (n, k) = (6, 3), the starts {0, 2, 4} give three pairwise-intersecting arcs with no common point — the lab census counts 8 equality configurations there, 2 of them non-consecutive; for (8, 4) it counts 16, of which 8 are non-consecutive. The uniqueness theorem in the next lecture will have to treat n = 2k separately, and it does.</p>
+<h3>3.4 EKR by double counting (P2, full)</h3>
+<p>Call a pair (σ, A) a <em>witness</em> if σ is a circular arrangement of [n] (there are (n−1)! of them, modulo rotation) and A ∈ F appears as an <strong>arc</strong> of σ.</p>
+<p><em>Per set.</em> A fixed k-set A is an arc of exactly <strong>k!·(n−k)!</strong> circular arrangements: treat A as a single block — k! internal orders of A, and (n−k)! circular arrangements of the block together with the other n−k elements.</p>
+<p><em>Per arrangement.</em> The F-arcs of one circle σ are pairwise intersecting (F is), so their starts have pairwise cyclic distances ≤ k−1, so there are at most <strong>k</strong> of them (Katona's interval lemma).</p>
+<p>So |F| · k!·(n−k)! ≤ k · (n−1)!, and dividing:</p>
+<p>|F| ≤ k·(n−1)! / (k!·(n−k)!) = (n−1)! / ((k−1)!(n−k)!) = <strong>C(n−1, k−1)</strong>. ∎</p>
+<p><strong>Tight.</strong> The star: all k-sets through a fixed point x have size C(n−1, k−1) ✓ and are pairwise intersecting ✓.</p>
+<h3>3.5 What to learn</h3>
+<p>The circle method is double counting with a <em>geometric</em> engine: the interval lemma is what makes "per arrangement ≤ k" true, and its complete proof is a lesson in <strong>reflections</strong> — map the backward offsets by b ↦ k−b so both directions compete for the same k−1 slots, and the mixed case dies of overcrowding. Watch where n ≥ 2k and n ≥ 2k+1 were used: the first makes the window non-degenerate and bans the sum k; the second bans k+1 and unlocks the structure of equality. Hypotheses in extremal theorems are usually the exact fingerprints of the proof steps.</p>
+<hr>
+<h2>Lecture 4 · Uniqueness: Why Only Stars</h2>
+<p>EKR says |F| ≤ C(n−1, k−1). The sharp question: <strong>who achieves equality?</strong> The answer: at n = 2k, many families; at n &gt; 2k, only stars. This lecture proves both regimes completely: the n = 2k complementary-pair characterization and the n &gt; 2k star-uniqueness theorem across the entire range n ≥ 2k+1.</p>
+<h3>4.1 Equality forces every circle to be full (full)</h3>
+<p><strong>Lemma.</strong> |F| = C(n−1, k−1) ⟺ every circular arrangement σ carries <strong>exactly k</strong> F-arcs.</p>
+<p><em>Proof.</em> The witness count of §3.4 is |F|·k!(n−k)! = Σ_σ (F-arcs of σ), and each term is ≤ k. Equality in the bound is equality in this count: since C(n−1,k−1)·k!(n−k)! = k·(n−1)! exactly (an arithmetic identity — the verification record checks it for all n ≤ 20), |F| maximal forces the sum to reach its cap k·(n−1)!, which with every term ≤ k forces every term to equal k. Conversely, if every circle carries k F-arcs, the double count recovers |F| = C(n−1, k−1). ∎</p>
+<p>So an extremal family is <em>rigid</em>: on every single arrangement, its arcs must realize the interval lemma's equality case. Rigidity is what uniqueness proofs feed on.</p>
+<h3>4.2 What a full circle looks like (full)</h3>
+<p>For n &gt; 2k, §3.3 applies to every circle σ: its k F-arcs start at k consecutive points and share exactly one common point z(σ). For n = 2k this fails — non-consecutive configurations exist — which is why the two regimes must be separated, and why n = 2k admits many extremal families:</p>
+<p><strong>Theorem (equality at n = 2k, complete).</strong> At n = 2k, a k-uniform intersecting family F is extremal (|F| = C(2k−1, k−1)) <strong>iff</strong> F contains exactly one set from each complementary pair {S, [2k] ∖ S}.</p>
+<p><em>Proof.</em> First, two members of F cannot be complementary (they would be disjoint), so F takes at most one set from each of the ½C(2k, k) = C(2k−1, k−1) pairs — that is the EKR bound in this regime, reproved. Conversely, if F takes exactly one from each pair it is automatically intersecting: two k-sets of [2k] that are disjoint are complements of each other — the only way to fit 2k points into two disjoint k-sets — so they would form one of the pairs, and F never holds both ends of a pair. Size: C(2k−1,k−1) ✓. ∎</p>
+<p>For (n, k) = (6, 3) the lab enumerates all of them: exactly <strong>2^10 = 1024</strong> maximum families, one per choice of one-from-each-complementary-pair — the 6 stars among them, and 1018 others; the census confirms both the count and that every one of the 1024 choices really is intersecting. At n &gt; 2k the party ends, and the next section proves why.</p>
+<h3>4.3 The transport to a global center (complete for all n ≥ 2k+1)</h3>
+<p><strong>Theorem (EKR uniqueness for n &gt; 2k, complete).</strong> Suppose n ≥ 2k+1 and F ⊆ C([n], k) is pairwise intersecting with |F| = C(n−1, k−1). Then F = star(x*) for some x* ∈ [n].</p>
+<p><em>Proof.</em> If k = 1, then |F| = C(n−1, 0) = 1 and the single 1-set is a star. Assume k ≥ 2 and n ≥ 2k+1. By §4.1 and §3.3, on every circular arrangement σ of [n] the family F realizes exactly k arcs, and these k arcs start at k consecutive positions of σ and share a unique common point z(σ) — specifically, if we label the circle positions 0, 1, …, n−1 clockwise with z(σ) placed at position 0, the k F-arcs of σ are precisely the k arcs containing position 0:</p>
+<p>A_i(σ) = {σ(i), σ(i+1), …, σ(i+k−1)} for i ∈ {−(k−1), −(k−2), …, 0} (mod n).</p>
+<p>Fix a reference circular arrangement σ₀, let x* = z(σ₀), and represent every circular arrangement σ by anchoring x* at position 0, so (σ(1), σ(2), …, σ(n−1)) ranges over all (n−1)! permutations of [n] ∖ {x*}. We prove that z(σ) = x* for <strong>every</strong> σ. Since the symmetric group on {1, 2, …, n−1} is generated by adjacent transpositions τ_m = (m, m+1) for 1 ≤ m ≤ n−2, it suffices to show that if z(σ) = x*, then σ′ = σ ∘ τ_m also satisfies z(σ′) = x*.</p>
+<p>Suppose z(σ) = x*, so σ carries the k F-arcs A_i(σ) for i ∈ {−(k−1), …, 0}. When we swap the adjacent positions m and m+1 (where 1 ≤ m ≤ n−2, so position 0 is untouched), an arc A_i(σ) changes as a set if and only if the swapped pair {m, m+1} straddles an endpoint of A_i(σ). Since the left endpoint of A_i(σ) lies in {n−k+1, …, n−1} ∪ {0} and the right endpoint lies in {0, 1, …, k−1}:</p>
+<ul><li>If 1 ≤ m ≤ k−1, then m ≤ k−1 &lt; n−k (as n ≥ 2k+1), so {m, m+1} cannot straddle any left endpoint and straddles the right endpoint of A_i(σ) only when i+k−1 = m, i.e. for the single arc i = m−k+1. Thus the other k−1 arcs A_i(σ) (i ≠ m−k+1) are unchanged as sets: A_i(σ′) = A_i(σ) ∈ F.</li><li>If k ≤ m ≤ n−k−1, then {m, m+1} lies strictly outside [−(k−1), k−1] (mod n), so all k arcs A_i(σ) are unchanged: A_i(σ′) = A_i(σ) ∈ F.</li><li>If n−k ≤ m ≤ n−2, then {m, m+1} straddles only the left endpoint i ≡ m+1 (mod n), so again at least k−1 of the arcs A_i(σ) are unchanged: A_i(σ′) = A_i(σ) ∈ F.</li></ul>
+<p>In every case, at least k−1 of the k arcs through position 0 on σ′ already belong to F:</p>
+<ul><li><strong>If k ≥ 3:</strong> whenever 1 ≤ m ≤ k−2 (or n−k+1 ≤ m ≤ n−2), both extreme arcs A_{−(k−1)}(σ′) = {σ′(n−k+1), …, σ′(0)} and A_0(σ′) = {σ′(0), …, σ′(k−1)} belong to F. Their intersection on σ′ is the single point {σ′(0)} = {x*} (since n ≥ 2k+1). Because all k F-arcs of σ′ share the unique point z(σ′), we must have z(σ′) ∈ A_{−(k−1)}(σ′) ∩ A_0(σ′) = {x*}, so z(σ′) = x*. What if m = k−1, where the missing arc is A_0(σ′)? Then A_{−(k−1)}(σ′), …, A_{−1}(σ′) ∈ F, so the k consecutive F-arcs of σ′ must either be {A_{−(k−1)}(σ′), …, A_0(σ′)} (giving z(σ′) = x*) or {A_{−k}(σ′), A_{−(k−1)}(σ′), …, A_{−1}(σ′)}, where A_{−k}(σ′) = {σ′(n−k), …, σ′(n−1)}. In the latter case A_{−k}(σ′) ∈ F; but m = k−1 ≤ n−k−2 (since n ≥ 2k+1), so τ_{k−1} does not touch positions {n−k, …, n−1}, meaning A_{−k}(σ′) = A_{−k}(σ) was already an F-arc on σ — contradicting the fact that σ has only k F-arcs! By symmetry, m = n−k (missing A_{−(k−1)}(σ′)) is ruled out because τ_{n−k} does not touch positions {1, …, k} (k &lt; n−k as n ≥ 2k+1), so A_1(σ′) = A_1(σ) ∉ F.</li><li><strong>If k = 2:</strong> for m = 1, A_{−1}(σ′) = {σ(n−1), x*} ∈ F, and the second F-arc on σ′ is either A_0(σ′) = {x*, σ(2)} (giving z(σ′) = x*) or A_{−2}(σ′) = {σ(n−2), σ(n−1)}. Since n ≥ 5, position 1 is disjoint from {n−2, n−1}, so A_{−2}(σ′) = A_{−2}(σ) ∉ F; hence z(σ′) = x*. Symmetrically, for m = n−2, A_0(σ′) = {x*, σ(1)} ∈ F and A_1(σ′) = {σ(1), σ(2)} = A_1(σ) ∉ F (as n−2 ≥ 3), so z(σ′) = x*.</li></ul>
+<p>Thus z(σ) = x* for every circular arrangement σ. Finally, every U ∈ F appears as an arc of at least one circular arrangement σ, and every F-arc of σ contains z(σ) = x*; therefore x* ∈ U for all U ∈ F. Thus F ⊆ star(x*), and |F| = C(n−1, k−1) = |star(x*)| forces F = star(x*). ∎</p>
+<p><strong>Historical note and census check.</strong> Katona's original 1972 block-circle transport fixes a k-set T ∈ F as a contiguous block and permutes the n−k outside elements, which directly covers n ≥ 3k−2 and leaves the "thin range" 2k &lt; n ≤ 3k−2 to either the position-0 transposition argument above or the Kruskal–Katona shadow-cascade uniqueness proof in Chapter 9. The lab census confirms star uniqueness exhaustively wherever brute force reaches: (5, 2) has 5 maximum families (all stars), (7, 3) has 7 (all stars), (8, 3) has 8 (all stars), and Exploration 18 probes (9, 4).</p>
+<h3>4.4 What to learn</h3>
+<p>Uniqueness proofs are <em>rigidity</em> arguments: equality in a double count forces every local configuration to be extremal too, and extremal local configurations are so constrained that a global structure falls out. The gap between "every circle has a common point z(σ)" and "one point x* serves every circle" is closed by connectedness under local moves: anchoring x* at position 0 and applying a single adjacent transposition on the remaining n−1 positions leaves at least k−1 of the k arcs through position 0 intact, and the room n ≥ 2k+1 prevents the missing arc from sliding off position 0 into a position untouched by the swap. When you meet a uniqueness claim in the wild, ask: <em>what is being double-counted, and how do local moves connect the extremal witnesses?</em></p>
+<hr>
+<h2>Lecture 5 · Shifting: Deforming Families Toward the Star</h2>
+<p>The circle method proves EKR by <em>averaging over arrangements</em>. Shifting takes the opposite philosophy: <strong>deform the family itself</strong> toward a canonical shape, without changing its size or losing the intersecting property — and read the theorem off the deformed family (P23).</p>
+<h3>5.1 The (i, j)-shift (definition)</h3>
+<p>For 1 ≤ i &lt; j ≤ n, the <em>shift</em> S_{ij} replaces a set A ∈ F containing j but not i by A′ = (A ∖ {j}) ∪ {i} — swapping the larger element for a smaller one — <em>provided the target A′ is not already in F; if A′ ∈ F, then A stays put</em> — and leaves every other set alone. Applied to a family: S_{ij}(F) = {S_{ij}(A) : A ∈ F}. The proviso is what keeps the image a set of the same cardinality: no duplicate can arise, because a set is only ever replaced by a target absent from the family. A family is <em>shifted</em> (or <em>left-compressed</em>) when no shift changes it: whenever A ∈ F, j ∈ A, i ∉ A, and i &lt; j, then also (A ∖ {j}) ∪ {i} ∈ F.</p>
+<p><strong>Size is preserved (full).</strong> A shift fires only when the target set is absent from F, so the map A ↦ S_{ij}(A) is injective on F: two sets cannot collapse onto one target, because an unshifted set is its own image in F and a shifted set's image is not in F (and determines its preimage uniquely by swapping i back to j). So |S_{ij}(F)| = |F|, and k-uniformity is preserved because every image has the same size as its source. ✓</p>
+<h3>5.2 Intersecting is preserved (full)</h3>
+<p>Suppose F is k-uniform and intersecting, and let C, D ∈ S_{ij}(F) be disjoint — we derive a contradiction.</p>
+<p>Both cannot contain i (they would meet at i), so one of them, say C, misses i. Any shifted image contains i, so C was not shifted: <strong>C ∈ F</strong> with i ∉ C. If D ∈ F too, then C ∩ D = ∅ contradicts F being intersecting. Hence D ∉ F, which means D is a shifted copy: D = (D* ∖ {j}) ∪ {i} for some D* ∈ F with j ∈ D* and i ∉ D*. Since C ∩ D = ∅ and D ∖ {i} = D* ∖ {j}, the unshifted part of D* misses C entirely: C ∩ (D* ∖ {j}) = ∅.</p>
+<p><strong>Case j ∉ C.</strong> Then C ∩ D* = (C ∩ (D* ∖ {j})) ∪ (C ∩ {j}) = ∅ ∪ ∅ = ∅ — two members C, D* ∈ F, disjoint. Contradiction.</p>
+<p><strong>Case j ∈ C.</strong> Then C ∈ F has j ∈ C and i ∉ C, <em>and C survived the shift unmoved</em> — which happens only when its own shift target C′ = (C ∖ {j}) ∪ {i} was already present in F. Now compute C′ ∩ D*: every piece is empty — i ∉ D* (since D* was shifted); j ∉ C′ (removed by the shift); and (C ∖ {j}) ∩ (D* ∖ {j}) ⊆ C ∩ (D* ∖ {j}) = ∅. So C′ ∩ D* = ∅ with C′, D* ∈ F. Contradiction. ∎</p>
+<p>The proof is a template for <em>every</em> shifting-preservation argument in the field: chase which of the conflicting sets were actually moved, split on whether the shift's target was already present, and land the contradiction back in the original family.</p>
+<h3>5.3 Termination and the closing induction (full)</h3>
+<p>Shifting terminates. Each effective shift strictly decreases the total weight w(F) = Σ_{A∈F} Σ_{x∈A} x — each swap replaces j by i &lt; j — and w(F) is a nonnegative integer. So after finitely many shifts the family is shifted, and it is still k-uniform, still intersecting, and still of size |F|.</p>
+<p><strong>The closing induction for EKR (complete).</strong> Once F ⊆ C([n], k) is shifted, we prove |F| ≤ C(n−1, k−1) for all n ≥ 2k by induction on n + k. The base cases k = 1 (|F| ≤ 1 = C(n−1, 0)) and n = 2k (|F| ≤ ½C(2k, k) = C(2k−1, k−1) by complementary pairs, §4.2) hold for all intersecting families without even shifting. Now suppose k ≥ 2 and n ≥ 2k+1, and split the shifted family F on the <em>largest</em> element n:</p>
+<p>F₀ = {A ∈ F : n ∉ A} ⊆ C([n−1], k), and F₁ = {A ∖ {n} : n ∈ A ∈ F} ⊆ C([n−1], k−1).</p>
+<p>First, F₀ is a k-uniform intersecting family on [n−1], and since n ≥ 2k+1 we have n−1 ≥ 2k, so the induction hypothesis for (n−1, k) gives |F₀| ≤ C(n−2, k−1).</p>
+<p>Second, we claim that F₁ is a (k−1)-uniform <strong>intersecting</strong> family on [n−1] (where n−1 ≥ 2(k−1) holds automatically). Suppose for contradiction that B₁, B₂ ∈ F₁ are disjoint. Then A₁ = B₁ ∪ {n} and A₂ = B₂ ∪ {n} belong to F and meet only at n: A₁ ∩ A₂ = {n}. Their union inside [n−1] has size |B₁ ∪ B₂| = (k−1) + (k−1) = 2k−2 ≤ n−3 (since n ≥ 2k+1). Hence there is an element i ∈ [n−1] ∖ (B₁ ∪ B₂). Because F is shifted and i &lt; n with n ∈ A₁ and i ∉ A₁, the shifted set A₁′ = (A₁ ∖ {n}) ∪ {i} = B₁ ∪ {i} must also belong to F. But A₁′ ∩ A₂ = (B₁ ∪ {i}) ∩ (B₂ ∪ {n}) = ∅ because B₁ ∩ B₂ = ∅, i ∉ B₂ ∪ {n}, and n ∉ B₁ ∪ {i}. That gives two disjoint sets A₁′, A₂ ∈ F — contradiction! Thus F₁ is indeed intersecting, so the induction hypothesis for (n−1, k−1) gives |F₁| ≤ C(n−2, k−2). Adding the two parts via Pascal's identity closes the induction:</p>
+<p>|F| = |F₀| + |F₁| ≤ C(n−2, k−1) + C(n−2, k−2) = C(n−1, k−1). ∎</p>
+<p>Notice why splitting on the <em>top</em> element n (rather than 1) is so clean: the sets avoiding n already live on [n−1], and shiftedness lets us swap n down to a free element i ∈ [n−1] whenever two sets through n try to meet only at n. In Chapter 9's shadow lecture you will meet a third complete proof of EKR — Daykin's complement mirror, which applies Kruskal–Katona directly to the complement family.</p>
+<h3>5.4 What to learn</h3>
+<p>Shifting is the most portable deformation tool in extremal set theory: it preserves size and uniformity automatically, and with modest case analysis it preserves intersecting-ness, cross-intersecting-ness, and most "forbidden configuration" properties. And once a family is shifted, peeling the largest coordinate n reduces (n, k) directly to (n−1, k) and (n−1, k−1) with Pascal's identity paying the sum. Its philosophy (canonical forms first, counting second) complements the circle method's (averaging first, structure second). The lab verifies preservation exhaustively on [4] — every intersecting subfamily of 2^[4], every single shift, and the full shift to stability — with size and intersecting-ness intact in every trial; the verification record extends the census to all 75 + 191 intersecting edge families at (5, 2) and (6, 2), again zero violations.</p>
+<hr>
+<h2>The Trick Bag (reference card)</h2>
+<table><tr><th>Pattern</th><th>Plain language</th><th>Where you met it</th></tr><tr><td><strong>P2 Double counting (chains / permutations / circles)</strong></td><td>Count pairs (object, witness-arrangement) two ways; the inequality falls out of the mismatch</td><td>L1, L2, L3, L4</td></tr><tr><td><strong>P17 Duality / specialization</strong></td><td>One inequality, many shadows: Bollobás → LYM → Sperner by plugging in special pairs</td><td>L2, Ch. 9 L4</td></tr><tr><td><strong>P8 Extremal circle structure</strong></td><td>Intersecting arcs trap their start points inside a short window; the window has exactly 2k−1 slots</td><td>L3, L4</td></tr><tr><td><strong>P23 Compression / shifting</strong></td><td>Deform the family toward a canonical shape without losing the property or the count</td><td>L5</td></tr><tr><td><strong>P4 Induction</strong></td><td>Peel the extreme element; one new element per step — or split a shifted family on n</td><td>L5, Ch. 9 L1, L2</td></tr><tr><td><strong>P22 Polynomial method</strong></td><td>A polynomial vanishing on a grid, priced by its degrees — the same engine as Chapter 6</td><td>Ch. 9 L1</td></tr><tr><td><strong>P24 Shadow pricing (Kruskal–Katona)</strong></td><td>Price a family by its own real parameter x: a k-family of size C(x, k) forces every j-shadow to size ≥ C(x, j) — equality only at integer x and the complete families</td><td>Ch. 9 L4</td></tr><tr><td><strong>One budget per witness (lore)</strong></td><td>Chains, permutations, circles: the proof prices each extremal witness arrangement, and the budgets sum to the answer</td><td>L1, L2, L3</td></tr><tr><td><strong>Rearrange, then average (lore)</strong></td><td>The circle method: bound on every arrangement, average over random ones</td><td>L3, L4</td></tr><tr><td><strong>A deficit is a period (lore)</strong></td><td>A sumset that underperforms the staircase by d carries a stabilizer of order ≥ d — the deficit is the period, not an accident</td><td>Ch. 9 L2</td></tr><tr><td><strong>Local moves force global centers (lore)</strong></td><td>Anchor x* at position 0 and apply adjacent transpositions on the remaining n−1 positions: n ≥ 2k+1 keeps z(σ) pinned at x* across every circle</td><td>L4</td></tr><tr><td><strong>The complement mirror (lore)</strong></td><td>Pass to complements: an intersecting family and the k-shadow of its complement family are disjoint — one j-form application plus one monotone function turns this into EKR</td><td>Ch. 9 L4</td></tr><tr><td><strong>Beyond EKR (lore)</strong></td><td>Empty core (t = 1, n &gt; 2k) ⇒ Hilton–Milner's C(n−1, k−1) − C(n−k−1, k−1) + 1 (tied with F₁ at k = 3); t-intersecting for all n ≥ 2k−t ⇒ Ahlswede–Khachatrian's max_r</td><td>F_r^{(t)}</td><td>, where F_r^{(t)} = {A ∈ C([n], k) :</td><td>A ∩ [t+2r]</td><td>≥ t+r} (for t = 1, F₀ wins for all n ≥ 2k)</td><td>Ex. 20, Ch. 9 L4</td></tr><tr><td><strong>Union-closed frontier (lore)</strong></td><td>Frankl's conjecture: some element in at least half the sets; proved so far: (3−√5)/2 ≈ 0.382 (Gilmer); a singleton in the family settles it for free</td><td>Ch. 9 L4</td></tr></table>
+<p><strong>Formula box:</strong> Sperner: |F| ≤ C(n, ⌊n/2⌋); LYM Σ 1/C(n,|A|) ≤ 1 for antichains; Erdős: no chain of length k+1 ⇒ |F| ≤ Σ_{j=1..k} C(n, ⌊(n+1−j)/2⌋) = the sum of the k middle binomials. SCD: chain count C(n, ⌊n/2⌋), starts(j) = C(n,j) − C(n,j−1), Σ_c min(k,|c|) = sum of the k middle binomials; a family with no (k+1)-chain meets every symmetric chain ≤ k times. Bollobás: pairs (Aᵢ, Bᵢ), Aᵢ∩Bᵢ = ∅, cross-intersecting ⇒ Σ 1/C(aᵢ+bᵢ, aᵢ) ≤ 1; the skew versions (forward conditions Aᵢ∩B_j ≠ ∅ for i &lt; j only): uniform |Aᵢ| = a, |Bᵢ| = b ⇒ m ≤ C(a+b, a) (Frankl 1982; Kalai 1984); non-uniform on [n] ⇒ Σ 1/C(|Aᵢ|+|Bᵢ|, |Aᵢ|) ≤ n+1, sharp at the complement pairs (Hegedüs–Frankl 2023); no size hypothesis rescues Σ ≤ 1 — the exhaustive maxima are n+1 (no hypotheses), n (Aᵢ ≠ ∅), and 1, 4/3, 2 at n = 2, 3, 4 under Aᵢ ≠ ∅ and |Aᵢ| ≤ |Bᵢ| (Exercise 14; the machine census is the referee). EKR: intersecting k-uniform on [n], n ≥ 2k ⇒ |F| ≤ C(n−1, k−1); equality at n = 2k ⟺ exactly one set from each complementary pair (2^{C(2k−1,k−1)} maximum families; (6,3): 2^10 = 1024, of which 6 are stars and 6 are fully shifted); at n &gt; 2k, equality forces k consecutive arc-starts per circle, one common point z(σ), and by adjacent-transposition transport F = star(x*). Interval lemma: pairwise intersecting k-arcs ⇒ starts inside a (2k−1)-slot window, at most k arcs; equality (n &gt; 2k) ⇒ B = [1,β], A = [1,k−1−β], k consecutive starts. The sumset clauses — the staircase, Cauchy–Davenport in both proofs with the m-fold corollary, Kneser with the e-transform, EGZ — and the shadow clauses — the Kruskal–Katona cascade and clique forms, the Daykin mirror, Hilton–Milner, Ahlswede–Khachatrian, union-closed — live in Chapter 9's formula box (its Lectures 1, 2, and 4).</p>
+<hr>
+<h2>Exercises (graded: ●○○ easy · ●●○ moderate · ●●● tough)</h2>
+<p><strong>Easy — one idea, applied directly</strong></p>
+<ol><li>●○○ <strong>The smallest EKR census, by hand.</strong> List every intersecting family of 2-subsets of [5] up to size 4 (there are not many maximal ones): show the maximum is 4 = C(4,1), and that the maximum families are exactly the five stars. <em>Hint: among the 10 edges of K₅, intersecting means no two disjoint edges.</em></li><li>●○○ <strong>Complementary-pair arithmetic.</strong> At n = 2k, count the complementary pairs {S, S̄} of k-subsets of [2k] and verify that half of C(2k, k) equals C(2k−1, k−1). Then show that choosing exactly one set from each pair always yields an intersecting family of the EKR-maximum size. <em>Hint: disjoint k-sets at n = 2k are complements.</em></li><li>●○○ <strong>Half the cube, no uniformity.</strong> Show that a pairwise-intersecting family F of arbitrary subsets of [n] — no size condition, no uniformity — satisfies |F| ≤ 2^{n−1}. Then exhibit a maximum family on [4] whose members have no element in common. Finally contrast with Exercise 2: at n = 2k every one-per-complementary-pair choice of k-sets is intersecting, but on the full 2^[4] most one-per-pair choices fail — say exactly which extra hypothesis made Exercise 2's choices safe. <em>Hint: P2 — the complementary-pair ledger of Exercise 2, run over the whole cube: {A, Ā} splits 2^[n] into 2^{n−1} pairs, and an intersecting family takes at most one from each.</em></li></ol>
+<p><strong>Moderate — two ideas, or one tricky step</strong></p>
+<ol start="4"><li>●●○ <strong>LYM from Bollobás, in full detail.</strong> Given an antichain A₁, …, A_m, set up the Bollobás pairs and verify <em>both</em> cross-intersection hypotheses from incomparability, concluding Σ_{i=1..m} 1/C(n, |Aᵢ|) ≤ 1. Which hypothesis fails if the family is merely an intersecting family rather than an antichain?</li><li>●●○ <strong>The naive interval bound.</strong> Without the reflection trick, show that pairwise intersecting k-arcs have at most 2k−1 starts (treat the starts after and before a chosen anchor separately, k−1 each plus the anchor). Then show where the proof loses: the two budgets must be <em>summed</em>, and only the substitution k − B puts both budgets in the same (k−1)-slot offset strip [1, k−1]. <em>Hint: §3.2's A ∩ (k−B) = ∅ inside [1, k−1].</em></li><li>●●○ <strong>The exchange argument.</strong> Give the alternative proof of Erdős's bound: among families with no chain of length k+1, take one of maximum size, show its LYM sum is ≤ k, and then exchange sets between levels — if a cheaper level has room, move — until the family is pushed into the k middle levels. Where exactly does maximality close the bound?</li><li>●●○ <strong>Shifting hygiene.</strong> Prove that an (i, j)-shift preserves the size and the k-uniformity of a family, and that the weight w(F) = Σ_{A∈F} Σ_{x∈A} x strictly decreases with every nontrivial shift — a nonnegative integer, hence termination. Then verify on the 2-subsets of [4] that the fully shifted maximal intersecting families are exactly two: the star {12, 13, 14} and the triangle {12, 13, 23}.</li><li>●●○ <strong>Equality at n = 2k, both directions.</strong> At n = 2k: (⇐) a one-per-complementary-pair family is intersecting of maximum size (Exercise 2); (⇒) an intersecting family of maximum size C(2k−1, k−1) contains exactly one of each complementary pair — no more (disjointness), no fewer (count the pairs and use the size). Conclude: for (6, 3) there are exactly 2^10 maximum families.</li><li>●●○ <strong>The window algebra and t-intersecting arcs, end to end.</strong> Prove the two facts behind the interval lemma's sharp count: with anchor s₀ and window [s₀−k+1, s₀+k−1], the forward-offset set A and backward-offset set B satisfy A ∩ (k−B) = ∅ and therefore |A|+|B| ≤ k−1. Verify both on the (6, 3) witness {0, 2, 4} and on the consecutive family {0, 1, 2}. Then generalize to t-intersecting k-arcs (1 ≤ t ≤ k, n ≥ 2k−t+1): show that two k-arcs share at least t points on the circle iff their starts satisfy dist(s, s′) ≤ k−t, that a + b = k−t+1 is forbidden between A, B ⊆ [1, k−t], and hence that at most k−t+1 arcs can be pairwise t-intersecting. <em>Hint: reflect by b ↦ (k−t+1)−b inside [1, k−t].</em></li><li>●●○ <strong>Stars and triangles: the complete k = 2 map.</strong> (a) Prove that every pairwise-intersecting family of 2-subsets of [n] is contained in a star (all pairs through one point) or in the three edges of a triangle. (b) Deduce the inclusion-maximal families for n ≥ 4: exactly the n full stars and the C(n, 3) triangles, and nothing else. (c) Stars have n−1 edges and win outright once n ≥ 5; at n = 4 the four triangles tie them at 3 = C(3, 1). Reconcile the tie with Exercise 8: show that each triangle on [4] picks exactly one edge from each complementary pair, so all eight maxima are one-per-pair families, as A8 demands. <em>Hint: P2 — A1's edge-census chase promoted to every n, then count the maximal witnesses.</em></li><li>●●○ <strong>Sunflowers.</strong> A family of r distinct sets S₁, …, S_r is an r-sunflower with core K when Sᵢ ∩ S_j = K for all i ≠ j; the petals Sᵢ ∖ K are pairwise disjoint (and when the sets are k-uniform, the petals are automatically nonempty since Sᵢ ≠ S_j). (a) Prove the Erdős–Rado sunflower lemma: any family F of more than k!(r−1)^k sets, each of size at most k (k ≥ 1, r ≥ 2), contains an r-sunflower. Induct on k: if some point lies in more than (k−1)!(r−1)^{k−1} members, hand its trace family to the induction and glue the point back into the core; otherwise take a maximal pairwise-disjoint subfamily of nonempty members of F — of size at most r−1 — and double-count pairs (A ∈ F ∖ {∅}, x ∈ A ∩ P) against the degree cap (checking separately whether ∅ ∈ F). (b) At k = 2, r = 3 the bound reads 8. Prove the structural equivalence: a 2-uniform edge family with no 3-sunflower is exactly one with maximum degree Δ ≤ 2 and matching number ν ≤ 2, and census the true maxima on [5] and [6]. (c) The bound has honest slack here; quote the Erdős–Rado sunflower conjecture (c_r^k for a constant c_r depending only on r) and the modern bounds: Alweiss–Lovett–Wu–Zhang (2020), simplified by Rao, proved (Cr log(rk))^k, and Bell–Chueluecha–Warnke (2021) refined it to (Cr log k)^k — the current best. <em>Hint: P4 — peel by a degree census: a heavy point recurses on traces, light points let the disjoint subfamily pay.</em></li><li>●●○ <strong>The shift's boundary.</strong> §5.2 proves that (i, j)-shifts preserve pairwise intersection for k-uniform families. (a) Show the uniformity was never needed: replay the three-case ledger for arbitrary families and find that the mixed case closes on the <em>original</em> family, not the shifted one. (b) The antichain property is another story: exhibit a two-set family and one shift whose image is a chain, and check whether the full shift of §5.3 (all pairs, to stability) rescues it. (c) Audit the chapter: every place Lecture 5 and its exercises use the shift — is uniformity present at each use? <em>Hint: P23 — compression preserves exactly what it is asked to preserve; audit hypotheses, not conclusions.</em></li></ol>
+<p><strong>Tough — several chapter ideas combined</strong></p>
+<ol start="13"><li>●●● <strong>Equality structure at n &gt; 2k, in full.</strong> Reconstruct §3.3's argument with every step: forbidden sum k+1 (cyclically), b ∈ B with b ≥ 2, the inference b−1 ∈ B (else k−b+1 ∈ A sums to k+1 with b), the collapse B = [1, β] and A = [1, k−1−β], and the conclusion: k consecutive starts sharing exactly one common point. Verify each step on the circle n = 10, k = 4 with S = {8, 9, 0, 1} and anchor s₀ = 0 (Figure 1's exact data).</li><li>●●● <strong>The skew landscape, mapped.</strong> (a) Verify the 3/2 counterexample of §2.3 condition by condition. (b) Now add the rescue attempts: on [3], take the pairs (A₁, B₁) = ({1}, {2}), (A₂, B₂) = ({2}, {1}), (A₃, B₃) = ({3}, {1, 2}); check every skew cross-condition, every disjointness, Aᵢ ≠ ∅, and |Aᵢ| ≤ |Bᵢ| for all three — then compute Σ 1/C(|Aᵢ|+|Bᵢ|, |Aᵢ|) and watch it exceed 1. (c) Two survivors: show the singleton-complement system ({i}, [n]∖{i}) is skew (indeed cross-intersecting both ways) with Σ = 1; and show the uniform bound C(a+b, a) is sharp by pairing every a-subset of a fixed (a+b)-set with its complement (same size, distinct sets ⇒ no containment). (d) The sharpness witness for the n+1 bound: list <em>all</em> subsets of [n] in non-increasing size order and pair each Aᵢ with Bᵢ = [n]∖Aᵢ. Show the system is skew (non-increasing size bans containment), and compute the sum. What does the answer tell you about <em>any</em> attempt to rescue Σ ≤ 1 with a size hypothesis?</li><li>●●● <strong>Shattered sets (Sauer–Shelah).</strong> F shatters S when {A ∩ S : A ∈ F} is all of 2^S. Prove the dimension bound: if |F| &gt; C(n, 0) + C(n, 1) + … + C(n, s−1), then F shatters a set of size s. The sharp route, inducting on n: fix a coordinate x; project every member of F (delete x wherever it appears) and collect the distinct images into G₀; collect into G₁ the projections whose two lifts, A and A ∪ {x}, both lie in F. Then show: (i) |F| = |G₀| + |G₁|, by counting the fibers of the projection; (ii) G₀ shatters no s-set — a G₀-witness lifts to an F-witness with the same trace; (iii) G₁ shatters no (s−1)-set — a G₁-witness for the trace T on S lifts to both traces T and T ∪ {x} on S ∪ {x}, so a G₁ shattering of S is an F shattering of the s-set S ∪ {x}; (iv) close the induction with Pascal. Finish with sharpness: the level family {A : |A| ≤ s−1} meets the bound exactly and shatters no s-set — which trace can it never realize? <em>Hint: P4 + P2 — peel one coordinate; Pascal's identity pays the sum.</em></li></ol>
+<p><strong>Pattern unknown — you choose the tool</strong> <em>No hints, no difficulty rating: diagnosing the problem is part of the problem. Worked answers still wait at the end.</em></p>
+<ol start="16"><li>◆ Count the maximum intersecting families of 3-subsets of [6] — not just their size. You should get a familiar power of 2; say what each family is, how many of them are stars, and how many of the 2^10 maximum families are <em>fully shifted</em> (stable under every S_{ij} for 1 ≤ i &lt; j ≤ 6).</li><li>◆ Write the symmetric chain decomposition of 2^[4] explicitly — every chain, start to finish — and check the three defining properties: partition, steps of +1, and symmetry |bottom| + |top| = 4. How many chains, and what should that number be?</li></ol>
+<p><strong>Explorations — ◐ research-style training</strong> <em>No single right answer — what you should find is described in each.</em></p>
+<ol start="18"><li>◐ <strong>The thin range, censused.</strong> At (n, k) = (9, 4) Katona's original block-circle transport falls in the thin range (2k &lt; n ≤ 3k−2), while §4.3's anchored transposition proof still forces stars. Set up a search for maximum and near-maximum intersecting families of 4-subsets of [9] — branch on the 126 sets, or classify by core size and shift stability against the C(8, 3) = 56 bound — and census what you find: are all maximum families stars, how many are there, and what do the largest empty-core (non-star) intersecting families look like? Compare with (7, 3) and (8, 3).</li><li>◐ <strong>LYM sums, sampled and exhaustive.</strong> For n ≤ 4, enumerate all antichains (167 nonempty ones at n = 4) and verify Σ_{A∈F} 1/C(n,|A|) ≤ 1, with equality on the full levels (all five of them at n = 4) — and prove that for every n ≥ 1, the <em>only</em> nonempty antichains achieving LYM equality Σ_{A∈F} 1/C(n,|A|) = 1 are the n+1 single full levels C([n], j). Confirm also that the full union of the two middle levels when n is odd is not an antichain, while partial mixes can be ({{1}, {2, 3}} at n = 3 is one). For n = 5, 6 sample maximal antichains and study the distribution of LYM sums: where does the mass concentrate?</li><li>◐ <strong>Beyond EKR: empty-core maxima and the Ahlswede–Khachatrian families.</strong> For (n, k) = (7, 3), (8, 3), (10, 4), (9, 4), (12, 5), compute the sizes of the Frankl / Ahlswede–Khachatrian candidates F_r = {A ∈ C([n], k) : |A ∩ [2r+1]| ≥ r+1} for 0 ≤ r ≤ k−1, and the Hilton–Milner formula HM(n, k) = C(n−1, k−1) − C(n−k−1, k−1) + 1 alongside. You should find |F₁| and HM(n, k) equal in size at k = 3 (the (7, 3) census counts 175 empty-core maxima of size 13, split 140 + 35 between the two shapes) and separated at k ≥ 4 — 70 vs 75 at (10, 4), 51 vs 53 at (9, 4), 288 vs 316 at (12, 5). Which is the true empty-core maximum for 1-intersecting families when n &gt; 2k? And when does a higher F_r^{(t)} = {A ∈ C([n], k) : |A ∩ [t+2r]| ≥ t+r} overtake the t-star F₀^{(t)} in the t-intersecting problem (t ≥ 2)?</li></ol>
+<hr>
+<h2>Computational Lab (verified)</h2>
+<p>Five parts, all deterministic — the randomized parts use a fixed Lehmer generator (seed 12345, multiplier 48271, modulus 2³¹−1), so every run reproduces every digit. The printed outputs were produced by machine runs of exactly this logic (the verification record in the appendix enumerates the runs). Runtimes: Part 2's (8, 3) census and Part 4's exact-fraction skew recursions take a few seconds to a couple of minutes; everything else is instantaneous.</p>
+<h3>Part 1 — Sperner, LYM, and the symmetric chain decomposition, actually built</h3>
+<pre>from math import comb
+
+def scd(n):
+    if n &lt; 0: return []
+    chains = [[frozenset()]]                          # n = 0: one chain holding the empty set
+    for m in range(1, n + 1):
+        nxt = []
+        for c in chains:
+            nxt.append(c + [c[-1] | {m}])             # extended chain: new element m on top
+            if len(c) &gt; 1:
+                nxt.append([A | {m} for A in c[:-1]]) # reflected chain: first l-1 sets + {m}
+        chains = nxt
+    return chains
+
+for n in range(0, 7):
+    ch = scd(n)
+    flat = [A for c in ch for A in c]
+    ok = (len(set(flat)) == 2**n                                        # partition
+          and all(len(c[i+1]) == len(c[i]) + 1 for c in ch for i in range(len(c)-1))
+          and all(len(c[0]) + len(c[-1]) == n for c in ch)              # symmetry
+          and len(ch) == comb(n, n // 2))
+    if n &gt;= 1: print(n, len(ch), ok)
+
+starts_5 = [comb(5, j) - (comb(5, j - 1) if j &gt; 0 else 0) for j in range(3)]
+print("n=5 starts by level 0..2:", starts_5, "sum:", sum(starts_5) == comb(5, 2))
+print("scd(4) chain lengths:", [len(c) for c in scd(4)])
+
+ch6 = scd(6)
+erdos   = [sum(min(k, len(c)) for c in ch6) for k in range(1, 7)]
+formula = [sum(comb(6, (7 - j) // 2) for j in range(1, k + 1)) for k in range(1, 7)]
+print(erdos, formula, erdos == formula)
+
+def popcount(x): return bin(x).count("1")
+def members(mask): return [s for s in range(16) if mask &gt;&gt; s &amp; 1]
+antichains = lym_eq = 0; lym_ok = True; best = [0, 0, 0, 0]
+for mask in range(1, 2**16):                          # every nonempty family on [4]
+    mem = sorted(members(mask), key=popcount)
+    chain = {}
+    for s in mem:
+        chain[s] = 1 + max((chain[t] for t in chain if t &amp; ~s == 0), default=0)
+    longest = max(chain.values())
+    for k in range(1, 5):
+        if longest &lt;= k: best[k-1] = max(best[k-1], len(mem))
+    if longest == 1:
+        antichains += 1
+        lym = sum(1 / comb(4, popcount(s)) for s in mem)
+        lym_ok &amp;= lym &lt;= 1 + 1e-12
+        lym_eq += abs(lym - 1) &lt; 1e-12
+print(antichains, lym_ok, lym_eq, best)</pre>
+<p><strong>Verified output.</strong> The doubling construction passes every check for n = 0…6 — printing <code>1 1 True</code>, <code>2 2 True</code>, <code>3 3 True</code>, <code>4 6 True</code>, <code>5 10 True</code>, <code>6 20 True</code> for n = 1…6, with <code>n=5 starts by level 0..2: [1, 4, 5] sum: True</code> and <code>scd(4) chain lengths: [5, 3, 3, 1, 3, 1]</code> matching §1.2 and A◆17 verbatim. The Erdős sums from the built decomposition, <code>[20, 35, 50, 56, 62, 63]</code>, agree with the formula Σ_{j≤k} C(6, ⌊(7−j)/2⌋). The n = 4 census over all 65,535 nonempty families prints <code>167 True 5 [6, 10, 14, 15]</code>: 167 nonempty antichains, LYM never exceeded, equality in <strong>5</strong> of them (the five full levels), and maximum sizes <strong>6, 10, 14, 15</strong> for families with no chain of length k+1 (k = 1…4).</p>
+<h3>Part 2 — The EKR censuses, interval lemma, and empty-core competitors</h3>
+<pre>from itertools import combinations
+from math import comb, factorial
+
+def max_cliques(vs, adj):                 # Bron-Kerbosch with pivoting
+    best = [0, 0]                         # [max size, count]
+    def bk(R, P, X):
+        if not P and not X:
+            if len(R) &gt; best[0]: best[0], best[1] = len(R), 1
+            elif len(R) == best[0]: best[1] += 1
+            return
+        pivot = max(P + X, key=lambda u: sum(adj[u][w] for w in P))
+        for v in [w for w in P if not adj[pivot][w]]:
+            bk(R + [v], [w for w in P if adj[v][w]], [w for w in X if adj[v][w]])
+            P.remove(v); X.append(v)
+    bk([], list(vs), [])
+    return best
+
+for n, k in [(5, 2), (6, 3), (7, 3), (8, 3)]:
+    V = list(combinations(range(n), k))
+    adj = [[i != j and set(a) &amp; set(b) != set() for j, b in enumerate(V)]
+           for i, a in enumerate(V)]
+    size, count = max_cliques(range(len(V)), adj)
+    print(f"({n}, {k}): max {size}, families {count}, EKR bound {comb(n-1, k-1)}")
+
+def cdist(a, b, n): return min(abs(a - b), n - abs(a - b))
+def is_consec(S, n):
+    s = sorted(S)
+    if len(s) &lt; 2: return True
+    gaps = [s[i+1] - s[i] for i in range(len(s) - 1)]
+    return gaps == [1] * (len(s) - 1) or \
+           sorted(gaps) == sorted([1] * (len(s) - 2) + [n - len(s) + 1])
+
+for n, k in [(6, 3), (7, 3), (8, 3), (8, 4), (10, 4), (10, 5)]:
+    best, configs, nonc = 0, 0, 0
+    for size in range(1, k + 1):
+        for S in combinations(range(n), size):
+            if not all(cdist(a, b, n) &lt;= k - 1 for a, b in combinations(S, 2)):
+                continue
+            if size &gt; best: best, configs, nonc = size, 1, 0
+            elif size == best:
+                configs += 1
+                if not is_consec(S, n): nonc += 1
+    print(f"({n}, {k}): max {best}, configs {configs}, non-consecutive {nonc}")
+
+def common_points(starts, n, k):
+    arcs = [{(s + j) % n for j in range(k)} for s in starts]
+    return {t for t in range(n) if all(t in a for a in arcs)}
+
+ok1 = all(len(common_points(range(s, s + k), n, k)) == 1
+          for n, k in [(6, 3), (7, 3), (8, 4), (10, 4)] for s in range(n))
+ok2 = all(sum(1 for s in range(n) if x in {(s + j) % n for j in range(k)}) == k
+          for n in range(4, 10) for k in range(2, n // 2 + 1) for x in range(n))
+ok3 = all(comb(n-1, k-1) * factorial(k) * factorial(n-k) == k * factorial(n-1)
+          for n in range(2, 13) for k in range(1, n))
+print(ok1, ok2, ok3)
+print("Figure 1 tiling:", {1} | {4 - b for b in {1, 2}} == {1, 2, 3})
+
+# Exploration 20 / A◐20: F_r sizes and Hilton-Milner bound across the 5 benchmark pairs
+for n, k in [(7, 3), (8, 3), (10, 4), (9, 4), (12, 5)]:
+    Fr = [sum(comb(2*r + 1, i) * comb(n - 2*r - 1, k - i)
+              for i in range(r + 1, min(k, 2*r + 1) + 1)) for r in range(k)]
+    hm = comb(n - 1, k - 1) - comb(n - k - 1, k - 1) + 1
+    print(f"({n}, {k}): F_r = {Fr}, HM = {hm}")</pre>
+<p><strong>Verified output.</strong> The maximum-clique census of the intersect graphs prints <code>(5, 2): max 4, families 5</code>, <code>(6, 3): max 10, families 1024</code>, <code>(7, 3): max 15, families 7</code>, <code>(8, 3): max 21, families 8</code>. The interval-lemma sweep prints <code>(6, 3): max 3, configs 8, non-consecutive 2</code>, <code>(7, 3): max 3, configs 7, non-consecutive 0</code>, <code>(8, 3): max 3, configs 8, non-consecutive 0</code>, <code>(8, 4): max 4, configs 16, non-consecutive 8</code>, <code>(10, 4): max 4, configs 10, non-consecutive 0</code>, <code>(10, 5): max 5, configs 32, non-consecutive 22</code>. Then <code>True True True</code> and <code>Figure 1 tiling: True</code>. Finally, the benchmark table for Exploration 20 prints <code>(7, 3): F_r = [15, 13, 10], HM = 13</code>, <code>(8, 3): F_r = [21, 16, 10], HM = 16</code>, <code>(10, 4): F_r = [84, 70, 55, 35], HM = 75</code>, <code>(9, 4): F_r = [56, 51, 45, 35], HM = 53</code>, and <code>(12, 5): F_r = [330, 288, 246, 196, 126], HM = 316</code>.</p>
+<h3>Part 3 — Bollobás: saturation and an exhaustive small sweep</h3>
+<pre>from fractions import Fraction
+from math import comb
+
+star = sum(Fraction(1, comb(6, 1)) for _ in range(6))   # A_i = {i}, B_i = the rest
+print("star sum:", star)
+
+pairs = [(A, B) for A in range(8) for B in range(8)
+         if not (A &amp; B) and (A | B)]                    # disjoint nonempty-union pairs on [3]
+def cross_ok(ps):
+    return all(ps[i][0] &amp; ps[j][1] for i in range(len(ps)) for j in range(len(ps))
+               if i != j)
+valid = viol = tight = 0
+for p1 in pairs:
+    for p2 in pairs:
+        if not cross_ok([p1, p2]): continue
+        fam = [p1, p2]
+        for p3 in pairs:
+            fam3 = fam + [p3]
+            if not cross_ok(fam3): continue
+            valid += 1
+            s = sum(Fraction(1, comb(bin(A).count("1") + bin(B).count("1"),
+                                      bin(A).count("1"))) for A, B in fam3)
+            viol += s &gt; 1; tight += s == 1
+        valid += 1
+        s = sum(Fraction(1, comb(bin(A).count("1") + bin(B).count("1"),
+                                  bin(A).count("1"))) for A, B in fam)
+        viol += s &gt; 1; tight += s == 1
+print(valid, viol, tight)</pre>
+<p><strong>Verified output.</strong> <code>star sum: 1</code> — the six-pair singleton-complement star spends the whole budget (6 × 1/C(6,1) = 1). The exhaustive sweep over all ordered 2- and 3-pair configurations on ground set [3] satisfying both cross-intersection hypotheses prints <code>60 0 18</code>: <strong>60</strong> valid configurations, <strong>0</strong> violations, and <strong>18</strong> tight ones.</p>
+<h3>Part 4 — The skew battery (Bollobás §2.3 &amp; Exercise 14)</h3>
+<pre>from math import comb
+from fractions import Fraction
+from itertools import permutations
+
+def bits(m): return bin(m).count("1")
+
+# the skew battery — exhaustive, exact fractions
+def skew_max(n, hyp):
+    cands = []
+    for A in range(1 &lt;&lt; n):
+        for B in range(1 &lt;&lt; n):
+            if A &amp; B or not hyp(A, B): continue
+            cands.append((A, B, Fraction(1, comb(bits(A) + bits(B), bits(A)))))
+    memo = {}
+    def best(state):
+        key = tuple(sorted(state))
+        if key in memo: return memo[key]
+        res = Fraction(0)
+        for A, B, w in cands:
+            if A in state: continue
+            if any(not (a &amp; B) for a in state): continue
+            tot = w + best(state + [A])
+            if tot &gt; res: res = tot
+        memo[key] = res
+        return res
+    return best([])
+
+variants = [(lambda A, B: True, "ANY", 1, 4),
+            (lambda A, B: A != 0, "A nonempty", 1, 4),
+            (lambda A, B: A != 0 and bits(A) &lt;= bits(B), "A nonempty &amp; |A|&lt;=|B|", 2, 4),
+            (lambda A, B: bits(A) &lt;= bits(B), "|A|&lt;=|B|", 2, 4)]
+for hyp, name, lo, hi in variants:
+    vals = [skew_max(n, hyp) for n in range(lo, hi + 1)]
+    print("skew maxima", name, ":", ", ".join(str(v) for v in vals))
+
+for n in range(2, 8):
+    hf = sum(Fraction(1, comb(n, bits(A))) for A in range(1 &lt;&lt; n))
+    sing = sum(Fraction(1, comb(n, 1)) for _ in range(n))
+    print(f"n = {n}: HF list sum {hf}, singleton-complement sum {sing}")
+
+# Linear extensions of reverse inclusion on 2^[n] (A14(d): 2 at n=2, 48 at n=3)
+for n in [2, 3]:
+    subsets = list(range(1 &lt;&lt; n))
+    valid_orders = sum(1 for p in permutations(subsets)
+                       if all(not (p[i] &amp; ~p[j] == 0) for i in range(len(p)) for j in range(i + 1, len(p))))
+    print(f"n = {n}: valid full-complement skew orderings = {valid_orders}")
+
+def uniform_max(n, a, b):
+    As = [m for m in range(1 &lt;&lt; n) if bits(m) == a]
+    cands = [(A, B) for A in As
+             for B in (m for m in range(1 &lt;&lt; n) if bits(m) == b) if not (A &amp; B)]
+    memo = {}
+    def best(state):
+        key = tuple(sorted(state))
+        if key in memo: return memo[key]
+        res = 0
+        for A, B in cands:
+            if A in state: continue
+            if any(not (s &amp; B) for s in state): continue
+            res = max(res, 1 + best(state + [A]))
+        memo[key] = res
+        return res
+    return best([])
+
+for a, b, n in [(1,1,3),(1,1,4),(1,2,4),(1,2,5),(2,1,4),(2,1,5),
+                (2,2,5),(2,2,6),(1,3,5),(3,1,5)]:
+    m = uniform_max(n, a, b)
+    print(f"uniform ({a},{b}) on [{n}]: max {m}, bound C({a+b},{a}) = {comb(a+b,a)}")</pre>
+<p><strong>Verified output.</strong> The skew battery prints maxima <strong>2, 3, 4, 5</strong> with no hypotheses (n = 1..4), <strong>1, 2, 3, 4</strong> with Aᵢ ≠ ∅, <strong>1, 4/3, 2</strong> with Aᵢ ≠ ∅ and |Aᵢ| ≤ |Bᵢ| (n = 2..4), and <strong>2, 7/3, 3</strong> with |Aᵢ| ≤ |Bᵢ| and empty Aᵢ allowed. The Hegedüs–Frankl subset list sums to n+1 for every n = 2..7 (with <code>n = 2: valid full-complement skew orderings = 2</code> and <code>n = 3: valid full-complement skew orderings = 48</code> matching A14(d)), the singleton-complement system sums to 1, and the uniform census returns C(a+b, a) in all ten configurations.</p>
+<h3>Part 5 — Shifting, Sunflowers, Sauer–Shelah, and the Lehmer RNG Battery (Lecture 5 &amp; Exercises 3, 7, 10–12, 15, ◆16, ◐19)</h3>
+<pre>from itertools import combinations
+from math import comb
+from fractions import Fraction
+
+# Deterministic Lehmer generator (seed 12345, multiplier 48271, modulus 2^31 - 1)
+class LehmerRNG:
+    def __init__(self, seed=12345): self.state = seed
+    def next_int(self, bound):
+        self.state = (self.state * 48271) % 2147483647
+        return self.state % bound
+
+def shift_ij(F, i, j):                        # (i, j)-shift on a family of frozensets
+    out = set()
+    for A in F:
+        if j in A and i not in A:
+            target = (A - {j}) | {i}
+            out.add(target if target not in F else A)
+        else:
+            out.add(A)
+    return frozenset(out)
+
+def full_shift(F, n):
+    cur = frozenset(F)
+    while True:
+        nxt = cur
+        for i, j in combinations(range(1, n + 1), 2):
+            nxt = shift_ij(nxt, i, j)
+        if nxt == cur: return cur
+        cur = nxt
+
+# 1. A◆16: Stars (6) and fully shifted maximum intersecting families (6) at (6, 3)
+triples6 = [frozenset(c) for c in combinations(range(1, 7), 3)]
+comp_pairs6 = [(A, frozenset(range(1, 7)) - A) for A in triples6 if 1 in A]
+stars6 = shifted6 = 0
+for mask in range(1 &lt;&lt; 10):
+    F = frozenset(comp_pairs6[b][(mask &gt;&gt; b) &amp; 1] for b in range(10))
+    if len(frozenset.intersection(*F)) &gt;= 1: stars6 += 1
+    if all(shift_ij(F, i, j) == F for i, j in combinations(range(1, 7), 2)): shifted6 += 1
+print(f"(6, 3) out of 1024 max families: stars = {stars6}, fully shifted = {shifted6}")
+
+# 2. A3 &amp; A12: Intersecting subfamilies of 2^[4], single-shift and full-shift preservation
+subs4 = [frozenset(s for s in range(1, 5) if (m &gt;&gt; (s - 1)) &amp; 1) for m in range(16)]
+int_fams4 = []
+max8_total = max8_stars = 0
+for mask in range(1 &lt;&lt; 16):
+    F = frozenset(subs4[idx] for idx in range(16) if (mask &gt;&gt; idx) &amp; 1)
+    if all(len(A &amp; B) &gt; 0 for A in F for B in F):
+        int_fams4.append(F)
+        if len(F) == 8:
+            max8_total += 1
+            if len(frozenset.intersection(*F)) &gt;= 1: max8_stars += 1
+pairs4 = list(combinations(range(1, 5), 2))
+single_checks = sum(1 for F in int_fams4 for i, j in pairs4
+                    if all(len(A &amp; B) &gt; 0 for A in shift_ij(F, i, j) for B in shift_ij(F, i, j)))
+print(f"A3 2^[4] max=8 families: {max8_total} ({max8_stars} stars + {max8_total - max8_stars} empty-core)")
+print(f"A12 single-shift checks on 2^[4]: {single_checks}/{len(int_fams4)*len(pairs4)}")
+
+# Antichain casualties under full_shift on [4] (A12(b): 72 of 167 nonempty antichains)
+def is_antichain(F):
+    return all(not (A &lt; B) for A in F for B in F if A != B)
+ac4 = [frozenset(subs4[idx] for idx in range(16) if (mask &gt;&gt; idx) &amp; 1)
+       for mask in range(1, 1 &lt;&lt; 16)]
+ac4 = [F for F in ac4 if is_antichain(F)]
+lost_ac = sum(1 for F in ac4 if not is_antichain(full_shift(F, 4)))
+print(f"A12(b) antichains on [4]: {len(ac4)}, lost after full shift: {lost_ac}")
+
+# 3. A7 &amp; A10: Stars and triangles census for k = 2 on n = 4, 5, 6
+for n in [4, 5, 6]:
+    edges = [frozenset(e) for e in combinations(range(1, n + 1), 2)]
+    int_e = []
+    for mask in range(1 &lt;&lt; len(edges)):
+        F = frozenset(edges[b] for b in range(len(edges)) if (mask &gt;&gt; b) &amp; 1)
+        if all(len(A &amp; B) &gt; 0 for A in F for B in F): int_e.append(F)
+    int_set = set(int_e)
+    maximal = [F for F in int_e if not any((F | {e}) in int_set for e in edges if e not in F)]
+    max_sz = max(len(F) for F in int_e)
+    max_fams = [F for F in int_e if len(F) == max_sz]
+    if n == 4:
+        sh_max = [F for F in maximal if full_shift(F, 4) == F]
+        print(f"A7 shifted maximal edge families on [4]: {len(sh_max)}")
+    print(f"A10 n={n}: total intersecting={len(int_e)}, maximal={len(maximal)}, max_size={max_sz} ({len(max_fams)} families)")
+
+# 4. A11(b): 3-sunflower equivalence and maxima on [5] and [6]
+def has_3_sunflower(F):
+    for A, B, C in combinations(F, 3):
+        if (A &amp; B) == (B &amp; C) == (A &amp; C): return True
+    return False
+
+def max_deg_and_matching(F, n):
+    deg = max([sum(1 for e in F if v in e) for v in range(1, n + 1)], default=0)
+    has_3_match = any(len(A | B | C) == 6 for A, B, C in combinations(F, 3))
+    return deg &lt;= 2 and not has_3_match
+
+for n in [5, 6]:
+    edges = [frozenset(e) for e in combinations(range(1, n + 1), 2)]
+    viol = best_sz = best_cnt = 0
+    for mask in range(1 &lt;&lt; len(edges)):
+        F = [edges[b] for b in range(len(edges)) if (mask &gt;&gt; b) &amp; 1]
+        sf_free = not has_3_sunflower(F)
+        cap_ok  = max_deg_and_matching(F, n)
+        if sf_free != cap_ok: viol += 1
+        if sf_free:
+            if len(F) &gt; best_sz: best_sz, best_cnt = len(F), 1
+            elif len(F) == best_sz: best_cnt += 1
+    print(f"A11(b) [n={n}]: equivalence violations={viol}, max edges={best_sz}, attainers={best_cnt}")
+
+# 5. A15: Sauer-Shelah exhaustive census on [4]
+def shatters_s(mask, s):
+    for S in combinations(range(4), s):
+        smask = sum(1 &lt;&lt; i for i in S)
+        traces = {idx &amp; smask for idx in range(16) if (mask &gt;&gt; idx) &amp; 1}
+        if len(traces) == (1 &lt;&lt; s): return True
+    return False
+
+for s in [1, 2, 3]:
+    bound = sum(comb(4, i) for i in range(s))
+    no_shatter = [bin(m).count("1") for m in range(1 &lt;&lt; 16) if not shatters_s(m, s)]
+    mx = max(no_shatter)
+    print(f"A15 [4] s={s}: max={mx} (bound {bound}), attainers={no_shatter.count(mx)}")
+
+# 6. A◐19: greedy maximal antichains — the LYM sum distribution at n = 5, 6
+for n, trials in [(5, 20000), (6, 10000)]:
+    rng = LehmerRNG(12345)
+    vals, hits, full_levels = [], 0, 0
+    for _ in range(trials):
+        pool = list(range(1, 1 &lt;&lt; n))          # every subset except the empty set
+        F = []
+        while pool:
+            S = pool.pop(rng.next_int(len(pool)))
+            F.append(S)                        # kept: the pool excludes everything comparable with F
+            pool = [T for T in pool if T &amp; S not in (T, S)]   # drop sets comparable with S
+        lym = sum(Fraction(1, comb(n, bin(A).count("1"))) for A in F)
+        vals.append(float(lym))
+        if lym == 1:
+            hits += 1
+            sizes = {bin(A).count("1") for A in F}
+            if len(sizes) == 1 and len(F) == comb(n, sizes.pop()):
+                full_levels += 1
+    qs = sorted(vals)
+    print(f"A◐19 n={n} ({trials} trials): min={qs[0]:.3f} q10={qs[trials//10-1]:.3f} "
+          f"median={qs[trials//2-1]:.3f} q90={qs[9*trials//10-1]:.3f} mean={sum(vals)/trials:.3f}, "
+          f"LYM-equality hits={hits} (full levels: {full_levels})")</pre>
+<p><strong>Verified output.</strong> Every single count cited across Lecture 5 and the Answer Key is reproduced verbatim:</p>
+<ul><li><code>(6, 3) out of 1024 max families: stars = 6, fully shifted = 6</code> (verifying A◆16);</li><li><code>A3 2^[4] max=8 families: 12 (4 stars + 8 empty-core)</code> and <code>A12 single-shift checks on 2^[4]: 8256/8256</code>, with <code>A12(b) antichains on [4]: 167, lost after full shift: 72</code>;</li><li><code>A7 shifted maximal edge families on [4]: 2</code> and <code>A10 n=4: total intersecting=27, maximal=8, max_size=3 (8 families)</code>, <code>n=5: total intersecting=76, maximal=15, max_size=4 (5 families)</code>, <code>n=6: total intersecting=192, maximal=26, max_size=5 (6 families)</code>;</li><li><code>A11(b) [n=5]: equivalence violations=0, max edges=5, attainers=12</code> and <code>[n=6]: equivalence violations=0, max edges=6, attainers=10</code>;</li><li><code>A15 [4] s=1: max=1 (bound 1), attainers=16</code>, <code>s=2: max=5 (bound 5), attainers=400</code>, <code>s=3: max=11 (bound 11), attainers=400</code>;</li><li><code>A◐19 n=5 (20000 trials): min=0.400 q10=0.500 median=0.700 q90=1.000 mean=0.708, LYM-equality hits=2349 (full levels: 2349)</code> and <code>A◐19 n=6 (10000 trials): min=0.333 q10=0.450 median=0.617 q90=0.783 mean=0.627, LYM-equality hits=256 (full levels: 256)</code> — the sampled maximal-antichain LYM sums of Exploration 19: the median sits at 0.70 (n = 5) and 0.62 (n = 6), and every sampled sum that reaches exactly 1 is a single full level.</li></ul>
+<hr>
+<h2>Answers to the Exercises</h2>
+<p><strong>A1.</strong> View the 2-subsets of [5] as the edges of K₅: a pairwise-intersecting family is a set of edges no two of which are disjoint. If every two edges share the same vertex, the family sits inside a star — at most 4 = C(4, 1) edges. Otherwise two edges {v, a}, {v, b} share v and some edge avoids v; to meet both it must be {a, b} — the triangle. Any further edge must then meet all three triangle edges: through v it fails on {a, b} unless it is one of {v, a}, {v, b}; avoiding v it must sit inside {a, b} — {a, b} itself. So a non-star family caps at the triangle's 3 edges, and the maximum is <strong>4</strong>, attained exactly by the five stars. Machine check: the Part 2 census prints <code>(5, 2): max 4, families 5</code>.</p>
+<p><strong>A2.</strong> The complement map S ↦ [2k] ∖ S is an involution on the k-subsets with no fixed point (S = S̄ would force S = ∅ by disjointness), so the C(2k, k) k-sets split into ½C(2k, k) pairs; and ½C(2k, k) = C(2k−1, k−1) because C(2k, k) = (2k/k)·C(2k−1, k−1) = 2C(2k−1, k−1). Choosing one set per pair: two chosen sets A, B cannot be disjoint — B ⊆ Ā would force B = Ā (both have size k), the very pair A was chosen from. So every one-per-pair family is intersecting, of size C(2k−1, k−1) = the EKR bound: at n = 2k the bound is attained by <strong>every</strong> such choice.</p>
+<p><strong>A3.</strong> Complementation is a fixed-point-free involution on 2^[n] (A = Ā would put every x inside A and outside A), so the 2^n subsets split into the 2^{n−1} pairs {A, Ā}, whose two members are disjoint. An intersecting family takes at most one from each pair: |F| ≤ 2^{n−1}. Sharpness: the star — all 2^{n−1} sets containing a fixed point — is pairwise intersecting. The machine census (Part 5) of all 65,536 subfamilies of 2^[4] says the maximum 8 is attained by <strong>12</strong> families: the 4 stars and 8 empty-core families, for instance {12, 13, 14, 234, 123, 124, 134, 1234} — the 2-sets through 1, all four triples, and the top; every pair meets, yet the total intersection is empty. The contrast with Exercise 2: there, B ∩ A = ∅ with |A| = |B| = k at n = 2k forced B = Ā, so a one-per-pair choice banned disjointness automatically — the only sets that could clash with A were ruled out by the picking rule itself. With sizes free, two chosen sets can be disjoint without being complements ({1} from the pair {1, 234} and {23} from the pair {14, 23}), and of the 2^8 = 256 one-per-pair choices at n = 4 only those same 12 are intersecting. The pigeonhole is necessary; the safety was uniformity's gift. Machine check: Part 5 prints <code>A3 2^[4] max=8 families: 12 (4 stars + 8 empty-core)</code>.</p>
+<p><strong>A4.</strong> For an antichain A₁, …, A_m set Bᵢ = [n] ∖ Aᵢ. Then Aᵢ ∩ Bᵢ = ∅, and for i ≠ j: Aᵢ ∩ B_j = Aᵢ ∖ A_j, which is nonempty <em>because the family is an antichain</em> — Aᵢ ⊆ A_j is forbidden, so Aᵢ has an element outside A_j (and symmetrically A_j ∩ Bᵢ = A_j ∖ Aᵢ ≠ ∅). Bollobás gives Σ_{i=1..m} 1/C(|Aᵢ| + (n − |Aᵢ|), |Aᵢ|) = Σ_{i=1..m} 1/C(n, |Aᵢ|) ≤ 1: LYM. For a merely intersecting family the cross-intersection hypothesis fails at comparable pairs: Aᵢ ⊊ A_j makes Aᵢ ∩ B_j = Aᵢ ∖ A_j = ∅ even when Aᵢ ∩ A_j = Aᵢ ≠ ∅ — intersection is not incomparability.</p>
+<p><strong>A5.</strong> Naive bound: pick any start s₀ ∈ S; every other start is within cyclic distance k−1 of it (arcs intersect ⟺ start distance ≤ k−1), so all starts lie in the window {s₀−k+1, …, s₀+k−1}: at most 2k−1 of them. The loss: the forward starts (offsets A ⊆ [1, k−1]) and backward starts (offsets B ⊆ [1, k−1]) are budgeted separately as (k−1) + 1 + (k−1) = 2k−1. The sharp proof reflects the backward budget — k − B lives in the <em>same</em> interval [1, k−1] as A, and the two are disjoint (a + b = k would put two starts at cyclic distance min(k, n−k) = k &gt; k−1), so |A| + |B| ≤ k−1 and |S| ≤ k. One substitution, one budget: that is the entire content of the "mixed sub-case".</p>
+<p><strong>A6.</strong> Let F ⊆ 2^[n] have no chain of length k+1 (1 ≤ k ≤ n+1), and write x_j = |F ∩ C([n], j)| for the level counts (0 ≤ j ≤ n). Each maximal chain ∅ = C₀ ⊂ C₁ ⊂ … ⊂ C_n = [n] meets F in at most k sets, so the double count of (chain, member on it) gives the weighted LYM inequality Σ_{j=0..n} x_j/C(n, j) ≤ k, together with the level capacity constraints 0 ≤ x_j ≤ C(n, j). Order the n+1 levels j₁, j₂, …, j_{n+1} so that C(n, j₁) ≥ C(n, j₂) ≥ … ≥ C(n, j_{n+1}); then B_r = C(n, j_r) = C(n, ⌊(n+1−r)/2⌋) are the middle binomial coefficients from the inside out. For any feasible vector (x₀, …, x_n), suppose there exist indices r ≤ k &lt; s with x_{j_r} &lt; B_r and x_{j_s} &gt; 0. Since B_r ≥ B_s, replacing δ = min(B_r − x_{j_r}, x_{j_s}) &gt; 0 units of mass at level j_s by δ units at level j_r keeps the total count Σ_{j=0..n} x_j unchanged, respects 0 ≤ x_j ≤ C(n, j), and changes the LYM weight by δ(1/B_r − 1/B_s) ≤ 0, so the LYM inequality remains satisfied. Repeating this finite exchange pushes all weight into the first k levels {j₁, …, j_k} until either no mass remains outside {j₁, …, j_k} (in which case Σ_j x_j = Σ_{r=1..k} x_{j_r} ≤ Σ_{r=1..k} B_r) or every level j₁, …, j_k is completely full (x_{j_r} = B_r for 1 ≤ r ≤ k), which spends the entire LYM budget Σ_{r=1..k} B_r/B_r = k and forces x_{j_s} = 0 for all s &gt; k. In both cases |F| = Σ_{j=0..n} x_j ≤ Σ_{r=1..k} C(n, ⌊(n+1−r)/2⌋). And the exercise's closing question — where does maximality close the bound? — has an honest answer: in this ledger it never has to. The exchange runs on the actual level counts of any family with no (k+1)-chain, so the LYM budget pays alone; in the older route (exchange inside a maximum-size family), maximality closes at the inertia point — no profitable exchange left means the family already sits in the k middle levels, and its size is the middle-binomial sum. Machine check: the n = 4 census maxima {6, 10, 14, 15}, the four sums of middle binomials (Part 1).</p>
+<p><strong>A7.</strong> For 1 ≤ i &lt; j ≤ n, the (i, j)-shift S_{ij} maps A ∈ F to A′ = (A ∖ {j}) ∪ {i} when j ∈ A, i ∉ A, and A′ ∉ F, and fixes A otherwise. Every image S_{ij}(A) has |S_{ij}(A)| = |A|, preserving k-uniformity. To see injectivity on F, suppose S_{ij}(A) = S_{ij}(B) for A, B ∈ F. If neither was moved, A = B; if both were moved, then A = (S_{ij}(A) ∖ {i}) ∪ {j} = B; and if A was moved while B was fixed, then S_{ij}(A) = A′ ∉ F whereas S_{ij}(B) = B ∈ F, impossible. Thus |S_{ij}(F)| = |F|. Whenever S_{ij}(F) ≠ F, at least one set A ∈ F is replaced by A′ = (A ∖ {j}) ∪ {i}, which changes w(F) = Σ_{A∈F} Σ_{x∈A} x by i − j &lt; 0 per moved set. Since w(F) is a nonnegative integer, any sequence of nontrivial shifts terminates. On C([4], 2): if a shifted maximal intersecting family F contains a pair {a, b} avoiding 1 (2 ≤ a &lt; b ≤ 4), shift stability S_{1b}(F) = F and S_{1a}(F) = F forces {1, a}, {1, b} ∈ F, forming the triangle {1a, 1b, ab}; shifting down to {2, 3} via S_{2a} and S_{3b} forces a = 2, b = 3, giving the unique shifted triangle <strong>{12, 13, 23}</strong>. If no member of F avoids 1, then F ⊆ {12, 13, 14}, and maximality forces the full star <strong>{12, 13, 14}</strong>. Machine check: Part 5 prints <code>A7 shifted maximal edge families on [4]: 2</code>.</p>
+<p><strong>A8.</strong> (⇐) is Exercise 2. (⇒) Let |F| = C(2k−1, k−1) — exactly the number of complementary pairs {S, [2k] ∖ S}. Since F is intersecting, it never contains both members of a pair (they are disjoint); so it contains at most one per pair — that is at most C(2k−1, k−1) sets, and equality of counts forces <strong>exactly one per pair</strong>. For (6, 3): C(5, 2) = 10 pairs, so 2^10 = <strong>1024</strong> maximum families, the 6 stars among them (a star contains exactly one member of each pair — every 3-set either contains the center x or its complement does). Machine check: Part 2 prints <code>max 10, families 1024</code>.</p>
+<p><strong>A9.</strong> All starts lie in the window [s₀−k+1, s₀+k−1] around the anchor s₀; a forward start sits at s₀+a (a ∈ A ⊆ [1, k−1]) and a backward one at s₀−b (b ∈ B ⊆ [1, k−1]). Two window positions at offset-sum a+b are at cyclic distance min(a+b, n−a−b); for a+b = k and n ≥ 2k this distance is min(k, n−k) = k &gt; k−1 — the two arcs would be disjoint, forbidden. So no a ∈ A satisfies a = k−b for b ∈ B: <strong>A ∩ (k−B) = ∅</strong>, both inside [1, k−1], whence |A| + |B| ≤ k−1 and |S| = 1 + |A| + |B| ≤ k. On (6, 3) with S = {0, 2, 4} and anchor s₀ = 0: A = {2}, B = {2}, k−B = {1}: disjoint inside {1, 2}, |A| + |B| = 2 = k−1 ✓. On S = {0, 1, 2} with anchor s₀ = 0: A = {1, 2}, B = ∅, k−B = ∅, |A| + |B| = 2 ✓. For the t-intersecting extension (1 ≤ t ≤ k, n ≥ 2k−t+1): two k-arcs at cyclic distance d ≤ k overlap in k−d consecutive points along the shorter arc (since d ≤ k−t gives k+d ≤ 2k−t &lt; n, the two arcs cannot wrap around and meet at both ends), so |A_s ∩ A_{s′}| ≥ t ⟺ dist(s, s′) ≤ k−t. With anchor s₀ ∈ S, all other starts have offsets A, B ⊆ [1, k−t], and a+b = k−t+1 is forbidden because min(k−t+1, n−(k−t+1)) = k−t+1 &gt; k−t (using n ≥ 2k−t+1 ≥ 2(k−t+1)). Thus A ∩ ((k−t+1)−B) = ∅ inside [1, k−t], giving |A| + |B| ≤ k−t and |S| ≤ k−t+1.</p>
+<p><strong>A10.</strong> (a) With at most one edge the family sits in any star. With two, they share a vertex v — say {v, a} and {v, b} (disjointness is banned). If every edge contains v: the star at v. Otherwise some edge avoids v; to meet both {v, a} and {v, b} it must be {a, b}, and the triangle {v, a}, {v, b}, {a, b} is present. A fourth edge meeting all three: through v it would be {v, c} with c ∉ {a, b} — disjoint from {a, b}; avoiding v it must fit inside {a, b}, and {a, b} is taken. So the family sits inside the star at v or inside that triangle. (b) The full star at v is maximal for n ≥ 4: an added edge {a, b} avoiding v misses the star edge {v, c} for any c ∉ {a, b}, and n ≥ 4 provides such a c. A triangle is maximal by the same chase — nothing meets all three edges. Since every intersecting family sits in one of these, the maximal ones are exactly the n stars and the C(n, 3) triangles: 8, 15, 26 at n = 4, 5, 6, in exact agreement with the Part 5 censuses (27, 76, 192 intersecting families, zero of them outside a star or a triangle). At n = 3 the star is not maximal — it sits inside the one triangle — which is why the count needs n ≥ 4. (c) Stars have n−1 edges and win alone once n ≥ 5 (5 stars at n = 5, 6 at n = 6). At n = 4, stars and triangles tie at 3 = C(3, 1). A8 says the maxima at n = 2k are the one-per-pair choices — 2^3 = 8 at (4, 2) — and each triangle complies: {12, 13, 23} takes 12 against 34, 13 against 24, and 23 against 14, one edge from each complementary pair. The eight maxima are the four stars and the four triangles, every one a one-per-pair family, as A8 demands.</p>
+<p><strong>A11.</strong> (a) Induction on k ≥ 1. For k = 1, a family F of subsets of size ≤ 1 has at most one empty set and at most |F| − 1 distinct singletons; if |F| &gt; 1!(r−1)^1 = r−1, then |F| ≥ r. If ∅ ∉ F, any r distinct singletons form an r-sunflower with core ∅; if ∅ ∈ F, then ∅ together with any r−1 distinct singletons {x₁}, …, {x_{r−1}} satisfies Sᵢ ∩ S_j = ∅ for all i ≠ j, again an r-sunflower with core ∅. Now let k ≥ 2 and assume the lemma holds at k−1. If some point x lies in more than (k−1)!(r−1)^{k−1} members of F, the trace family {A ∖ {x} : x ∈ A ∈ F} has more than (k−1)!(r−1)^{k−1} distinct sets of size at most k−1; the induction hypothesis yields an r-sunflower B₁, …, B_r among them with core K, and B₁ ∪ {x}, …, B_r ∪ {x} form an r-sunflower in F with core K ∪ {x}. Otherwise every point has degree at most (k−1)!(r−1)^{k−1} in F. Let P₁, …, P_t be a maximal pairwise-disjoint subfamily of nonempty members of F, and set P = P₁ ∪ … ∪ P_t. If ∅ ∉ F and t ≥ r, then P₁, …, P_r is an r-sunflower with core ∅; if ∅ ∈ F and t ≥ r−1, then ∅, P₁, …, P_{r−1} is an r-sunflower with core ∅. In the remaining case, either ∅ ∉ F and t ≤ r−1 (so |P| ≤ (r−1)k and every A ∈ F meets P, giving |F| ≤ |P|·(k−1)!(r−1)^{k−1} ≤ k!(r−1)^k), or ∅ ∈ F and t ≤ r−2 (so |P| ≤ (r−2)k and every A ∈ F ∖ {∅} meets P, giving |F| ≤ 1 + (r−2)k(k−1)!(r−1)^{k−1} ≤ k!(r−1)^k, since k(k−1)!(r−1)^{k−1} ≥ 1). Both contradict |F| &gt; k!(r−1)^k. (b) For 2-uniform edges, the possible cores of a 3-sunflower are ∅ (three disjoint edges) and {v} (three distinct edges through v, whose pairwise intersections all equal {v}); a core of size 2 would require three identical edges, impossible in a family. So no 3-sunflower ⟺ no three disjoint edges and no vertex of degree ≥ 3 ⟺ ν ≤ 2 and Δ ≤ 2 (Part 5 verifies 0 violations over all 1,024 edge families on [5] and all 32,768 on [6]). Under those two caps the census maxima are <strong>5</strong> on [5], attained by the 12 labeled 5-cycles (5!/10 = 12), and <strong>6</strong> on [6], attained by the 10 disjoint triangle pairs (½C(6, 3) = 10). (c) The bound 2!·2² = 8 sits above both true maxima (5 and 6). The Erdős–Rado sunflower conjecture asks whether (r−1)^k k! can be improved to c_r^k for a constant c_r &gt; 0 depending only on r (note c_r ≥ r−1 is forced by taking k disjoint blocks of size r−1). The 2020 breakthrough of Alweiss–Lovett–Wu–Zhang, simplified by Rao, proved (Cr log(rk))^k; Bell–Chueluecha–Warnke (2021) refined it to (Cr log k)^k — the current best. The c_r^k conjecture remains open.</p>
+<p><strong>A12.</strong> (a) The ledger, uniformity-free. Write C* = (C ∖ {j}) ∪ {i} for a shifted member, and suppose S_{ij}(F) contains disjoint images C′ and D′; injectivity (A7, proved without uniformity) gives unique preimages in F. Case 1, both unshifted: C ∩ D = ∅ inside F — forbidden. Case 2, both shifted: C* and D* both contain i — not disjoint. Case 3, mixed — say C′ = C is unshifted and D′ = D* = (D ∖ {j}) ∪ {i} with C ∩ D* = ∅. Then i ∉ C (since i ∈ D*), and D contained j but not i. Since F is intersecting, C ∩ D ≠ ∅; but D = (D* ∖ {i}) ∪ {j}, so C ∩ D ⊆ (C ∩ D*) ∪ (C ∩ {j}) = C ∩ {j} — hence C ∩ D = {j}, and j ∈ C. Now C contains j and not i: C was itself a shift candidate, and it stayed unmoved only because C* = (C ∖ {j}) ∪ {i} already lies in F. But C* ∩ D = ((C ∖ {j}) ∩ D) ∪ ({i} ∩ D) = ∅ ∪ ∅ = ∅ — the first term is empty because C ∩ D = {j}, the second because i ∉ D. Two disjoint members C*, D ∈ F: the contradiction lands in the <em>original</em> family, where uniformity was never consulted. (b) Take F = {{1, 3}, {2}} under S_{23}: the shift condition holds for {1, 3} (j = 3 present, i = 2 absent, {1, 2} ∉ F), so the image is {{1, 2}, {2}} — and {2} ⊂ {1, 2}: a chain. The full shift does not rescue it: cycling the pairs to §5.3's stability lands at {{1}, {1, 2}}, still a chain (machine, exact). Nor is it a fluke: of the 167 nonempty antichains on [4], <strong>72</strong> lose the antichain property by the time the full shift stabilizes. (c) The audit: §5.1 defines the shift for arbitrary sets, §5.2 proves intersecting-preservation in that setting, §5.3 and A7 verify size, uniformity, and termination, and the EKR application shifts k-sets throughout — uniformity is present at every use, and by (a) it was never even needed for intersecting-preservation, only for the k-set bookkeeping around it. The antichain casualty of (b) touches nothing standing: nothing in Lecture 5 shifts an antichain. Machine: Part 5 verifies all 8,256 single-shift checks on intersecting subfamilies of 2^[4] — 1,376 intersecting families × 6 pairs — with 0 violations, plus 2,570 sampled single shifts on [5], zero violations, and the full-shift census over all 65,536 families on [4], again zero violations.</p>
+<p><strong>A13.</strong> Equality forces |A| + |B| = k−1 with A and k−B tiling [1, k−1] disjointly: A ⊔ (k−B) = [1, k−1]. The room n ≥ 2k+1 (n &gt; 2k) bans one more sum: a+b = k+1 puts two starts at cyclic distance min(k+1, n−k−1) ≥ k &gt; k−1 — forbidden, so <strong>A ∩ (k+1−B) = ∅</strong>. Now take b ∈ B with b ≥ 2 and suppose b−1 ∉ B. Then k−(b−1) ∉ k−B, so by the tiling k−b+1 ∈ A; but (k−b+1) + b = k+1 — a forbidden sum — contradiction. So b ∈ B, b ≥ 2 ⟹ b−1 ∈ B: B is downward-closed, B = {1, …, β} for some 0 ≤ β ≤ k−1, and the tiling forces A = {1, …, k−1−β}: <strong>k consecutive starts</strong> {s₀−β, …, s₀+k−1−β} (mod n), whose k arcs share the unique point z ≡ s₀+k−1−β (mod n) (as proved in §3.3). On Figure 1's exact data (n = 10, k = 4, S = {8, 9, 0, 1}, anchor s₀ = 0): the forward offset is A = {1} (start 0+1 = 1), the backward offsets are B = {1, 2} (starts 0−1 ≡ 9 and 0−2 ≡ 8, so β = 2), and the reflected set is k−B = {4−1, 4−2} = {2, 3}. Thus A ⊔ (k−B) = {1} ⊔ {2, 3} = {1, 2, 3} = [1, k−1] ✓, the starts are {s₀−2, s₀−1, s₀, s₀+1} ≡ {8, 9, 0, 1}, and the four 4-arcs {8, 9, 0, 1}, {9, 0, 1, 2}, {0, 1, 2, 3}, {1, 2, 3, 4} share the unique common point s₀+k−1−β = 0+3−2 = <strong>1</strong> ✓.</p>
+<p><strong>A14.</strong> (a) The two pairs: A₁∩B₁ = {1}∩∅ = ∅ ✓, A₂∩B₂ = {2}∩{1} = ∅ ✓; the one forward condition A₁∩B₂ = {1}∩{1} ≠ ∅ ✓. Sum: 1/C(1,1) + 1/C(2,1) = 1 + 1/2 = <strong>3/2</strong>. (b) The three pairs: disjointness {1}∩{2} = {2}∩{1} = {3}∩{1, 2} = ∅ ✓; forward conditions A₁∩B₂ = {1}∩{1} ≠ ∅, A₁∩B₃ = {1}∩{1, 2} ≠ ∅, A₂∩B₃ = {2}∩{1, 2} ≠ ∅ ✓; Aᵢ ≠ ∅ for all three ✓; |Aᵢ| ≤ |Bᵢ| (1 ≤ 2, 1 ≤ 1, 1 ≤ 2) ✓. Sum: 1/C(2,1) + 1/C(2,1) + 1/C(3,1) = 1/2 + 1/2 + 1/3 = <strong>4/3</strong> &gt; 1 — the size hypothesis does not rescue Σ ≤ 1. The exhaustive census (Part 4) confirms the pattern: under Aᵢ ≠ ∅ and |Aᵢ| ≤ |Bᵢ| the maxima at n = 2, 3, 4 are 1, 4/3, 2 — the sum genuinely grows (and by symmetry the same holds for |Aᵢ| ≥ |Bᵢ|: swap the roles of the A's and B's and read the list backwards). (c) Singleton-complement: for i ≠ j, Aᵢ ∩ B_j = {i} ∩ ([n] ∖ {j}) = {i} ≠ ∅ — the system is cross-intersecting in <em>both</em> directions, a fortiori skew in any order; Σ = n · 1/C(n, 1) = <strong>1</strong>, the budget exactly spent. Uniform sharpness: pair every a-subset A of a fixed (a+b)-set X with B = X ∖ A; for i ≠ j the same-size distinctness of Aᵢ, A_j gives Aᵢ ⊄ A_j, i.e. Aᵢ ∩ B_j ≠ ∅ — m = C(a+b, a) skew pairs, each of weight 1/C(a+b, a): Σ = 1, meeting Frankl's uniform bound m ≤ C(a+b, a) (1982; also Kalai 1984, and via Lovász's exterior algebra / tensor argument) exactly. The census says the bound survives larger grounds: at (a, b) = (1, 1) on [4] the maximum is still 2, at (2, 2) on [6] still 6 = C(4, 2) — out of 15 available A's; all ten checked configurations return C(a+b, a). (d) Order all 2^n subsets of [n] by non-increasing size (ties arbitrary). For i &lt; j: |Aᵢ| ≥ |A_j|, so Aᵢ ⊆ A_j would force Aᵢ = A_j — forbidden, since the list has no repeats — hence Aᵢ ⊄ A_j, which is exactly Aᵢ ∩ B_j ≠ ∅ for B_j = [n] ∖ A_j; disjointness is complementarity. So the system is skew, and Σ 1/C(|Aᵢ|+|Bᵢ|, |Aᵢ|) = Σ_{A ⊆ [n]} 1/C(n, |A|) = Σ_{k=0..n} C(n,k)/C(n,k) = <strong>n+1</strong> — the sharpness witness for the Hegedüs–Frankl bound Σ ≤ n+1 (2023). The machine census confirms optimality (n = 1..4: maxima 2, 3, 4, 5, the witnesses being complement systems) and at n = 2, 3 the extremal pair-set is unique up to valid skew ordering (2 and 48 valid orderings respectively, verified in Part 4). <strong>The lesson:</strong> no size condition on the individual pairs brings the sum back to 1. The true landscape is the uniform bound C(a+b, a) and the sharp n+1; the "skew Bollobás with Σ ≤ 1 under a size hypothesis" that circulates informally is false, and the three-pair family of (b) is its smallest refutation.</p>
+<p><strong>A15.</strong> (i) The projection π(A) = A ∖ {x} maps F onto G₀, and each fiber {A, A ∪ {x}} ∩ F has size 1 or 2 — size 2 iff the projection belongs to G₁. Summing the fiber sizes gives |F| = |G₀| + |G₁|. (ii) If G₀ shatters S ⊆ [n] ∖ {x} with |S| = s: every A ∈ G₀ has a lift in F (A or A ∪ {x}), and both lifts cut S in A ∩ S since x ∉ S, so F shatters S. (iii) If G₁ shatters S ⊆ [n] ∖ {x} with |S| = s−1: for each T ⊆ S take A ∈ G₁ with A ∩ S = T; both A and A ∪ {x} lie in F, cutting S ∪ {x} in T and T ∪ {x}, so F shatters the s-set S ∪ {x}. (iv) Induct on n ≥ 0 and s ≥ 0. Base cases: for s = 0 the empty sum is 0, and |F| &gt; 0 means F is nonempty, so it shatters ∅; for n = 0 and s ≥ 1, the bound is C(0, 0) = 1, and |F| ≤ |2^∅| = 1 never exceeds 1. For n ≥ 1 and s ≥ 1, G₀ and G₁ live on the n−1 coordinates [n] ∖ {x}. If F shatters no s-set, then by (ii) G₀ shatters no s-set, so |G₀| ≤ Σ_{i=0..s−1} C(n−1, i), and by (iii) G₁ shatters no (s−1)-set, so |G₁| ≤ Σ_{i=0..s−2} C(n−1, i). Adding via Pascal's identity C(n−1, i) + C(n−1, i−1) = C(n, i) gives |F| = |G₀| + |G₁| ≤ Σ_{i=0..s−1} C(n, i). Sharpness: {A ⊆ [n] : |A| ≤ s−1} has size Σ_{i=0..s−1} C(n, i) and on any s-set S its traces never realize S itself (A ∩ S = S requires |A| ≥ s). Machine: Part 5's exhaustive [4] census over all 65,536 families returns maxima <strong>1, 5, 11</strong> at s = 1, 2, 3 with 16, 400, 400 attainers; the fiber identity and both shatter steps re-verified on 5,000 random [5] instances, zero violations; and the boundary probed from above — 20,000 random [5] families, all of size above 6, all shattered a 2-set, and of 10,000 further samples the 4,677 of size above 16 all shattered a 3-set. Zero escapes.</p>
+<p><strong>A◆16.</strong> At (6, 3) the EKR bound is C(5, 2) = 10, and by A8's characterization a family F ⊆ C([6], 3) has size 10 and is intersecting iff it picks <strong>exactly one triple from each of the 10 complementary pairs</strong> {S, [6] ∖ S}: there are <strong>2^10 = 1024</strong> maximum intersecting families. Among them, the <strong>6 stars</strong> star(x) = {S ∈ C([6], 3) : x ∈ S} (x ∈ [6]) each pick the unique member containing x from every pair. How many of the 1024 maximum families are <em>fully shifted</em>? A family F is stable under all shifts S_{ij} (1 ≤ i &lt; j ≤ 6) iff it is an order ideal in the Gale (componentwise) poset on C([6], 3), where {a₁ &lt; a₂ &lt; a₃} ≤_G {b₁ &lt; b₂ &lt; b₃} ⟺ a₁ ≤ b₁, a₂ ≤ b₂, a₃ ≤ b₃. For 5 of the 10 complementary pairs, the two members are comparable in the Gale order (123 ≤_G 456, 124 ≤_G 356, 125 ≤_G 346, 134 ≤_G 256, 135 ≤_G 246), so any shifted one-per-pair family must pick the smaller triple (123, 124, 125, 134, 135). The remaining 5 complementary pairs have Gale-incomparable members: Q₁ = (126, 345), Q₂ = (136, 245), Q₃ = (145, 236), Q₄ = (146, 235), Q₅ = (156, 234). Since 126 ≤_G 136 ≤_G 146 ≤_G 156 (and dually 234 ≤_G 235 ≤_G 245 ≤_G 345), downward closure on {Q₁, Q₂, Q₄, Q₅} requires choosing a threshold 0 ≤ r ≤ 4 where the 1-containing triple is chosen in the first r of (Q₁, Q₂, Q₄, Q₅) and the 1-avoiding complement in the remaining 4−r. For Q₃ = (145, 236): the relations 136 ≤_G 236 and 235 ≤_G 236 ban 236 unless r = 2 (choosing 236 needs 136 ∈ F, which happens only for r ≥ 2, and 235 ∈ F, which happens only for r ≤ 2), while 145 ≤_G 245 and 145 ≤_G 146 force 145 whenever 245 ∈ F (r ≤ 1) or 146 ∈ F (r ≥ 3). So r = 0, 1, 3, 4 each give one family — Q₃ forced to 145 — and r = 2 gives two (both Q₃ choices downward-closed): 1+1+2+1+1 = <strong>6</strong> fully shifted maximum families: C([5], 3) (r = 0, picking 345, 245, 145, 235, 234), star(1) (r = 4, picking 126, 136, 145, 146, 156), and the four intermediate families for r = 1, 2, 3. Machine check: Part 5 prints <code>(6, 3) out of 1024 max families: stars = 6, fully shifted = 6</code>.</p>
+<p><strong>A◆17.</strong> Six chains, produced directly by the doubling construction (Part 1's <code>scd(4)</code>):</p>
+<p>∅ ⊂ {1} ⊂ {1, 2} ⊂ {1, 2, 3} ⊂ {1, 2, 3, 4} — sizes 0…4 (length 5);<br>{4} ⊂ {1, 4} ⊂ {1, 2, 4} — sizes 1, 2, 3 (length 3);<br>{3} ⊂ {1, 3} ⊂ {1, 3, 4} — sizes 1, 2, 3 (length 3);<br>{3, 4} — size 2 (length 1);<br>{2} ⊂ {2, 3} ⊂ {2, 3, 4} — sizes 1, 2, 3 (length 3);<br>{2, 4} — size 2 (length 1).</p>
+<p>All 16 subsets of [4] appear once (5 + 3 + 3 + 1 + 3 + 1 = 16, partition ✓); every step adds one element ✓; every chain satisfies |bottom| + |top| = 4 ✓ (0+4, 1+3, 1+3, 2+2, 1+3, 2+2). The total number of chains is <strong>6 = C(4, 2)</strong> — the middle binomial coefficient, matching Part 1's <code>scd(4) chain lengths: [5, 3, 3, 1, 3, 1]</code>.</p>
+<p><strong>A◐18.</strong> At (n, k) = (9, 4), the EKR bound is C(8, 3) = <strong>56</strong>, and by §4.3's Theorem (since 9 ≥ 2(4)+1), the maximum intersecting families of size 56 are <strong>only the 9 stars</strong> star(x) (x ∈ [9]). What do the largest non-star (empty-core, ∩_{A∈F} A = ∅) intersecting families look like? By the Hilton–Milner theorem, the maximum size of an intersecting 4-uniform family on [9] with empty core is HM(9, 4) = C(8, 3) − C(4, 3) + 1 = 56 − 4 + 1 = <strong>53</strong>, achieved by fixing a point x ∈ [9] and a 4-set E ⊆ [9] ∖ {x} and taking F_HM(x, E) = {E} ∪ {A ∈ C([9], 4) : x ∈ A and A ∩ E ≠ ∅} (there are 9 × C(8, 4) = 630 such families). The second natural empty-core competitor is the 2-out-of-3 majority family F₁ = {A ∈ C([9], 4) : |A ∩ {1, 2, 3}| ≥ 2}, which has size C(3,2)C(6,2) + C(3,3)C(6,1) = 45 + 6 = <strong>51</strong> &lt; 53. Thus at (9, 4) there is a gap of 3 between the 9 stars (56) and the 630 Hilton–Milner families (53), and a further gap of 2 down to the C(9, 3) = 84 majority families F₁ (51).</p>
+<p>A full census at (9, 4) is infeasible — even the shifted search space alone reaches about 17 million Gale ideals — so the honest receipts are partial, and every one of them agrees with the theorem: a pruned sweep of all shifted intersecting 4-families on [9] (37,145 of them, the empty family included) finds exactly one maximum, star(1) at 56, and a unique empty-core maximum at 53, attained by HM(1, {2,3,4,5}) — exactly the shifted Hilton–Milner shape — with nine shifted families at 51; and a hill-climb launched from all 630 Hilton–Milner families never found anything above 53. For comparison, the reachable censuses (7, 3) and (8, 3) return 7 and 8 maximum families, all stars (Part 2).</p>
+<p><strong>A◐19.</strong> For n = 4, Part 1's exhaustive sweep over all 2^16 − 1 = 65,535 nonempty subfamilies of 2^[4] finds exactly <strong>167</strong> nonempty antichains (stored in <code>ac4</code> in Part 5), all satisfying Σ_{A∈F} 1/C(4, |A|) ≤ 1, with equality in <strong>5</strong> of them — the five full levels C([4], j) (j = 0, 1, 2, 3, 4). To prove that for every n ≥ 1 the <em>only</em> nonempty antichains with Σ_{A∈F} 1/C(n, |A|) = 1 are the n+1 full levels C([n], j), let j be the largest level such that F_j = F ∩ C([n], j) ≠ ∅. If j = 0, then F = {∅} = C([n], 0). If 1 ≤ j ≤ n, every A ∈ F_j has j immediate subsets in ΔF_j = {A ∖ {x} : A ∈ F_j, x ∈ A} ⊆ C([n], j−1), and each B ∈ ΔF_j is contained in at most n−j+1 sets of F_j, giving the LYM shadow inequality |ΔF_j|/C(n, j−1) ≥ |F_j|/C(n, j). Equality in this shadow step holds iff every B ∈ ΔF_j has all n−j+1 of its j-supersets in F_j and every A ∈ F_j has all j of its (j−1)-subsets in ΔF_j; since the bipartite inclusion graph between C([n], j) and C([n], j−1) is connected for 1 ≤ j ≤ n, equality for F_j ≠ ∅ holds <strong>iff</strong> F_j = C([n], j). Because F is an antichain, F_{j−1} ∩ ΔF_j = ∅, so replacing F_j by ΔF_j produces an antichain on levels ≤ j−1 whose LYM sum is at least that of F, and strictly larger unless F_j = C([n], j) (in which case F = C([n], j) already). At odd n, the full union C([n], (n−1)/2) ∪ C([n], (n+1)/2) has LYM sum 2 &gt; 1 and is never an antichain, whereas partial mixes can be: taking A from the lower level and B from the upper, the mix is an antichain exactly when B ∩ ∇A = ∅ (for n = 3, A = {{1}} leaves {2, 3} outside ∇A, giving {{1}, {2, 3}} with LYM sum 2/3). What does sampling say? In random greedy sampling of maximal antichains at n = 5, 6 (Part 5's Lehmer-seeded sampler: 20,000 trials at n = 5, 10,000 at n = 6), early inclusion of a small or large set blocks a wide cone of comparable sets in the middle levels, so the sampled LYM sums concentrate well below the budget — median 0.70 at n = 5 (mean 0.71, deciles 0.50 and 1.00) and median 0.62 at n = 6 (deciles 0.45 and 0.78) — and every sampled sum that reaches exactly 1 is a single full level: 2,349 such hits at n = 5 and 256 at n = 6, all full levels.</p>
+<p><strong>A◐20.</strong> For 0 ≤ r ≤ k−1, F_r = {A ∈ C([n], k) : |A ∩ [2r+1]| ≥ r+1} has size |F_r| = Σ_{i=r+1..min(k, 2r+1)} C(2r+1, i)C(n−2r−1, k−i), while HM(n, k) = C(n−1, k−1) − C(n−k−1, k−1) + 1. Evaluating both across the five benchmark pairs (verified in Part 2 of the Lab):</p>
+<ul><li><strong>(7, 3):</strong> (|F₀|, |F₁|, |F₂|) = (15, 13, 10) and HM(7, 3) = 15 − 3 + 1 = <strong>13</strong>. Here |F₁| = HM(7, 3) = 13: at k = 3, F₁ and F_HM tie for the empty-core maximum (35 families of type F₁ and 7 × C(6, 3) = 140 of type F_HM, totaling 175 empty-core maxima).</li><li><strong>(8, 3):</strong> (|F₀|, |F₁|, |F₂|) = (21, 16, 10) and HM(8, 3) = 21 − 6 + 1 = <strong>16</strong> (tied again at k = 3).</li><li><strong>(10, 4):</strong> (|F₀|, |F₁|, |F₂|, |F₃|) = (84, 70, 55, 35) and HM(10, 4) = 84 − 10 + 1 = <strong>75</strong> &gt; 70.</li><li><strong>(9, 4):</strong> (|F₀|, |F₁|, |F₂|, |F₃|) = (56, 51, 45, 35) and HM(9, 4) = 56 − 4 + 1 = <strong>53</strong> &gt; 51.</li><li><strong>(12, 5):</strong> (|F₀|, |F₁|, |F₂|, |F₃|, |F₄|) = (330, 288, 246, 196, 126) and HM(12, 5) = 330 − 15 + 1 = <strong>316</strong> &gt; 288.</li></ul>
+<p>For 1-intersecting families with n &gt; 2k: the star F₀ is always the overall maximum (by EKR), and the Hilton–Milner family F_HM is always the true empty-core maximum — strictly beating F₁ for all k ≥ 4, and tying F₁ at k = 3. Where do the higher candidates overtake the star? In the <strong>t-intersecting</strong> problem (|A ∩ B| ≥ t for t ≥ 2): Ahlswede and Khachatrian's 1997 Complete Intersection Theorem proves that for all n ≥ 2k−t, the maximum of a t-intersecting k-uniform family on [n] is max_{0 ≤ r ≤ k−t} |F_r^{(t)}|, where F_r^{(t)} = {A ∈ C([n], k) : |A ∩ [t+2r]| ≥ t+r}. The t-star F₀^{(t)} wins iff n ≥ (t+1)(k−t+1); as soon as n &lt; (t+1)(k−t+1) (for instance n = 8, k = 4, t = 2, where |F₀^{(2)}| = C(6, 2) = 15 &lt; |F₁^{(2)}| = 4C(4, 1) + 1 = <strong>17</strong>), F₁^{(t)} and higher F_r^{(t)} take over.</p>
+</main>
+</body>
+</html>
