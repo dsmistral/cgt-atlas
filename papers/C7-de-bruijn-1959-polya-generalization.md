@@ -1,0 +1,8 @@
+# C7 - de Bruijn (1959): Generalization of Polya's fundamental theorem in enumerative combinatorial analysis
+
+- Metadata (web-verified 2026-10-13): N. G. de Bruijn, "Generalization of Polya's fundamental theorem in enumerative combinatorial analysis", Indagationes Mathematicae 21 (1959): 59-69; identical volume as Nederl. Akad. Wetensch. Proc. Ser. A 62. Sources: Cambridge CJM citation page; ScienceDirect Indagationes Mathematicae page; Springer reference lists (Rota's foundations-of-Mobius paper).
+- Summary (general-knowledge level, flagged sketch): de Bruijn's theorem extends Polya counting to two symmetry groups at once - a group A acting on the domain X and a group B acting on the color set Y - counting equivalence classes of functions under combined transformations. The chemical motivation is stereoisomer counting where the colors themselves are symmetry-related (enantiomeric pairs).
+- Decisive moves: (1) [P39] the cycle-index/symmetry-averaging machinery of C1 extended to the two-group setting - second genuine firing of P39 in the batch, evidence that P39 is a reusable framework rather than a one-paper trick; (2) [P5] the weighted generating function (inventory) output retained in the generalized form; (3) cross-domain note: the framework underlies the power group enumeration theorem (Harary) and chemistry's enantiomer counting.
+- New-pattern candidates: none new.
+- Full text: not fetched - the Indagationes page is open at ScienceDirect if teaching material needs it.
+- Corrections log: none - seed row confirmed (full title and pagination recovered; the 1959 date stands).

@@ -1,0 +1,8 @@
+# C1 - Polya (1937): Kombinatorische Anzahlbestimmungen fur Gruppen, Graphen und chemische Verbindungen
+
+- Metadata (web-verified 2026-10-13): G. Polya, "Kombinatorische Anzahlbestimmungen fur Gruppen, Graphen und chemische Verbindungen", Acta Mathematica 68: 145-254 (1937), DOI 10.1007/BF02546665. Sources: Project Euclid; OEIS references. English translation: Polya-Read, Combinatorial Enumeration of Groups, Graphs, and Chemical Compounds, Springer 1987.
+- Summary (general-knowledge level, flagged sketch): the Hauptsatz of enumeration - the cycle index of a permutation group G acting on a set D turns the problem of counting G-orbits of weighted colorings of D into a generating-function substitution. The driving application is chemical isomer counting (substituted benzene skeletons).
+- Decisive moves: (1) [P39] symmetry averaging made computational - Burnside-type averaging over the group, organized by cycle structure into the cycle index polynomial; the flagship usage of P39 in the whole field; (2) [P5] the inventory: the theorem's output is a weighted generating function, figures substituted into the cycle index; (3) [P1] re-encoding of the counting objects as functions-up-to-symmetry, so a chemical orbit-counting problem becomes an algebraic substitution.
+- New-pattern candidates: none new - this paper is the load-bearing evidence that P39 deserves its Atlas slot, and the root of P39's reverse-index entries (isomer counting, necklaces, unlabeled graph counting).
+- Full text: not fetched per the scope rule - German original plus the 1987 Springer English translation are documented; textbook expositions are abundant.
+- Corrections log: none - seed row confirmed.

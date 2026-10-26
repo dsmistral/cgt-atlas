@@ -1,0 +1,9 @@
+# D6 - Micali-Vazirani (1980): An O(sqrt(|V|)|E|) algorithm for finding maximum matching in general graphs
+
+- Metadata (web-verified 2026-10-13): S. Micali, V. V. Vazirani, "An O(sqrt(|V|)|E|) algorithm for finding maximum matching in general graphs", 21st Annual Symposium on Foundations of Computer Science (FOCS 1980), IEEE, DOI 10.1109/SFCS.1980.12. Sources: ACM DL; dblp; Semantic Scholar. NOTE: the ACM DL record's title contains a typo ("algoithm").
+- Summary (general-knowledge level, flagged sketch): maximum matching in general graphs in O(sqrt(V) E): work in phases - each phase finds a maximal set of vertex-disjoint shortest augmenting paths in O(E) (blossoms handled by a refined alternating-tree machinery), and the shortest augmenting-path length strictly increases from phase to phase, giving O(sqrt(V)) phases.
+- Decisive moves: (1) [P16] augmentation by phase - all shortest augmenting paths at once (the Hopcroft-Karp idea carried to general graphs); (2) [P18] algorithmic proof; (3) [monovariant watch] the phase monovariant - augmenting-path length strictly rises, bounding the phase count (same family as D4); (4) [P8]-flavored fact inside the analysis: a non-maximum matching admits a short augmenting path.
+- Honest note: the 1980 paper's correctness proof was never completed - the first complete and correct proof appeared only in 2020 (V. V. Vazirani, "A Proof of the MV Matching Algorithm", arXiv:2012.03582). Logged per the verification-honesty convention; the algorithm itself is standard and heavily used.
+- New-pattern candidates: none new; contributes to the monovariant/potential-termination watch-item.
+- Full text: not fetched - paywalled IEEE; the 2020 arXiv proof paper documents the algorithm completely.
+- Corrections log: seed "FOCS" confirmed (21st FOCS, 1980); ACM DL title typo noted; the 2020-proof fact recorded.

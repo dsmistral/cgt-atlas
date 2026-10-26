@@ -1,0 +1,8 @@
+# C4 - Gessel-Viennot (1985): Binomial determinants, paths, and hook length formulae
+
+- Metadata (web-verified 2026-10-13): I. M. Gessel, G. Viennot, "Binomial determinants, paths, and hook length formulae", Advances in Mathematics 58 (1985): 300-321. TITLE AND VENUE CORRECTED vs the seed row ("Determinants and nonintersecting paths"). Open PDFs located: KTH mirror; sites.math.washington.edu/~billey course page. Ancestor lemma due to B. Lindstrom (Bull. London Math. Soc., 1973) - dated here from standard surveys, flagged for synthesis confirmation.
+- Summary (general-knowledge level, flagged sketch): the Lindstrom-Gessel-Viennot determinant: a determinant of single-path counts equals the number of families of vertex-disjoint (nonintersecting) paths between two endpoint sets. The paper gives unified determinant proofs of binomial-determinant identities, hook-length formulae for trees and shifted tableaux, and related results.
+- Decisive moves: (1) [P1] the involution: in the signed enumeration over all path families, sign-reversing swaps at first intersections cancel every family with an intersection, leaving exactly the nonintersecting families - a bijection hidden inside a signed enumeration; (2) [P19] the determinant itself - the global count computed by linear algebra from elementary path counts, replacing case analysis.
+- New-pattern candidates: watch-item - sign-reversing involution (the cancellation engine); no dedicated Atlas P-ID; single firing so far.
+- Full text: not fetched - open PDFs located (KTH mirror; Billey course page).
+- Corrections log: TITLE corrected; VENUE corrected to Advances in Mathematics 58 (1985): 300-321; Lindstrom ancestor dated 1973 (flagged for synthesis confirmation).
