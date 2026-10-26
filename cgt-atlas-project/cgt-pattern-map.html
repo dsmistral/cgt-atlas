@@ -1,0 +1,1449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pattern Map · The Companion Registry (P1–P45) — The Combinatorics &amp; Graph Theory Atlas</title>
+<style>
+  :root { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; }
+  body { max-width: 50rem; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; line-height: 1.55; background: #fff; }
+  h1 { font-size: 1.8rem; margin: 2.2rem 0 0.8rem; }
+  h2 { font-size: 1.4rem; margin: 2rem 0 0.6rem; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; }
+  h3 { font-size: 1.12rem; margin: 1.5rem 0 0.4rem; }
+  code { font-family: 'Courier New', Courier, monospace; background: #f2f2f2; padding: 0.05em 0.3em; border-radius: 3px; font-size: 0.92em; }
+  pre { font-family: 'Courier New', Courier, monospace; white-space: pre; overflow-x: auto; border: 1px solid #ddd; background: #fafafa; padding: 0.7rem 0.9rem; font-size: 0.8rem; line-height: 1.35; }
+  table { border-collapse: collapse; margin: 1rem 0; }
+  th, td { border: 1px solid #bbb; padding: 0.3rem 0.55rem; text-align: left; }
+  th { background: #f0f0f0; }
+  .gloss { margin: 0.15rem 0 0.5rem; }
+  .pin { background: #eef6ff; border: 1px solid #bcd6f0; border-radius: 6px; padding: 0.8rem 1rem; font-size: 0.9rem; font-family: system-ui, sans-serif; margin: 1rem 0; overflow-wrap: anywhere; }
+  ol li, ul li { margin: 0.3rem 0; }
+  em { color: #333; }
+</style>
+</head>
+<body>
+<main>
+<h1>The Pattern Map — the Companion Registry (P1–P45)</h1>
+<p><em>Part of the Combinatorics &amp; Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report). A companion artifact, not a chapter: the 21 chapter numbers stay pinned.</em></p>
+
+<h2>1 · What this file is</h2>
+<p>The Atlas groups problems by <em>the move that solves them</em>. The Master Pattern Index (cgt-atlas.md §1) assigns each recurring solution pattern an immutable identifier, P1 through P45. Across the 21 chapters the same pattern is introduced, taught, and invoked under chapter-local names — a chapter’s pattern table names it for its own material, a Trick Bag card names its face, an exercise hint names its cameo. This file is the one place that lists every identifier with its canonical name and every name the book has used for it, so identifiers stay uniform across all chapters.</p>
+<p>It is built to be used as an <strong>immutable reference</strong> by automated validation or improvement pipelines (tools or AI): the P-ID is the join key, the names are documentation, and the machine-readable payload below is pinned by a SHA-1 hash. Registry version 1, generated 2026-10-15, extracted from the 21 chapter masters and the Atlas P-index. A sweep verified that no identifier outside P1–P45 appears anywhere in the masters.</p>
+
+<h2>2 · How a pipeline should consume it</h2>
+<ol>
+<li>Locate the <code>&lt;pre id="registry-json"&gt;</code> block in section 5.</li>
+<li>HTML-unescape the entities (<code>&amp;amp;</code>, <code>&amp;lt;</code>, <code>&amp;gt;</code>) to recover the JSON text.</li>
+<li>UTF-8 encode it and verify SHA-1 against the pin in section 5. If the hash does not match, do not trust the file.</li>
+<li>Parse the JSON. The <code>id</code> field (<code>"P1"</code> … <code>"P45"</code>) is the sole join key; match chapter pattern-table rows, Trick Bag cards, and hint mentions on it.</li>
+<li>Treat <code>canonical</code> as the one official name; <code>aliases</code> and <code>faces</code> are documentation with chapter provenance — never keys.</li>
+<li>Per-pattern firing evidence (the usage ledger) lives in the Atlas master (cgt-atlas.md §1), not here; this registry carries only the naming map.</li>
+<li>If the Atlas ever adopts new patterns (P46+), this registry bumps its version and SHA-1 pin; the IDs of existing patterns never change.</li>
+</ol>
+
+<h2>3 · Registry conventions</h2>
+<ul>
+<li><strong>IDs are the only keys.</strong> <code>Pn</code>, n = 1..45, immutable. One canonical name per ID.</li>
+<li><strong>Evidence vocabulary</strong> used with pattern mentions: <em>GENUINE</em> (the pattern carries the proof — Ch. 12’s per-problem map, Ch. 20’s census), <em>PARTIAL</em> (fires as a supporting step), <em>named cameo</em> (a one-off named appearance), <em>forward-registry</em> (introduced at its chapter’s ship, awaiting its first genuine use — see each pattern’s note).</li>
+<li><strong>Ship markers in labels:</strong> “(new this chapter)” = proposed to the registry at the chapter’s ship; “(this chapter’s home)” = the pattern’s home chapter; “(cameo)” = brief named appearance.</li>
+<li><strong>Compound rows:</strong> a chapter row may fire two patterns together — Ch. 3’s “P8 + P10 Extremal rod” and “P15 Greedy / P18 algorithmic”. Both IDs receive the alias, with the compound noted.</li>
+<li><strong>Name collision:</strong> P17 “Duality (min–max)” and P37 “Duality” (plane duals) are distinct patterns sharing one local name — exactly why the ID is the join key.</li>
+<li><strong>Deliberately outside the registry:</strong> Ch. 20’s game-strategy cluster and Ch. 21’s five coverage-gap engines are named clusters with no Atlas P-ID — do not force them into P1–P45.</li>
+<li><strong>Reading order lore</strong> (Ch. 12’s honest-census note): the pre-doctoral elementary five are P25, P4, P1, P9, P10; the honest boundary is P5, P16, P23, P30–P31 — master the elementary five first.</li>
+</ul>
+
+<h2>4 · The quick map</h2>
+<table>
+<tr><th>ID</th><th>Canonical name</th><th>Home chapters</th></tr>
+<tr><td><a href="#P1">P1</a></td><td>Bijection</td><td>Ch. 1, Ch. 2</td></tr>
+<tr><td><a href="#P2">P2</a></td><td>Double counting</td><td>Ch. 1, Ch. 2, Ch. 3</td></tr>
+<tr><td><a href="#P3">P3</a></td><td>Inclusion–exclusion</td><td>Ch. 1</td></tr>
+<tr><td><a href="#P4">P4</a></td><td>Recurrence + induction</td><td>Ch. 1, Ch. 2, Ch. 3</td></tr>
+<tr><td><a href="#P5">P5</a></td><td>Generating function</td><td>Ch. 1</td></tr>
+<tr><td><a href="#P6">P6</a></td><td>Complement / reflection</td><td>Ch. 1</td></tr>
+<tr><td><a href="#P7">P7</a></td><td>Parity &amp; handshaking</td><td>Ch. 2</td></tr>
+<tr><td><a href="#P8">P8</a></td><td>Longest-path / extremal</td><td>Ch. 2, Ch. 3</td></tr>
+<tr><td><a href="#P9">P9</a></td><td>Pigeonhole</td><td>Ch. 3</td></tr>
+<tr><td><a href="#P10">P10</a></td><td>Averaging / expectation</td><td>Ch. 3, Ch. 4</td></tr>
+<tr><td><a href="#P11">P11</a></td><td>Explicit construction</td><td>Ch. 3</td></tr>
+<tr><td><a href="#P12">P12</a></td><td>Random construction</td><td>Ch. 4</td></tr>
+<tr><td><a href="#P13">P13</a></td><td>Union bound</td><td>Ch. 4</td></tr>
+<tr><td><a href="#P14">P14</a></td><td>Alteration</td><td>Ch. 4</td></tr>
+<tr><td><a href="#P15">P15</a></td><td>Induction on vertices/edges</td><td>Ch. 2, Ch. 3</td></tr>
+<tr><td><a href="#P16">P16</a></td><td>Alternating paths / augmentation</td><td>Ch. 5</td></tr>
+<tr><td><a href="#P17">P17</a></td><td>Duality (min–max)</td><td>Ch. 5</td></tr>
+<tr><td><a href="#P18">P18</a></td><td>Algorithmic proof</td><td>Ch. 2, Ch. 5</td></tr>
+<tr><td><a href="#P19">P19</a></td><td>Rank / linear algebra</td><td>Ch. 6</td></tr>
+<tr><td><a href="#P20">P20</a></td><td>Weight shifting / symmetrization</td><td>Ch. 3, Ch. 6</td></tr>
+<tr><td><a href="#P21">P21</a></td><td>Spectral / Rayleigh</td><td>Ch. 6</td></tr>
+<tr><td><a href="#P22">P22</a></td><td>Polynomial method</td><td>Ch. 6</td></tr>
+<tr><td><a href="#P23">P23</a></td><td>Compression / shifting</td><td>Ch. 7</td></tr>
+<tr><td><a href="#P24">P24</a></td><td>Shadow pricing (Kruskal–Katona)</td><td>Ch. 7, Ch. 9</td></tr>
+<tr><td><a href="#P25">P25</a></td><td>Reduction / encoding</td><td>Ch. 3, Ch. 10, Ch. 11</td></tr>
+<tr><td><a href="#P26">P26</a></td><td>Compactness (finite ↔ infinite)</td><td>Ch. 2, Ch. 10</td></tr>
+<tr><td><a href="#P27">P27</a></td><td>Correlation</td><td>Ch. 13</td></tr>
+<tr><td><a href="#P28">P28</a></td><td>Concentration</td><td>Ch. 13</td></tr>
+<tr><td><a href="#P29">P29</a></td><td>Entropy counting</td><td>Ch. 13</td></tr>
+<tr><td><a href="#P30">P30</a></td><td>Regularity partitioning</td><td>Ch. 14</td></tr>
+<tr><td><a href="#P31">P31</a></td><td>Counting–removal</td><td>Ch. 14</td></tr>
+<tr><td><a href="#P32">P32</a></td><td>Stability</td><td>Ch. 14</td></tr>
+<tr><td><a href="#P33">P33</a></td><td>Density increment</td><td>Ch. 14</td></tr>
+<tr><td><a href="#P34">P34</a></td><td>Minor chasing</td><td>Ch. 15</td></tr>
+<tr><td><a href="#P35">P35</a></td><td>Dynamic programming on structure</td><td>Ch. 15</td></tr>
+<tr><td><a href="#P36">P36</a></td><td>Discharging</td><td>Ch. 15</td></tr>
+<tr><td><a href="#P37">P37</a></td><td>Duality</td><td>Ch. 15</td></tr>
+<tr><td><a href="#P38">P38</a></td><td>Replication</td><td>Ch. 15</td></tr>
+<tr><td><a href="#P39">P39</a></td><td>Symmetry averaging</td><td>Ch. 16</td></tr>
+<tr><td><a href="#P40">P40</a></td><td>Möbius inversion</td><td>Ch. 16</td></tr>
+<tr><td><a href="#P41">P41</a></td><td>Double-counting &amp; divisibility</td><td>Ch. 16</td></tr>
+<tr><td><a href="#P42">P42</a></td><td>Words-as-designs</td><td>Ch. 16</td></tr>
+<tr><td><a href="#P43">P43</a></td><td>Semi-random nibble</td><td>Ch. 17</td></tr>
+<tr><td><a href="#P44">P44</a></td><td>Threshold / window</td><td>Ch. 18</td></tr>
+<tr><td><a href="#P45">P45</a></td><td>Local lemma</td><td>Ch. 19</td></tr>
+</table>
+
+<h2>5 · The full registry — every name the book has used</h2>
+<h3 id="P1">P1 · Bijection</h3>
+<p class="gloss">Count A by matching it 1-to-1 with a set B you can count</p>
+<p><strong>Home:</strong> Ch. 1, Ch. 2</p>
+<p><strong>Called as:</strong> Ch. 1 <em>Bijection</em> · Ch. 2 <em>Bijection</em> · Ch. 12 <em>Bijection / orbits</em> · Ch. 20 <em>Sign-reversing involution (partial)</em></p>
+<p><strong>Named faces:</strong> sign-reversing involution — P1’s dynamic face: pair unwanted objects with a sign-flipping swap and they cancel from an alternating sum (Gessel–Viennot; Ch. 1 Trick Bag, used again in Ch. 20)</p>
+
+<h3 id="P2">P2 · Double counting</h3>
+<p class="gloss">Count the same set two ways; equate</p>
+<p><strong>Home:</strong> Ch. 1, Ch. 2, Ch. 3</p>
+<p><strong>Called as:</strong> Ch. 1 <em>Double counting</em> · Ch. 2 <em>Double counting</em> · Ch. 5 <em>Double counting</em> · Ch. 5 <em>Free inequality</em> · Ch. 7 <em>Double counting</em> · Ch. 17 <em>Double counting</em> · Ch. 21 <em>Double counting</em></p>
+
+<h3 id="P3">P3 · Inclusion–exclusion</h3>
+<p class="gloss">Add, subtract overlaps back</p>
+<p><strong>Home:</strong> Ch. 1</p>
+<p><strong>Called as:</strong> Ch. 1 <em>Inclusion–exclusion</em></p>
+
+<h3 id="P4">P4 · Recurrence + induction</h3>
+<p class="gloss">Relate case n to smaller cases</p>
+<p><strong>Home:</strong> Ch. 1, Ch. 2, Ch. 3</p>
+<p><strong>Called as:</strong> Ch. 1 <em>Recurrence</em> · Ch. 2 <em>Leaf induction</em> · Ch. 3 <em>Delete &amp; extend</em> · Ch. 5 <em>Critical-set split</em> · Ch. 5 <em>Induction on one side</em> · Ch. 7 <em>Induction</em> · Ch. 9 <em>Induction</em> · Ch. 10 <em>Recurrence + induction</em> · Ch. 11 <em>Recurrence + induction</em> · Ch. 12 <em>Monovariant / induction</em> · Ch. 17 <em>Recurrence + induction</em> · Ch. 18 <em>Recurrence + induction</em> · Ch. 19 <em>Recurrence + induction</em> · Ch. 20 <em>Recurrence + induction</em></p>
+<p><strong>Named faces:</strong> monovariant — P4’s termination face: a quantity that must move (Ch. 1 Trick Bag; Ch. 12’s “Monovariant / induction” row)</p>
+
+<h3 id="P5">P5 · Generating function</h3>
+<p class="gloss">Turn a sequence into a function; let algebra work</p>
+<p><strong>Home:</strong> Ch. 1</p>
+<p><strong>Called as:</strong> Ch. 1 <em>Generating function</em> · Ch. 20 <em>Generating functions</em></p>
+
+<h3 id="P6">P6 · Complement / reflection</h3>
+<p class="gloss">Count the complement or reflect the bad objects</p>
+<p><strong>Home:</strong> Ch. 1</p>
+<p><strong>Called as:</strong> Ch. 1 <em>Complement / reflection</em></p>
+
+<h3 id="P7">P7 · Parity &amp; handshaking</h3>
+<p class="gloss">Degree-sum is even; ends of arguments</p>
+<p><strong>Home:</strong> Ch. 2</p>
+<p><strong>Called as:</strong> Ch. 2 <em>Parity / handshaking</em> · Ch. 12 <em>Parity</em></p>
+
+<h3 id="P8">P8 · Longest-path / extremal</h3>
+<p class="gloss">Take an extremal object; its structure forces a cycle, leaf, etc.</p>
+<p><strong>Home:</strong> Ch. 2, Ch. 3</p>
+<p><strong>Called as:</strong> Ch. 2 <em>Longest path / extremal</em> · Ch. 3 <em>Extremal rod (compound row: P8 + P10)</em> · Ch. 7 <em>Extremal circle structure</em> · Ch. 12 <em>Extremal / longest-path</em></p>
+
+<h3 id="P9">P9 · Pigeonhole</h3>
+<p class="gloss">n+1 objects, n boxes — and the lower the contest level, the more it carries the whole proof (the survey’s level gradient: Putnam small-step, USAMO obstruction, IMO whole-proof engine)</p>
+<p><strong>Home:</strong> Ch. 3</p>
+<p><strong>Called as:</strong> Ch. 2 <em>Pigeonhole</em> · Ch. 3 <em>Pigeonhole</em> · Ch. 10 <em>Pigeonhole</em> · Ch. 11 <em>Pigeonhole</em> · Ch. 12 <em>Pigeonhole</em></p>
+
+<h3 id="P10">P10 · Averaging / expectation</h3>
+<p class="gloss">Some object beats the average</p>
+<p><strong>Home:</strong> Ch. 3, Ch. 4</p>
+<p><strong>Called as:</strong> Ch. 3 <em>Extremal rod (compound row: P8 + P10)</em> · Ch. 4 <em>Averaging / expectation</em> · Ch. 11 <em>Averaging / expectation</em> · Ch. 12 <em>Averaging</em> · Ch. 13 <em>Averaging / expectation</em> · Ch. 14 <em>Averaging / expectation</em> · Ch. 15 <em>Averaging / expectation</em> · Ch. 16 <em>Averaging / expectation</em> · Ch. 17 <em>Averaging / expectation</em> · Ch. 18 <em>Averaging / expectation</em> · Ch. 19 <em>Averaging / expectation</em> · Ch. 20 <em>Averaging / expectation</em></p>
+<p><strong>Named faces:</strong> graphical Brascamp–Lieb — P10’s celebrated face: assign every edge of the host graph a two-variable function and iterate Lp duality and Hölder (Sah–Sawhney–Stoner–Zhao’s reverse Sidorenko inequality; Ch. 4 Trick Bag)</p>
+
+<h3 id="P11">P11 · Explicit construction</h3>
+<p class="gloss">Beat the bound by building the object</p>
+<p><strong>Home:</strong> Ch. 3</p>
+<p><strong>Called as:</strong> Ch. 3 <em>Explicit construction</em> · Ch. 5 <em>Padding construction</em> · Ch. 5 <em>Padding</em> · Ch. 10 <em>Explicit construction</em> · Ch. 11 <em>Explicit construction</em> · Ch. 12 <em>Explicit construction</em> · Ch. 17 <em>Explicit construction</em> · Ch. 20 <em>Explicit construction</em> · Ch. 21 <em>Explicit construction</em></p>
+
+<h3 id="P12">P12 · Random construction</h3>
+<p class="gloss">Prove existence by sampling</p>
+<p><strong>Home:</strong> Ch. 4</p>
+<p><strong>Called as:</strong> Ch. 4 <em>Random construction</em> · Ch. 10 <em>Random construction</em> · Ch. 13 <em>Random construction</em> · Ch. 17 <em>Random construction</em> · Ch. 18 <em>Random construction</em> · Ch. 19 <em>Random construction</em> · Ch. 20 <em>Random construction</em> · Ch. 21 <em>Random construction (cameo)</em></p>
+
+<h3 id="P13">P13 · Union bound</h3>
+<p class="gloss">If failure probabilities sum below 1, success exists</p>
+<p><strong>Home:</strong> Ch. 4</p>
+<p><strong>Called as:</strong> Ch. 4 <em>Union bound</em> · Ch. 13 <em>Union bound</em> · Ch. 17 <em>Union bound</em> · Ch. 18 <em>Union bound</em> · Ch. 19 <em>Union bound</em></p>
+
+<h3 id="P14">P14 · Alteration</h3>
+<p class="gloss">Random object + pruning</p>
+<p><strong>Home:</strong> Ch. 4</p>
+<p><strong>Called as:</strong> Ch. 4 <em>Alteration</em> · Ch. 13 <em>Alteration</em> · Ch. 17 <em>Alteration</em></p>
+
+<h3 id="P15">P15 · Induction on vertices/edges</h3>
+<p class="gloss">Delete a vertex, extend the solution</p>
+<p><strong>Home:</strong> Ch. 2, Ch. 3</p>
+<p><strong>Called as:</strong> Ch. 2 <em>Induction on vertices</em> · Ch. 3 <em>Greedy (compound row: P15 Greedy / P18 algorithmic)</em> · Ch. 12 <em>Induction on vertices/edges</em></p>
+
+<h3 id="P16">P16 · Alternating paths / augmentation</h3>
+<p class="gloss">Improve a partial solution along a path</p>
+<p><strong>Home:</strong> Ch. 5</p>
+<p><strong>Called as:</strong> Ch. 5 <em>Alternating paths</em> · Ch. 11 <em>Alternating paths / augmentation</em> · Ch. 12 <em>Alternating paths</em></p>
+
+<h3 id="P17">P17 · Duality (min–max)</h3>
+<p class="gloss">Two problems are the same number</p>
+<p><strong>Home:</strong> Ch. 5</p>
+<p><strong>Called as:</strong> Ch. 5 <em>Duality</em> · Ch. 5 <em>Duality dictionary</em> · Ch. 7 <em>Duality / specialization</em> · Ch. 11 <em>Duality</em> · Ch. 12 <em>Duality</em></p>
+<p><strong>Registry note:</strong> Name collision: P17 and P37 are both locally called “Duality” — P17 is min–max duality, P37 is plane-duality; the P-ID disambiguates</p>
+
+<h3 id="P18">P18 · Algorithmic proof</h3>
+<p class="gloss">The proof is a procedure; termination = theorem</p>
+<p><strong>Home:</strong> Ch. 2, Ch. 5</p>
+<p><strong>Called as:</strong> Ch. 2 <em>Algorithmic proof</em> · Ch. 3 <em>algorithmic (compound row: P15 Greedy / P18 algorithmic)</em> · Ch. 4 <em>Algorithmic proof</em> · Ch. 5 <em>Algorithmic proof</em> · Ch. 5 <em>Augment-or-certify</em> · Ch. 11 <em>Algorithmic proof</em> · Ch. 12 <em>Algorithmic proof</em> · Ch. 21 <em>Algorithm as proof</em></p>
+
+<h3 id="P19">P19 · Rank / linear algebra</h3>
+<p class="gloss">Encode sets as vectors; dimension bounds</p>
+<p><strong>Home:</strong> Ch. 6</p>
+<p><strong>Called as:</strong> Ch. 6 <em>Rank / dimension</em> · Ch. 8 <em>Rank / dimension</em></p>
+<p><strong>Named faces:</strong> slice rank — the two-entry face shared with P22 (Ch. 6’s slice-rank row: the CLP/EG engine is simultaneously P19’s dimension budget and P22’s polynomial method; both patterns named, no double credit)</p>
+
+<h3 id="P20">P20 · Weight shifting / symmetrization</h3>
+<p class="gloss">Push weight to the extremal configuration</p>
+<p><strong>Home:</strong> Ch. 3, Ch. 6</p>
+<p><strong>Called as:</strong> Ch. 3 <em>Cloning/symmetrization</em> · Ch. 6 <em>Weight shifting</em> · Ch. 6 <em>Weight shifting / symmetrization</em> · Ch. 8 <em>Weight shifting</em> · Ch. 8 <em>Weight shifting / symmetrization</em></p>
+<p><strong>Registry note:</strong> Usage-evidence note (survey, sessions 80/83): genuinely under-used in the field — the symmetrization the classics actually do is performed by P23 shifting or P10 averaging; the entry stays canonical (Motzkin–Straus and the shifting card are the showcases); no problem fires it by P-ID yet</p>
+
+<h3 id="P21">P21 · Spectral / Rayleigh</h3>
+<p class="gloss">Eigenvalues as averaging devices; operator norm on 1⊥</p>
+<p><strong>Home:</strong> Ch. 6</p>
+<p><strong>Called as:</strong> Ch. 6 <em>Spectral / Rayleigh</em> · Ch. 8 <em>Spectral / Rayleigh</em></p>
+
+<h3 id="P22">P22 · Polynomial method</h3>
+<p class="gloss">Encode sets as polynomials; dimension counting</p>
+<p><strong>Home:</strong> Ch. 6</p>
+<p><strong>Called as:</strong> Ch. 6 <em>Polynomial method</em> · Ch. 7 <em>Polynomial method</em> · Ch. 9 <em>Polynomial method</em> · Ch. 14 <em>Polynomial method (Chapter 6’s card)</em></p>
+<p><strong>Named faces:</strong> slice rank — the two-entry face shared with P19 (see P19’s face entry; the cap-set engine, CLP/EG)</p>
+
+<h3 id="P23">P23 · Compression / shifting</h3>
+<p class="gloss">Replace sets by canonical “heavier” ones without losing the property</p>
+<p><strong>Home:</strong> Ch. 7</p>
+<p><strong>Called as:</strong> Ch. 7 <em>Compression / shifting</em> · Ch. 9 <em>Compression / deformation</em></p>
+
+<h3 id="P24">P24 · Shadow pricing (Kruskal–Katona)</h3>
+<p class="gloss">Price a family by its own real parameter x: a k-family of size C(x, k) forces every j-shadow to size ≥ C(x, j) — equality only at integer x and the complete families</p>
+<p><strong>Home:</strong> Ch. 7, Ch. 9</p>
+<p><strong>Called as:</strong> Ch. 7 <em>Shadow pricing</em></p>
+<p><strong>Registry note:</strong> No firings by P-ID: the price-the-real-parameter move powers Ch. 9’s ex. 11 and ex. 18, whose hints name the chapter’s own lore formulations (see Ch. 9 L4–L5)</p>
+
+<h3 id="P25">P25 · Reduction / encoding</h3>
+<p class="gloss">Translate one problem into another’s language; the target structure carries the proof or the hardness</p>
+<p><strong>Home:</strong> Ch. 3, Ch. 10, Ch. 11</p>
+<p><strong>Called as:</strong> Ch. 10 <em>Reduction / encoding</em> · Ch. 11 <em>Reduction / encoding</em> · Ch. 12 <em>Reduction / encoding</em> · Ch. 17 <em>Reduction / encoding</em> · Ch. 18 <em>Encoding</em> · Ch. 19 <em>Reduction / encoding</em> · Ch. 20 <em>Reduction / encoding</em> · Ch. 21 <em>Reduction / encoding</em></p>
+
+<h3 id="P26">P26 · Compactness (finite ↔ infinite)</h3>
+<p class="gloss">Prove the infinite statement, pull the finite one back via König’s lemma — or push the finite one to a limit</p>
+<p><strong>Home:</strong> Ch. 2, Ch. 10</p>
+<p><strong>Called as:</strong> Ch. 10 <em>Compactness</em> · Ch. 12 <em>Compactness</em> · Ch. 18 <em>Phase transition</em></p>
+<p><strong>Registry note:</strong> Ch. 18’s “Phase transition” row is the kinship name: P26 names the phenomenon a limit argument captures (Ch. 13’s giant component)</p>
+
+<h3 id="P27">P27 · Correlation</h3>
+<p class="gloss">Up-sets lean together: P(∩ good) ≥ ∏P(good) is a floor — FKG beyond product measure</p>
+<p><strong>Home:</strong> Ch. 13</p>
+<p><strong>Called as:</strong> Ch. 13 <em>Correlation (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use; usage-evidence note: fully silent in the survey’s corpus — no firing, partial or genuine, in 133 papers</p>
+
+<h3 id="P28">P28 · Concentration</h3>
+<p class="gloss">Bounded exposure cannot stray far from its mean — Azuma, Talagrand</p>
+<p><strong>Home:</strong> Ch. 13</p>
+<p><strong>Called as:</strong> Ch. 13 <em>Concentration (new this chapter)</em> · Ch. 18 <em>Sharp small-ball comparison</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P29">P29 · Entropy counting</h3>
+<p class="gloss">Count by description cost: H ≤ log support + the chain rule</p>
+<p><strong>Home:</strong> Ch. 13</p>
+<p><strong>Called as:</strong> Ch. 13 <em>Entropy counting (new this chapter)</em> · Ch. 17 <em>Entropy counting</em> · Ch. 19 <em>Entropy counting</em></p>
+<p><strong>Named faces:</strong> entropy compression — the Moser–Tardos face (Ch. 19 L5, with P29 named as the counting parent per the survey’s honest external-lineage note)</p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use; Ch. 19’s Lecture 5 teaches entropy compression, but a genuine problem use still waits</p>
+
+<h3 id="P30">P30 · Regularity partitioning</h3>
+<p class="gloss">Every large graph is a bounded quasirandom blow-up; refine until the noise is uniform</p>
+<p><strong>Home:</strong> Ch. 14</p>
+<p><strong>Called as:</strong> Ch. 14 <em>Regularity partitioning (new this chapter)</em></p>
+<p><strong>Named faces:</strong> transference / dense-model — the face shared with P31 (Ch. 14’s pattern map: find a dense model inside the sparse host and the argument carries across; Green–Tao’s relative Szemerédi the flagship — one face, two entries, both named)</p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P31">P31 · Counting–removal</h3>
+<p class="gloss">Regular structure multiplies densities; few copies ⇒ few deletions</p>
+<p><strong>Home:</strong> Ch. 14</p>
+<p><strong>Called as:</strong> Ch. 14 <em>Counting–removal (new this chapter)</em></p>
+<p><strong>Named faces:</strong> transference / dense-model — the face shared with P30 (see P30’s face entry)</p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P32">P32 · Stability</h3>
+<p class="gloss">Near-extremal objects sit near the extremal configuration, not merely near its count</p>
+<p><strong>Home:</strong> Ch. 14</p>
+<p><strong>Called as:</strong> Ch. 14 <em>Stability (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P33">P33 · Density increment</h3>
+<p class="gloss">If the structure you want is nowhere, refine: some cell gains density</p>
+<p><strong>Home:</strong> Ch. 14</p>
+<p><strong>Called as:</strong> Ch. 14 <em>Density increment (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P34">P34 · Minor chasing</h3>
+<p class="gloss">Build a shadow-clique from disjoint connected branch sets; deletion and contraction are the moves</p>
+<p><strong>Home:</strong> Ch. 15</p>
+<p><strong>Called as:</strong> Ch. 15 <em>Minor chasing (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P35">P35 · Dynamic programming on structure</h3>
+<p class="gloss">Tree decompositions turn global problems into bag-local recurrences</p>
+<p><strong>Home:</strong> Ch. 15</p>
+<p><strong>Called as:</strong> Ch. 15 <em>Dynamic programming on structure (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use (replaced by:) no genuine firing in the survey’s corpus — one partial touch, standard-tool credit only</p>
+
+<h3 id="P36">P36 · Discharging</h3>
+<p class="gloss">Give every local object a charge; Euler’s formula fixes the total; some local configuration must go into deficit</p>
+<p><strong>Home:</strong> Ch. 15</p>
+<p><strong>Called as:</strong> Ch. 15 <em>Discharging / potential functions (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use; the silence is a SAMPLING gap, not field-abandonment — the planar-map discharging tradition was never sampled</p>
+
+<h3 id="P37">P37 · Duality</h3>
+<p class="gloss">Two theories, one object: plane duals exchange vertex-coloring with edge-flowing</p>
+<p><strong>Home:</strong> Ch. 15</p>
+<p><strong>Called as:</strong> Ch. 15 <em>Duality (new this chapter)</em></p>
+<p><strong>Registry note:</strong> Name collision: with P17 — both locally “Duality”; P37 is plane-duality (φ(G) = χ(G*), Tait’s route to 4CT), P17 is min–max duality; the P-ID disambiguates</p>
+
+<h3 id="P38">P38 · Replication</h3>
+<p class="gloss">Duplicate a vertex to force structure; twins inherit and transmit perfection</p>
+<p><strong>Home:</strong> Ch. 15</p>
+<p><strong>Called as:</strong> Ch. 15 <em>Replication (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P39">P39 · Symmetry averaging</h3>
+<p class="gloss">To count what symmetry identifies, average fixed points over the group; the cycle index prices each symmetry’s orbit structure</p>
+<p><strong>Home:</strong> Ch. 16</p>
+<p><strong>Called as:</strong> Ch. 16 <em>Symmetry averaging (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P40">P40 · Möbius inversion</h3>
+<p class="gloss">Invert summatory functions on a poset: the μ function strips double-counted weight back to the primitive layer</p>
+<p><strong>Home:</strong> Ch. 16</p>
+<p><strong>Called as:</strong> Ch. 16 <em>Möbius inversion (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P41">P41 · Double-counting &amp; divisibility</h3>
+<p class="gloss">Integrality of the replication numbers r and λ is a design’s birth certificate: non-integral parameters forbid existence before any search</p>
+<p><strong>Home:</strong> Ch. 16</p>
+<p><strong>Called as:</strong> Ch. 17 <em>Double-counting &amp; divisibility</em> · Ch. 20 <em>Divisibility (cameo)</em> · Ch. 21 <em>Divisibility (cameo)</em></p>
+<p><strong>Registry note:</strong> The first of the sixteen forward-registry entries to exit: Ex 6’s hint names divisibility as P41’s cameo (Ch. 20: 6, the session-83 registry sweep)</p>
+
+<h3 id="P42">P42 · Words-as-designs</h3>
+<p class="gloss">A code’s weight classes can carry Steiner structure: Assmus–Mattson turns distance into t-designs (Golay → Witt)</p>
+<p><strong>Home:</strong> Ch. 16</p>
+<p><strong>Called as:</strong> Ch. 16 <em>Words-as-designs (new this chapter)</em></p>
+<p><strong>Registry note:</strong> forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use</p>
+
+<h3 id="P43">P43 · Semi-random nibble</h3>
+<p class="gloss">Reveal a tiny random slice of the structure at a time and track one parameter through every nibble: the tracked quantity moves by honest conditional expectation each round, so the process converges on the full structure (Rödl’s nibble; Pippenger–Spencer)</p>
+<p><strong>Home:</strong> Ch. 17</p>
+<p><strong>Called as:</strong> Ch. 17 <em>Semi-random nibble (this chapter’s home)</em></p>
+
+<h3 id="P44">P44 · Threshold / window</h3>
+<p class="gloss">The window is the theorem: a random structure’s property turns on inside a scaling window whose position and width carry the information (Erdős–Rényi evolution; Friedgut–Kalai sharpness; the Kahn–Kalai expectation threshold, proved Park–Pham)</p>
+<p><strong>Home:</strong> Ch. 18</p>
+<p><strong>Called as:</strong> Ch. 18 <em>Threshold/window (this chapter’s home)</em></p>
+
+<h3 id="P45">P45 · Local lemma</h3>
+<p class="gloss">Rare, sparsely dependent bad events can be simultaneously avoided: certify survival seat by seat — p_i ≤ x_i ·∏_{j∈Γ(i)}(1−x_j) — when no union bound can total them (Erdős–Lovász 1975; Spencer’s asymmetric form; the lopsided variant; Moser–Tardos’s resampling algorithm; Shearer’s boundary)</p>
+<p><strong>Home:</strong> Ch. 19</p>
+<p><strong>Called as:</strong> Ch. 19 <em>Local lemma (this chapter’s home)</em></p>
+
+
+<h2>6 · The machine-readable payload</h2>
+<div class="pin"><strong>Immutability pin.</strong> SHA-1 of the UTF-8 encoding of the JSON payload below (after HTML-unescaping the entities): <code>032597019d667feea5a966adaf0995c9acf614a2</code>. Any change to the payload invalidates this hash. The payload’s <code>id</code> field is the join key; <code>29829</code> UTF-8 bytes, version 1, generated 2026-10-15. This file’s own git blob SHA is recorded in the project record (the registry file cannot embed its own hash).</div>
+<pre id="registry-json">{
+  "registry": "cgt-atlas-pattern-map",
+  "book": "The Combinatorics &amp; Graph Theory Atlas",
+  "companion": "The Pattern Map — companion registry, not a numbered chapter (the 21 chapter numbers stay pinned)",
+  "version": 1,
+  "generated": "2026-10-15",
+  "immutable": true,
+  "join_key": "id",
+  "master": "cgt-atlas.md §1 (The Master Pattern Index) — canonical names, glosses, home chapters; usage ledger (per-pattern firings) lives there",
+  "extraction": "all 21 chapter masters (pattern tables, Trick Bag cards, hint mentions), session of 2026-10-15; verified: no P-ID outside 1..45 appears anywhere in the masters",
+  "conventions": {
+    "id_rule": "Pn (n = 1..45) — the immutable join key; names are documentation only; one canonical name per ID",
+    "alias_rule": "chapter-local labels with chapter provenance; never a key; collisions resolved by ID",
+    "evidence_grades": [
+      "GENUINE — the pattern carries the proof (Ch. 12’s per-problem map, Ch. 20’s honest census)",
+      "PARTIAL — the pattern fires as a supporting step",
+      "named cameo — a one-off named appearance (e.g. P41 “Divisibility (cameo)”)",
+      "forward-registry — introduced at its chapter’s ship, awaiting its first genuine use"
+    ],
+    "ship_markers": "“(new this chapter)” = proposed to the registry at the chapter’s ship; “(this chapter’s home)” = the pattern’s home chapter; “(cameo)” = brief named appearance",
+    "compound_rows": "a chapter row may fire two patterns together (Ch. 3 “P8 + P10 Extremal rod”; Ch. 3 “P15 Greedy / P18 algorithmic”); both IDs get the alias with the compound noted",
+    "name_collisions": "P17 “Duality (min–max)” vs P37 “Duality” (plane duals) — two distinct patterns, one local name; the ID disambiguates",
+    "non_registry_clusters": [
+      "Ch. 20: the game-strategy cluster (pairing, adaptive adversary, state partition) — no Atlas P-ID, named deliberately",
+      "Ch. 21: the five coverage-gap engines — no Atlas P-ID; the chapter’s subject"
+    ],
+    "reading_order": "the pre-doctoral elementary five: P25, P4, P1, P9, P10 (Ch. 12’s honest-census note); honest boundary: P5, P16, P23, P30–P31 — master the elementary five first",
+    "versioning": "if the Atlas ever adopts new patterns (P46+), this registry bumps version and its SHA-1 pin; the IDs of existing patterns never change"
+  },
+  "patterns": [
+    {
+      "id": "P1",
+      "gloss": "Count A by matching it 1-to-1 with a set B you can count",
+      "home": [
+        1,
+        2
+      ],
+      "aliases": [
+        {
+          "ch": 1,
+          "label": "Bijection"
+        },
+        {
+          "ch": 2,
+          "label": "Bijection"
+        },
+        {
+          "ch": 12,
+          "label": "Bijection / orbits"
+        },
+        {
+          "ch": 20,
+          "label": "Sign-reversing involution (partial)"
+        }
+      ],
+      "faces": [
+        "sign-reversing involution — P1’s dynamic face: pair unwanted objects with a sign-flipping swap and they cancel from an alternating sum (Gessel–Viennot; Ch. 1 Trick Bag, used again in Ch. 20)"
+      ]
+    },
+    {
+      "id": "P2",
+      "gloss": "Count the same set two ways; equate",
+      "home": [
+        1,
+        2,
+        3
+      ],
+      "aliases": [
+        {
+          "ch": 1,
+          "label": "Double counting"
+        },
+        {
+          "ch": 2,
+          "label": "Double counting"
+        },
+        {
+          "ch": 5,
+          "label": "Double counting"
+        },
+        {
+          "ch": 5,
+          "label": "Free inequality"
+        },
+        {
+          "ch": 7,
+          "label": "Double counting"
+        },
+        {
+          "ch": 17,
+          "label": "Double counting"
+        },
+        {
+          "ch": 21,
+          "label": "Double counting"
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "gloss": "Add, subtract overlaps back",
+      "home": [
+        1
+      ],
+      "aliases": [
+        {
+          "ch": 1,
+          "label": "Inclusion–exclusion"
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "gloss": "Relate case n to smaller cases",
+      "home": [
+        1,
+        2,
+        3
+      ],
+      "aliases": [
+        {
+          "ch": 1,
+          "label": "Recurrence"
+        },
+        {
+          "ch": 2,
+          "label": "Leaf induction"
+        },
+        {
+          "ch": 3,
+          "label": "Delete &amp; extend"
+        },
+        {
+          "ch": 5,
+          "label": "Critical-set split"
+        },
+        {
+          "ch": 5,
+          "label": "Induction on one side"
+        },
+        {
+          "ch": 7,
+          "label": "Induction"
+        },
+        {
+          "ch": 9,
+          "label": "Induction"
+        },
+        {
+          "ch": 10,
+          "label": "Recurrence + induction"
+        },
+        {
+          "ch": 11,
+          "label": "Recurrence + induction"
+        },
+        {
+          "ch": 12,
+          "label": "Monovariant / induction"
+        },
+        {
+          "ch": 17,
+          "label": "Recurrence + induction"
+        },
+        {
+          "ch": 18,
+          "label": "Recurrence + induction"
+        },
+        {
+          "ch": 19,
+          "label": "Recurrence + induction"
+        },
+        {
+          "ch": 20,
+          "label": "Recurrence + induction"
+        }
+      ],
+      "faces": [
+        "monovariant — P4’s termination face: a quantity that must move (Ch. 1 Trick Bag; Ch. 12’s “Monovariant / induction” row)"
+      ]
+    },
+    {
+      "id": "P5",
+      "gloss": "Turn a sequence into a function; let algebra work",
+      "home": [
+        1
+      ],
+      "aliases": [
+        {
+          "ch": 1,
+          "label": "Generating function"
+        },
+        {
+          "ch": 20,
+          "label": "Generating functions"
+        }
+      ]
+    },
+    {
+      "id": "P6",
+      "gloss": "Count the complement or reflect the bad objects",
+      "home": [
+        1
+      ],
+      "aliases": [
+        {
+          "ch": 1,
+          "label": "Complement / reflection"
+        }
+      ]
+    },
+    {
+      "id": "P7",
+      "gloss": "Degree-sum is even; ends of arguments",
+      "home": [
+        2
+      ],
+      "aliases": [
+        {
+          "ch": 2,
+          "label": "Parity / handshaking"
+        },
+        {
+          "ch": 12,
+          "label": "Parity"
+        }
+      ]
+    },
+    {
+      "id": "P8",
+      "gloss": "Take an extremal object; its structure forces a cycle, leaf, etc.",
+      "home": [
+        2,
+        3
+      ],
+      "aliases": [
+        {
+          "ch": 2,
+          "label": "Longest path / extremal"
+        },
+        {
+          "ch": 3,
+          "label": "Extremal rod (compound row: P8 + P10)"
+        },
+        {
+          "ch": 7,
+          "label": "Extremal circle structure"
+        },
+        {
+          "ch": 12,
+          "label": "Extremal / longest-path"
+        }
+      ]
+    },
+    {
+      "id": "P9",
+      "gloss": "n+1 objects, n boxes — and the lower the contest level, the more it carries the whole proof (the survey’s level gradient: Putnam small-step, USAMO obstruction, IMO whole-proof engine)",
+      "home": [
+        3
+      ],
+      "aliases": [
+        {
+          "ch": 2,
+          "label": "Pigeonhole"
+        },
+        {
+          "ch": 3,
+          "label": "Pigeonhole"
+        },
+        {
+          "ch": 10,
+          "label": "Pigeonhole"
+        },
+        {
+          "ch": 11,
+          "label": "Pigeonhole"
+        },
+        {
+          "ch": 12,
+          "label": "Pigeonhole"
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "gloss": "Some object beats the average",
+      "home": [
+        3,
+        4
+      ],
+      "aliases": [
+        {
+          "ch": 3,
+          "label": "Extremal rod (compound row: P8 + P10)"
+        },
+        {
+          "ch": 4,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 11,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 12,
+          "label": "Averaging"
+        },
+        {
+          "ch": 13,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 14,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 15,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 16,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 17,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 18,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 19,
+          "label": "Averaging / expectation"
+        },
+        {
+          "ch": 20,
+          "label": "Averaging / expectation"
+        }
+      ],
+      "faces": [
+        "graphical Brascamp–Lieb — P10’s celebrated face: assign every edge of the host graph a two-variable function and iterate Lp duality and Hölder (Sah–Sawhney–Stoner–Zhao’s reverse Sidorenko inequality; Ch. 4 Trick Bag)"
+      ]
+    },
+    {
+      "id": "P11",
+      "gloss": "Beat the bound by building the object",
+      "home": [
+        3
+      ],
+      "aliases": [
+        {
+          "ch": 3,
+          "label": "Explicit construction"
+        },
+        {
+          "ch": 5,
+          "label": "Padding construction"
+        },
+        {
+          "ch": 5,
+          "label": "Padding"
+        },
+        {
+          "ch": 10,
+          "label": "Explicit construction"
+        },
+        {
+          "ch": 11,
+          "label": "Explicit construction"
+        },
+        {
+          "ch": 12,
+          "label": "Explicit construction"
+        },
+        {
+          "ch": 17,
+          "label": "Explicit construction"
+        },
+        {
+          "ch": 20,
+          "label": "Explicit construction"
+        },
+        {
+          "ch": 21,
+          "label": "Explicit construction"
+        }
+      ]
+    },
+    {
+      "id": "P12",
+      "gloss": "Prove existence by sampling",
+      "home": [
+        4
+      ],
+      "aliases": [
+        {
+          "ch": 4,
+          "label": "Random construction"
+        },
+        {
+          "ch": 10,
+          "label": "Random construction"
+        },
+        {
+          "ch": 13,
+          "label": "Random construction"
+        },
+        {
+          "ch": 17,
+          "label": "Random construction"
+        },
+        {
+          "ch": 18,
+          "label": "Random construction"
+        },
+        {
+          "ch": 19,
+          "label": "Random construction"
+        },
+        {
+          "ch": 20,
+          "label": "Random construction"
+        },
+        {
+          "ch": 21,
+          "label": "Random construction (cameo)"
+        }
+      ]
+    },
+    {
+      "id": "P13",
+      "gloss": "If failure probabilities sum below 1, success exists",
+      "home": [
+        4
+      ],
+      "aliases": [
+        {
+          "ch": 4,
+          "label": "Union bound"
+        },
+        {
+          "ch": 13,
+          "label": "Union bound"
+        },
+        {
+          "ch": 17,
+          "label": "Union bound"
+        },
+        {
+          "ch": 18,
+          "label": "Union bound"
+        },
+        {
+          "ch": 19,
+          "label": "Union bound"
+        }
+      ]
+    },
+    {
+      "id": "P14",
+      "gloss": "Random object + pruning",
+      "home": [
+        4
+      ],
+      "aliases": [
+        {
+          "ch": 4,
+          "label": "Alteration"
+        },
+        {
+          "ch": 13,
+          "label": "Alteration"
+        },
+        {
+          "ch": 17,
+          "label": "Alteration"
+        }
+      ]
+    },
+    {
+      "id": "P15",
+      "gloss": "Delete a vertex, extend the solution",
+      "home": [
+        2,
+        3
+      ],
+      "aliases": [
+        {
+          "ch": 2,
+          "label": "Induction on vertices"
+        },
+        {
+          "ch": 3,
+          "label": "Greedy (compound row: P15 Greedy / P18 algorithmic)"
+        },
+        {
+          "ch": 12,
+          "label": "Induction on vertices/edges"
+        }
+      ]
+    },
+    {
+      "id": "P16",
+      "gloss": "Improve a partial solution along a path",
+      "home": [
+        5
+      ],
+      "aliases": [
+        {
+          "ch": 5,
+          "label": "Alternating paths"
+        },
+        {
+          "ch": 11,
+          "label": "Alternating paths / augmentation"
+        },
+        {
+          "ch": 12,
+          "label": "Alternating paths"
+        }
+      ]
+    },
+    {
+      "id": "P17",
+      "gloss": "Two problems are the same number",
+      "home": [
+        5
+      ],
+      "aliases": [
+        {
+          "ch": 5,
+          "label": "Duality"
+        },
+        {
+          "ch": 5,
+          "label": "Duality dictionary"
+        },
+        {
+          "ch": 7,
+          "label": "Duality / specialization"
+        },
+        {
+          "ch": 11,
+          "label": "Duality"
+        },
+        {
+          "ch": 12,
+          "label": "Duality"
+        }
+      ],
+      "note": "Name collision: P17 and P37 are both locally called “Duality” — P17 is min–max duality, P37 is plane-duality; the P-ID disambiguates"
+    },
+    {
+      "id": "P18",
+      "gloss": "The proof is a procedure; termination = theorem",
+      "home": [
+        2,
+        5
+      ],
+      "aliases": [
+        {
+          "ch": 2,
+          "label": "Algorithmic proof"
+        },
+        {
+          "ch": 3,
+          "label": "algorithmic (compound row: P15 Greedy / P18 algorithmic)"
+        },
+        {
+          "ch": 4,
+          "label": "Algorithmic proof"
+        },
+        {
+          "ch": 5,
+          "label": "Algorithmic proof"
+        },
+        {
+          "ch": 5,
+          "label": "Augment-or-certify"
+        },
+        {
+          "ch": 11,
+          "label": "Algorithmic proof"
+        },
+        {
+          "ch": 12,
+          "label": "Algorithmic proof"
+        },
+        {
+          "ch": 21,
+          "label": "Algorithm as proof"
+        }
+      ]
+    },
+    {
+      "id": "P19",
+      "gloss": "Encode sets as vectors; dimension bounds",
+      "home": [
+        6
+      ],
+      "aliases": [
+        {
+          "ch": 6,
+          "label": "Rank / dimension"
+        },
+        {
+          "ch": 8,
+          "label": "Rank / dimension"
+        }
+      ],
+      "faces": [
+        "slice rank — the two-entry face shared with P22 (Ch. 6’s slice-rank row: the CLP/EG engine is simultaneously P19’s dimension budget and P22’s polynomial method; both patterns named, no double credit)"
+      ]
+    },
+    {
+      "id": "P20",
+      "gloss": "Push weight to the extremal configuration",
+      "home": [
+        3,
+        6
+      ],
+      "aliases": [
+        {
+          "ch": 3,
+          "label": "Cloning/symmetrization"
+        },
+        {
+          "ch": 6,
+          "label": "Weight shifting"
+        },
+        {
+          "ch": 6,
+          "label": "Weight shifting / symmetrization"
+        },
+        {
+          "ch": 8,
+          "label": "Weight shifting"
+        },
+        {
+          "ch": 8,
+          "label": "Weight shifting / symmetrization"
+        }
+      ],
+      "note": "Usage-evidence note (survey, sessions 80/83): genuinely under-used in the field — the symmetrization the classics actually do is performed by P23 shifting or P10 averaging; the entry stays canonical (Motzkin–Straus and the shifting card are the showcases); no problem fires it by P-ID yet"
+    },
+    {
+      "id": "P21",
+      "gloss": "Eigenvalues as averaging devices; operator norm on 1⊥",
+      "home": [
+        6
+      ],
+      "aliases": [
+        {
+          "ch": 6,
+          "label": "Spectral / Rayleigh"
+        },
+        {
+          "ch": 8,
+          "label": "Spectral / Rayleigh"
+        }
+      ]
+    },
+    {
+      "id": "P22",
+      "gloss": "Encode sets as polynomials; dimension counting",
+      "home": [
+        6
+      ],
+      "aliases": [
+        {
+          "ch": 6,
+          "label": "Polynomial method"
+        },
+        {
+          "ch": 7,
+          "label": "Polynomial method"
+        },
+        {
+          "ch": 9,
+          "label": "Polynomial method"
+        },
+        {
+          "ch": 14,
+          "label": "Polynomial method (Chapter 6’s card)"
+        }
+      ],
+      "faces": [
+        "slice rank — the two-entry face shared with P19 (see P19’s face entry; the cap-set engine, CLP/EG)"
+      ]
+    },
+    {
+      "id": "P23",
+      "gloss": "Replace sets by canonical “heavier” ones without losing the property",
+      "home": [
+        7
+      ],
+      "aliases": [
+        {
+          "ch": 7,
+          "label": "Compression / shifting"
+        },
+        {
+          "ch": 9,
+          "label": "Compression / deformation"
+        }
+      ]
+    },
+    {
+      "id": "P24",
+      "gloss": "Price a family by its own real parameter x: a k-family of size C(x, k) forces every j-shadow to size ≥ C(x, j) — equality only at integer x and the complete families",
+      "home": [
+        7,
+        9
+      ],
+      "aliases": [
+        {
+          "ch": 7,
+          "label": "Shadow pricing"
+        }
+      ],
+      "note": "No firings by P-ID: the price-the-real-parameter move powers Ch. 9’s ex. 11 and ex. 18, whose hints name the chapter’s own lore formulations (see Ch. 9 L4–L5)"
+    },
+    {
+      "id": "P25",
+      "gloss": "Translate one problem into another’s language; the target structure carries the proof or the hardness",
+      "home": [
+        3,
+        10,
+        11
+      ],
+      "aliases": [
+        {
+          "ch": 10,
+          "label": "Reduction / encoding"
+        },
+        {
+          "ch": 11,
+          "label": "Reduction / encoding"
+        },
+        {
+          "ch": 12,
+          "label": "Reduction / encoding"
+        },
+        {
+          "ch": 17,
+          "label": "Reduction / encoding"
+        },
+        {
+          "ch": 18,
+          "label": "Encoding"
+        },
+        {
+          "ch": 19,
+          "label": "Reduction / encoding"
+        },
+        {
+          "ch": 20,
+          "label": "Reduction / encoding"
+        },
+        {
+          "ch": 21,
+          "label": "Reduction / encoding"
+        }
+      ]
+    },
+    {
+      "id": "P26",
+      "gloss": "Prove the infinite statement, pull the finite one back via König’s lemma — or push the finite one to a limit",
+      "home": [
+        2,
+        10
+      ],
+      "aliases": [
+        {
+          "ch": 10,
+          "label": "Compactness"
+        },
+        {
+          "ch": 12,
+          "label": "Compactness"
+        },
+        {
+          "ch": 18,
+          "label": "Phase transition"
+        }
+      ],
+      "note": "Ch. 18’s “Phase transition” row is the kinship name: P26 names the phenomenon a limit argument captures (Ch. 13’s giant component)"
+    },
+    {
+      "id": "P27",
+      "gloss": "Up-sets lean together: P(∩ good) ≥ ∏P(good) is a floor — FKG beyond product measure",
+      "home": [
+        13
+      ],
+      "aliases": [
+        {
+          "ch": 13,
+          "label": "Correlation (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use; usage-evidence note: fully silent in the survey’s corpus — no firing, partial or genuine, in 133 papers"
+    },
+    {
+      "id": "P28",
+      "gloss": "Bounded exposure cannot stray far from its mean — Azuma, Talagrand",
+      "home": [
+        13
+      ],
+      "aliases": [
+        {
+          "ch": 13,
+          "label": "Concentration (new this chapter)"
+        },
+        {
+          "ch": 18,
+          "label": "Sharp small-ball comparison"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P29",
+      "gloss": "Count by description cost: H ≤ log support + the chain rule",
+      "home": [
+        13
+      ],
+      "aliases": [
+        {
+          "ch": 13,
+          "label": "Entropy counting (new this chapter)"
+        },
+        {
+          "ch": 17,
+          "label": "Entropy counting"
+        },
+        {
+          "ch": 19,
+          "label": "Entropy counting"
+        }
+      ],
+      "faces": [
+        "entropy compression — the Moser–Tardos face (Ch. 19 L5, with P29 named as the counting parent per the survey’s honest external-lineage note)"
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use; Ch. 19’s Lecture 5 teaches entropy compression, but a genuine problem use still waits"
+    },
+    {
+      "id": "P30",
+      "gloss": "Every large graph is a bounded quasirandom blow-up; refine until the noise is uniform",
+      "home": [
+        14
+      ],
+      "aliases": [
+        {
+          "ch": 14,
+          "label": "Regularity partitioning (new this chapter)"
+        }
+      ],
+      "faces": [
+        "transference / dense-model — the face shared with P31 (Ch. 14’s pattern map: find a dense model inside the sparse host and the argument carries across; Green–Tao’s relative Szemerédi the flagship — one face, two entries, both named)"
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P31",
+      "gloss": "Regular structure multiplies densities; few copies ⇒ few deletions",
+      "home": [
+        14
+      ],
+      "aliases": [
+        {
+          "ch": 14,
+          "label": "Counting–removal (new this chapter)"
+        }
+      ],
+      "faces": [
+        "transference / dense-model — the face shared with P30 (see P30’s face entry)"
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P32",
+      "gloss": "Near-extremal objects sit near the extremal configuration, not merely near its count",
+      "home": [
+        14
+      ],
+      "aliases": [
+        {
+          "ch": 14,
+          "label": "Stability (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P33",
+      "gloss": "If the structure you want is nowhere, refine: some cell gains density",
+      "home": [
+        14
+      ],
+      "aliases": [
+        {
+          "ch": 14,
+          "label": "Density increment (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P34",
+      "gloss": "Build a shadow-clique from disjoint connected branch sets; deletion and contraction are the moves",
+      "home": [
+        15
+      ],
+      "aliases": [
+        {
+          "ch": 15,
+          "label": "Minor chasing (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P35",
+      "gloss": "Tree decompositions turn global problems into bag-local recurrences",
+      "home": [
+        15
+      ],
+      "aliases": [
+        {
+          "ch": 15,
+          "label": "Dynamic programming on structure (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use (replaced by:) no genuine firing in the survey’s corpus — one partial touch, standard-tool credit only"
+    },
+    {
+      "id": "P36",
+      "gloss": "Give every local object a charge; Euler’s formula fixes the total; some local configuration must go into deficit",
+      "home": [
+        15
+      ],
+      "aliases": [
+        {
+          "ch": 15,
+          "label": "Discharging / potential functions (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use; the silence is a SAMPLING gap, not field-abandonment — the planar-map discharging tradition was never sampled"
+    },
+    {
+      "id": "P37",
+      "gloss": "Two theories, one object: plane duals exchange vertex-coloring with edge-flowing",
+      "home": [
+        15
+      ],
+      "aliases": [
+        {
+          "ch": 15,
+          "label": "Duality (new this chapter)"
+        }
+      ],
+      "note": "Name collision: with P17 — both locally “Duality”; P37 is plane-duality (φ(G) = χ(G*), Tait’s route to 4CT), P17 is min–max duality; the P-ID disambiguates"
+    },
+    {
+      "id": "P38",
+      "gloss": "Duplicate a vertex to force structure; twins inherit and transmit perfection",
+      "home": [
+        15
+      ],
+      "aliases": [
+        {
+          "ch": 15,
+          "label": "Replication (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P39",
+      "gloss": "To count what symmetry identifies, average fixed points over the group; the cycle index prices each symmetry’s orbit structure",
+      "home": [
+        16
+      ],
+      "aliases": [
+        {
+          "ch": 16,
+          "label": "Symmetry averaging (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P40",
+      "gloss": "Invert summatory functions on a poset: the μ function strips double-counted weight back to the primitive layer",
+      "home": [
+        16
+      ],
+      "aliases": [
+        {
+          "ch": 16,
+          "label": "Möbius inversion (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P41",
+      "gloss": "Integrality of the replication numbers r and λ is a design’s birth certificate: non-integral parameters forbid existence before any search",
+      "home": [
+        16
+      ],
+      "aliases": [
+        {
+          "ch": 17,
+          "label": "Double-counting &amp; divisibility"
+        },
+        {
+          "ch": 20,
+          "label": "Divisibility (cameo)"
+        },
+        {
+          "ch": 21,
+          "label": "Divisibility (cameo)"
+        }
+      ],
+      "note": "The first of the sixteen forward-registry entries to exit: Ex 6’s hint names divisibility as P41’s cameo (Ch. 20: 6, the session-83 registry sweep)"
+    },
+    {
+      "id": "P42",
+      "gloss": "A code’s weight classes can carry Steiner structure: Assmus–Mattson turns distance into t-designs (Golay → Witt)",
+      "home": [
+        16
+      ],
+      "aliases": [
+        {
+          "ch": 16,
+          "label": "Words-as-designs (new this chapter)"
+        }
+      ],
+      "note": "forward-registry entry: introduced at its chapter’s ship; no problem or hint names it — Ch. 13–16’s exercises carry no pattern-ID hints by design; it waits for its first genuine use"
+    },
+    {
+      "id": "P43",
+      "gloss": "Reveal a tiny random slice of the structure at a time and track one parameter through every nibble: the tracked quantity moves by honest conditional expectation each round, so the process converges on the full structure (Rödl’s nibble; Pippenger–Spencer)",
+      "home": [
+        17
+      ],
+      "aliases": [
+        {
+          "ch": 17,
+          "label": "Semi-random nibble (this chapter’s home)"
+        }
+      ]
+    },
+    {
+      "id": "P44",
+      "gloss": "The window is the theorem: a random structure’s property turns on inside a scaling window whose position and width carry the information (Erdős–Rényi evolution; Friedgut–Kalai sharpness; the Kahn–Kalai expectation threshold, proved Park–Pham)",
+      "home": [
+        18
+      ],
+      "aliases": [
+        {
+          "ch": 18,
+          "label": "Threshold/window (this chapter’s home)"
+        }
+      ]
+    },
+    {
+      "id": "P45",
+      "gloss": "Rare, sparsely dependent bad events can be simultaneously avoided: certify survival seat by seat — p_i ≤ x_i ·∏_{j∈Γ(i)}(1−x_j) — when no union bound can total them (Erdős–Lovász 1975; Spencer’s asymmetric form; the lopsided variant; Moser–Tardos’s resampling algorithm; Shearer’s boundary)",
+      "home": [
+        19
+      ],
+      "aliases": [
+        {
+          "ch": 19,
+          "label": "Local lemma (this chapter’s home)"
+        }
+      ]
+    }
+  ]
+}</pre>
+<hr>
+<p><em>The Pattern Map, registry version 1. Generated 2026-10-15 from the Atlas masters; provenance and the session record live in the project KNOWLEDGE file. Companion artifact of the Combinatorics &amp; Graph Theory Atlas — the 21 chapter numbers stay pinned.</em></p>
+</main>
+</body>
+</html>
