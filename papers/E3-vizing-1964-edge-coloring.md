@@ -1,0 +1,8 @@
+# E3 - Vizing (1964): On an estimate of the chromatic class of a p-graph
+
+- Metadata (web-verified 2026-10-13): V. G. Vizing, "On an estimate of the chromatic class of a p-graph" [Russian], Diskretnyi Analiz 3 (1964): 25-30, MR 0180505. Sources: Wikipedia (Vadim G. Vizing publication list; Vizing's theorem page). Honest notes: R. P. Gupta independently discovered the theorem (PhD work 1965-67, per Wikipedia); the multigraph bound is Delta + mu (multiplicity); Vizing also later introduced list coloring (1976, Diskret. Analiz 29: 3-10) - lineage for E7/E9/E10/E11.
+- Summary (general-knowledge level, flagged sketch): Vizing's theorem - the edges of a simple graph of maximum degree Delta can be properly colored with Delta + 1 colors (and Delta are necessary); multigraphs need at most Delta + mu. The proof is a fan argument: at a maximal partial coloring, the fan of edges at a vertex is rotated, and a Kempe-chain exchange on two colors finishes the job.
+- Decisive moves: (1) [P15] induction on edges - color all but one edge, then repair; (2) [P8] extremal setup - a maximal partial coloring plus the vertex whose fan is analyzed; (3) [Kempe-watch] the fan rotation and two-color chain exchange - recoloring along an alternating path, the Kempe-chain move (same watch-item family as E8's migration chains and E9's list-chain arguments); (4) [P18] constructive - the proof yields a polynomial edge-coloring procedure.
+- New-pattern candidates: none new; contributes to the Kempe-chain recoloring watch-item.
+- Full text: not fetched - Russian original in an obscure Soviet serial; textbook expositions abundant.
+- Corrections log: none - seed row confirmed (Diskret. Analiz 3, 25-30; MR 0180505); Gupta independent-discovery note recorded.

@@ -1,0 +1,8 @@
+# E5 - Jaeger (1979): Flows and generalized coloring theorems in graphs
+
+- Metadata (web-verified 2026-10-13): F. Jaeger, "Flows and generalized coloring theorems in graphs", Journal of Combinatorial Theory Series B 26 (1979) - pages 205-216 per standard citation, flagged. TITLE CORRECTED vs the seed ("On nowhere-zero flows"): the 8-flow theorem lives in this paper. Sources: ScienceDirect record (pii 0095895679900571, copyright 1979); Wikipedia (Nowhere-zero flow) citing the paper; Open Problem Garden (5-flow conjecture page). Honest note: the 8-flow theorem was proved independently by Kilpatrick (per the Open Problem Garden) - the "Jaeger 8-flow" attribution is shared.
+- Summary (general-knowledge level, flagged sketch): the 8-flow theorem - every bridgeless graph has a nowhere-zero 8-flow - the first general bound toward Tutte's 5-flow conjecture, obtained by combining flow constructions over smaller groups (products building Z_8) with generalized mod-k coloring results.
+- Decisive moves: (1) [P37] the flows framework - carrying the coloring-flows program of E4 beyond the plane; (2) [P25] group-product combination - a flow over a product group assembled from flows over smaller groups, the reduction that makes the bridgeless case tractable; (3) [P17]-flavored: the mod-k generalizations relate coloring-type invariants with flow-type ones.
+- New-pattern candidates: none new.
+- Full text: not fetched - paywalled Elsevier; textbook treatments (Diestel) document the theorem.
+- Corrections log: TITLE corrected; venue pinned JCTB 26 (1979), pages flagged; Kilpatrick independent-discovery note recorded.

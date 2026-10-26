@@ -1,0 +1,8 @@
+# F2 - van der Waerden (1927): Beweis einer Baudet'schen Vermutung
+
+- Metadata (web-verified 2026-10-13): B. L. van der Waerden, "Beweis einer Baudet'schen Vermutung", Nieuw Archief voor Wiskunde (2) 15 (1927): 212-216. Sources: Mathematics Stack Exchange reference request (Zbl-style citation: Nieuw Arch. Wiskde. (2) 15, 212-216, listed as 1928; the open Delpher digitization of the journal's second series at the Royal Library of the Netherlands). YEAR NOTE: standard modern citation is 1927; the Zbl listing says 1928 - both recorded, the discrepancy flagged honestly.
+- Summary (general-knowledge level, flagged sketch): van der Waerden's theorem - for every k and r there is N such that every r-coloring of {1,...,N} contains a monochromatic k-term arithmetic progression. The proof is the celebrated double induction on (k, r) using "focused" blocks of length W(k-1, r).
+- Decisive moves: (1) [P4] the double induction - one of the most celebrated induction schemes in mathematics (Khinchin's "Three Pearls" account; van der Waerden's own two memoirs on how the proof was found); (2) [P9] pigeonhole on block colorings - among enough consecutive blocks, two carry identical color patterns, and the focused block converts them into the wanted progression; (3) hypothesis-test note: the seed expected P33 here - P33 does NOT fire (van der Waerden's theorem is a partition statement, not a density argument); the density view begins with F4/F5.
+- New-pattern candidates: none.
+- Full text: not fetched - open digitization located (Delpher, Koninklijke Bibliotheek).
+- Corrections log: 1927/1928 year discrepancy recorded; title spelling "Baudet'schen" per the standard citation.

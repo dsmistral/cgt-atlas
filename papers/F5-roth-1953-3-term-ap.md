@@ -1,0 +1,8 @@
+# F5 - Roth (1953): On certain sets of integers
+
+- Metadata (web-verified 2026-10-13): K. F. Roth, "On certain sets of integers", Journal of the London Mathematical Society 28(1) (1953): 104-109, MR 0051853, DOI 10.1112/jlms/s1-28.1.104. Sources: Roth publication list (Wikipedia, with MR and DOI); Wikipedia (Roth's theorem on arithmetic progressions, with the Salem-Spencer 1942 prior construction).
+- Summary (general-knowledge level, flagged sketch): Roth's theorem - a set of integers with no 3-term arithmetic progression has density o(n). The proof counts 3-term progressions by Fourier analysis (the Hardy-Littlewood circle method); when no progression exists, the Parseval bookkeeping forces A to have increased density on a long subprogression, and the argument iterates to a contradiction.
+- Decisive moves: (1) [P19] linear algebra/Fourier - the progression count expressed through exponential sums and controlled by Parseval-type energy arguments; (2) [P33] the DENSITY INCREMENT - the archetype of the Atlas description ("if the structure you want is nowhere, refine: some cell gains density"): absence of structure forces a denser subprogression, and iteration terminates - FIRST GENUINE USAGE EVIDENCE for silent forward-registry P33, in its founding instance; (3) hypothesis-test note: the seed expected P30 here - P30 does NOT fire in this paper (no regularity partition appears; the regularity germ is in F6/G1); (4) lineage: Salem-Spencer (1942, PNAS 28: 561-563) constructed progression-free sets of size n^{1-eps} - the lower-bound complement.
+- New-pattern candidates: none.
+- Full text: not fetched - paywalled Wiley; textbook treatments abound.
+- Corrections log: seed row confirmed (JLMS 28); pages pinned 104-109.

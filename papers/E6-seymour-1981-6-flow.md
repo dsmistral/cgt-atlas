@@ -1,0 +1,8 @@
+# E6 - Seymour (1981): Nowhere zero 6 flows
+
+- Metadata (web-verified 2026-10-13): P. D. Seymour, "Nowhere zero 6 flows", Journal of Combinatorial Theory Series B 30 (1981): 130-135. TITLE AND VENUE CORRECTED vs the seed ("On nowhere-zero flows of graphs", Quart. J. Math. Oxford): the 6-flow paper is this JCTB one. Sources: the Extensions-of-Flow-Theorems reference list (JCTB 30 (1981) 130-135); the new-proof papers (arXiv 1512.06214; "Another proof of Seymour's 6-flow theorem") stating Seymour proved it in 1981 with two proofs.
+- Summary (general-knowledge level, flagged sketch): the 6-flow theorem - every bridgeless (2-edge-connected) graph has a nowhere-zero flow over Z_2 x Z_3 = Z_6. Seymour gives two proofs; the signature move is a decomposition lemma: find an edge set whose contraction leaves a bipartite graph, transport a 2-flow across the contracted part and a 3-flow on the bipartite quotient, combine via the group product.
+- Decisive moves: (1) [P37] the flows program - improving Jaeger's 8 toward Tutte's 5; (2) [P34] deletion/contraction as the engine - the contraction lemma that makes the graph bipartite is a minor-chasing move (recorded as second genuine firing of P34 in this batch, after E2); (3) [P25] group-product reduction Z_6 = Z_2 x Z_3 (the same reduction family as E5's Z_8 products); (4) the key-result relay on Tutte's earlier lemma (per the new-proof papers' accounts).
+- New-pattern candidates: none new.
+- Full text: not fetched - paywalled; the DeVos et al. new proof (arXiv 1512.06214, open) documents the theorem and proof structure fully.
+- Corrections log: TITLE corrected; VENUE corrected Quart. J. Math. Oxford -> JCTB 30 (1981): 130-135; two-proofs fact recorded.

@@ -1,0 +1,8 @@
+# F6 - Szemeredi (1975): On sets of integers containing no k elements in arithmetic progression
+
+- Metadata (web-verified 2026-10-13): E. Szemeredi, "On sets of integers containing no k elements in arithmetic progression", Acta Arithmetica 27 (1975): 199-245 - pages per standard citation, flagged. Sources: Wikipedia (Szemeredi's theorem: the general case settled in 1975; Erdos's "masterpiece of combinatorial reasoning" verdict; the 1970 k=4 prior case).
+- Summary (general-knowledge level, flagged sketch): Szemeredi's theorem - every set of integers with positive upper density contains arbitrarily long arithmetic progressions - proving the Erdos-Turan conjecture (F4). The proof is a monumental combinatorial induction extending the author's k=4 argument, and it already uses an equitable partition of graphs into quasirandom-looking parts, which Szemeredi isolated and published the following year as the regularity lemma (G1).
+- Decisive moves: (1) [P33] density increment as the master scheme - the Roth scheme (F5) pushed to all k; (2) [P30] proto-regularity - the 1975 proof contains the germ of the regularity lemma; recorded as P30's BIRTHPLACE, with the named-lemma flagship evidence landing at G1 in the next batch; (3) [P4] the multi-level induction on k (the 1970 k=4 case as the architectural base); (4) [P9] a van der Waerden-type step serves as a component inside the induction.
+- New-pattern candidates: none.
+- Full text: not fetched - Acta Arithmetica; textbook treatments abound.
+- Corrections log: seed row confirmed (Acta Arith. 27, 1975); pages flagged per standard citation.

@@ -1,0 +1,8 @@
+# F9 - Conlon (2009): A new upper bound for diagonal Ramsey numbers
+
+- Metadata (web-verified 2026-10-13): D. Conlon, "A new upper bound for diagonal Ramsey numbers", Annals of Mathematics 170(2) (2009): 941-960, DOI 10.4007/annals.2009.170.941. OPEN PDF located: annals.math.princeton.edu. TITLE CORRECTED vs the seed ("New lower bound"): the paper is an UPPER bound - r(k+1, k+1) <= k^{-C log k / log log k} x C(2k, k), improving the 1935 Erdos-Szekeres binomial bound (F3) by a superpolynomial factor. Sources: Annals of Mathematics site (title, pages, DOI, statement, keywords "Ramsey numbers, graph theory, quasirandomness").
+- Summary (general-knowledge level, flagged sketch): Conlon's improvement of the classical diagonal Ramsey upper bound, running the standard inductive Ramsey argument on a quasirandom host graph so that each induction step gains room.
+- Decisive moves: (1) [P4] the Ramsey recursion (F1/F3's induction) retained but fed by structural properties of the host graph; (2) [P30-adjacent] quasirandomness as the engine - recorded as ADJACENT only (local jumbledness/pseudorandomness, not a regularity partition; do not credit silent P30); (3) [P12] random-graph ancestry: the host construction and its analysis descend from random graphs - random construction as the source of the extremal witness object; (4) lineage: the exponential improvements of the 2020s (Campos-Griffiths-Morris-Sahasrabudhe) continue this line.
+- New-pattern candidates: none.
+- Full text: not fetched - OPEN Annals PDF located.
+- Corrections log: TITLE corrected (upper, not lower, bound); venue resolved (Ann. of Math. 170(2) (2009): 941-960).
