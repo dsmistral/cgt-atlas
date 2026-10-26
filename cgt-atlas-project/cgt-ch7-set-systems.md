@@ -6,7 +6,7 @@ type: "text/markdown"
 
 # Chapter 7 · Extremal Set Systems
 
-*Part of the Combinatorics & Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report).*
+*Part of the Combinatorics & Graph Theory Atlas (the chapter map lives in the book basis).*
 
 How many sets can you choose before structure is forced? An antichain forces the middle level; an intersecting family forces a star; cross-intersecting pairs force Bollobás's inequality — and every one of these falls to the same engine: **count the right pairs**. This edition is a lecture course in five lectures: Sperner's theorem three ways (with the symmetric chain decomposition actually built, not cited), Bollobás's two-families theorem with the honest skew landscape, Katona's circle method with the sharp interval lemma complete — the notorious mixed sub-case included — EKR uniqueness proved in full for every n ≥ 2k+1 via anchored adjacent transpositions, and shifting, complete with its closing induction by splitting on the top element n. The chapter's second thread — sumsets (the staircase, Cauchy–Davenport in two complete proofs, Kneser's theorem, the Erdős–Ginzburg–Ziv theorem) and shadows (the Kruskal–Katona theorem through Keevash's clique-form proof, Daykin's complement mirror as a third EKR proof, the Hilton–Milner and Ahlswede–Khachatrian gateways, union-closed lore) — lives in Chapter 9, "Sumsets and Shadows: the Completed Arcs". Every proof in this chapter is complete; every claimed number is machine-checked; the figure is drawn from verified data.
 

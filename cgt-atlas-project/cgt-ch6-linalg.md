@@ -6,7 +6,7 @@ type: "text/markdown"
 
 # Chapter 6 · Linear-Algebraic Methods
 
-*Part of the Combinatorics & Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report).*
+*Part of the Combinatorics & Graph Theory Atlas (the chapter map lives in the book basis).*
 
 The great discovery of 20th-century combinatorics: many counting bounds are secretly **dimension bounds**. Encode sets as vectors, and "you can't have too many" becomes "vectors can't exceed the dimension of the space". This edition is a lecture course in four lectures — Fisher's inequality two ways, Oddtown and Eventown (where the field chooses the answer), the polynomial method, and the friendship theorem — every proof complete, every claimed number machine-checked. The polynomial method — a one-line proof of Oddtown's descendants and the engine behind the best known Ramsey lower bounds — gets a full lecture of its own, and returns in Chapter 8, running on the Hamming cube. The eigenvalue half of the subject — eigenvalues as averaging machines, spectral Turán, two-distance sets, and the modern toolkit of interlacing, the Hoffman bounds, Lovász theta, and Delsarte's linear program — is the subject of Chapter 8, *Spectral Methods and the Modern Toolkit*; this chapter closes exactly where that one picks up.
 

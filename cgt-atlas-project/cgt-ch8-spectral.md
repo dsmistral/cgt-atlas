@@ -6,7 +6,7 @@ type: "text/markdown"
 
 # Chapter 8 · Spectral Methods and the Modern Toolkit
 
-*Part of the Combinatorics & Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report).*
+*Part of the Combinatorics & Graph Theory Atlas (the chapter map lives in the book basis).*
 
 The spectrum of a graph knows its extremal answers before the witnesses are found: the largest eigenvalue averages the edges and caps them by the clique number, dimension-priced polynomials cap a point configuration's distances, and the smallest eigenvalue — read through interlacing, semidefinite duality, and linear programming — prices independence, chromatic number, zero-error capacity, and code size. This edition is a lecture course in four lectures: eigenvalues as averaging machines (Mantel proved a fourth way, and the expander-mixing lemma in its sharp form), Motzkin–Straus and spectral Turán (the clique polynomial, and Turán's theorem arriving by way of optimization), two-distance sets (a capstone that weaves together every pattern in the course), and the modern toolkit — interlacing, the Hoffman bounds, Lovász theta with θ(C₅) = √5 and Θ(C₅) = √5, and Delsarte's linear program with hand-checkable Krawtchouk certificates. Chapter 6 built the vector-and-dimension machine and closed exactly where this chapter opens; every proof here is complete or honestly cited, every claimed number is machine-checked, and the figures are drawn from verified data.
 
