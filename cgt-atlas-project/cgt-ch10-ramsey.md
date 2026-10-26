@@ -1,0 +1,855 @@
+---
+name: "cgt-ch10-ramsey"
+title: "Ch. 10 — Ramsey Theory in Depth: A Lecture Course in the Feynman Style"
+type: "text/markdown"
+---
+
+# Chapter 10 · Ramsey Theory in Depth
+
+*Part of the Combinatorics & Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report).*
+
+Chapter 3 taught you the two-beat rhythm of Ramsey theory — a forcing argument above, a construction below, and the "=" signed by both. This chapter goes where that rhythm leads when you refuse to stop. First upward: from finite colorings to colorings of all of ℕ, and back down again through König's compactness bridge — the pattern that makes "every finite piece is consistent" and "the whole infinite object is consistent" the same sentence. Then sideways, into arithmetic: van der Waerden's theorem that one color must eventually own an arithmetic progression — proved here in full, by van der Waerden's own double induction, the proof the Atlas owed you since Chapter 3 — and Schur's theorem that one color must own a solution of x + y = z, with Rado's columns condition explaining exactly which equations are unavoidable. Then deeper, into hypergraphs, where Ramsey numbers stop being exponential and become towers of exponentials, and the stepping-up construction of Erdős and Rado builds one tower level at a time — the smallest level of which this chapter machine-verifies on its own body, all 201,376 five-element subsets checked one by one. And woven through it, the Erdős–Szekeres pair: the monotone subsequence theorem, proved three ways, and the happy ending problem, from Klein's five points to Suk's near-resolution. The chapter closes with the tables — every small Ramsey number with its provenance, and R(3,3,3) = 17 worked from both sides — and with the lower-bound consolidation, from Erdős's random colorings to the 2023 exponential improvement. Every number in this chapter is either proved, machine-verified by the lab, or carries its source; nothing else gets printed.
+
+## How to read this chapter
+
+**Notation.** R(s, t) is the graph Ramsey number (red K_s or blue K_t, edges of K_n), R(s₁, …, s_r) its r-color form; both exist by Chapter 3's engine, but the engine gets a second, cleaner fuel here: compactness. For hypergraphs, r_k(s, n) is the least N such that every 2-coloring of the k-element subsets of an N-set contains an s-set or an n-set all of whose k-subsets share a color; r_k(n) abbreviates r_k(n, n); the tower function is t₁(x) = x, t_{i+1}(x) = 2^{t_i(x)}. For van der Waerden, **W(r, k) is the least N such that every r-coloring of {1, …, N} contains a monochromatic k-term arithmetic progression** — r colors, k terms; the two slots are easy to swap by accident, and at least one published table has. For Schur, **S(k) is the largest n such that {1, …, n} admits a k-coloring with no monochromatic solution of x + y = z (x = y allowed)** — the max-colorable convention; a rival convention counts the first failure instead and shifts every number by one, a trap discussed when the numbers appear. [n] is {1, …, n}. For the happy ending problem, ES(N) is the least m such that every m points in general position in the plane (no three collinear) contain N in convex position. Letters are re-stated locally where a lecture needs its own.
+
+**The exercises are graded:** ●○○ *easy* (a direct application of one lecture idea), ●●○ *moderate* (two ideas, or one tricky step), ●●● *tough* (several chapter ideas combined). Hints travel with the problems and name the pattern; worked answers sit at the very end of the chapter. Try honestly before reading a hint. Beyond the graded set, ◆ **pattern-unknown** problems name no method and carry no hint: diagnosing which tool fits is part of the problem. And ◐ **Explorations** at the end are open-ended investigations with no single right answer — research training, not test preparation.
+
+## The pattern table for this chapter
+
+| Pattern | Plain language | Where you meet it |
+|---------|---------------|-------------------|
+| **P25 Reduction / encoding** | Translate one problem into another's language; the target structure carries the proof or the hardness | L3 (Schur from Ramsey via differences), L4 (stepping-up: pairs into triples), L5 (Dilworth from Ch. 5 carries the monotone theorem) |
+| **P26 Compactness (finite ↔ infinite)** | Prove the infinite statement, pull the finite one back via König's lemma — or push the finite one to a limit | L1 (infinite Ramsey ⟹ finite Ramsey), L2 (the finite vdW theorem and its infinite reading) |
+| **P9 Pigeonhole** | n+1 objects, n boxes | L2 (the base cases of the induction), L6 (⌈16/3⌉ = 6), L5 (Seidenberg's proof) |
+| **P4 Recurrence + induction** | Relate case n to smaller cases | L2 (the double induction on k and on the fan size), L5 (cups, caps, and the happy ending ladder) |
+| **P11 Explicit construction** | Beat the bound by *building* the object | L2 (the [8] and [26] witnesses, the [34] lab witness), L4 (the 32-vertex stepping-up coloring), L6 (Greenwood–Gleason's K₁₆) |
+| **P12 Random construction** | Prove existence by sampling | L6 (the consolidation: Erdős's 2^{k/2} and the census frontier, recalled from Ch. 4) |
+| **Perfect disorder cannot last (lore)** | Every Ramsey theorem is the same claim: uniform-enough chaos is impossible at some finite or infinite scale | L1 (infinite Ramsey), L2, L3, L6 |
+| **The encoding has a price (lore)** | A reduction can prove existence while losing sharpness — compare its bound to the truth and record the gap honestly | L3 (S(3) ≤ 15 vs S(3) = 13), L4 (the stepping-up boundary), L2 (780 vs 9) |
+
+---
+
+## Lecture 1 · Infinite Ramsey, Compactness, and the Statements That Point Beyond
+
+Chapter 3 proved that R(s, t) is finite by an induction that climbed the (s + t)-diagonal. That proof produces a number, but it hides something: the theorem is true for a reason that has nothing to do with counting. The infinite version says that perfect disorder cannot be maintained *forever* — that any coloring of the complete graph on all of ℕ, all infinitely many edges of it, contains an infinite clique of one color. The finite statement is then not merely *analogous* to the infinite one; it is a *consequence* of it, via compactness. This lecture builds that bridge in both directions — the infinite theorem by a clean infinite argument, the finite one pulled back through König's lemma — and then states two theorems that show where the infinite view takes the theory when you push it: Paris–Harrington, where a Ramsey-style statement becomes formally unprovable; and the canonical Ramsey theorem of Erdős and Rado, where the conclusion is not a monochromatic set but a complete classification of the possible behaviors.
+
+### 1.1 The infinite theorem, proved
+
+**Theorem (Infinite Ramsey, 2 colors).** Every red/blue coloring of the edges of the complete graph on ℕ contains an infinite monochromatic clique: an infinite set X ⊆ ℕ all of whose internal edges share one color.
+
+**Proof.** We build X together with a decreasing chain of infinite candidate pools V₀ ⊇ V₁ ⊇ V₂ ⊇ … and an increasing sequence of witnesses x₁ < x₂ < x₃ < …, where each x_i is a "beacon" of one fixed color c_i.
+
+Start: V₀ = ℕ. At step i, we have an infinite pool V_{i−1} from which all witnesses so far were drawn, and we pick x_i = its least element. The infinitely many remaining vertices of V_{i−1} split by the color of their edge to x_i into two classes, and one class — call its color c_i — is infinite; set V_i to be that infinite class. This is the pigeonhole principle doing infinite work: infinitely many edges, two colors, one color carries infinitely many.
+
+Now the beacons x₁, x₂, … each have a color c_i, and again two colors cannot split an infinite sequence into two finite parts: one color, say red, occurs as c_i for infinitely many indices i₁ < i₂ < i₃ < …. Claim the set X = {x_{i₁}, x_{i₂}, …} is a red clique. Take two of its elements x_{i_a} < x_{i_b}: when x_{i_a} was chosen, x_{i_b} still lay in the pool V_{i_a} (the pools only ever lose vertices as steps go by, and x_{i_b} was chosen later from a sub-pool); membership in V_{i_a} *means* the edge x_{i_a}x_{i_b} has color c_{i_a} = red. So every edge inside X is red. ∎
+
+Notice what made this work: no counting, only the infinite pigeonhole, twice. The proof adapts verbatim to r colors (split into r classes; one is infinite) and by outer induction on k to k-tuples in place of edges: given an r-coloring c of the k-subsets of ℕ, at step i pick x_i = min V_{i−1}, induce an r-coloring c_i(S) := c(S ∪ {x_i}) on the (k−1)-subsets of V_{i−1} ∖ {x_i}, and invoke the inductive hypothesis for (k−1)-tuples to extract an infinite pool V_i ⊆ V_{i−1} ∖ {x_i} all of whose (k−1)-subsets share one color c_i when paired with x_i; then pigeonhole the beacon colors c₁, c₂, … as before. Both extensions are worth doing by hand once:
+
+**✎ Checkpoint 1.** Rewrite the proof for three colors, and convince yourself the only change is the word "two" in both pigeonhole applications. Then run it for a specific coloring you invent — say, color ij (i < j) red if i is odd and blue if i is even — and trace the proof's exact steps: V₀ = ℕ picks x₁ = 1, and because min(1, j) = 1 is odd for every j > 1, every edge from 1 is red, so c₁ = red and V₁ = {2, 3, 4, …}; next x₂ = 2 has all edges to {3, 4, …} blue, giving c₂ = blue and V₂ = {3, 4, …}; in general x_i = i and c_i alternates red, blue, red, blue, so both colors occur infinitely often and the proof extracts both the infinite red clique {1, 3, 5, …} and the infinite blue clique {2, 4, 6, …}. Notice why this was predictable before running the algorithm: when the color of ij depends only on min(i, j), every vertex x is already monochromatic toward the entire infinite suffix {x+1, x+2, …}, so the pool V_{i−1} ∖ {x_i} never shrinks at all.
+
+### 1.2 The compactness bridge: finite Ramsey, again and better
+
+Here is the pattern this lecture exists to teach, the one the Atlas files as P26: an infinite existence statement and a family of finite consistency statements can be *the same statement*, when the finite objects fit together in a finitely branching tree.
+
+**Theorem (Compactness for Ramsey).** The following are equivalent, for each k: (i) every r-coloring of the edges of K_ℕ contains a monochromatic K_k; (ii) there is an N such that every r-coloring of K_N contains a monochromatic K_k — that is, R_k := R(k, …, k) is finite.
+
+**(i) ⟹ (ii), by König's lemma.** Suppose (ii) fails: for every n there is an r-coloring of K_n with no monochromatic K_k. Build a tree T whose nodes at level n are exactly these good colorings of K_n, where the node of a coloring of K_{n+1} points to the node of its restriction to K_n. Every level is nonempty (that is our supposition), and every node has finitely many children — a node at level n has at most rⁿ children, since a coloring of K_{n+1} is determined by its restriction plus the n new edges. A finitely branching tree with nodes at every level contains, by König's lemma, an infinite path: a nested sequence of good colorings, each extending the last. Read off the path: edge ij of K_ℕ receives the color it has in the coloring at level max(i, j), and this is consistent because the path's colorings extend one another. The result is an r-coloring of K_ℕ whose restriction to every finite level is good — so it contains no monochromatic K_k, since any K_k would already appear at level max of its vertices. That contradicts (i). ∎
+
+**(ii) ⟹ (i).** Given an r-coloring of K_ℕ, restrict it to K_N for N = R_k; by (ii) some k vertices carry a monochromatic K_k, and those k vertices witness (i). ∎
+
+So infinite Ramsey (§1.1, which needed no R_k to exist) hands us R_k < ∞ with no induction on (s + t) at all. Chapter 3's Pascal ceiling remains the way you *upper-bound* the numbers; compactness is the way you *know they exist*, and the two proofs illuminate different faces of the same fact. The bridge walks in both directions elsewhere in Ramsey theory: the finite van der Waerden theorem (L2) similarly implies its infinite reading, and conversely any finite fragment that is *consistent* — colorings of [n] with no mono k-term progression for arbitrarily large n — would, by exactly the tree above, assemble into a coloring of ℕ defeating the infinite statement. Compactness is also what the *negative* direction of the field quietly uses: to show a Ramsey-style statement is false on ℕ, it suffices to exhibit good colorings at every finite scale, never an infinite object.
+
+### 1.3 Two statements that point beyond the classical theory
+
+**Paris–Harrington (statement).** Call a finite set H ⊆ ℕ of integers *relatively large* if |H| ≥ min H, and call it *homogeneous* for a coloring if all its k-element subsets share one color. The Paris–Harrington principle says: for every r, k, and m there is an N such that every r-coloring of the k-element subsets of {1, …, N} contains a relatively large homogeneous set of size at least m. The proof is a compactness argument on top of the infinite Ramsey theorem — deceptively classical. The shock is elsewhere: Paris and Harrington (1977) proved that this statement is *unprovable in Peano arithmetic*, even though every instance can be verified by a finite computation. It was the first "natural" example of true-but-unprovable-PA with the flavor of ordinary mathematics, not a Gödel sentence built from its own code. The k = 1 case already shows the principle's teeth: a relatively large homogeneous set for a 1-coloring is a set of integers all the same color with at least min-of-the-set many elements — already the pigeonhole principle wearing a wig; yet the general statement needs more than PA can give. Where the Lean formal track (the Atlas's unnumbered companion) will stand, this is the landmark: a combinatorial statement about finite colorings whose finite truth outruns a specific formal system.
+
+**Canonical Ramsey (statement).** The Erdős–Rado canonical Ramsey theorem (1950) refines infinite Ramsey by asking not "is there a monochromatic infinite set?" but "which behaviors of a coloring are possible *at all*, on some infinite set?" The answer is a complete classification, and it has exactly four entries. Say a coloring of the pairs of an infinite set X is: *monochromatic* if color(uv) is constant on X; *min-homogeneous* if color(uv) depends only on min(u, v) and is injective in min(u, v) on X; *max-homogeneous* if it depends only on max(u, v) and is injective in max(u, v) on X; and *rainbow* if color(uv) = color(u′v′) forces {u, v} = {u′, v′} — all pairs differently colored.
+
+**Theorem (Erdős–Rado, canonical form).** Every coloring of the pairs of an infinite set contains an infinite subset on which the coloring is one of the four canonical forms — and none can be removed from the list.
+
+The four behaviors all occur in nature: color uv by min(u, v) and the theorem must find min-homogeneity; color uv by max(u, v) and it finds max-homogeneity; color uv by 2^u + 2^v and every infinite subset is rainbow. (If instead you color uv by the *parity* of min(u, v), only two colors are used, so passing to the odd numbers makes the coloring constant — monochromatic rather than strictly min-homogeneous.) A monochromatic-infinite conclusion is the special case where the coloring happens to use finitely many colors — then the injectivity required by the min-homogeneous, max-homogeneous, and rainbow forms is impossible on an infinite set, and ordinary infinite Ramsey is what remains. The canonical theorem is the model for a whole genre of "canonical" classifications (canonical van der Waerden, canonical Ramsey for k-tuples, and so on), and its proof — though beyond this chapter's scope, it is a full career of the tree argument of §1.2 in disguise — is the deepest single illustration in the classical corpus of what compactness can buy.
+
+### 1.4 What to learn
+
+The infinite pigeonhole is a complete proof method, not an intuition: pools shrink, beacons accumulate, one color wins by attrition. Compactness converts between "a finite object exists at every scale" and "an infinite object exists", through a finitely branching tree — memorize the *shape* (restrictions point down; a level-wise nonempty finitely branching tree has an infinite path), because it recurs in the reverse direction in L2's honest frontier and in every canonical theorem. And when a statement about finite colorings seems to need "more than arithmetic", check whether Paris–Harrington is standing behind it: relatively large is the smallest deformation of Ramsey that leaves the finite statement true and the Peano provability false.
+
+---
+
+## Lecture 2 · van der Waerden: the Color-Focusing Induction
+
+Chapter 3 stated van der Waerden's theorem and left the proof on the ledger; the audit called it in, and this lecture pays. The theorem's claim: however many colors you bring, arithmetic progression is an unavoidable shape — some color must eventually own a k-term arithmetic progression, at some finite N = W(r, k) that depends only on the number of colors and the length demanded. The proof below is van der Waerden's own double induction (1927), in the modern "polychromatic fan" dressing due to Leader and Tao, and every subscript in it is checked. Read it twice: once for the architecture, once for the bookkeeping, because the bookkeeping *is* the architecture.
+
+### 2.1 The statement, the conventions, and the first number
+
+**Theorem (van der Waerden 1927).** For all r, k ≥ 1 there exists W(r, k) such that every r-coloring of [N] with N = W(r, k) contains a monochromatic k-term arithmetic progression {a, a + d, …, a + (k−1)d}.
+
+Two base cases are free. One color must own k terms because one color owns everything: W(1, k) = k. And a 2-term progression is just two same-colored points at any common distance, so W(r, 2) = r + 1: with r colors you can color r + 1 integers using some color twice (pigeonhole), and you can dodge forever on r integers by giving each its own color.
+
+The first interesting number is W(2, 3) = 9, and it is small enough to know completely. The lab's census (all 2⁹ = 512 colorings of [9], each checked against all 16 three-term progressions — seven of step 1, five of step 2, three of step 3, one of step 4 — every single coloring fails) confirms: **[8] can dodge and [9] cannot**. A witness for [8], colors read left to right:
+
+```
+1  2  3  4  5  6  7  8
+R  R  B  B  R  R  B  B
+```
+
+✎ **Checkpoint 2.** Check all 12 progressions inside [8] — the six consecutive triples (1,2,3), …, (6,7,8), the four "skip" triples (1,3,5), (2,4,6), (3,5,7), (4,6,8), and the two wide ones (1,4,7), (2,5,8) — and watch each fail to be monochromatic. Then find the other five witnesses by hand; the census says your hunt will end at exactly six, and the lab prints them all. (Symmetry note: the complement of a witness is a witness, so your hunt has three free answers.)
+
+### 2.2 The proof: color-focused progressions and the fan
+
+Fix r. The plan: prove W(r, k) exists by induction on k — *for all numbers of colors simultaneously*; the simultaneous part is not decoration, it is the engine — and inside the induction step, run a second induction that builds what Tao calls a polychromatic fan: many progressions, pairwise differently colored, all aimed at one common point, so that whatever color the common point has, some progression swallows it and closes.
+
+**Definition (color-focused).** Fix a coloring of a finite interval. Several (k−1)-term arithmetic progressions A₁, …, A_m are *color-focused at f* if (i) each A_i is monochromatic; (ii) distinct A_i have distinct colors; and (iii) writing A_i = {a_i + j·d_i : 0 ≤ j ≤ k−2}, all the "next terms" agree: a_i + (k−1)d_i = f. The point f is the *focus*. Appending it turns A_i into a k-term progression A_i ∪ {f}, called a *spoke*. If f happens to carry A_i's own color, the spoke is monochromatic and the theorem is done on the spot.
+
+Figure 1 shows the smallest interesting fan: two 2-term progressions {1, 4} (red) and {3, 5} (blue), both aimed at 7. If 7 is red, the spoke {1, 4, 7} is a red 3-term progression; if 7 is blue, the spoke {3, 5, 7} is blue; 7 cannot escape both.
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="150" viewBox="0 0 560 150">
+  <line x1="30" y1="100" x2="530" y2="100" stroke="#333" stroke-width="2"/>
+  <g font-family="monospace" font-size="14" fill="#333" text-anchor="middle">
+    <line x1="70" y1="100" x2="70" y2="112" stroke="#333" stroke-width="2"/>
+    <line x1="130" y1="100" x2="130" y2="112" stroke="#333" stroke-width="2"/>
+    <line x1="190" y1="100" x2="190" y2="112" stroke="#333" stroke-width="2"/>
+    <line x1="250" y1="100" x2="250" y2="112" stroke="#333" stroke-width="2"/>
+    <line x1="310" y1="100" x2="310" y2="112" stroke="#333" stroke-width="2"/>
+    <line x1="430" y1="100" x2="430" y2="112" stroke="#333" stroke-width="2"/>
+    <line x1="490" y1="100" x2="490" y2="112" stroke="#333" stroke-width="2"/>
+    <text x="70" y="130">1</text><text x="130" y="130">2</text><text x="190" y="130">3</text>
+    <text x="250" y="130">4</text><text x="310" y="130">5</text><text x="370" y="130">6</text>
+    <text x="430" y="130">7</text><text x="490" y="130">8</text>
+  </g>
+  <path d="M70 92 Q 190 60 250 92" fill="none" stroke="#b03030" stroke-width="3"/>
+  <path d="M250 92 Q 340 60 430 92" fill="none" stroke="#b03030" stroke-width="3" stroke-dasharray="6,4"/>
+  <path d="M190 78 Q 250 60 310 78" fill="none" stroke="#3050b0" stroke-width="3"/>
+  <path d="M310 78 Q 370 60 430 78" fill="none" stroke="#3050b0" stroke-width="3" stroke-dasharray="6,4"/>
+  <g font-family="monospace" font-size="13" text-anchor="middle">
+    <text x="250" y="52" fill="#b03030">A = {1,4} red, focus 7</text>
+    <text x="310" y="38" fill="#3050b0">B = {3,5} blue, focus 7</text>
+    <text x="430" y="60" fill="#333">f = 7: either spoke closes</text>
+  </g>
+  <circle cx="70" cy="92" r="5" fill="#b03030"/>
+  <circle cx="250" cy="92" r="5" fill="#b03030"/>
+  <circle cx="190" cy="78" r="5" fill="#3050b0"/>
+  <circle cx="310" cy="78" r="5" fill="#3050b0"/>
+  <circle cx="430" cy="92" r="6" fill="#333"/>
+</svg>
+```
+
+*Figure 1. A two-color fan color-focused at 7. Whatever color the focus takes, one spoke becomes a monochromatic 3-term progression.*
+
+**The Claim (fan-building).** For every m with 1 ≤ m ≤ r there is an M_m such that every r-coloring of any M_m consecutive integers contains a monochromatic k-term progression, or m color-focused (k−1)-term progressions together with their focus.
+
+**Proof of the Claim, by induction on m.**
+
+*Base m = 1.* Take M₁ = 2W(r, k−1), which exists by the outer induction on k (this is where "for all numbers of colors" pays: the outer hypothesis covers every palette size, including this one). Look at the first W(r, k−1) integers of the interval: they contain a monochromatic (k−1)-term progression A = {a + j·d : 0 ≤ j ≤ k−2}. Its would-be next term, the focus f = a + (k−1)d, still fits in the interval: the last *present* term a + (k−2)d lies within the first W(r, k−1) integers, and the step d cannot exceed that window either, so f ≤ W(r, k−1) + W(r, k−1) = 2W(r, k−1) = M₁. One progression aimed at a point in range: a 1-fan. (With no second progression there is no distinctness condition to meet.)
+
+*Step m − 1 → m.* Write M = M_{m−1} and take
+
+  M_m = 2 · M · W(r^M, k−1),
+
+with W(r^M, k−1) furnished by the outer induction — note the palette r^M, much larger than r; this is the second place the "all palettes at once" hypothesis is load-bearing. Given an r-coloring of [1, M_m] with, suppose, no monochromatic k-term progression, cut the interval into consecutive blocks B₁, B₂, …, B_{2W} of length M, where W := W(r^M, k−1) — so the blocks tile the whole interval. *Search in the first half:* each block is colored in one of at most r^M patterns, so the blocks B₁, …, B_W induce an r^M-coloring of [1, W] (block index colored by its block's pattern), and by definition of W that induced coloring contains a monochromatic (k−1)-term progression of indices: blocks B_{i₁}, B_{i₂}, …, B_{i_{k−1}}, equally spaced with i_j = i₁ + (j−1)D, identically colored, all with i₁ + (k−2)D ≤ W.
+
+Now look inside each of these blocks. By the inductive hypothesis at m − 1 (each block is M consecutive integers), every block B_{i_j} contains m − 1 color-focused (k−1)-term progressions with their focus f_j — *or the whole interval already contained a monochromatic k-term progression, which we excluded.* Because the blocks are identically colored, the m − 1 progressions sit at the same positions in every block: the i-th of them, in block B_{i_j}, is
+
+  A^{(i)}_j = {a_i + t·d_i + (j−1)DM : 0 ≤ t ≤ k−2}, in color c_i,
+
+with focus f_j = a_i + (k−1)d_i + (j−1)DM — the same offset in every block, so the foci themselves form a progression: f_j = f₁ + (j−1)DM. The colors c₁, …, c_{m−1} are pairwise distinct. And the foci all share one color, c* — same offset in identically colored blocks.
+
+Two cases. **Case 1:** c* is one of the c_i. Then in any block, the spoke A^{(i)}_j ∪ {f_j} is monochromatic of color c_i — a monochromatic k-term progression, contradiction. So suppose **Case 2**: c* differs from every c_i. We now exhibit an m-fan, and the trick is the *diagonal*: for each i, take one term from each block,
+
+  G_i = {a_i + t·(d_i + DM) : 0 ≤ t ≤ k−2}.
+
+Each point of G_i is the (t+1)-st term of A^{(i)} as it appears in block B_{i_{t+1}} — a genuine point of our interval, colored c_i because the blocks are identically colored. So G_i is a monochromatic (k−1)-term progression of color c_i, with step d_i + DM; its next term is a_i + (k−1)(d_i + DM) = f₁ + (k−1)DM =: f*, independent of i. Alongside them take the foci-AP itself,
+
+  F = {f₁ + t·DM : 0 ≤ t ≤ k−2}, in color c*,
+
+whose next term is also f*. That is m progressions — the m − 1 diagonals in colors c₁, …, c_{m−1}, plus F in the new color c* — pairwise differently colored, all aimed at f*. It remains only to check the focus is in range, and this is why the interval was built twice as long as the search zone. The focus f* lies in block index i₁ + (k−1)D, and the block-progression gave i₁ + (k−2)D ≤ W with k ≥ 3, whence D ≤ W − i₁ and
+
+  i₁ + (k−1)D = (i₁ + (k−2)D) + D ≤ W + (W − i₁) ≤ 2W.
+
+So f* sits inside B_{2W} at the latest, inside the interval. The m-fan exists, completing the induction. ∎ (Claim)
+
+**End of the proof of the theorem.** Apply the Claim at m = r: an r-coloring of [1, M_r] contains a monochromatic k-term progression — done — or r color-focused (k−1)-term progressions with their focus f. The r progressions carry r pairwise distinct colors among an r-color palette: *all* the colors. So f's own color equals c_i for some i, the spoke A_i ∪ {f} is monochromatic, and the theorem holds with W(r, k) ≤ M_r. Induction on k closes; van der Waerden's theorem is proved. ∎
+
+The recursion deserves one honest look at its output. For two colors and k = 3: M₁ = 2W(2, 2) = 6, and M₂ = 2·6·W(2⁶, 2) = 12·65 = 780. The true value is 9. The classical polished version of this same argument (Graham–Rothschild–Spencer) squeezes 780 down to 325 — still 36 times the truth — and Exercise 14 asks you to find it. The gap is the price of generality: the argument must guard against every possible palette of block-patterns, of which the true coloring uses almost none. This is the theorem's deepest known behavior, not a defect of the write-up: as k grows, the known *upper* bounds are astronomically far from the known *lower* bounds (§2.3), and closing that gap is open.
+
+### 2.3 The numbers, and how far we are from them
+
+Exactly seven van der Waerden numbers are known (table as maintained by Rabung–Lotts, provenance noted):
+
+| | k = 3 | k = 4 | k = 5 | k = 6 |
+|---|---|---|---|---|
+| **r = 2** | W(2,3) = 9 | W(2,4) = 35 | W(2,5) = 178 | W(2,6) = 1132 |
+| **r = 3** | W(3,3) = 27 | W(3,4) = 293 | > 2173 | > 11,191 |
+| **r = 4** | W(4,3) = 76 | > 1048 | > 17,705 | > 157,209 |
+
+W(2,3) = 9 is this chapter's machine-verified census; W(3,3) = 27 and W(2,4) = 35 go back to Chvátal's computations; W(2,5) = 178 is Stevens–Shantaram (1978); W(2,6) = 1132 is Kouril–Paul (2008), a SAT computation whose witness-checking takes seconds but whose exhaustiveness took a dedicated year of computation; W(4,3) = 76 and W(3,4) = 293 belong to the modern computational record (Rabung–Lotts tabulate the attributions). The lab verifies the *lower* side of the two entries it can reach: a recorded 26-coloring witnessing W(3,3) > 26 (all 156 progressions checked) and a witnessed 34-coloring for W(2,4) > 34, found by the book's own depth-first search.
+
+The asymptotic story is humbling. Below: explicit arithmetic constructions and Lovász Local Lemma refinements both beat the naive union bound. Berlekamp's finite-field construction (1968) shows W(2, p+1) > p·2^p for every prime p, while Szabó (1990) proved via the Lovász Local Lemma and structural dependencies that W(2, k) > 2^k/k^ε for every fixed ε > 0 and sufficiently large k; a *naive first-moment* union bound on a random coloring, by contrast, only guarantees a dodge up to the 2^{k/2} scale (the count of k-term progressions inside [N] is Σ_d (N − (k−1)d) over steps d ≤ (N−1)/(k−1), and the expected number of monochromatic ones stays below 1 only while N is on the scale of √(k−1)·2^{k/2} — Ch. 4's P13) — the reverse of Ramsey numbers, where random still beats every known explicit construction (§6.3 records that story). Above: the proof of §2.2 grows like an Ackermann function; Shelah (1988) first brought the upper bound into the realm of primitive-recursive functions, via the Hales–Jewett theorem of §2.4; and the best known upper bound is Gowers's:
+
+  W(r, k) ≤ 2^(2^(r^(2^(2^(k+9))))),
+
+a tower of exponents of height 6 reading 2 → 2 → r → 2 → 2 → (k + 9) from bottom to top — for r = 2, a tower of five 2s topped by k + 9. Between 2^k/k^ε and that tower lies an ocean; Graham offered $1000 for a proof of the innocent-looking W(2, k) < 2^(k²), and the prize is still unclaimed. When you feel the urge to brute-force W(2,7): the interval [1, 3703] admits a known 2-coloring with no 7-term progression (SAT-era witnesses, tabulated by Rabung–Lotts; Heule's GitHub maintains more), so your census had better start past that.
+
+### 2.4 Hales–Jewett: the theorem that implies both of this chapter's arithmetic theorems
+
+The tic-tac-toe board [3]² — the 3-by-3 grid — has a property every player knows: with two perfect players the game ends in a draw. The mathematical content of Hales–Jewett is that *on a large enough board in a high enough dimension, draws are impossible*. The combinatorial line through a word in [m]^n is what you get by replacing all copies of some "wildcard" symbol by a fixed symbol and reading off the resulting words — for example, in [3]³ (words of length 3 over the alphabet {1, 2, 3}), the line through the pattern 1*3 is {113, 123, 133}: three points of the 27-point grid, one per value of the wildcard *.
+
+**Theorem (Hales–Jewett 1963, statement).** For every m and r there is HJ(m, r) such that every r-coloring of [m]^n with n = HJ(m, r) contains a monochromatic combinatorial line.
+
+The magic of the theorem is that the line is *combinatorial* — its points need not be collinear in any embedding, only obtained from one wildcard pattern. That is exactly what arithmetic progressions are, combinatorially: a k-term AP of integers is the image of a combinatorial line in [k]^d under the base-k evaluation map (x₁, …, x_d) ↦ 1 + Σ_{j=1}^d (x_j − 1)·k^{j−1} (a wildcard in the coordinate set I makes the image equally spaced, with step Σ_{j ∈ I} k^{j−1} as the wildcard runs over 1, …, k), so Hales–Jewett implies van der Waerden — L2's theorem rides under this one. (Schur's theorem, by contrast, has Ramsey's theorem as its cleanest parent — the route L3 takes.) Shelah's primitive-recursive upper bound for van der Waerden numbers actually routes through Hales–Jewett. The theorem is stated, not proved, here: its proof is a deeper relative of the fan argument, one dimension up, and the detour would bury this chapter's ledger. What should be carried away is the shape of the hierarchy: Ramsey (subsets by position) → van der Waerden / Schur (integers by arithmetic) → Hales–Jewett (grids by pattern), each level implying fragments of the ones below it, each with its own numbers — and the top of the hierarchy is where the strongest known upper bounds come from.
+
+### 2.5 What to learn
+
+The fan is the proof: many differently-colored progressions aimed at one point convert "some color must lose" from a hope into bookkeeping. The double induction swaps between two supports — the length k (outer) and the fan size m (inner) — and both work only because each is run for *every* palette at once; the palette r^M that appears in M_m is not a typo. The range trick (search in the first half, land in the second) is the silent guard of the whole argument — every spoke, diagonal, and focus must land inside the interval, and the interval is built twice as long precisely so that the last focus can overshoot the search zone by one block-step. And the gap between 780 and 9 is not an embarrassment of the past: it is the field's present, in miniature, at k = 3.
+
+---
+
+## Lecture 3 · Schur's Theorem, Schur Numbers, and Rado's Columns
+
+Chapter 3 closed with a bridge: the party problem and the equation x + y = z are the same problem, because the color of a *difference* turns a coloring of integers into a coloring of complete-graph edges, and a monochromatic triangle turns back into a monochromatic sum. This lecture crosses that bridge at full freight: Schur's theorem for every number of colors, proved from Ramsey; the numbers S(k) with their small values machine-censusable and their larger ones among the great SAT trophies; and Rado's theorem, which answers the question Schur's theorem begs — *which* equations are unavoidable? — with a criterion you can check by linear algebra.
+
+### 3.1 Schur from Ramsey, and the price of the encoding
+
+**Theorem (Schur 1916).** For every r: every r-coloring of the positive integers contains x, y, z of one color with x + y = z (x = y allowed).
+
+**Proof from Ramsey.** Given an r-coloring c of [N], color the edge ij of K_{N+1} (vertices 0, 1, …, N) with c(|i − j|). Suppose N + 1 ≥ R(3, …, 3) (r colors): some three vertices i < j < l carry a monochromatic triangle, meaning the three differences j − i, l − j, l − i all share one color. The first two sum to the third: x = j − i, y = l − j, z = l − i is a monochromatic solution with x + y = z, and all three lie in [N]. So [N] fails for every N ≥ R(3, …, 3) − 1; a dodging coloring of ℕ would restrict to a dodging coloring of every [N], so none exists — and, in the max-colorable convention this book uses (S(r) the largest dodging n; §3.2 flags the trap), the largest n that could still dodge satisfies **S(r) ≤ R(3, …, 3) − 2**. ∎
+
+The encoding is Chapter 3's, scaled up (P25), and it is honest to record what the encoding costs. For r = 3 it gives S(3) ≤ R(3,3,3) − 2 = 15; the census truth is S(3) = 13 (§3.2). At r = 2 it is exactly tight: S(2) = 4 = R(3,3) − 2. The gap at r = 3 is not sloppiness — it is structural, and Exercise 5 measures it: the mirror between monochromatic sums and monochromatic triangles is faithful exactly where it matters (a coloring of [N] is sum-free *if and only if* its image is triangle-free — every monochromatic triangle yields its three differences as a solution, every solution (x, y, z) yields the triangle (0, x, x + y), even the doubled 1 + 1 = 2), so nothing about the arithmetic is invisible. The price is paid at the input, not the mirror: to condemn [n], the encoding asks whether *every* r-coloring of K_{n+1} contains a mono triangle — a whole-space question — while the images occupy only the difference-form corner of that space. The corner falls early: every 3-coloring of [14] has a monochromatic sum (§3.2's census), which the mirror restates as "every difference-form 3-coloring of K₁₅ has a mono triangle"; but the whole space falls only at K₁₇ — §6.1's Greenwood–Gleason coloring keeps K₁₆ itself triangle-free — so the encoding cannot reach below 15. A reduction proves existence and pays sharpness; know the price before you buy — and when the price is zero, as at r = 2, notice that too.
+
+For two colors the whole problem is censusable, and the lab censuses it: among the 2⁵ = 32 colorings of [5], *every one* contains a monochromatic x + y = z; among the 2⁴ = 16 colorings of [4], exactly two dodge — {1, 4} red with {2, 3} blue, and its color-swapped mirror (the classical witness of Chapter 3's Exercise 22). So **S(2) = 4**.
+
+### 3.2 The Schur numbers, and the convention trap
+
+For r colors the numbers behave like this (the *max-colorable convention* — S(r) is the largest n for which [n] can be r-colored sum-free):
+
+| r | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| S(r) | 1 | 4 | 13 | 44 | 160 |
+
+S(1) = 1: with one color, 1 + 1 = 2 forces 2 out immediately, so [1] dodges and [2] does not. S(2) = 4 as above. S(3) = 13 is at the edge of censusable, and the lab walks the edge: the number of sum-free 3-colorings of [n] for n = 8, 9, 10, 11, 12, 13 is 288, 546, 300, 186, 114, 18 — eighteen survivors at the last habitable n, then extinction: all 3¹⁴ = 4,782,969 colorings of [14] fail (the lab's odometer visits every one). One of the eighteen witnesses, colors of 1..13:
+
+```
+1  2  3  4  5  6  7  8  9  10 11 12 13
+R  G  G  R  B  B  R  B  B  R  G  G  R
+```
+
+The structure is worth staring at: the three color classes are {1, 4, 7, 10, 13}, {2, 3, 11, 12}, {5, 6, 8, 9} — an arithmetic class mod 3 padded at both ends, flanked by two symmetric blocks, and a middle block closed under avoidance of the sums that stay in range. Check one class by hand: {2, 3, 11, 12} — 2+2 = 4 and 2+3 = 5 (both red or blue, not this class's color), 3+3 = 6, 2+11 = 13, all land outside the class; the only pairs summing inside [13] never hit {2, 3, 11, 12} + {2, 3, 11, 12}. That is what sum-free *is*, and Exercise 15 asks you to run all three classes yourself.
+
+S(4) = 44 (Golomb–Baumert 1965) is far past any census — 4⁴⁴ colorings — and S(5) = 160 is a SAT-era theorem (Heule 2017, "Schur Number Five": a sum-free 5-coloring of [160] exists, first constructed by Exoo in 1994, whereas [161] admits no sum-free 5-coloring, certified by a compressed DRAT unsatisfiability proof of about two petabytes). The **convention trap** deserves its own warning flag: a second convention defines "the Schur number" as the first n that *fails* rather than the last that works, shifting every entry up by one: 2, 5, 14, 45, 161. Nothing is wrong with either convention, but tables that mix them silently disagree about *every* value; when you read a Schur number off a poster or a preprint, first ask which convention, then check S(2) — if the table says 5, it is the shifted one. This book uses the max-colorable convention throughout, matching the census direction: the lab counts colorings that *dodge*, so S(r) is the last n with a nonzero count.
+
+### 3.3 Rado's columns condition: which equations are unavoidable?
+
+Schur's theorem says x + y = z is partition-regular: every finite coloring of ℕ contains a monochromatic solution. Rado's theorem answers the question for *every* linear system, and its criterion is a finite check.
+
+**Theorem (Rado 1933, statement).** Let Ax = 0 be a linear system with integer coefficients, columns c₁, …, c_n (one column per variable). The system is partition-regular over ℕ — every finite coloring of the positive integers admits a monochromatic solution — if and only if the columns can be partitioned into consecutive blocks I₁, …, I_m such that:
+
+1. Σ_{i ∈ I₁} c_i = 0, and
+2. for each j ≥ 2, Σ_{i ∈ I_j} c_i lies in the linear span (over ℚ) of the columns c_i with i ∈ I₁ ∪ … ∪ I_{j−1}.
+
+This is the *columns condition*. Its proof is beyond this chapter's scope (the sufficiency direction runs van der Waerden's theorem through the columns; the necessity is the subtler half), but the *check* is elementary linear algebra, and the lab automates it. Run it on the three equations this chapter has been carrying:
+
+- **x + y = z**: columns (1, 1, −1) — a single row. First block: {1, 3}, since 1 + (−1) = 0. Second block: {2}, whose column 1 lies in the span of the first block's columns {1, −1}, which is all of ℚ·1. Condition holds. Partition-regular — Schur's theorem, Rado-certified.
+- **x + y = 2z** (the 3-term progression equation): columns (1, 1, −2). The single block {1, 2, 3} sums to 0. Condition holds — and indeed every 3-term arithmetic progression a, a+d, a+2d is a solution (a + (a+2d) = 2(a+d)): van der Waerden's theorem is this equation's non-degenerate (x ≠ y) partition-regularity for k = 3 (the equation itself also admits the trivial monochromatic solution x = y = z).
+- **x + y = 3z**: columns (1, 1, −3). The first block must be a nonempty subset of columns summing to zero; check all seven subsets exhaustively: {1}: 1; {2}: 1; {3}: −3; {1,2}: 2; {1,3}: −2; {2,3}: −2; {1,2,3}: −1. **No subset sums to zero.** The condition fails at its first clause, and Rado's theorem says x + y = 3z is *not* partition-regular: some finite coloring of ℕ dodges it entirely.
+
+In fact, for x + y = 3z we do not need to take Rado's necessity theorem on faith — we can exhibit the dodging coloring of ℕ in two lines using the 3-adic valuation (the Rado-style prime-adic coloring). Write every positive integer uniquely as n = 3^{v₃(n)}·u(n) where 3 ∤ u(n), so u(n) mod 3 ∈ {1, 2}, and color n by the 4-color palette c(n) = (v₃(n) mod 2, u(n) mod 3) ∈ {0, 1} × {1, 2}. Suppose x, y, z ∈ ℕ share a color (b, r) and satisfy x + y = 3z, and assume WLOG v₃(x) ≤ v₃(y). Since v₃(x) ≡ v₃(y) (mod 2), the difference d = v₃(y) − v₃(x) is an even non-negative integer. If d = 0, then x + y = 3^{v₃(x)}(u(x) + u(y)); since u(x) ≡ u(y) ≡ r ∈ {1, 2} (mod 3), we have u(x) + u(y) ≡ 2r ≢ 0 (mod 3), so v₃(x + y) = v₃(x), whereas v₃(3z) = v₃(z) + 1 ≢ v₃(z) ≡ v₃(x) (mod 2), contradiction. If d ≥ 2, then x + y = 3^{v₃(x)}(u(x) + 3^d·u(y)) with u(x) + 3^d·u(y) ≡ u(x) ≡ r ≢ 0 (mod 3), so again v₃(x + y) = v₃(x) ≢ v₃(3z) (mod 2), contradiction. Four colors dodge x + y = 3z on all of ℕ.
+
+That last line is a theorem of a different flavor from the rest of this chapter: an *avoidance* certificate, extracted from pure linear algebra. Notice also what the columns condition is: a finitary combinatorial shadow of the infinite theory, in the same spirit as the canonical theorem of L1 — the infinite statements (partition-regularity over all of ℕ) reduce to finite, checkable data. And the deeper fact, Deuber's and Hindman's (statements beyond our scope): partition-regular systems are exactly the finite unions of "columns-condition" pieces in a stronger sense, and Hindman's theorem — every finite coloring of ℕ contains an infinite set whose *finite sums* are monochromatic — engulfs Schur's theorem as a one-liner (a finite-sums set contains x, y, and x + y in one color). The hierarchy of L2.4 continues upward here too, with Hindman at the top: Ramsey → the arithmetic theorems → Hales–Jewett → Hindman.
+
+### 3.4 What to learn
+
+Reduction is a trade, and the trade has a price tag: the difference encoding proves Schur from Ramsey, exactly tight at r = 2 (S(2) = 4 = R(3,3) − 2) and two steps off at r = 3 (bound 15, truth 13) — with the loss located, by Exercise 5, at the whole-space input rather than the mirror. Rado's theorem converts an infinite, universal claim ("every coloring fails to dodge") into a finite certificate you can check by summing columns — and its contrapositive is a *dodge* certificate, the rarest kind of object in Ramsey theory. And when a number is past census — S(4), S(5), W(2,6) — learn to ask what kind of evidence backs it: an exhaustive search, a compressed proof, or a bound; the ◐ explorations at the end of the chapter ask exactly this.
+
+---
+
+## Lecture 4 · Hypergraph Ramsey and the Tower of Exponentials
+
+Color the *pairs* of a large set, and Ramsey numbers grow exponentially: R(k) sits between 2^{k/2} and 4^k (the consolidation of L6 recalls the whole story). Color the *triples*, and exponentials stop being the right language: the numbers grow like towers of twos, one level per uniformity, and the theory splits into two halves — a complete understanding of the tower's *shape*, and a one-exponential uncertainty at every level about where inside the tower each number actually sits. This lecture walks the tower, then builds the one machine-verified specimen: the stepping-up construction, which lifts a pair-coloring into a triple-coloring, doubling the vertex count exponentially and thereby climbing one tower level in one move.
+
+### 4.1 The landscape: towers, and one exponential of fog
+
+For k-uniform hypergraphs, write r_k(s, n) for the least N such that every red/blue coloring of the k-element subsets of an N-set contains an s-set or an n-set all of whose k-subsets share a color, and r_k(n) for r_k(n, n). The classical bounds (Erdős–Hajnal–Rado and successors; the survey of Conlon–Fox–Sudakov is the modern reference):
+
+  2^{c n²} < r₃(n) < 2^{2^{c′n}}, and for every k ≥ 4: t_{k−1}(c n²) ≤ r_k(n) ≤ t_k(c′ n),
+
+with the tower function t₁(x) = x, t_{i+1}(x) = 2^{t_i(x)}. Read the k = 3 line slowly, because it is the least intuitive: the known *lower* bound for triples is only a single exponential in n² — random colorings achieve it, the same P12 engine as graph Ramsey — while the known *upper* bound is a double exponential. For pairs, by contrast, lower and upper are both single exponentials (2^{k/2} and 4^k — same tower level, unknown gap factor). For k ≥ 4 the gap becomes exactly one tower level: known bounds for r_k(n) differ by one exponential, at every uniformity, and no current technique closes any of them. Erdős offered $500 for the conjecture that the *truth* at k = 3 is at the top of the known range:
+
+**Conjecture (Erdős–Hajnal).** r₃(n) > 2^{2^{cn}} for some c > 0.
+
+If true, r₃(n) would be doubly exponential, and — via stepping-up — every uniformity k ≥ 4 would drop its one-exponential fog simultaneously. Evidence for the conjecture's direction: with four colors instead of two, the 3-uniform number *is* known to be doubly exponential (Erdős–Hajnal constructed a 4-coloring of the triples of a 2^{2^{cn}}-set with no mono n-set, sharp up to the constant). Colors matter; uniformity matters more.
+
+### 4.2 Stepping-up: the construction, verified on its own body
+
+The stepping-up construction (Erdős–Rado; the k = 2 → 3 boundary is delicate, see below) converts a 2-coloring of the k-subsets of an m-set avoiding mono s-sets into a 2-coloring of the (k+1)-subsets of a 2^m-set avoiding mono (2s−1)-sets. One move, one tower level. In its general form the lemma is stated and proved for k ≥ 3 (Erdős–Rado; see Graham–Rothschild–Spencer, and the survey above); the pairs-to-triples case is exactly the boundary that the Erdős–Hajnal conjecture lives on — a general pairs-to-triples stepping-up would *prove* the conjecture, which is why no such lemma can be taken lightly. What the book can do — and now does — is run the construction at its canonical input — the largest triangle-free pair-coloring, K₅, since R(3,3) = 6 — and verify the output exhaustively, by machine, all 201,376 five-element subsets.
+
+The input: the 12 triangle-free 2-colorings of K₅ (Exercise 13 counts them exactly; the lab picks the first, Δ — the census's first hit, the mask 220 — with edges in order (01, 02, 03, 04, 12, 13, 14, 23, 24, 34) colored by the bits 0011101100). The vertices of the output are the 32 binary strings of length 5, read as integers 0..31. The key function is the *highest differing bit*:
+
+  δ(x, y) = the position of the highest bit where x and y differ — in code, 31 − clz(x XOR y) — a value in {0, 1, 2, 3, 4}.
+
+For a triple x < y < z (as integers), define the color of the triple to be Δ({δ(x, y), δ(y, z)}) — the color that the pair-coloring Δ gives to the two "gap labels" of the triple.
+
+**The two structural facts, and the exact 5-set avoidance proof.** First: the labels are always a genuine pair — δ(x, y) ≠ δ(y, z) whenever x < y < z. Why: at the highest differing bit of x and y, y carries a 1 and x a 0; at the highest differing bit of y and z, z carries a 1 and y a 0. If the two positions were the same bit, y would carry both 1 and 0 there. The lab verifies this for all 4,960 triples. Second: we have the *ultrametric property* δ(x, z) = max(δ(x, y), δ(y, z)) for all x < y < z, because above max(δ(x, y), δ(y, z)) all three strings x, y, z agree, and at bit p = max(δ(x, y), δ(y, z)) exactly one of the steps (x, y) or (y, z) flips from 0 to 1 while the other stays constant, so x and z differ at bit p.
+
+Why does this force every 5-element subset S = {x₁ < x₂ < x₃ < x₄ < x₅} ⊆ {0, …, 31} to fail to be monochromatic? Consider the four consecutive step labels δ_i := δ(x_i, x_{i+1}) for i = 1, 2, 3, 4. By the ultrametric property, for any 1 ≤ i < j ≤ 5 we have δ(x_i, x_j) = max_{i ≤ t < j} δ_t. Build the *Cartesian tree* on the sequence (δ₁, δ₂, δ₃, δ₄): its root is the unique maximum δ_{r₁} (unique because if two indices shared the overall maximum p with no larger bit between them, two distinct steps would flip bit p from 0 to 1 without an intervening higher bit to reset it), and its left and right subtrees are built recursively on (δ₁, …, δ_{r₁ − 1}) and (δ_{r₁ + 1}, …, δ₄). Every binary tree on 4 nodes has height at least 3 (since a binary tree of height 2 has at most 1 + 2 = 3 nodes), so the Cartesian tree contains a root-to-leaf descending chain of three indices i₁, i₂, i₃ ∈ {1, 2, 3, 4} with δ_{i₁} > δ_{i₂} > δ_{i₃} such that i₂ is the maximum on the side of i₁ containing i₂ and i₃, and i₃ is the maximum on the side of i₂ containing i₃. Now select one vertex y₁, y₂, y₃, y₄ from each of the four sub-intervals of x₁, …, x₅ separated by the three cuts i₁, i₂, i₃. For any triple y_a < y_b < y_c (1 ≤ a < b < c ≤ 4), the interval [y_a, y_b] straddles the highest cut between a and b, and [y_b, y_c] straddles the highest cut between b and c. In particular, the four triples of {y₁, y₂, y₃, y₄} include three triples whose gap-label pairs are {δ_{i₁}, δ_{i₂}}, {δ_{i₁}, δ_{i₃}}, and {δ_{i₂}, δ_{i₃}} (for instance, if i₁ < i₂ < i₃, taking y₁ = x_{i₁}, y₂ = x_{i₂}, y₃ = x_{i₃}, y₄ = x_{i₃+1} gives δ(y₁, y₂) = δ_{i₁}, δ(y₂, y₃) = δ_{i₂}, δ(y₃, y₄) = δ_{i₃}, and by the ultrametric property δ(y₁, y₃) = δ_{i₁} and δ(y₂, y₄) = δ_{i₂}, so the triples (y₁, y₂, y₃), (y₁, y₃, y₄), and (y₂, y₃, y₄) receive colors Δ({δ_{i₁}, δ_{i₂}}), Δ({δ_{i₁}, δ_{i₃}}), and Δ({δ_{i₂}, δ_{i₃}}); the other orientations of the chain (i₁, i₂, i₃) behave identically by symmetry of the cuts). If S were monochromatic under the triple-coloring, {δ_{i₁}, δ_{i₂}, δ_{i₃}} would be a monochromatic triangle in Δ on K₅ — impossible, because Δ is triangle-free! Notice also why 4-element sets can escape: 4 vertices have only 3 steps (δ₁, δ₂, δ₃), which can form a balanced V-shape of height 2 such as (0, 1, 0) (for {0, 1, 2, 3}), using only two distinct bit positions {0, 1} and therefore only one edge of K₅. And why does this pairs-to-triples step not iterate to s ≥ 4? Because a binary tree of height s − 1 needs 2^{s−1} leaves (2^{s−1} = 4 steps at s = 3, which is 2s − 1 = 5 vertices, where 2^{s−1} + 1 and 2s − 1 coincide), whereas for s ≥ 4 a set of 2s − 1 vertices has only 2s − 2 < 2^{s−1} steps, not enough to force a descending chain of length s − 1 in a pair-coloring; for k ≥ 3, by contrast, local extrema of the step sequence already trigger (k−1)-tuples without needing a binary-tree depth of s − 1.
+
+**The machine verdict.** On the 32-vertex 3-uniform coloring just defined, the lab counts: among the C(32, 4) = 35,960 four-element sets, **10,808 are monochromatic** — a fact to hold honestly, not to hide: r₃(4) = 13 says mono 4-sets are unavoidable at this scale, and indeed one is exhibited in the lab's output, the set {0, 1, 2, 3} with all four of its triples colored by the Δ-color of {δ(0,1), δ(1,2)} = {0, 1}. But among the C(32, 5) = 201,376 five-element sets, **not one is monochromatic**. Hence
+
+  **r₃(5) > 32 = 2^(R(3,3) − 1)**,
+
+a machine-verified tower brick: the pairs-to-triples construction at its canonical input really does double exponentially while dodging 5-sets. What it does *not* give is the general k = 2 → 3 lemma — the count of mono 4-sets is the boundary's signature, and the lab records both numbers side by side. For k ≥ 3, where the lemma does hold in general, iterating the construction from the double-exponential lower bound at k = 3 climbs the tower one level at a time; that iteration is the lower bound half of the k ≥ 4 line in §4.1.
+
+### 4.3 The tower, the boundary, and the two conjectures
+
+Where does the fog come from? For pairs, the lower bound (random) and the upper bound (recursion, or the Campos et al. improvement of L6) live at the same tower level, and the open problem is a constant in the exponent. For triples, the lower bound is one tower level *below* the upper: no one knows how to construct triple-colorings on doubly exponentially many vertices — the best constructions are "only" single-exponential-in-n², and the Erdős–Hajnal conjecture asserts that a doubly exponential construction exists without giving it. The 4-color result of §4.1 says the obstacle is not the *counting*: with 4 colors, doubly exponential colorings exist and are understood. The obstruction is combinatorial and specific to 2 colors at k = 3 — precisely the uniformity where the stepping-up engine's max-vertex bookkeeping misfires. This is the rarest kind of open problem: everyone believes the answer, the techniques exist on both sides, and one specific wall — which the community can name — has held for over sixty years.
+
+Below the tower sits a gem the book proves completely (L6): R(3,3,3) = 17, the first multicolor hypergraph-free Ramsey number, worked from both sides, the upper bound by pure pigeonhole and the lower bound by finite-field arithmetic — a two-page cameo of everything this chapter has taught, with the Greenwood–Gleason K₁₆ as the dodge.
+
+### 4.4 What to learn
+
+Change the uniformity, change the *kind* of growth: exponential (pairs) to towers (k ≥ 3), one tower level per uniformity, with exactly one exponential of fog at every level k ≥ 3. The stepping-up construction is the only known machine that climbs the tower, and its k = 2 → 3 boundary is not a technicality — it is the exact location of a $500 problem. And learn to read a construction the way this lecture read the 32-vertex one: what does it *achieve* (201,376 five-sets dodged), what does it *not* (10,808 four-sets hit), and why is the difference not a failure but a theorem (r₃(4) = 13)?
+
+---
+
+## Lecture 5 · The Erdős–Szekeres Pair: Monotone Subsequences and the Happy Ending
+
+In 1933, Esther Klein proposed a problem to the circle of young mathematicians meeting at the Anonymous statue in Budapest's City Park — Erdős, Szekeres, and Turán among them: among any five points in general position in the plane, some four form a convex quadrilateral. Paul Erdős and George Szekeres — the two friends — were provoked into a theorem-making duel: Szekeres found that any *sufficiently long sequence of distinct numbers* contains a long monotone subsequence, and that this "lemma", Erdős realized, priced Klein's observation: sufficiently many points force a convex n-gon. They married; Erdős named the problem "the happy ending problem"; and the 1935 paper carrying both results ("A combinatorial problem in geometry") is one of the founding documents of Ramsey theory — discovered independently of Ramsey's 1930 paper, before the Budapest circle learned of Ramsey's work. This lecture proves the pair's two theorems in full, machine-checks both sharpness statements, and follows the problem from Klein's five points to Suk's near-solution of the conjecture the pair left open.
+
+### 5.1 The monotone subsequence theorem, three ways
+
+**Theorem (Erdős–Szekeres 1935).** Every sequence of (r−1)(s−1) + 1 distinct real numbers contains an increasing subsequence of length r or a decreasing subsequence of length s. Both demands are sharp: the construction of (r−1)(s−1) numbers — r−1 blocks of s−1, each block internally decreasing, blocks stacked in increasing order — dodges both (an increasing subsequence takes at most one element per block, at most r−1; a decreasing one stays inside a block, at most s−1).
+
+**Proof (Seidenberg's pigeonhole, 1959).** For each position i, let a_i be the length of the longest increasing subsequence ending at position i, and b_i the longest decreasing one. Suppose, for contradiction, that no increasing subsequence reaches r and none decreasing reaches s: then every a_i ∈ {1, …, r−1} and every b_i ∈ {1, …, s−1}, so the pairs (a_i, b_i) take at most (r−1)(s−1) values — one fewer than the sequence has positions. Two positions i < j carry the same pair. If x_i < x_j, appending x_j to the increasing subsequence that witnesses a_i gives one longer: a_j ≥ a_i + 1, contradicting (a_i, b_i) = (a_j, b_j). If x_i > x_j, the same move on the decreasing side contradicts the equality. Distinctness of the x's leaves no third case. ∎
+
+The lab machine-checks the sharpness end at the smallest interesting scale, r = s = 4: all 10! = 3,628,800 permutations of [10] contain a monotone (increasing or decreasing) subsequence of length 4 — zero dodgers — while the block construction (3, 2, 1, 6, 5, 4, 9, 8, 7) at n = 9 = (4−1)(4−1) has longest increasing and longest decreasing runs both exactly 3: three blocks of size 3, any increasing subsequence takes at most one element per block, any decreasing one stays inside its block. At r = s = 3 the census is small enough to hold in your head: all 5! = 120 permutations of [5] contain a monotone triple; exactly 4 permutations of [4] dodge, and all four alternate (two consecutive moves in the same direction would be a monotone triple): 2, 4, 1, 3 · 3, 1, 4, 2 · 2, 1, 4, 3 · 3, 4, 1, 2 — the lab enumerates them.
+
+**Proof (via Dilworth, Ch. 5's currency).** Partially order the positions by i ≺ j iff i < j and x_i < x_j. Chains are increasing subsequences; antichains are decreasing subsequences. If no chain has r elements, Mirsky's theorem — the dual sibling of Ch. 5's Dilworth (proved there, exercise 11) — partitions the poset into at most r − 1 antichains; each antichain is a decreasing subsequence with at most s − 1 elements; the total is at most (r−1)(s−1). Exercise 11 makes you write it out in full — the point of seeing it twice is that the poset lens is what generalizes (to multidimensional versions) and the pigeonhole lens is what sharpens.
+
+**Proof (deletion of endpoints, by induction).** Denote f(r, s) = (r−1)(s−1) + 1. We induct on r + s. The base cases r = 1 or s = 1 are immediate (f(1, s) = f(r, 1) = 1). Given a sequence of f(r, s) distinct terms, let M be the set of indices i that are the last term of some increasing subsequence of length r − 1. If |M| ≥ s, consider the subsequence of values (x_i) for i ∈ M: if two indices i < j in M satisfy x_i < x_j, appending x_j to the (r−1)-term increasing subsequence ending at x_i yields an increasing subsequence of length r; otherwise the values (x_i) for i ∈ M are strictly decreasing of length |M| ≥ s, done. If instead |M| ≤ s − 1, delete all |M| positions of M from the sequence. At least f(r, s) − (s − 1) = (r−2)(s−1) + 1 = f(r−1, s) terms remain. By the induction hypothesis, the remaining subsequence contains either a decreasing subsequence of length s (done) or an increasing subsequence of length r − 1. But the last index of that (r−1)-term increasing subsequence is, by definition, a member of M — contradicting that all of M was deleted! ∎ An attribution note, honestly owed: the two-line pigeonhole dressing earlier in this section is credited to Seidenberg (1959) in Steele's survey, while *Proofs from THE BOOK* prints the counting argument itself as the 1935 original — the literature is genuinely split, and the deletion proof above needs no dressing and stands on its own merits. The Erdős–Szekeres instinct — label each object by the extremal statistic it supports, then pigeonhole the labels — returns in L6's ⌈16/3⌉ = 6 argument, where the "objects" are edges at a vertex and the "labels" are colors.
+
+### 5.2 The happy ending problem
+
+Klein's observation, now the base case of a theorem-ladder, turns on a classification so small it can be checked by hand and has been checked by the lab on ten thousand random samples:
+
+**Theorem (Klein; ES(4) = 5).** Among any five points in general position (no three collinear) in the plane, some four are in convex position. Four do not suffice: the lab records an explicit 4-point set — a triangle with one interior point — that dodges.
+
+**Proof.** Of the five points, consider the convex hull. If it has 4 or 5 vertices, its vertices contain four in convex position and we are done. The remaining case: the hull is a triangle A, B, C, and two points P, Q lie strictly inside. The line PQ divides the plane into two open half-planes; no hull vertex lies on the line (general position keeps each of A, B, C off the line through P and Q), so by pigeonhole some two of the three — call them A and B — lie strictly on one side; which side the third, C, takes does not matter. Claim: A, B, P, Q are in convex position. Here is the argument, and it is Exercise 10 to make every step explicit: the line PQ is a *supporting line* of the four-point set {A, B, P, Q} — all of A, B strictly on one side, only P, Q on the line itself — so P and Q are both extreme points of the set (each is an endpoint of the intersection of the line with the set's hull). And A and B are extreme because each is a vertex of the hull of the *larger* set {A, B, C, P, Q}, and a fortiori of any subset containing it. Four extreme points, one hull: a convex quadrilateral. ∎
+
+The lab's census of this argument is worth reading: on 10,000 seeded random five-point sets in general position, every single one contains a convex quadrilateral; the case split ran 3,466 hull-5, 5,531 hull-4, and 1,003 hull-3; and in *every one* of the 1,003 triangle cases, the line-split repair was verified computationally — the two same-side hull vertices, with P and Q, always formed a convex quadrilateral, exactly as the proof promises.
+
+The ladder continues: **ES(5) = 9** — among any nine points in general position, five are in convex position. The lower side is the lab's witness: an explicit 8-point set, printed in the lab with integer coordinates, in general position, verified to contain no five in convex position (all 56 five-subsets checked), so ES(5) > 8. The upper side — no 9-point dodge exists — is the classical argument of the 1935 paper, whose key idea ("cups and caps", the geometry of points sorted by x-coordinate, with the monotone-slope condition playing the role monotonicity played in §5.1) yields the general bound ES(N) ≤ C(2N−4, N−2) + 1: a cup or cap of N points is automatically in convex position, so a pigeonhole over the cup/cap labels forces one. (The cup-cap count is sharp, and the sharpness has a name attached: writing f(k, l) for the least number of points that forces a k-cup or an l-cap — a k-cup being k points whose consecutive slopes strictly increase, an l-cap l points whose consecutive slopes strictly decrease — the bound is f(k, l) = C(k+l−4, k−2) + 1 exactly, witnessed by the Erdős–Szekeres recursive splicing construction of 1961: take a dodge A of size f(k−1, l) − 1 and a dodge B of size f(k, l−1) − 1, compress each into a tiny ball so internal slopes are nearly 0, and place B to the right of and high above A so every cross-step from A to B is steeper than any internal step of A or B — then any cup using points of both A and B takes at most one point from B, and any cap using both takes at most one point from A, which caps the sizes at f(k−1, l) − 1 + f(k, l−1) − 1 = C(k+l−4, k−2) − 1, one short of the bound.) The direction of the nine-point argument is credited by Erdős–Szekeres to Endre Makai; the book states ES(5) = 9 as a theorem with the 1935 paper as source, and machine-checks only the side it can. **ES(6) = 17** (Szekeres–Peters 2006, a computer proof: among 17 points a convex hexagon is forced, and a 16-point dodge is exhibited) took seventy years and ended the sequence of known values; beyond N = 6 not a single value of ES(N) is known.
+
+**The conjecture.** Erdős and Szekeres conjectured in 1935 that the truth is the doubled staircase: ES(N) = 2^{N−2} + 1 for all N ≥ 3 — true at every known value: 2^{3−2}+1 = 3 = ES(3), 2^{4−2}+1 = 5 = ES(4), 2^{5−2}+1 = 9 = ES(5), 2^{6−2}+1 = 17 = ES(6) — and in 1961 they built the matching lower-bound construction: 2^{N−2} points in general position with no convex N-gon (Exercise-level for small N, structural for all). The upper bound fell stair by stair: the binomial C(2N−4, N−2) + 1 of 1935, Tóth–Valtr's C(2N−5, N−2) + 1 (2005), and then the near-resolution: **Suk (2017): ES(N) ≤ 2^{N + o(N)}** — the conjectured value plus a lower-order correction. The problem's biography — 1933 observation, 1935 theorem, 2006 computer proof of ES(6) = 17, 2017 asymptotic resolution — is the happiest arc in Ramsey theory; beyond N = 6 not a single exact value of ES(N) is known, ES(7) included. And it began at a lunch table with a question about five points.
+
+### 5.3 What to learn
+
+Label by extremal statistic, then pigeonhole: it prices monotone subsequences (Seidenberg), convex quadrilaterals (the hull cases), multicolor triangles (L6), and — in disguise — half of this book's other thresholds. Sharpness is a construction, not an afterthought: the block staircase and the lab's 8-point witness are theorems in their own right, and the difference between "the bound holds" and "the bound holds with room to spare" is where research problems live (ES(N)'s 2^{N−2} + 1 vs the true value at N = 7 and beyond). And when a proof classifies by cases (Klein's three hull cases), machine-check every case — the census does not make the proof true, but it makes the proof *witnessed*.
+
+---
+
+## Lecture 6 · The Tables, the Worked Gem, and the Consolidation
+
+This lecture closes the chapter the way a map closes a territory: the small Ramsey numbers, every one with its provenance and its status (proved, computed, or verified-by-formal-methods); R(3,3,3) = 17 worked completely from both sides — the chapter's gem, where the upper bound is one sentence of pigeonhole and the lower bound is a finite-field construction the lab rebuilds from scratch; and the lower-bound consolidation, where the techniques of four earlier chapters (random colorings, the LLL, Frankl–Wilson linear algebra, and the recursion) assemble into the 2026 state of the art: R(k) ≤ (4 − ε)^k, the first exponential improvement in ninety years.
+
+### 6.1 R(3,3,3) = 17, worked from both sides
+
+**The upper bound: R(3,3,3) ≤ 17.** Take any 3-coloring of the edges of K₁₇. At any vertex v there are 16 edges, and three colors: some color is used at least ⌈16/3⌉ = 6 times, so v has six neighbors A joined to v by one color, say red. If any edge among A is red, its two endpoints with v form a red triangle. If *no* edge among A is red, then A carries a 2-coloring of K₆ — and R(3,3) = 6 (Ch. 3's engine, machine-verified there and again in this chapter's lab) forces a monochromatic triangle within A, in blue or green. Either way a monochromatic triangle exists. ∎
+
+**The lower bound: R(3,3,3) > 16 (Greenwood–Gleason 1955).** We need a 3-coloring of K₁₆ with no monochromatic triangle, and arithmetic in the field of 16 elements provides one. Build GF(16) as polynomials over 𝔽₂ modulo x⁴ + x + 1 (which is irreducible over 𝔽₂; its root α = "2" is primitive, and the lab builds the exp/log tables and verifies the multiplicative closure). The 15 nonzero elements split into three cosets of the subgroup H = {1, α³, α⁶, α⁹, α¹²} = {1, 8, 12, 10, 15} — namely H itself, αH = {2, 3, 7, 11, 13}, and α²H = {4, 5, 6, 9, 14}. Why is every coset α^k H *sum-free in the XOR (field addition) sense*? Because multiplication by α^k is an 𝔽₂-linear bijection on GF(16): for any x, y ∈ H, (α^k x) ⊕ (α^k y) = α^k(x ⊕ y) ∈ α^k H iff x ⊕ y ∈ H; and since H is a multiplicative group, dividing x ⊕ y = z ∈ H by x ∈ H gives 1 ⊕ (y/x) = z/x ∈ H, so a coset α^k H contains two distinct elements summing into α^k H iff H contains a non-identity element h ∈ H ∖ {1} with 1 ⊕ h ∈ H. And the four elements of H ∖ {1} = {α³, α⁶, α¹², α⁹} form a single orbit under the Frobenius automorphism t ↦ t² of GF(16) (since 3·2 ≡ 6, 6·2 ≡ 12, 12·2 ≡ 9, 9·2 ≡ 3 (mod 15)). Because (1 ⊕ h)² = 1 ⊕ h² in characteristic 2 and H (the cubic residues) is Frobenius-invariant, 1 ⊕ h lies in H for one h ∈ H ∖ {1} iff it lies in H for all four — and a single check closes the orbit: α(α³ ⊕ 1) = α⁴ ⊕ α = 1 = α¹⁵, so 1 ⊕ α³ = α¹⁴ with 14 ≢ 0 (mod 3), proving 1 ⊕ α³ ∈ α²H ≠ H. (Caution: multiplicative subgroups are not sum-free automatically — the order-3 subgroup H₃ = {1, α⁵, α¹⁰} = {1, 6, 7} of GF(16)× satisfies 1 ⊕ 6 = 7 ∈ H₃; the specific cubic-residue check is essential.) The lab verifies the two properties that make the construction fly — the cosets partition the 15 nonzero elements, and each coset is sum-free in the XOR sense (all three cosets verified, element by element) — and prints the Frobenius orbit and the H₃ caution alongside the census.
+
+Now put the 16 elements of GF(16) — including 0 — as the vertices of K₁₆, and color the edge xy by the coset containing x ⊕ y (in characteristic 2, subtraction is addition, so this is the "difference" coloring). A monochromatic triangle x, y, z would have x ⊕ y, y ⊕ z, z ⊕ x all in one coset C; but (x ⊕ y) ⊕ (y ⊕ z) = x ⊕ z, and the sum-free property — with x ⊕ y ≠ y ⊕ z, which holds because x ≠ z — says the XOR of two distinct members of C is not in C. Contradiction. The lab's census: all 560 triples of vertices checked, **zero monochromatic triangles**; and every vertex sees exactly 15 edges split 5–5–5 across the colors, the perfectly balanced case, so the construction is not accidentally balanced — it is group-theoretically forced. ∎
+
+Together: **R(3,3,3) = 17**, the first nontrivial multicolor Ramsey number, proved by pigeonhole above and finite-field arithmetic below. The reader of Ch. 3's Exercise 16 has met the *space* before in a different costume: a partition of the 15 nonzero vectors of Z₂⁴ into three sum-free classes, built there directly in vector language. The costumes share the cloth — GF(16)'s additive group *is* Z₂⁴, so both constructions partition the same 15 nonzero vectors into three XOR-sum-free 5-sets — but they are different partitions: Ch. 3's classes and the multiplicative cosets above are two distinct sum-free tripartitions of one space, and either suffices to dodge triangles (Ch. 3's lab verified its classes pair by pair; this chapter's lab verifies the cosets). The finite-field view is what generalizes (to GF(2^m) and to quadratic residues); the vector view is what Ch. 3 needed; both wear the same 5–5–5 balance, which is why the lab prints it.
+
+The neighbors of the gem: **R(3,3,3,3) is not known** — the four-color number lies in [51, 62], the largest small Ramsey gap; on the hypergraph side **r₃(4) = 13** (McKay–Radziszowski 1991) says 13 vertices force a mono 4-set in every 2-coloring of triples, the number that kept the stepping-up construction of L4 honest.
+
+### 6.2 The tables, with provenance
+
+Graph Ramsey numbers, two colors (diagonal and off-diagonal), with the status of every entry:
+
+| Number | Value | Status and source |
+|---|---|---|
+| R(3,3) | 6 | Ch. 3, proved; machine census here again (32,768/32,768) |
+| R(3,4) | 9 | Ch. 3's worked exercise |
+| R(3,5) | 14 | Greenwood–Gleason (1955), the same finite-field paper as R(3,3,3) |
+| R(3,6) | 18 | Kéry (1964) |
+| R(3,7) | 23 | Kalbfleisch (1966), a computer-assisted proof |
+| R(3,8) | 28 | McKay–Zhang (1992); SAT+CAS re-verified 2025 |
+| R(3,9) | 36 | Grinstead–Roberts (1982); SAT+CAS formally re-verified 2025 (Li–Duggan–Bright–Ganesh, IJCAI) |
+| R(3,10) | 40–42 | Open |
+| R(4,4) | 18 | Greenwood–Gleason (1955); Ch. 3's worked gem |
+| R(4,5) | 25 | McKay–Radziszowski (1995); formally verified 2024 (Angeltveit–McKay, ITP; two independent implementations) |
+| R(5,5) | 43–46 | Open; lower 43 (Exoo 1989), upper 46 (Angeltveit–McKay 2026, JGT; ≈ 80 processor-years, LP + case checking) |
+| R(6,6) | 102–165 | Open |
+
+Three colors and beyond: R(3,3,3) = 17 (proved here, both sides); R(3,3,3,3) ∈ [51, 62] (open). Hypergraphs: r₃(4) = 13 (McKay–Radziszowski 1991), r₃(5) > 32 (this chapter's machine brick) and, at the other end of the machine spectrum, the van der Waerden and Schur tables of L2 and L3, and the ES table: 3, 5, 9, 17, then Suk's 2^{N + o(N)}.
+
+What the table's right-hand column is quietly teaching is a *sociology of verification*: as numbers grow, "known" changes meaning — from hand proof (R(3,3) through R(4,4), W(2,3), S(2)) to machine-assisted census (R(3,8), W(2,6), S(4)) to formally verified computation (R(4,5), R(3,9)) to compressed proof artifacts (S(5)'s two petabytes). The ◐ explorations ask what a book should mean by "verified" at each rung.
+
+### 6.3 The lower-bound consolidation
+
+The diagonal numbers R(k) have been pinned, for sixty years, between 2^{k/2} and 4^k. Every technique in this book contributes a stone to that wall, and 2023–2026 finally moved the upper one. Assemble the record:
+
+- **Lower: random colorings, 2^{k/2}.** Color each edge independently; the expected number of mono K_k in K_n is C(n,k)·2^{1−C(k,2)}, which drops below 1 while n ≈ 2^{k/2}: some coloring dodges (P12 — Ch. 4 built this engine and its alterations).
+- **Explicit vs. random.** The random dodge has never been matched by an explicit one. The best explicit Ramsey graphs — Frankl–Wilson's forbidden-intersection construction (Ch. 6's polynomial method), with Grolmusz's composite-modulus variant reaching the same order — were the first *superpolynomial* explicit lower bounds, but they sit far below the probabilistic 2^{k/2}, and no explicit construction is known to improve on the random bound on the diagonal: diagonal Ramsey dodges remain, in the large, unbuildable. (Modern pseudo-random extractor constructions — Barak–Rao–Shaltiel–Wigderson 2012, Cohen 2016, Li 2023 — have since pushed explicit graphs past the algebraic bounds, but still sit far below the probabilistic 2^{k/2}.)
+- **Upper: the recursion.** R(s,t) ≤ R(s−1,t) + R(s,t−1) (Ch. 3, proved at a vertex), iterated to the Pascal ceiling R(k) ≤ C(2k−2, k−1) ≈ 4^k/√k — Erdős–Szekeres 1935, unimproved in its exponential constant until this decade.
+- **Off-diagonal: r(3, t) = Θ(t²/log t).** Kim's 1995 breakthrough supplied the floor (a random triangle-free process — P12, sharpened); the Ajtai–Komlós–Szemerédi line supplies the ceiling (c₁t²/log t ≤ r(3,t) ≤ c₂t²/log t; the constant chase continues). Ch. 4's Lovász Local Lemma carries the diagonal refinement of the same probabilistic toolkit — Spencer's (√2/e − o(1))·k·2^{k/2}.
+- **Upper, 2026: R(k) ≤ (4 − ε)^k.** Campos, Griffiths, Morris and Sahasrabudhe proved that some ε > 0 exists for which the binomial ceiling can be beaten: the first exponential improvement of the diagonal Ramsey upper bound since 1935 (arXiv 2023; Annals of Mathematics 203 (2026) 869–932). The proof re-engineers the bookkeeping of the recursion — a refined potential-style accounting of the vertex classes that keeps the pigeonhole from over-paying at every scale.
+
+The wall stands: between 2^{k/2} and (4 − ε)^k, with ε's value not yet pinned to a sharp optimum (the paper proves ε = 2⁻⁷ works, and subsequent refinements by Gupta–Ndiaye–Norin–Wei 2024 have pushed the base to (3.8)^{k+o(k)}), and the hypergraph tower of L4 behind it. When Chapter 11 turns to algorithms, the message this consolidation carries forward is double-edged: the *numbers* resist exact determination, yet the *thresholds* are pinned tightly enough to price algorithms — the hardness reductions of Ch. 11 feed Ramsey-scale gaps into complexity gaps, and the two fields keep each other honest.
+
+### 6.4 What to learn
+
+Read a table the way you would read a proof: every entry has a *kind* (proved, computed, verified, bounded) and a *source*; the kind is part of the mathematics. The worked gem R(3,3,3) = 17 is the whole book in two pages: pigeonhole for the ceiling, algebra for the floor, machine verification for the census, and a cross-chapter bridge (Z₂⁴ ↔ GF(16)) between two costumes of one construction. And the consolidation is a snapshot of a live frontier: 2^{k/2} ≤ R(k) ≤ (4 − ε)^k is the 2026 state of a question Erdős asked in 1947, and both ends moved in your book's chapters — Ch. 4's random colorings on one end, Campos et al. on the other.
+
+---
+
+## The Trick Bag (reference card)
+
+| Pattern | Plain language | Where you met it |
+|---------|---------------|------------------|
+| **P25 Reduction / encoding** | Translate into another language — differences into edge colors, equations into column sums, pairs into triples — then let the target structure argue | L3 (Schur ≤ R−2, with the price recorded), L4 (stepping-up), L5 (poset from Ch. 5 carries the monotone theorem) |
+| **P26 Compactness (finite ↔ infinite)** | Infinite truth by attrition (pools shrink, one color wins); finite truth pulled back through König's finitely-branching tree — and consistent finite fragments assemble into infinite counterexamples | L1 (both directions), L2.4, L3.3 (Rado's finite certificates) |
+| **P9 Pigeonhole** | n+1 objects, n boxes — at a vertex, in a pool, on a label | L2 (base cases and the fan's closing), L5 (Seidenberg), L6 (⌈16/3⌉ = 6) |
+| **P4 Recurrence + induction** | Double induction with the palette carried "for all r at once"; ranges guarded by building the interval twice as long as the search zone | L2 (the Claim and its two inductions) |
+| **P11 Explicit construction** | Build the dodge: witnesses, cosets, blocks, diagonals | L2 ([8], [26], [34] witnesses), L4 (the 32-vertex coloring), L6 (Greenwood–Gleason K₁₆) |
+| **P12 Random construction** | Sample and count failures; expected failures < 1 means a dodge exists | L6 (2^{k/2}, recalled from Ch. 4); L4 (the 2^{cn²} hypergraph floor) |
+| **Perfect disorder cannot last (lore)** | Every threshold in the chapter is this sentence, at a different scale | L1, L2, L3, L6 |
+| **The encoding has a price (lore)** | A reduction's bound is an *upper* bound on its own sharpness — compare with the truth and print the gap | L2 (780 vs 9), L3 (15 vs 13), L4 (the stepping-up boundary) |
+
+**Formula box:** infinite Ramsey: pools shrink, beacons accumulate, one color wins by attrition — X = {x_{i_j}} with c_{i_j} constant. Compactness: good colorings of K_n nested by restriction form a finitely branching tree (≤ rⁿ children at level n); König ⟹ an infinite path ⟹ an infinite coloring; contrapositive: infinite mono K_k forces finite R_k. van der Waerden: W(1,k) = k, W(r,2) = r+1; the fan recursion M₁ = 2W(r,k−1), M_m = 2M_{m−1}·W(r^{M_{m−1}}, k−1), W(r,k) ≤ M_r; the diagonal trick G_i = {a_i + t(d_i + DM)} with focus f* = f₁ + (k−1)DM; range guard: search W blocks, land in 2W. Numbers: W(2,3) = 9, W(2,4) = 35, W(2,5) = 178, W(2,6) = 1132, W(3,3) = 27, W(3,4) = 293, W(4,3) = 76; Berlekamp (1968) p·2^p < W(2,p+1); Gowers W(r,k) ≤ 2^(2^(r^(2^(2^(k+9))))); Graham's $1000 problem: show W(2,k) < 2^(k²). Schur: S(r) ≤ R(3,…,3) − 2 via difference encoding (exactly tight at r = 2); S = 1, 4, 13, 44, 160 (max-colorable convention; +1 in the forcing convention); Rado: columns condition — I₁ sums to zero, later block-sums in the span of earlier columns; x+y=z ✓ ({1,3}), x+y=2z ✓ ({1,2,3}), x+y=3z ✗ (dodged on ℕ by c(n) = (v₃(n) mod 2, u(n) mod 3)). Hypergraphs: 2^{cn²} < r₃(n) < 2^{2^{c′n}}; t_{k−1}(cn²) ≤ r_k(n) ≤ t_k(c′n) for k ≥ 4; stepping-up: color triple x<y<z by Δ({δ(x,y), δ(y,z)}), δ = highest differing bit, labels always distinct; Erdős–Hajnal $500 conjecture: r₃(n) > 2^{2^{cn}}. ES pair: (r−1)(s−1)+1 by the label pigeonhole; sharp by r−1 decreasing blocks of s−1; ES(N): 3, 5, 9, 17 known; 2^{N−2}+1 ≤ ES(N) ≤ 2^{N+o(N)} (Suk 2017); Klein: hull ≥ 4 direct, hull = 3 repaired by the line PQ (supporting-line extremality). R(3,3,3) = 17: ⌈16/3⌉ = 6 above, GF(16) cosets {1,8,10,12,15}/{2,3,7,11,13}/{4,5,6,9,14} below, XOR-sum-free, 5–5–5 at every vertex. Consolidation: 2^{k/2} ≤ R(k) ≤ (4−ε)^k (Campos–Griffiths–Morris–Sahasrabudhe 2026, first exponential improvement since 1935); r(3,t) = Θ(t²/log t).
+
+---
+
+## Exercises (graded: ●○○ easy · ●●○ moderate · ●●● tough)
+
+**Easy — one idea, applied directly**
+
+1. ●○○ **[9] cannot dodge.** Exhibit a 2-coloring of [8] with no monochromatic 3-term progression (§2.1 prints one; check it), then prove that [9] cannot: every 2-coloring of [9] fails. *Hint: P9 — the point 5 belongs to four progressions with endpoints summing to 10 (1,5,9), (2,5,8), (3,5,7), (4,5,6); case-split on c(5), then on a pair forced to disagree, and let the endpoints corner you.*
+
+2. ●○○ **The six-color ceiling.** Prove R(3,3,3) ≤ 17 without any machinery beyond pigeonhole and R(3,3) = 6. Where exactly does the hypothesis "17 vertices" enter, and why does the same argument fail to prove R(3,3,3) ≤ 16? *Hint: P9 — 16 edges at a vertex, three colors, ⌈16/3⌉ = 6.*
+
+3. ●○○ **Seidenberg's labels.** Prove the monotone subsequence theorem: every sequence of (r−1)(s−1)+1 distinct numbers contains an increasing r-subsequence or a decreasing s-subsequence. Then verify sharpness at r = s = 3 by exhibiting a 4-term sequence with no monotone triple, and at r = s = 4 on the block construction (3, 2, 1, 6, 5, 4, 9, 8, 7). *Hint: P9 — label position i by the pair (longest inc. ending at i, longest dec. ending at i) and count labels.*
+
+**Moderate — two ideas, or one tricky step**
+
+4. ●●○ **The diagonal, by hand.** Run the color-focusing construction of §2.2 on a concrete miniature: two colors, k = 3, the inner induction's step m = 1 → 2. Take three consecutive blocks of length 6 — B₁ = {1..6}, B₂ = {7..12}, B₃ = {13..18}, identically colored (M₁ = 2W(2, 2) = 6) — and suppose block B₁ contains the red pair {2, 4}, color-focused at f = 6 ∈ B₁, with c(6) = blue. (a) Verify that the pair is focused inside the block and that the focus's color is exactly the Case-2 continuation: if c(6) were red, the argument would already close — where? (b) Build the m = 2 fan: compute the diagonal G_red = {2 + t·(d_red + 6)} and the foci-AP F = {f, f + 6}; verify each is monochromatic under the identical-blocks hypothesis, and that both aim at one common focus f* inside B₃. (c) Close the fan: why does c(f*) complete a monochromatic 3-term progression either way, and which positions of the blocks must actually agree for the assembly to work — why can the proof not merely assume agreement at those positions and drop the demand of identical blocks? *Hint: P4 — the diagonal t(d + DM) is the induction's one clever move; everything else is range bookkeeping.*
+
+5. ●●○ **The encoding's price, measured.** Prove: S(r) ≤ R(3, …, 3) − 2 for every r (the difference encoding of §3.1), and check exactness at r = 2: S(2) = 4 = R(3,3) − 2. Then locate the loss at r = 3 (bound 15, census truth 13) exactly: show the encoding's mirror is faithful — a coloring of [N] is sum-free iff its image on K_{N+1} is triangle-free (every mono triangle yields its differences as a solution; every solution (x, y, z) yields the triangle (0, x, x + y); check the doubled solution 1 + 1 = 2) — and explain why the faithful mirror still cannot reach below 15: which true statement about the difference-form colorings of K₁₅ does the encoding know only through the whole-space number R(3,3,3) = 17? *Hint: P25 — a faithful mirror into a larger world trades a statement about a corner for a statement about the whole space; the loss is the trade.*
+
+6. ●●○ **Rado, checked.** Verify the columns condition for x + y = z (block {1, 3} then {2}) and for x + y = 2z (single block {1, 2, 3}), and prove that x + y = 3z fails the condition's first clause by exhibiting all seven subset sums. State what Rado's theorem then guarantees and what it denies, and prove directly, using the 3-adic coloring c(n) = (v₃(n) mod 2, u(n) mod 3), that x + y = 3z has no monochromatic solution in ℕ. *Hint: P25 — translate "unavoidable in every coloring" into "a finite certificate in the column vectors".*
+
+7. ●●○ **Greenwood–Gleason, coset by coset.** In GF(16) with primitive polynomial x⁴ + x + 1, verify by hand that the coset αH = {2, 3, 7, 11, 13} is XOR-sum-free: for each of its ten pairs, compute the XOR and confirm it lands in a different coset. Then prove the algebraic reduction of §6.1: (a) use 𝔽₂-linearity of multiplication by α^k and multiplicative closure of H to show that all three cosets of H are XOR-sum-free if and only if 1 ⊕ h ∉ H for every h ∈ H ∖ {1}; (b) use the Frobenius automorphism t ↦ t² to reduce the four checks h ∈ {α³, α⁶, α⁹, α¹²} to the single check 1 ⊕ α³ = α¹⁴ ∉ H; and (c) show by explicit counterexample on the order-3 subgroup H₃ = {1, α⁵, α¹⁰} ⊂ GF(16)× that multiplicative closure alone does not make a subgroup XOR-sum-free. *Hint: P19 — in characteristic 2, (1 ⊕ h)² = 1 ⊕ h² and H is Frobenius-invariant.*
+
+8. ●●○ **W(3,3) > 26, verified.** The lab records the 26-letter 3-coloring RRGGRRGBGBBRBRRGRGGBRBBGBG. Verify (spot-check at least six progressions, including (4, 15, 26) and (8, 17, 26)) that no monochromatic 3-term progression exists in [26], and explain why this single string suffices to prove W(3,3) ≥ 27 while proving W(3,3) = 27 needs vastly more. *Hint: P11 — a witness is a construction; the upper bound is the forcing half.*
+
+**Tough — several chapter ideas combined**
+
+9. ●●● **The compactness bridge, both directions, in full.** (a) Prove the infinite Ramsey theorem for r colors and pairs. (b) Prove that König's lemma pulls finiteness from it: if every r-coloring of K_ℕ contains a mono K_k, then R(k, …, k) is finite — write the tree, verify finite branching, extract the path, read off the coloring. (c) Run the bridge in reverse for van der Waerden: suppose colorings of [n] with no mono k-term progression exist for every n; build the corresponding finitely branching tree and conclude that an r-coloring of ℕ with no mono k-term progression exists. Why does part (c) not contradict the finite theorem of L2? *Hint: P26 — restrictions point down, the tree is finitely branching, levels never die; the contradiction is exactly where you choose to stop walking.*
+
+10. ●●● **Klein's repair, complete.** In the hull-triangle case of Klein's theorem (three hull vertices A, B, C, two interior points P, Q, line PQ splitting the hull vertices 2 and 1), prove that the two same-side vertices together with P and Q are in convex position, making explicit every extremality claim: (a) P and Q are extreme points of {A, B, P, Q} because line PQ is a supporting line; (b) A and B are extreme because they are extreme in the larger set of all five points; (c) no point of the four lies in the convex hull of the other three. Where does general position (no three collinear) enter each part? *Hint: P8 — extremality is the whole game; recall that a point is extreme iff it is not a convex combination of the others.*
+
+11. ●●● **The monotone theorem through Dilworth.** Reprove the Erdős–Szekeres monotone theorem via the poset of positions ordered by i ≺ j iff i < j and x_i < x_j: chains are increasing subsequences, antichains are decreasing ones. Use Mirsky (or Dilworth — Ch. 5's exercise 11 proves the latter) to partition when all chains are short, and deduce (r−1)(s−1)+1. Then answer the sharpness question the poset lens begs: in the block construction, what do the chains and antichains of the poset look like, and why does the partition argument's inequality become equality there? *Hint: P17 — Ch. 5's duality prices this poset exactly.*
+
+12. ●●● **Stepping-up, the elementary parts.** From the pair-coloring Δ of K₅ (edges colored by 0011101100 in the order (01, 02, 03, 04, 12, 13, 14, 23, 24, 34)): (a) prove δ(x, y) ≠ δ(y, z) and the ultrametric identity δ(x, z) = max(δ(x, y), δ(y, z)) for x < y < z among 0..31; (b) exhibit a monochromatic 4-set and verify all four of its triple-colors (the census says you can find 10,808 of them — one suffices); (c) explain why the construction *cannot* be upgraded to dodge 4-sets at any larger scale, using r₃(4) = 13; (d) prove without machine assistance (using the Cartesian tree of the four consecutive step labels δ_i = δ(x_i, x_{i+1})) that every 5-element subset S = {x₁ < x₂ < x₃ < x₄ < x₅} ⊆ {0, …, 31} contains a non-monochromatic pair of triples, and conclude r₃(5) > 32 = 2^{R(3,3)−1}. *Hint: P25 + P11 — a binary tree on 4 step-labels has height at least 3, giving a descending chain δ_{i₁} > δ_{i₂} > δ_{i₃} whose induced 4-vertex subset forces all three edges of a triangle in K₅.*
+
+**◆ Pattern-unknown — no hints; diagnosing the tool is the assignment**
+
+13. ◆ **Count the dodgers.** Count exactly the 2-colorings of the edges of K₅ in which no triangle is monochromatic. (Your answer should end in a count and a structural description of every dodger.)
+
+14. ◆ **The 325 ceiling.** Prove W(2, 3) ≤ 325 directly: 65 blocks of 5; pigeonhole the patterns of the first 33 blocks; run the two-block argument to its landing. (The proof of §2.2 gives 780 with room to spare; find the sharpened landing yourself.)
+
+15. ◆ **S(3) = 13, both sides, by construction and by corner.** Exhibit a sum-free 3-coloring of [13] (one exists — build one; symmetry helps), and prove [14] fails by hand: show that whatever the colors of 1, 2, 3, 4 are, a monochromatic solution of x + y = z is forced within [14]. (The lab's odometer verifies the failure exhaustively — 4,782,969 colorings, none dodging; the exercise asks for the human route.)
+
+**◐ Explorations — no single right answer**
+
+16. ◐ **Your own witnesses.** The lab's depth-first search found a 34-term 2-coloring dodging 4-term progressions (W(2,4) = 35 says [34] is the last dodge). Modify the search: find the lexicographically first witness; count how many witnesses exist (are they all extensions of smaller witnesses?); estimate how deep the search tree grows at [35] before dying, and reconcile your estimate with the fact that W(2,4) = 35's *upper* proof needed real computation. What does your search teach about the distance between "an avoiding coloring exists" and "I can see why"?
+
+17. ◐ **What does "verified" mean?** This chapter's tables mix four kinds of evidence: hand proof (R(3,3,3) = 17), machine census (W(2,6) = 1132), formally verified computation (R(4,5) = 25, R(3,9) = 36), and compressed proof artifacts (S(5) = 160 — two petabytes). For each kind: what could make it wrong, and who could detect the error? Is the book's own standard — "machine-verified before printing, or cited" — the right one for a textbook, too strong, or too weak? Defend a position, then stress-test it against R(5,5) ≤ 46 (80 processor-years, two independent implementations — but not formal verification).
+
+18. ◐ **The wall at k = 3.** The Erdős–Hajnal $500 conjecture says r₃(n) > 2^{2^{cn}}: doubly exponential growth for 3-uniform Ramsey numbers, closing a one-exponential gap that the stepping-up construction cannot cross from below. Read the two facts the chapter gives you — the 4-color sharpness of Erdős–Hajnal, and the machine-verified r₃(5) > 32 — and write: what would a proof have to construct, what would it have to dodge, and which of the chapter's patterns (P11? P12? P25?) is the likeliest engine? Hunt the literature for the current best lower bounds on r₃(n, n) and see whether the gap has moved since the Conlon–Fox–Sudakov survey.
+
+---
+
+## Answers to the Exercises
+
+**A1.** The witness on [8] is RRBBRRBB (colors of 1..8). Its twelve progressions, each verified mixed: (1,2,3) RRB, (2,3,4) RBB, (3,4,5) BBR, (4,5,6) BRR, (5,6,7) RRB, (6,7,8) RBB, (1,3,5) RBR, (2,4,6) RBR, (3,5,7) BRB, (4,6,8) BRB, (1,4,7) RBB, (2,5,8) RRB. Now [9]. The forcing move, used throughout: when two terms of a progression share a color, the third term is *forced* to the other color (or the progression is monochromatic and we are done). WLOG c(5) = R (color swap preserves progressions; so does reflection i ↦ 10 − i, which we use to halve the tree).
+
+*Case 1: c(4) = c(6) = R.* Then (4,5,6) is monochromatic red. Done.
+
+*Case 2 (by reflection, WLOG c(4) = B): c(6) = R.* The forcings run in a chain: (5,6,7) has R,R → c(7) = B; (1,4,7) has B,B → c(1) = R; (1,5,9) has R,R → c(9) = B; (7,8,9) has B,B → c(8) = R; (2,5,8) has R,R → c(2) = B; (2,3,4) has B,B → c(3) = R. Now (1,3,5) = R, R, R — monochromatic red. Done.
+
+*Case 3: c(4) = B, c(6) = B.* Branch on (c(7), c(8)):
+- *c(7) = R:* (5,7,9) has R,R → c(9) = B; (3,5,7) has R,R → c(3) = B; (2,3,4) has B,B → c(2) = R; (2,5,8) has R,R → c(8) = B. Now (4,6,8) = B, B, B — monochromatic blue. Done.
+- *c(7) = B, c(8) = R:* (2,5,8) has R,R → c(2) = B. Now (2,4,6) = B, B, B — monochromatic blue. Done.
+- *c(7) = B, c(8) = B:* (6,7,8) = B, B, B — monochromatic blue. Done.
+
+Every branch closes: W(2, 3) ≤ 9, and with the [8] witness, W(2, 3) = 9. ∎ (Machine census: all 512 colorings of [9] fail against the 16 progressions — seven of step 1, five of step 2, three of step 3, one of step 4; six witnesses on [8], forming three complement-pairs. The tree above has five leaves; the census certifies no branch was missed.)
+
+**A2.** At a vertex v of K₁₇: 16 incident edges, 3 colors, so some color class has ⌈16/3⌉ = 6 edges (pigeonhole: three classes of size ≤ 5 cover at most 15 < 16). Let A be the 6 neighbors joined to v in red. If any edge inside A is red, that edge with v is a red triangle. Otherwise all C(6,2) = 15 edges inside A are blue/green — a 2-coloring of K₆ — and R(3,3) = 6 forces a mono triangle inside A, blue or green. Either way a mono triangle exists in K₁₇. The "17" enters at two points: 16 edges at the vertex (K₁₇ has 16 others) and the ceiling ⌈16/3⌉ = 6 > 16/3; with 16 vertices, a vertex has 15 edges and ⌈15/3⌉ = 5, and the K₅ remainder is not Ramsey-critical — consistent with the dodge of §6.1 on K₁₆, where every vertex sits at exactly 5–5–5. ∎
+
+**A3.** Seidenberg: labels (a_i, b_i) ∈ {1..r−1} × {1..s−1} — (r−1)(s−1) possible pairs, (r−1)(s−1)+1 positions, so two positions i < j share a label; x_i < x_j would force a_j > a_i and x_i > x_j would force b_j > b_i; distinctness forbids x_i = x_j. Sharpness at r = s = 3: the sequence 2, 4, 1, 3 — increasing subsequences: max length 2 (2,4 or 1,3); decreasing: max length 2 (4,1 or 4,3 or 2,1) — no monotone triple ✓ (one of exactly four dodgers on [4], all alternating — 2,4,1,3 · 3,1,4,2 · 2,1,4,3 · 3,4,1,2 — machine-checked against all 24 permutations). At r = s = 4: (3,2,1,6,5,4,9,8,7): any increasing subsequence takes at most one element from each of the three decreasing blocks (max 3); any decreasing subsequence lives inside one block (max 3). Both demands fail at n = 9 = (4−1)(4−1) ✓ — machine-checked on all 3,628,800 permutations of [10] that adding one more number makes the dodge impossible. ∎
+
+**A4.** (a) The red pair {2, 4} has step d_red = 2; its would-be third term, the focus, is 2 + 2·2 = 6 ∈ B₁ — a monochromatic (k−1)-term progression whose next term is in range, i.e. color-focused at 6 in the sense of §2.2 (with a single progression there is no distinctness condition to check). If c(6) were red, the spoke {2, 4, 6} would be a red 3-term progression and the argument would close inside B₁ itself — Case 1. The hypothesis c(6) = blue is precisely the Case-2 continuation. (b) DM = 6. The diagonal is G_red = {2 + t·(2 + 6)} = {2, 10}: term 2 is position 2 of B₁, red; term 10 is position 4 of B₂ (7 + 3 = 10), red because identical blocks color position 4 red everywhere; its next term is 2 + 2·8 = 18 = position 6 of B₃. The foci-AP is F = {6 + t·6} = {6, 12}: position 6 of B₁ and position 6 of B₂, blue in both — the foci share one color c* = blue, same offset in identically colored blocks; its next term is 6 + 2·6 = 18. Both progressions are monochromatic, differently colored, aimed at the same f* = 18 ∈ B₃ — the m = 2 fan, with the focus landing one block-step beyond the block-pair, exactly the land-in-the-second-half guard of §2.2 in miniature. (c) Whatever color 18 takes, a spoke closes: red makes {2, 10, 18} a red 3-term progression of step 8 — one term per block; blue makes {6, 12, 18} a blue 3-term progression of step 6 — the foci-AP completed. The positions that must agree across the blocks are 2 and 4 (the diagonal borrows the pair's colors block by block) and 6 (the foci-AP borrows the focus's color). The proof cannot assume agreement at just those three positions because it does not know them in advance: the focused pair is found *inside* whatever coloring a block carries, at whatever position it occupies, so the proof buys whole-block identity wholesale — by pigeonholing the at-most-r^M block-patterns — and that purchase is the entire office of the r^M palette in M_m = 2M·W(r^M, k−1). ∎ (arithmetic machine-checked)
+
+**A5.** The reduction: color edge ij of K_{N+1} (vertices 0..N) by c(|i − j|); a mono triangle i < j < l gives x = j − i, y = l − j, z = l − i with x + y = z all one color. So a sum-free r-coloring of [N] yields a triangle-free r-coloring of K_{N+1}, which forces N + 1 ≤ R(3,…,3) − 1: **S(r) ≤ R(3,…,3) − 2**; at r = 3: S(3) ≤ 15. The mirror is faithful exactly where it matters: [N] is sum-free if and only if the image is triangle-free — every mono triangle yields its three differences as a mono solution, and every mono solution (x, y, z) yields the mono triangle (0, x, x + y) (check the doubled solution 1 + 1 = 2: the triangle (0, 1, 2), edges c(1), c(1), c(2)) — so nothing about the arithmetic is invisible to the image. The two lost steps (bound 15, truth 13) are paid at the input, not the mirror. To condemn [n], the encoding needs "every r-coloring of K_{n+1} contains a mono triangle" — a whole-space statement — and §6.1's Greenwood–Gleason coloring shows it fails for every n + 1 ≤ 16 (it is triangle-free on K₁₆ and stays so under restriction); the statement first becomes true at n + 1 = 17, by R(3,3,3) = 17. So the encoding stops at S(3) ≤ 15 and cannot do better, even though [14] already fails — a fact the faithful mirror restates as "every difference-form 3-coloring of K₁₅ has a mono triangle", strictly stronger than anything a Ramsey number says about the whole space. (At r = 2 the encoding is exactly tight: S(2) = 4 = R(3,3) − 2 — the census: [4] has 2 sum-free colorings, [5] none.) ∎
+
+**A6.** x + y = z: columns 1, 1, −1. I₁ = {1, 3}: 1 + (−1) = 0 ✓. I₂ = {2}: column 1 ∈ span{1, −1} = ℚ ✓. Condition holds. x + y = 2z: columns 1, 1, −2; I₁ = {1, 2, 3}: 1 + 1 − 2 = 0 ✓; single block, done. x + y = 3z: columns 1, 1, −3; subsets: {1}: 1, {2}: 1, {3}: −3, {1,2}: 2, {1,3}: −2, {2,3}: −2, {1,2,3}: −1 — no zero sum, so no valid I₁ exists. By Rado's theorem (the "if" direction, which needs van der Waerden's theorem in its proof — Rado's criterion is not a two-line equivalence): the first two systems are partition-regular — every finite coloring of ℕ contains mono solutions — and the third is not: some finite coloring of ℕ avoids x + y = 3z entirely. For this equation the dodge is explicit: the 4-coloring c(n) = (v₃(n) mod 2, u(n) mod 3), where n = 3^{v₃(n)} u(n) and 3 ∤ u(n), avoids x + y = 3z on all of ℕ — if x, y, z share a color (b, r) and v₃(x) ≤ v₃(y), then d = v₃(y) − v₃(x) is even; if d = 0, u(x) + u(y) ≡ 2r ≢ 0 (mod 3), so v₃(x + y) = v₃(x); if d ≥ 2, u(x) + 3^d u(y) ≡ r ≢ 0 (mod 3), so again v₃(x + y) = v₃(x); either way v₃(x + y) ≡ b (mod 2), whereas v₃(3z) = v₃(z) + 1 ≡ b + 1 (mod 2) — impossible. Rado's theorem denies more: the columns condition is *decidable*, so partition-regularity of any given system is computable, a rarity among "every coloring fails to dodge" statements. ∎
+
+**A7.** Coset αH = {2, 3, 7, 11, 13}. Pairwise XORs (10 pairs): 2⊕3 = 1 ∈ H; 2⊕7 = 5 ∈ α²H; 2⊕11 = 9 ∈ α²H; 2⊕13 = 15 ∈ H; 3⊕7 = 4 ∈ α²H; 3⊕11 = 8 ∈ H; 3⊕13 = 14 ∈ α²H; 7⊕11 = 12 ∈ H; 7⊕13 = 10 ∈ H; 11⊕13 = 6 ∈ α²H. Every XOR lands in H or α²H, never back in αH ✓. For the general step: (a) multiplication by α^k distributes over field addition (⊕), so (α^k x) ⊕ (α^k y) = α^k(x ⊕ y) ∈ α^k H iff x ⊕ y ∈ H; and since H is a multiplicative group, dividing x ⊕ y = z ∈ H (x ≠ y) by x ∈ H yields 1 ⊕ (y/x) = z/x ∈ H with h := y/x ∈ H ∖ {1}. Thus all three cosets of H are XOR-sum-free iff 1 ⊕ h ∉ H for all h ∈ H ∖ {1}. (b) Since H = {1, α³, α⁶, α⁹, α¹²} is invariant under the Frobenius automorphism φ(t) = t² of GF(16) (which satisfies φ(1 ⊕ h) = 1 ⊕ h²) and H ∖ {1} is a single Frobenius orbit (α³ ↦ α⁶ ↦ α¹² ↦ α⁹ ↦ α³), 1 ⊕ h ∈ H holds for one h ∈ H ∖ {1} iff it holds for all four. Using α⁴ = α ⊕ 1, we have α(α³ ⊕ 1) = α⁴ ⊕ α = 1 = α¹⁵, so 1 ⊕ α³ = α¹⁴ ∈ α²H ≠ H (since 14 ≡ 2 ≢ 0 (mod 3)). This single check proves all three cosets are XOR-sum-free. (c) By contrast, the multiplicative subgroup H₃ = {1, α⁵, α¹⁰} = {1, 6, 7} of order 3 in GF(16)× satisfies 1 ⊕ α⁵ = 1 ⊕ (α² ⊕ α) = α² ⊕ α ⊕ 1 = α¹⁰ ∈ H₃ (1 ⊕ 6 = 7 ∈ H₃), so multiplicative closure alone never suffices without the coset check. ∎
+
+**A8.** The recorded witness, colors of 1..26: R R G G R R G B G B B R B R R G R G G B R B B G B G. Spot-checks: (4, 15, 26): G, R, G — mixed ✓; (8, 17, 26): B, R, G — mixed ✓; (1, 5, 9): R, R, G — mixed; (2, 5, 8): R, R, B — mixed; (3, 6, 9): G, R, G — mixed; (6, 16, 26): R, G, G — mixed; (5, 10, 15): R, B, R — mixed. The lab verifies all 156 progressions — 26 − 2d of step d for d = 1..12 (24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2), summing to the machine's 156 — zero monochromatic. One string proves W(3,3) ≥ 27 because W(3,3) is defined by a *minimum over all colorings*: a single exhibited dodge on [26] certifies the number exceeds 26. Proving W(3,3) = 27 requires the forcing half — that every one of the 3²⁷ ≈ 7.6 × 10¹² colorings of [27] fails — past any direct census; the classical route is Chvátal's computation. The asymmetry — one witness suffices below, everything must be checked above — is the two-beat rhythm's price structure, and it recurs at every table in L6. ∎
+
+**A9.** (a) The pool argument of §1.1, with r colors: split into r classes, one infinite; beacons x_i with colors c_i; r colors over infinitely many beacons, some color wins infinitely often; the corresponding beacon set is a clique (each later beacon lay in the earlier's pool). (b) The tree: level-n nodes = the K_k-free r-colorings of K_n (colorings with no monochromatic K_k); parent = restriction to K_{n−1}; children of a level-(n−1) node ≤ r^{n−1}; levels nonempty by hypothesis; König's lemma (finitely branching, infinitely many levels) ⟹ infinite path; the path's colorings are nested, so edge ij takes the stable color it receives at level max(i,j); any mono K_k would appear complete at its own level, contradicting node goodness; so an infinite K_k-free coloring exists — contradicting (a). Hence R(k,…,k) < ∞. (c) For vdW: nodes at level n = r-colorings of [n] with no mono k-term progression, parent = restriction. Finite branching: r children per level (the new point's color) — even cleaner than (b). Nonempty at every level by hypothesis ⟹ path ⟹ coloring of ℕ with no mono k-term progression. No contradiction with L2 — because L2's theorem is *true*: the hypothesis "colorings exist at every level" is false, and the tree's levels die at n = W(r,k); the bridge's value is exactly that it converts the finite theorem's negation into an infinite counterexample, so finite and infinite van der Waerden stand or fall together (and both stand). ∎
+
+**A10.** Setup: hull triangle ABC, interior P, Q; no hull vertex lies on line PQ (general position), so by pigeonhole two of the three hull vertices — call them A and B — lie strictly on one side; which side the third, C, takes is irrelevant. (a) The line PQ is a supporting line of the four-point set: A and B lie strictly on one side, and the only points of {A, B, P, Q} on the line are P and Q themselves (general position keeps A and B off it). So the intersection of line PQ with the convex hull of {A, B, P, Q} is exactly the segment PQ — a face of the hull — and the endpoints of a segment face are extreme points: P and Q are extreme. (Equivalent certificate: rotate the line slightly about P; Q slides strictly to the side where A and B already are, so a line through P exists with the other three points strictly on one side — and likewise for Q.) (b) A is extreme in {A, B, C, P, Q}: A is a hull vertex of the five-point set, so A = convex combination of the other four is impossible (hull vertices are never convex combinations of the remaining points — this is the definition of hull vertex). Restricting the set to {A, B, P, Q} removes points, which only *shrinks* the set of convex combinations available — if A was not a combination of {B, C, P, Q}, it is not a combination of the subset {B, P, Q}. Same for B. (c) Each of the four points is extreme in the four-point set, and a compact convex set's extreme points are its hull's vertices: four extreme points ⟹ the hull is a quadrilateral with vertices exactly A, B, P, Q ⟹ convex position. General position enters: (i) P ≠ Q distinct with a well-defined line (trivially); (ii) no hull vertex lies *on* line PQ — otherwise the 2–1 split could degenerate and P or Q could be a hull vertex of the five-set, changing the case; (iii) no three of {A, B, P, Q} collinear, so "convex position" is unambiguous. The lab verified the repair on all 1,003 hull-triangle samples. ∎
+
+**A11.** Poset: i ≺ j iff i < j and x_i < x_j. Chains = increasing subsequences (a chain's elements, read by position, are increasing in value); antichains = decreasing subsequences (any two incomparable positions i < j must have x_i > x_j). Suppose no chain of size r: by Mirsky's theorem — the dual sibling of Ch. 5's Dilworth (proved there, exercise 11): the minimum number of antichains covering a poset equals its maximum chain length — the poset partitions into r − 1 antichains. Each antichain has ≤ s − 1 elements (else a decreasing s-subsequence exists). Total ≤ (r−1)(s−1) < (r−1)(s−1) + 1. Sharpness: in the block construction (r − 1 blocks, each a decreasing run of s − 1, blocks increasing across), every chain takes at most one element per block — max chain r − 1 — and every antichain lives inside a single block — max antichain s − 1; the r − 1 blocks themselves are Mirsky's antichain decomposition at its floor (chain height r − 1, antichain cover size r − 1, each of size s − 1): equality throughout, which is exactly why the bound cannot improve. ∎
+
+**A12.** (a) Suppose δ(x, y) = δ(y, z) = p, x < y < z. At bit p, x and y differ: y_p = 1, x_p = 0. At bit p, y and z differ: z_p = 1, y_p = 0. Contradiction on y_p. Moreover, for x < y < z, above bit p = max(δ(x, y), δ(y, z)) all three of x, y, z agree, and at bit p exactly one of (x, y) or (y, z) flips from 0 to 1 while the other agrees, so x_p = 0 ≠ 1 = z_p, proving the ultrametric identity δ(x, z) = max(δ(x, y), δ(y, z)). (b) {0, 1, 2, 3}: δ(0,1) = 0, δ(1,2) = 1: triple (0,1,2) colored Δ({0,1}) = color of edge 01 = 0 (the mask's first bit is 0). (0,1,3): δ(0,1) = 0, δ(1,3) = 1 — same pair {0,1} — color 0. (0,2,3): δ(0,2) = 1, δ(2,3) = 0 — Δ({1,0}) = 0. (1,2,3): δ(1,2) = 1, δ(2,3) = 0 — 0. All four triples color 0: a monochromatic 4-set ✓ (one of 10,808). (c) The chapter's construction steps up from the triangle-free Δ on K₅ — the largest input it admits, since R(3,3) = 6 caps triangle-free pair-colorings at five vertices — so its output has 2⁵ = 32 vertices, and any upgrade to a larger scale only adds more. r₃(4) = 13 says every 2-coloring of the triples of a 13-set already contains a mono 4-set, so no triple-coloring on 32 vertices, this construction's or any other's, can dodge 4-sets: mono 4-sets are unavoidable in principle at this scale, and the census's 10,808 is the construction paying a toll that the theorem says no one can avoid. (The machine census adds the honest footnote that even the smaller, sub-wall inputs fail to dodge: the triangle-free colorings of K₃ and K₄ step up to 8- and 16-vertex outputs, and all twenty-four of those outputs contain mono 4-sets too.) (d) For any 5-set S = {x₁ < x₂ < x₃ < x₄ < x₅} ⊆ {0, …, 31}, form the 4-term step sequence δ_i = δ(x_i, x_{i+1}) (i = 1, 2, 3, 4). Any contiguous subsegment has a unique maximum (if a maximum bit p occurred twice with no larger bit between them, bit p would flip 0 → 1 twice without an intervening reset). Hence the Cartesian tree of (δ₁, δ₂, δ₃, δ₄) is a well-defined binary tree on 4 nodes; since a binary tree of height ≤ 2 has at most 3 nodes, the tree has height at least 3, giving a descending root-to-leaf chain of three steps δ_{i₁} > δ_{i₂} > δ_{i₃} where each is the maximum on its side of the preceding cuts. Choosing one vertex y₁ < y₂ < y₃ < y₄ from each of the four sub-intervals of S separated by the cuts i₁, i₂, i₃, the ultrametric property implies that three of the four triples on {y₁, y₂, y₃, y₄} have gap-label pairs {δ_{i₁}, δ_{i₂}}, {δ_{i₁}, δ_{i₃}}, and {δ_{i₂}, δ_{i₃}} — the three edges of a triangle in K₅ on vertices {δ_{i₁}, δ_{i₂}, δ_{i₃}}. Because Δ is triangle-free on K₅, those three triples cannot share one color, so S is not monochromatic. Thus no 5-set is monochromatic, proving r₃(5) > 32 = 2⁵ = 2^{R(3,3)−1} (and confirmed by the lab's 201,376-set census). ∎
+
+**A13.** Twelve. Every dodger's red graph is a 5-cycle (and then its blue graph is the complement of a C₅, which is another C₅). Proof: in a dodger both color classes are triangle-free; by Mantel (Ch. 3), each has ≤ ⌊25/4⌋ = 6 edges; the two classes partition the 10 edges of K₅. If red has 6 (the extremal K₂,₃), blue has 4 = K₅ − K₂,₃, which contains the triangle inside the 3-class — forbidden. If red has 4, symmetric. So red has exactly 5 — and blue too — and a triangle-free 5-edge graph whose complement is also triangle-free must be C₅ (the other triangle-free 5-edge graphs on 5 vertices contain a vertex of degree ≥ 3 with its neighbors' structure forcing either a red triangle or a blue one — check the two isomorphism types: C₅ works; C₄ plus a pendant vertex has complement containing a triangle). The count: labeled 5-cycles number (5−1)!/2 = 12. Machine census: exactly 12 dodgers, every red graph 2-regular. ∎
+
+**A14.** Blocks of 5, sixty-five of them: B_i = {5(i−1)+1, …, 5i}. Each block is colored in one of 2⁵ = 32 patterns; among the first 33 blocks two share a pattern: B_i, B_j, i < j ≤ 33 (33 = 2⁵ + 1, pigeonhole). Inside B_i (5 points, 2 colors), some two of the first three positions share a color: a mono 2-term pair {5(i−1)+a, 5(i−1)+a′}, a < a′ ≤ 3, say red, with would-be third term at position a″ = 2a′ − a ≤ 5. If 5(i−1)+a″ is red: red 3-term progression done. Else it is blue; then its copy 5(j−1)+a″ in B_j is blue (identical patterns); let k = 2j − i ≤ 2·33 − 1 = 65 ✓ and consider 5(k−1)+a″: if red, the three points 5(i−1)+a, 5(j−1)+a′, 5(k−1)+a″ are equally spaced (the k-block sits at the mirror position) and red; if blue, the three blue points 5(i−1)+a″, 5(j−1)+a″, 5(k−1)+a″ are equally spaced and blue. Either way a mono 3-term progression exists in [325] = [5·65]. ∎ (The census truth is W(2,3) = 9; the exercise's proof is the classical Graham–Rothschild–Spencer model for the general machinery.)
+
+**A15.** The witness (from the lab's census of the 18 dodgers): classes {1, 4, 7, 10, 13}, {2, 3, 11, 12}, {5, 6, 8, 9} — check each class sum-free within [13]: the first class's pair sums are 1+4 = 5, 1+7 = 8, 1+10 = 11, 4+4 = 8, 4+7 = 11, 7+7 = 14 (out of range) — none in the class ✓; the second class: 2+2 = 4, 2+3 = 5, 3+3 = 6, 2+11 = 13 — none in the class ✓; the third: 5+5 = 10, 5+6 = 11, 5+8 = 13, 6+6 = 12, 6+8 = 14 — none in the class ✓. (Note the symmetry c(i) = c(14 − i) — the witness is palindromic.) [14] fails: the machine census visits all 3¹⁴ = 4,782,969 colorings and finds none dodging; the human route runs the corner: x + y = z has the trivial solutions 1+1 = 2, 2+2 = 4, 3+3 = 6, 4+4 = 8, 5+5 = 10, 6+6 = 12 (pair-colors must differ from the double's color), the near-trivial 1+2 = 3, 1+3 = 4, …, and one shows by a case tree on the colors of 1, 2, 3, 4 (each branch forced by a small sum) that every branch dies by n = 14; the census certifies the tree's completeness, and the classical record counts S(3) = 13 as within hand reach — the odometer certifies exactly what that hand route reaches. ∎ (18 dodgers at [13], 0 at [14] — the lab prints both)
+
+---
+
+## Computational Lab (verified)
+
+Every recorded output below was produced by the chapter's verification runs — a TypeScript port whose logic the Python mirrors exactly; the seeded parts use the Lehmer linear congruential generator x ← 48271·x mod (2³¹ − 1), implemented identically in both languages, so every printed number is exactly reproducible.
+
+### Part 1 — van der Waerden: the W(2, 3) = 9 census, the [26] witness, the depth-first W(2, 4) > 34, and the A4 miniature fan
+
+```python
+def aps(n, k):                    # all k-term APs (a, d) inside [n]; guards n < k or k < 2
+    if k < 2 or n < k:
+        return []
+    return [(a, d) for d in range(1, n) for a in range(1, n - (k - 1) * d + 1)]
+
+def has_mono(c, k):               # c: 1-indexed color list (c[0] is None)
+    if not c or len(c) - 1 < k or k < 2:
+        return False
+    return any(all(c[a + i * d] == c[a] for i in range(1, k))
+               for a, d in aps(len(c) - 1, k))
+
+wit8 = []
+for m in range(2 ** 8):
+    c = [None] + [(m >> (i - 1)) & 1 for i in range(1, 9)]
+    if not has_mono(c, 3):
+        wit8.append(''.join('RB'[c[i]] for i in range(1, 9)))
+fail9 = sum(has_mono([None] + [(m >> (i - 1)) & 1 for i in range(1, 10)], 3)
+            for m in range(2 ** 9))
+print(len(aps(8, 3)), len(wit8), wit8)
+print(len(aps(9, 3)), fail9)
+
+w26 = [None] + list('RRGGRRGBGBBRBRRGRGGBRBBGBG')
+bad26 = sum(all(w26[a + i * d] == w26[a] for i in (1, 2)) for a, d in aps(26, 3))
+print(len(aps(26, 3)), bad26)
+
+nodes = [0]
+def dfs(p, c):                    # lexicographic DFS, color 0 before 1
+    nodes[0] += 1
+    if p == 35:
+        return c[1:]
+    for col in (0, 1):
+        c[p] = col
+        if all(c[p - 3*d] != c[p] or c[p - 2*d] != c[p] or c[p - d] != c[p]
+               for d in range(1, (p - 1) // 3 + 1)):
+            r = dfs(p + 1, c)
+            if r is not None:
+                return r
+        c[p] = None
+    return None
+w34 = dfs(1, [None] * 35)
+c34 = [None] + w34
+print(''.join(map(str, w34)), nodes[0])
+print(len(aps(34, 4)),
+      sum(all(c34[a + i * d] == c34[a] for i in (1, 2, 3)) for a, d in aps(34, 4)))
+
+# Exercise 4 / A4 check: m = 1 -> 2 diagonal fan on three identical blocks of length M1 = 6
+G_red = [2 + t * (2 + 6) for t in range(2)]
+F_blue = [6 + t * 6 for t in range(2)]
+f_star = 2 + 2 * (2 + 6)
+print(G_red, F_blue, f_star, G_red + [f_star], F_blue + [f_star])
+```
+
+**Verified output.** The [8] census prints `12 6 ['BBRRBBRR', 'RBRBBRBR', 'RBBRRBBR', 'BRRBBRRB', 'BRBRRBRB', 'RRBBRRBB']` — 12 progressions in [8] and six witnesses, visibly three complement-pairs — and the [9] census prints `16 512`: 16 progressions in [9], and **every** one of the 2⁹ = 512 colorings of [9] contains a monochromatic 3-term progression, so W(2, 3) = 9. The recorded 26-coloring (colors of 1..26, R/G/B) checks against all `156 0` — 156 progressions (26 − 2d of step d, d = 1..12), zero monochromatic, so W(3, 3) ≥ 27. The depth-first search for a 4-term dodge prints `0010001110100100011101001000111011 1769` — a 34-coloring found after visiting **1,769 search-tree nodes** (colors 0/1, position 1 to 34, color 0 tried before 1, a branch pruned the moment it completes a monochromatic 4-term progression) — and the witness verifies `176 0`: all 176 four-term progressions in [34] are mixed, so W(2, 4) ≥ 35. The final line prints `[2, 10] [6, 12] 18 [2, 10, 18] [6, 12, 18]`, confirming A4's miniature diagonal fan G_red = {2, 10} and F = {6, 12} focused at f* = 18 ∈ B₃. The upper halves (W(2, 3) = 9 at [9], W(3, 3) = 27, W(2, 4) = 35) are literature, cited in §2.3's table.
+
+### Part 2 — Schur: S(2) = 4 and S(3) = 13 by exhaustive odometer
+
+```python
+def sum_free(c, n):               # c[i] = color of i; x = y allowed
+    return not any(c[x] == c[y] == c[x + y]
+                   for x in range(1, n + 1) for y in range(x, n + 1)
+                   if x + y <= n)
+
+def census(n, r):
+    return sum(sum_free([None] + [(m // r ** (i - 1)) % r
+                                  for i in range(1, n + 1)], n)
+               for m in range(r ** n))
+
+print(census(4, 2), census(5, 2))
+print([census(n, 3) for n in range(8, 14)])
+w13 = [None] + list('RGGRBBRBBRGGR')
+print(sum_free(w13, 13),
+      {ch: [i for i in range(1, 14) if w13[i] == ch] for ch in 'RGB'})
+print(census(14, 3))
+```
+
+**Verified output.** Two colors: `2 0` — exactly **2** sum-free colorings of [4], **0** of [5], so S(2) = 4 (max-colorable convention; the two witnesses are {1, 4}/{2, 3} and its color swap, Chapter 3's Exercise 22). Three colors: `[288, 546, 300, 186, 114, 18]` — the survivor counts for n = 8..13, eighteen witnesses at the last habitable n — and the odometer over all 3¹⁴ colorings prints `0`: **S(3) = 13**. The recorded witness verifies `True {'R': [1, 4, 7, 10, 13], 'G': [2, 3, 11, 12], 'B': [5, 6, 8, 9]}` — the three classes of §3.2, each sum-free inside [13].
+
+### Part 3 — Greenwood–Gleason: GF(16), Frobenius orbit, H₃, and the K₁₆ dodge
+
+```python
+exp, log, v = [0] * 15, [0] * 16, 1
+for e in range(15):               # GF(16) = F2[x]/(x^4 + x + 1), alpha = 2
+    exp[e], log[v] = v, e
+    v <<= 1
+    if v & 16: v ^= 0b10011       # reduce x^4 -> x + 1
+def mul(a, b):
+    return 0 if a == 0 or b == 0 else exp[(log[a] + log[b]) % 15]
+
+H = sorted({1} | {exp[e] for e in (3, 6, 9, 12)})
+cosets = [sorted({mul(a, h) for h in H}) for a in (1, 2, 4)]
+print(H, cosets)
+print(all((a ^ b) not in C for C in cosets for a in C for b in C if a < b),
+      sorted(x for C in cosets for x in C) == list(range(1, 16)))
+
+def color(x, y):
+    if x == y: raise ValueError("x and y must be distinct")
+    return next(k for k, C in enumerate(cosets) if (x ^ y) in C)
+
+# Exercise 7 / A7 check: Frobenius orbit of 1 ^ h for h in H \ {1} and non-sum-free H3
+frob_orbit = [(e, exp[e], 1 ^ exp[e], log[1 ^ exp[e]], color(0, 1 ^ exp[e]))
+              for e in (3, 6, 12, 9)]
+H3 = sorted(exp[e] for e in (0, 5, 10))
+print(frob_orbit, H3, (1 ^ exp[5]) in H3)
+
+from itertools import combinations
+tri = mono = 0
+for x, y, z in combinations(range(16), 3):
+    tri += 1
+    if color(x, y) == color(y, z) == color(x, z): mono += 1
+print(tri, mono, [sum(color(0, y) == k for y in range(1, 16)) for k in range(3)])
+```
+
+**Verified output.** The multiplicative build prints `[1, 8, 10, 12, 15] [[1, 8, 10, 12, 15], [2, 3, 7, 11, 13], [4, 5, 6, 9, 14]]` — H = ⟨α³⟩ and its first two cosets, exactly §6.1's classes. The coset checks print `True True`: each coset is XOR-sum-free (distinct a, b in one coset put a ⊕ b outside it — all 30 pairs verified), and the three cosets partition the 15 nonzero elements. The Frobenius and H₃ check prints `[(3, 8, 9, 14, 2), (6, 12, 13, 13, 1), (12, 15, 14, 11, 2), (9, 10, 11, 7, 1)] [1, 6, 7] True`, confirming A7(b)–(c): 1 ⊕ α³ = 9 = α¹⁴ ∈ α²H, 1 ⊕ α⁶ = 13 = α¹³ ∈ αH, 1 ⊕ α¹² = 14 = α¹¹ ∈ α²H, 1 ⊕ α⁹ = 11 = α⁷ ∈ αH, and H₃ = {1, 6, 7} has 1 ⊕ α⁵ = 7 ∈ H₃. The full census prints `560 0 [5, 5, 5]`: all C(16, 3) = **560** triples checked, **zero** monochromatic triangles — R(3, 3, 3) > 16 — and vertex 0's fifteen edges split exactly **5–5–5** across the colors (as every vertex's do: the group structure forces the balance).
+
+### Part 4 — Stepping-up: K₅ dodger census (A13), the 32-vertex tower brick, Cartesian tree height, and the boundary census
+
+```python
+import itertools
+from itertools import combinations
+
+EDGES = [(i, j) for i in range(5) for j in range(i + 1, 5)]
+k5_dodgers = []
+for mask in range(1 << len(EDGES)):
+    D = {e: (mask >> k) & 1 for k, e in enumerate(EDGES)}
+    if not any(D[a, b] == D[a, c] == D[b, c] for a, b, c in combinations(range(5), 3)):
+        degs = [sum(D[min(v, u), max(v, u)] == 1 for u in range(5) if u != v)
+                for v in range(5)]
+        k5_dodgers.append((mask, all(d == 2 for d in degs)))
+print(len(k5_dodgers), k5_dodgers[0][0], all(reg for _, reg in k5_dodgers))
+
+DELTA = {(i, j): (220 >> k) & 1 for k, (i, j) in enumerate(EDGES)}
+DELTA.update({(j, i): v for (i, j), v in list(DELTA.items())})
+print(''.join(str(DELTA[e]) for e in EDGES))
+
+def delta(x, y, m=5):             # highest differing bit; guards x == y
+    if x == y: raise ValueError("x and y must be distinct")
+    d = -1
+    for b in range(m):
+        if (x >> b) & 1 != (y >> b) & 1: d = b
+    return d
+
+def tcol(x, y, z): return DELTA[(delta(x, y), delta(y, z))]
+
+def cart_height(steps):           # max nodes on a root-to-leaf path in Cartesian tree
+    if not steps: return 0
+    r = max(range(len(steps)), key=steps.__getitem__)
+    return 1 + max(cart_height(steps[:r]), cart_height(steps[r + 1:]))
+
+distinct = sum(delta(x, y) != delta(y, z)
+               for x in range(32) for y in range(x + 1, 32)
+               for z in range(y + 1, 32))
+m4 = sum(all(tcol(*t) == tcol(*q[:3]) for t in combinations(q, 3))
+         for q in combinations(range(32), 4))
+m5 = sum(all(tcol(*t) == tcol(*q[:3]) for t in combinations(q, 3))
+         for q in combinations(range(32), 5))
+min_h5 = min(cart_height([delta(q[i], q[i + 1]) for i in range(4)])
+             for q in combinations(range(32), 5))
+print(distinct, m4, m5,
+      len({tcol(*t) for t in combinations((0, 1, 2, 3), 3)}) == 1, min_h5)
+
+def step_census(m):                # every triangle-free input on K_m, stepped up
+    if m < 3: return []
+    pairs = [(i, j) for i in range(m) for j in range(i + 1, m)]
+    counts = []
+    for bits in itertools.product((0, 1), repeat=len(pairs)):
+        D = dict(zip(pairs, bits))
+        if any(D[a, b] == D[a, c] == D[b, c]
+               for a, b, c in itertools.combinations(range(m), 3)):
+            continue
+        D.update({(j, i): v for (i, j), v in list(D.items())})
+        def tc(x, y, z): return D[delta(x, y, m), delta(y, z, m)]
+        n = 2 ** m
+        counts.append(sum(all(tc(*t) == tc(*q[:3])
+                              for t in itertools.combinations(q, 3))
+                          for q in itertools.combinations(range(n), 4)))
+    return counts
+
+c3, c4 = step_census(3), step_census(4)
+print(len(c3), min(c3), len(c4), min(c4), sum(v == 0 for v in c3 + c4))
+```
+
+**Verified output.** The K₅ dodger census prints `12 220 True`: exactly **12** triangle-free 2-colorings of K₅, first mask 220, and all 12 have 2-regular color classes (confirming A13). The input coloring prints `0011101100` — Δ's colors on the edges (01), (02), (03), (04), (12), (13), (14), (23), (24), (34): the census's first triangle-free mask (220) written edge by edge. The 32-vertex census prints `4960 10808 0 True 3`: the gap labels are distinct in all **4,960** triples; **10,808** of the 35,960 four-sets are monochromatic (the k = 2 boundary's honest toll — and {0, 1, 2, 3} is one of them, its four triples all colored 0); **0** of the 201,376 five-sets are monochromatic — so r₃(5) > 32 = 2^(R(3,3) − 1), the tower brick of §4.2 — and the minimum Cartesian tree root-to-leaf node count across all 201,376 five-sets is **3**, confirming §4.2 and A12(d). The boundary census prints `6 22 18 444 0`: stepping up from the six triangle-free colorings of K₃ gives 8-vertex outputs with at least **22** mono 4-sets each, from the eighteen of K₄ gives 16-vertex outputs with at least **444** each — **zero** of the twenty-four smaller outputs dodges 4-sets either, so no instance of the construction family dodges (Exercise 12's part (c) records the reading: the 16-and-up outputs are condemned by r₃(4) = 13, the sub-wall 8-vertex outputs by this census).
+
+### Part 5 — The Erdős–Szekeres pair: the 10! census, Klein's 4-point dodger and 10,000 samples, and the ES(5) > 8 witness
+
+```python
+from itertools import permutations, combinations
+from bisect import bisect_left
+
+def lis(seq):                      # longest strictly increasing subsequence
+    tails = []
+    for v in seq:
+        i = bisect_left(tails, v)
+        if i == len(tails): tails.append(v)
+        else: tails[i] = v
+    return len(tails)
+
+def lds(seq): return lis([-v for v in seq])
+
+dodgers10 = sum(lis(p) < 4 and lds(p) < 4 for p in permutations(range(10)))
+dodgers4 = [p for p in permutations((1, 2, 3, 4)) if lis(p) < 3 and lds(p) < 3]
+block = (3, 2, 1, 6, 5, 4, 9, 8, 7)
+print(dodgers10, len(dodgers4), dodgers4, lis(block), lds(block))
+
+x = 1
+def draw():                        # Lehmer LCG, seed 1
+    global x
+    x = (48271 * x) % 2147483647
+    return x
+
+def cross(o, a, b):
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+def general(pts):                  # general position for any point count n
+    n = len(pts)
+    if len(set(pts)) != n:
+        return False
+    return all(cross(pts[i], pts[j], pts[k]) != 0
+               for i in range(n) for j in range(i + 1, n)
+               for k in range(j + 1, n))
+
+def hull(pts):                     # Andrew's monotone chain; guards n < 3
+    p = sorted(set(pts))
+    if len(p) <= 2:
+        return p
+    def half(src):
+        h = []
+        for q in src:
+            while len(h) >= 2 and cross(h[-2], h[-1], q) <= 0: h.pop()
+            h.append(q)
+        return h
+    return half(p)[:-1] + half(p[::-1])[:-1]
+
+def sample():                      # 5 seeded points; redraw on degeneracy
+    while True:
+        pts = [(draw() % 1000, draw() % 1000) for _ in range(5)]
+        if general(pts): return pts
+
+W4 = [(0, 0), (4, 0), (0, 4), (1, 1)]
+h3 = h4 = h5 = repairs = 0
+for _ in range(10000):
+    pts = sample()
+    H = hull(pts)
+    if len(H) == 5: h5 += 1
+    elif len(H) == 4: h4 += 1
+    else:
+        h3 += 1
+        P, Q = [p for p in pts if p not in H]
+        side = [cross(P, Q, v) > 0 for v in H]
+        A, B = [(H[i], H[j]) for i in range(3) for j in range(i + 1, 3)
+                if side[i] == side[j]][0]
+        repairs += len(hull([A, B, P, Q])) == 4
+print(general(W4), len(hull(W4)), h5, h4, h3, repairs)
+
+W8 = [(667, 631), (660, 626), (392, 798), (398, 791), (660, 604),
+      (659, 611), (286, 476), (287, 477)]
+convex5 = sum(len(hull(list(q))) == 5 for q in combinations(W8, 5))
+print(general(W8), convex5)
+```
+
+**Verified output.** The monotone census prints `0 4 [(2, 1, 4, 3), (2, 4, 1, 3), (3, 1, 4, 2), (3, 4, 1, 2)] 3 3`: all **3,628,800** permutations of [10] contain a monotone 4-subsequence — (r−1)(s−1)+1 = 10 is sharp — with exactly **4** dodgers on [4] (all alternating), and the block construction (3, 2, 1, 6, 5, 4, 9, 8, 7) has longest increasing and longest decreasing subsequences both exactly **3** at n = 9. Klein's census prints `True 3 3466 5531 1003 1003`: W4 is in general position with hull size 3 (demonstrating ES(4) > 4), and on **10,000** seeded five-point sets in general position (Lehmer LCG, seed 1, coordinates mod 1000, the whole sample redrawn on any degeneracy), the hull case split ran **3,466 / 5,531 / 1,003**, every sample contains a convex quadrilateral, and in **all 1,003** triangle-hull cases the two same-side hull vertices with the interior pair form a convex quadrilateral — the line-split repair, verified case by case. The ES(5) > 8 witness prints `True 0`: the eight recorded points are in general position and **none** of the C(8, 5) = 56 five-subsets is in convex position — ES(5) > 8. (The upper side, ES(5) = 9, is the 1935 paper's classical argument, credited there to Makai; the machine certifies the dodge only.)
+
+### Part 6 — Rado's columns condition (clauses 1 and 2) and the explicit 4-coloring dodging x + y = 3z
+
+```python
+from itertools import combinations
+
+def rado_columns(cols):           # checks both clauses of Rado's columns condition (1-row)
+    if not cols:
+        return False, None
+    n = len(cols)
+    for size in range(1, n + 1):
+        for I1 in combinations(range(n), size):
+            if sum(cols[i] for i in I1) == 0:
+                rem = [i for i in range(n) if i not in I1]
+                span_nonzero = any(cols[i] != 0 for i in I1)
+                if not rem or span_nonzero or sum(cols[i] for i in rem) == 0:
+                    return True, (I1, tuple(rem)) if rem else (I1,)
+    return False, None
+
+def report(name, cols):
+    subs = [(I, sum(cols[i] for i in I))
+            for size in range(1, len(cols) + 1)
+            for I in combinations(range(len(cols)), size)]
+    ok, blocks = rado_columns(cols)
+    print(name, [s for _, s in subs],
+          'zero-sum subset:', [I for I, s in subs if s == 0] or 'NONE',
+          'partition:', blocks)
+
+report('x + y = z', (1, 1, -1))
+report('x + y = 2z', (1, 1, -2))
+report('x + y = 3z', (1, 1, -3))
+
+def color_3z(n):                  # 4-coloring (v_3(n) mod 2, u(n) mod 3) from §3.3
+    if n < 1: raise ValueError("n must be a positive integer")
+    v = 0
+    while n % 3 == 0:
+        n //= 3
+        v += 1
+    return (v % 2, n % 3)
+
+mono_3z = sum(color_3z(x) == color_3z(y) == color_3z(z)
+              for z in range(1, 101) for x in range(1, 3 * z)
+              for y in (3 * z - x,) if x <= y)
+print('x + y = 3z mono solutions for z <= 100:', mono_3z)
+```
+
+**Verified output.** `x + y = z [1, 1, -1, 2, 0, 0, 1] zero-sum subset: [(0, 2), (1, 2)] partition: ((0, 2), (1,))` — a zero-sum first block exists (columns 1 and −1), and the leftover column 1 lies in its span (all of ℚ): partition-regular, Schur's theorem Rado-certified. `x + y = 2z [1, 1, -2, 2, -1, -1, 0] zero-sum subset: [(0, 1, 2)] partition: ((0, 1, 2),)` — the single block {1, 1, −2} sums to zero: partition-regular (and every 3-term progression a, a+d, a+2d is a solution — van der Waerden's k = 3 case rides this certificate). `x + y = 3z [1, 1, -3, 2, -2, -2, -1] zero-sum subset: NONE partition: None` — all seven nonempty subsets fail to sum to zero, the columns condition dies at its first clause, and Rado's theorem says some finite coloring dodges x + y = 3z entirely: the avoidance certificate of §3.3. The final line prints `x + y = 3z mono solutions for z <= 100: 0`, confirming that the explicit 4-coloring c(n) = (v₃(n) mod 2, u(n) mod 3) of §3.3 and A6 has **zero** monochromatic solutions across all 7,550 solutions with x ≤ y and z ≤ 100 (15,050 ordered).
+
+---
+
+## Revision History & Verification Notes
+
+**Editions.** Authored in a single pass (session 46, task D1) as the Atlas's first Volume II chapter, on the scope the session-45 canon audit ranked and the user approved in full: the van der Waerden proof the Atlas has owed since Chapter 3, Schur in depth with the Schur numbers and Rado's columns condition, infinite Ramsey with the König compactness bridge, Hales–Jewett (statement), the hypergraph tower bounds with Erdős–Rado stepping-up, the lower-bound consolidation, the Erdős–Szekeres pair (monotone subsequences and the happy ending), plus the promoted statements — Paris–Harrington, canonical Ramsey, and R(3, 3, 3) = 17 worked from both sides. Six lectures, each ending in a "What to learn" section; the exercises, answers, lab, figure, Trick Bag, and this appendix were authored with the lectures, all machine-checked before anything was printed. The session-68 adversarial review then audited the chapter end to end — two literature-attribution repairs (§2.3's and the Trick Bag's Graham-prize inequality restored from the flattened W(2, k) ≤ 2k² to the true W(2, k) < 2^(k²); §2.3's and the appendix's W(2,5) = 178 attribution corrected from Stevens–Shallit (2000) to Stevens–Shantaram (1978)) — the mathematics otherwise clean.
+
+**Verification basis.** Every number this chapter prints was machine-verified at authoring, all clean: (1) the R(3, 3) = 6 census — all 32,768 colorings of K₆ contain a mono triangle — with exactly **12** triangle-free colorings of K₅, the first being the mask 220 that Part 4 steps up from; (2) the Greenwood–Gleason GF(16) build — H = ⟨α³⟩ = {1, 8, 12, 10, 15}, cosets [1, 8, 10, 12, 15] / [2, 3, 7, 11, 13] / [4, 5, 6, 9, 14] under the primitive polynomial x⁴ + x + 1, all three XOR-sum-free, all 560 triples of K₁₆ censusable with zero mono triangles, and the 5–5–5 edge split at every vertex; (3) the Schur odometer — [4]: 2 survivors, [5]: 0 (S(2) = 4); three colors: 288, 546, 300, 186, 114, 18 at n = 8–13 and 0 of 4,782,969 at [14] (S(3) = 13); (4) the van der Waerden censuses — six witnesses on [8], all 512 colorings of [9] failing (W(2, 3) = 9's lower and upper census sides), the 26-witness's 156 progressions all mixed, and the depth-first 34-witness (1,769 search-tree nodes, all 176 progressions mixed); (5) the stepping-up census — 4,960 triples all with distinct gap labels, 10,808 mono 4-sets among 35,960, zero mono 5-sets among 201,376 (r₃(5) > 32), plus the boundary census of the smaller inputs (six K₃-inputs → 8-vertex outputs with ≥ 22 mono 4-sets each; eighteen K₄-inputs → 16-vertex outputs with ≥ 444 each; none of the 24 dodges 4-sets); (6) the Erdős–Szekeres census — all 3,628,800 permutations of [10] contain a monotone 4-subsequence, the four [4] dodgers enumerated, the block construction's LIS = LDS = 3; (7) Klein's census — 10,000 seeded samples (Lehmer LCG x ← 48271·x mod (2³¹ − 1), seed 1, coordinates mod 1000, whole-sample redraw on degeneracy — fully specified in Part 5, so the split is exactly reproducible): hull split 3,466 / 5,531 / 1,003, the line-split repair verified in all 1,003 triangle cases; (8) the ES(5) > 8 witness — general position, zero of 56 five-subsets in convex position; (9) the Rado columns checks of Part 6. Literature pins, web-verified at authoring: R(3, 5) = 14 and R(4, 4) = 18 (Greenwood–Gleason 1955, the same finite-field paper as R(3, 3, 3) = 17); R(3, 6) = 18 (Kéry 1964); R(3, 7) = 23 (Kalbfleisch 1966, computer-assisted); R(3, 8) = 28 (McKay–Zhang 1992; SAT re-verified 2025); R(3, 9) = 36 (Li–Duggan–Bright–Ganesh, IJCAI 2025, formally verified — the same computation that re-verified R(3, 8)); R(4, 5) = 25 (McKay–Radziszowski 1995; formally verified 2024, Angeltveit–McKay); R(5, 5) ≤ 46 (Angeltveit–McKay 2026); r(3, t) = Θ(t²/log t) (Ajtai–Komlós–Szemerédi; Kim 1995); R(k) ≤ (4 − ε)^k (Campos–Griffiths–Morris–Sahasrabudhe, arXiv 2023, Annals of Mathematics 2026); the van der Waerden table (Chvátal's computations; Stevens–Shantaram 1978; Kouril–Paul 2008; Rabung–Lotts's tabulation); S(4) = 44 (Golomb–Baumert 1965) and S(5) = 160 (Heule 2017, the two-petabyte resolution proof); r₃(4) = 13 (McKay–Radziszowski 1991); the happy-ending record — ES(4) = 5 (Klein's observation, 1933), ES(5) = 9 (Makai's argument, per Erdős–Szekeres 1935), ES(6) = 17 (Szekeres–Peters 2006, computer proof), Tóth–Valtr's C(2N−5, N−2) + 1 (2005) and Suk's 2^(N+o(N)) (2017); Kim's theorem and the $500 Erdős–Hajnal conjecture as the survey record has them. The lab's Python is the runnable copy of exactly the verified logic; the seeded parts reproduce their outputs bit-for-bit.
+
+**Adversarial review (session 68).** The review arc's two arguing experts (skeptic and engineer) took this chapter chunk by chunk — correctness, coherence, exposition, figure aid — extend-never-rewrite, every retained objection machine-verified before any edit. Verdict: the mathematics is otherwise CLEAN, with two literature-attribution defects caught, confirmed against the primary records, and repaired in place. **The defects (machine-sealed):** (1) Graham's $1000 prize problem was printed with a flattened exponent — "prove or disprove W(2, k) ≤ 2k²" — which the chapter's own table refutes at k = 5 (W(2,5) = 178 > 50); Graham's actual offer is for showing W(2, k) < 2^(k²), and both sites (§2.3's sentence and the Trick Bag formula box) now say so; the problem is open and the prize unclaimed. (2) W(2,5) = 178 was credited to "Stevens–Shallit (2000)"; the computation is Stevens–Shantaram (1978), an exhaustive PDP-8 search published in Mathematics of Computation 32, 635–636 — fixed at both sites (§2.3 and this verification record). **The fresh battery (all green, condensed):** every lab claim reproduced exactly — the van der Waerden censuses (16/12/156/176 arithmetic progressions by color-length; the 512 colorings of [9] split {7, 5, 3, 1} all failing; the six [8] witnesses; the 26-witness's 156 progressions all mixed; the 34-witness re-found by the book's own depth-first search, string `0010001110100100011101001000111011`, 1,769 nodes); the Schur odometers (S(2): [4] two survivors, [5] none; S(3): 288, 546, 300, 186, 114, 18 at n = 8–13 and none of 4,782,969 at [14]; the w13 sum-free classes); the Greenwood–Gleason GF(16) build (α primitive under x⁴ + x + 1, H = {1, 8, 10, 12, 15}, the three cosets pairwise XOR-sum-free, all 560 triples censusable with zero mono triangles, 5–5–5 at every vertex, the twelve triangle-free K₅s all 2-regular, all 32,768 K₆ colorings failing); the stepping-up census (4,960 triples all with distinct gap labels, 10,808 mono 4-sets among 35,960, zero mono 5-sets among 201,376, the boundary census [6, 22, 18, 444] with zero dodgers); the Erdős–Szekeres censuses (all 3,628,800 permutations of [10] contain a monotone 4-subsequence, the four [4] dodgers enumerated, the block LIS/LDS 3/3; Klein's Lehmer-LCG ten-thousand-point hull split 3,466/5,531/1,003 with the line-split repair verified in all 1,003 triangle cases; the ES(5) > 8 witness with zero of 56 five-subsets in convex position); and Rado's three columns checks. Hand-verified: A1's five-leaf W(2,3) forcing tree, A4's miniature fan arithmetic, A7's ten XORs, A14's 325-proof arithmetic (the spacing and the case split both close), Figure 1's SVG geometry, the compactness child count rⁿ, the fan proof's range guard, and Schur's S(r) ≤ R(3,…,3) − 2. Literature pins re-verified against the published records: the Gowers tower, Berlekamp's p·2^p ≤ W(2, p+1), Szabó's W(2, k) > 2^k/k^ε for every fixed ε, Campos–Griffiths–Morris–Sahasrabudhe (Annals of Mathematics 203 (2026), 869–932), Angeltveit–McKay's R(5,5) ≤ 46 (JGT 112 (2026), 198–208 — roughly eighty processor-years, LP plus case checking, two independent implementations), the SAT+CAS verified certificates for R(3, 8) and R(3, 9) (Li–Duggan–Bright–Ganesh), McKay–Radziszowski's r₃(4) = 13 (1991), and W(2, 7) > 3703. Cross-references and the pattern index fully consistent (the Chapter 3, 4, 5, and 6 pointers; forward P25/P26; every reverse row; ◐18's speculative mentions excluded per the session-55 note). Checker-side alarms, all the reviewer's own, re-run green: a step-census init-order ReferenceError, a combinations pass that over-materialized into the sandbox memory cap (rewritten with in-place iteration, identical outputs), and an early hand-calc slip on mask 220's low bits — each caught by its own count check and fixed before any finding was recorded. Per the rebuild rule the web edition and the .html export were rebuilt — fidelity proof first — and the review arc advances to Chapter 11.
+
+**Standing decisions.** Lecture bodies carry no session references; history lives here. The book's conventions are stated where used: W(r, k) counts r colors and k terms; S(r) is the max-colorable Schur convention (the forcing convention shifts every entry up one — §3.2's trap, checked against S(2)). The stepping-up presentation is honest at the k = 2 boundary: the general Erdős–Rado lemma holds for k ≥ 3, the chapter runs the construction at its canonical input (K₅, the largest triangle-free pair-coloring, since R(3, 3) = 6) and verifies the output exhaustively, printing both the 5-set dodge and the 10,808 4-set toll; the boundary census adds that no smaller input dodges 4-sets either. ES(5) = 9's upper side is classical literature, credited to Makai as the 1935 paper does; the machine certifies the lower side only (the lab's 8-point witness). r₃(4) = 13 and the table entries past census are cited to their sources, not proved; Hales–Jewett, Paris–Harrington, canonical Ramsey, and Rado's theorem are stated with their roles in the hierarchy made explicit, their proofs cited as beyond this chapter's scope; Deuber–Hindman appears as the statement-level capstone of L3.3. The web edition embeds this chapter byte-identically (the standard delivery format); the PDF export check is the user-owned release gate; learner testing follows the completion of the whole project scope, at the user's direction.
+
+**Figures.** One figure: Figure 1 (L2) — the two-color fan color-focused at 7 (the progressions {1, 4} in red and {3, 5} in blue, both aimed at the focus, either spoke closing on the focus's color), embedded as a fenced SVG at its lecture location per the dual-presentation convention (prose and lab code stay terminal-portable). The figure's data were checked against §2.2's color-focused definition before drawing: both progressions are 2-term, monochromatic, differently colored, and share the next term 7.
+
+**Survey-adoption pass (session 80).** One cross-reference repair: §2.3's Paris–Harrington landmark said "Where Chapter 17 will stand" — the Lean formal track, whose chapter number was cancelled at user direction this session (the unnumbered companion is a project idea touched at the very end; Ch. 17 becomes the semi-random method's planned chapter). The sentence now reads "Where the Lean formal track (the Atlas's unnumbered companion) will stand". No mathematics changed. The .html export was rebaked per the rebuild rule, fidelity-first.
+
+**First expansion pass (session 101).** The user supplied a fresh Ch. 10 draft (HTML with MathJax; the file form is rejected per the standing session-78 rule — the content was audited underneath and installs translated to the book's plain-Unicode notation) and flagged that the pattern references "might have become mangled". **Pattern audit: CLEAN at every level** — the draft's pattern table (P25/P26/P9/P4/P11/P12 and both lore rows) and its in-text pattern pointers match the master's exactly; no restoration was needed. Verdict: **partial adoption** — every item below was machine-verified fresh before install, and every rejection is recorded with its receipt. **The fresh battery (Runs A–D, all green):** stepping-up — Δ (mask 220) triangle-free, 12 triangle-free K₅ colorings all with 2-regular classes (first mask 220), all 4,960 triples with distinct gap labels, 10,808 mono 4-sets among 35,960, 0 mono 5-sets among 201,376, minimum Cartesian-tree root-to-leaf node count 3 across all 201,376 five-sets, boundary census 6 K₃-inputs → ≥ 22, 18 K₄-inputs → ≥ 444, 0 of 24 dodging; GF(16) — exp/log tables exact, α¹⁵ = 1, H = {1, 8, 10, 12, 15} with cosets [1, 8, 10, 12, 15]/[2, 3, 7, 11, 13]/[4, 5, 6, 9, 14], all 30 intra-coset pairs XOR-sum-free, the Frobenius orbit [(3, 8, 9, 14, 2), (6, 12, 13, 13, 1), (12, 15, 14, 11, 2), (9, 10, 11, 7, 1)] confirming 1 ⊕ α³ = α¹⁴ ∈ α²H etc., the H₃ caution (H₃ = {1, 6, 7} with 1 ⊕ 6 = 7 ∈ H₃ — multiplicative closure does not imply XOR-sum-freeness), 560 triples 0 mono, 5–5–5 at every vertex; van der Waerden — 12/16/156/176 APs in [8]/[9]/[26]/[34], the [9] split 7+5+3+1 = 16 with all 512 colorings failing, the six [8] witnesses enumerated exactly, the 26-witness 0/156, the book's own DFS re-finding the 34-witness string `0010001110100100011101001000111011` at 1,769 nodes with 0/176, the A4 miniature fan G = {2, 10}, F = {6, 12}, f* = 18, Berlekamp-style DFS witnesses p = 2 (`00110011`, 0/12 at 15 nodes), p = 3 (`000100101110001001010110`, 0/84 at 53 nodes), p = 5 (a 160-term witness, 0/2,480 at 46,948 nodes), and the honest AP-count first-moment break points N* = 100/4,473/6,548,374 at k = 10/20/40 (ratios 1.0417/1.0021/1.0000 against √(k−1)·2^{k/2}); Erdős–Szekeres — the four [4] dodgers, block LIS/LDS 3/3, the new W4 receipt (general position, hull size 3, so ES(4) > 4), Klein's census replicated exactly (3,466/5,531/1,003 hull split, 1,003/1,003 line-split repairs), the ES(5) > 8 witness (0 of 56 five-subsets convex); Rado — both clauses of the columns condition with partitions ((0, 2), (1,))/((0, 1, 2),)/None, and the 3-adic census: 7,550 solutions of x + y = 3z with x ≤ y and z ≤ 100 (15,050 ordered), 0 monochromatic under c(n) = (v₃(n) mod 2, u(n) mod 3). **The adoptions:** E1 (§1.1's k-tuples induction sentence spelled out); E2 (Checkpoint 1's worked parity-of-min trace with the predictable-before-running observation); E3 (§1.3's canonical Ramsey: injectivity clauses in all four definitions, the min/max/2^u+2^v examples, the parity-of-min parenthetical, the degeneracy sentence); E4+E5 (§2.3's asymptotic paragraph: Berlekamp (1968) W(2, p+1) > p·2^p, Szabó (1990)'s LLL refinement, and the honest AP-count union bound √(k−1)·2^{k/2}); E6 (the Gowers tower's height-6 reading, "a tower of five 2s topped by k + 9" for r = 2); E7 (§2.4's base-k evaluation map (x₁, …, x_d) ↦ 1 + Σ (x_j − 1)k^{j−1}, step symbol renamed to avoid the dimension clash); E8 (§3.2's Heule/Exoo sentence repaired); E9 (§3.2's "closed under avoidance of the sums that stay in range"); E10 (§3.3's x + y = 2z non-degenerate parenthetical and the 3-adic 4-coloring exhibit paragraph); E11 (§4.2's ultrametric property and the exact Cartesian-tree 5-set avoidance proof, with the 4-set V-shape escape and the boundary-counting sentence); E12 (§5.1's deletion-of-endpoints induction proof replacing the vague "sketched for its honesty" paragraph, with the Seidenberg-1959/1935-counting attribution note); E13 (§5: "published before Ramsey" repaired to the historical reading; the cups-caps sharpness f(k, l) = C(k+l−4, k−2) + 1 with the 1961 recursive splicing construction as a parenthetical; the conjecture dated 1935 and the construction dated 1961); E14 (§6.1's F₂-linearity + Frobenius-orbit reduction of coset sum-freeness, with the H₃ caution); E15 (R(3,9)'s Grinstead–Roberts (1982) credit restored alongside the 2025 SAT+CAS re-verification); E16 (ε = 2⁻⁷ works, Gupta–Ndiaye–Norin–Wei 2024's (3.8)^{k+o(k)} refinement; the Barak–Rao–Shaltiel–Wigderson/Cohen/Li extractor-constructions parenthetical); the exercise and answer upgrades (Ex 6's 3-adic directive, Ex 7's (a)(b)(c) algebraic reduction, Ex 12's ultrametric + Cartesian-tree directive, A6's explicit dodge with the full parity argument, A7's full algebraic reduction, A12's ultrametric identity and Cartesian-tree proof); the lab upgrades (P1: the aps/has_mono guards, the 12/16 AP counts, the A4 fan print; P3: the color() distinctness guard and the Frobenius/H₃ block; P4: the K₅ dodger census, the delta guards and m parameter, cart_height and min_h5; P5: any-n general(), the guarded hull(), the W4 receipt print; P6: rado_columns with both clauses and the partition prints, and the color_3z census); the Trick Bag's Berlekamp (1968) strict-form entry and the x + y = 3z dodge note. **The rejections, with receipts:** the draft's A15 rewrite (a rambling case tree — "Not yet, wait:" literally present in its text; the master's A15 stands); the draft's §5.2 full cups-caps induction (four defects: a prepend-with-larger-slope step that is invalid, q₁/q_{k−1} index confusion, a case-2 dichotomy misstating the f(k, l−1) guarantee, an extension assuming a second distinct cup at a shared endpoint); "Makai and Paul Turán" (the ES(5) credit is Makai only, per the 1935 paper); the construction-detail paragraph and the ladder extension (kept the master's Tóth–Valtr/Suk stair); the §2.1 Checkpoint 2 rewrite (its "BBRRBBAA" typo); the Figure 1 redraw; §1.3's Paris–Harrington k = 1 parenthetical (self-contradictory — its own pigeonhole does not close at the claimed N); §2.4's HJ(m = 2) ⇒ Schur derivation (INVALID — the word-to-subset encoding does not deliver the claimed disjointness; kept the master's Ramsey-route parenthetical); §2.3's "Exactly six nontrivial" (the master's count stands); the §2.2/P2 pruned-odometer rewrite (kept the full odometer); §3.3's Deuber sentence variant (kept the master's); §6.3's Frankl–Wilson/Grolmusz/BRSW specific exponent forms (unverified; the adopted parenthetical names the constructions without exponent claims); the draft's A13/A14 (identical to the master's). **Master defects repaired this pass:** Ex 7/A7's false claim that coset sum-freeness follows from H being a multiplicative subgroup (H₃ is the living counterexample — the F₂-linearity + Frobenius reduction replaces it); the garbled Heule sentence; the backwards "closed under the sums" phrase; the missing W4 receipt; §5.1's attribution vagueness; §1.3's missing injectivity clauses and the false parity example; §5.2's dating and "published before Ramsey"; §2.3's Berlekamp ≥ → strict > with the (1968) date and the AP-count union bound (the draft's C(N,2)·2^{1−k} was the GRAPH count — wrong for APs; the correct AP first-moment gives N* = 100/4,473/6,548,374 at k = 10/20/40); R(3,9)'s missing Grinstead–Roberts; the ε refinement record. **The draft's own errors caught and not installed:** its "15,000 solutions" count (the true count is 7,550 with x ≤ y and z ≤ 100, 15,050 ordered); its §6.1 tautology "1 ⊕ α³ = 1 ⊕ α³" (repaired to the α(α³ ⊕ 1) = α⁴ ⊕ α = 1 = α¹⁵ form before install); its "BBRRBBAA" witness typo; its graph-count union bound. The .html export was rebaked per the rebuild rule, oracle-first.
+
+---
+*Chapter status: ✅ **Feynman edition (session 46, task D1) + adversarial review (session 68) + first expansion pass (session 101)** — 6 lectures (infinite Ramsey, compactness, and the statements beyond; van der Waerden's color-focusing induction; Schur, the Schur numbers, and Rado's columns; the hypergraph tower and stepping-up; the Erdős–Szekeres pair; the tables, R(3, 3, 3) = 17, and the lower-bound consolidation), all proofs complete with citations kept honest; 1 verified figure; 12 graded exercises + 3 ◆ pattern-unknown + 3 ◐ explorations, 15 worked answers machine-verified; lab in 6 verified parts (van der Waerden; Schur; Greenwood–Gleason; stepping-up; the Erdős–Szekeres pair; Rado). The proof the Atlas owed since Chapter 3 is paid, and Volume II opens on the field's center ground. The session-68 adversarial review audited the chapter end to end — two literature-attribution repairs (§2.3's and the Trick Bag's Graham-prize inequality restored from the flattened W(2, k) ≤ 2k² to the true W(2, k) < 2^(k²); §2.3's and the appendix's W(2,5) = 178 attribution corrected from Stevens–Shallit (2000) to Stevens–Shantaram (1978)), the mathematics otherwise clean. The session-101 first expansion pass adopted the user-supplied draft's verified improvements (proof upgrades in §1.3, §2.3, §4.2, §5.1, §5.2, §6.1; the 3-adic 4-coloring exhibit; the Cartesian-tree 5-set avoidance proof; the deletion-of-endpoints proof; the Frobenius-orbit coset reduction; lab and exercise upgrades), repaired the master's own defects (Ex 7's false subgroup claim, the Berlekamp strict form and date, R(3,9)'s provenance, the missing W4 receipt), and recorded every rejection with its receipt — all numbers machine-verified by a fresh battery before install, the pattern audit CLEAN. Ships with its web edition (the standard delivery format): the HTML canvas embeds this chapter byte-identically; print to PDF from a browser for a correct export.*
