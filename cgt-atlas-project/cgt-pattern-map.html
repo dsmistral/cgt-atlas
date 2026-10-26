@@ -24,10 +24,10 @@
 <body>
 <main>
 <h1>The Pattern Map — the Companion Registry (P1–P45)</h1>
-<p><em>Part of the Combinatorics &amp; Graph Theory Atlas (see the Atlas canvas for the chapter map and progress report). A companion artifact, not a chapter: the 21 chapter numbers stay pinned.</em></p>
+<p><em>Part of the Combinatorics &amp; Graph Theory Atlas (the chapter map lives in the book basis). A companion artifact, not a chapter: the 21 chapter numbers stay pinned.</em></p>
 
 <h2>1 · What this file is</h2>
-<p>The Atlas groups problems by <em>the move that solves them</em>. The Master Pattern Index (cgt-atlas.md §1) assigns each recurring solution pattern an immutable identifier, P1 through P45. Across the 21 chapters the same pattern is introduced, taught, and invoked under chapter-local names — a chapter’s pattern table names it for its own material, a Trick Bag card names its face, an exercise hint names its cameo. This file is the one place that lists every identifier with its canonical name and every name the book has used for it, so identifiers stay uniform across all chapters.</p>
+<p>The Atlas groups problems by <em>the move that solves them</em>. The Master Pattern Index assigns each recurring solution pattern an immutable identifier, P1 through P45. Across the 21 chapters the same pattern is introduced, taught, and invoked under chapter-local names — a chapter’s pattern table names it for its own material, a Trick Bag card names its face, an exercise hint names its cameo. This file is the one place that lists every identifier with its canonical name and every name the book has used for it, so identifiers stay uniform across all chapters.</p>
 <p>It is built to be used as an <strong>immutable reference</strong> by automated validation or improvement pipelines (tools or AI): the P-ID is the join key, the names are documentation, and the machine-readable payload below is pinned by a SHA-1 hash. Registry version 1, generated 2026-10-15, extracted from the 21 chapter masters and the Atlas P-index. A sweep verified that no identifier outside P1–P45 appears anywhere in the masters.</p>
 
 <h2>2 · How a pipeline should consume it</h2>
@@ -37,7 +37,7 @@
 <li>UTF-8 encode it and verify SHA-1 against the pin in section 5. If the hash does not match, do not trust the file.</li>
 <li>Parse the JSON. The <code>id</code> field (<code>"P1"</code> … <code>"P45"</code>) is the sole join key; match chapter pattern-table rows, Trick Bag cards, and hint mentions on it.</li>
 <li>Treat <code>canonical</code> as the one official name; <code>aliases</code> and <code>faces</code> are documentation with chapter provenance — never keys.</li>
-<li>Per-pattern firing evidence (the usage ledger) lives in the Atlas master (cgt-atlas.md §1), not here; this registry carries only the naming map.</li>
+<li>Per-pattern firing evidence (the usage ledger) is quoted in the per-pattern dossier layer (papers/patterns/), not here; this registry carries only the naming map.</li>
 <li>If the Atlas ever adopts new patterns (P46+), this registry bumps its version and SHA-1 pin; the IDs of existing patterns never change.</li>
 </ol>
 
@@ -358,7 +358,7 @@
 
 
 <h2>6 · The machine-readable payload</h2>
-<div class="pin"><strong>Immutability pin.</strong> SHA-1 of the UTF-8 encoding of the JSON payload below (after HTML-unescaping the entities): <code>032597019d667feea5a966adaf0995c9acf614a2</code>. Any change to the payload invalidates this hash. The payload’s <code>id</code> field is the join key; <code>29829</code> UTF-8 bytes, version 1, generated 2026-10-15. This file’s own git blob SHA is recorded in the project record (the registry file cannot embed its own hash).</div>
+<div class="pin"><strong>Immutability pin.</strong> SHA-1 of the UTF-8 encoding of the JSON payload below (after HTML-unescaping the entities): <code>94e014c41bc6add74016542d1270c3249068e251</code>. Any change to the payload invalidates this hash. The payload’s <code>id</code> field is the join key; <code>29887</code> UTF-8 bytes, version 1, generated 2026-10-15; pin re-issued 2026-10-26 — the master-pointer metadata was corrected after the great cleanup (the retired atlas master references removed; no pattern, id, gloss, alias, or note changed). This file’s own git blob SHA is recorded in the project record (the registry file cannot embed its own hash).</div>
 <pre id="registry-json">{
   "registry": "cgt-atlas-pattern-map",
   "book": "The Combinatorics &amp; Graph Theory Atlas",
@@ -367,7 +367,7 @@
   "generated": "2026-10-15",
   "immutable": true,
   "join_key": "id",
-  "master": "cgt-atlas.md §1 (The Master Pattern Index) — canonical names, glosses, home chapters; usage ledger (per-pattern firings) lives there",
+  "master": "The Master Pattern Index (canonical names, glosses, home chapters) lives in cgt-book-basis.md; usage evidence (per-pattern firings) is quoted in the per-pattern dossier layer (papers/patterns/)",
   "extraction": "all 21 chapter masters (pattern tables, Trick Bag cards, hint mentions), session of 2026-10-15; verified: no P-ID outside 1..45 appears anywhere in the masters",
   "conventions": {
     "id_rule": "Pn (n = 1..45) — the immutable join key; names are documentation only; one canonical name per ID",
