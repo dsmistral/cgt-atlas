@@ -1,0 +1,8 @@
+# K4 - Katona (1968): A theorem of finite sets
+
+- Metadata (web-verified 2026-10-13): G. O. H. Katona, "A theorem of finite sets", in P. Erdos and G. Katona (eds.), Theory of Graphs (Proc. Colloq., Tihany, 1966), Academic Press, New York (1968). Sources: open record at the Hungarian Academy of Sciences repository (https://real.mtak.hu/21121/); standard citation records.
+- Summary (general-knowledge level, flagged sketch): proves the shadow theorem (the Katona half of Kruskal-Katona) by a completely different engine: place the ground set on a circle, count the cyclic intervals contained in family members, and average over cyclic permutations.
+- Decisive moves: (1) [P24 HIT] the second genuine firing of the shadow-pricing pattern - the same theorem as K3, priced by the same real parameter, reached independently; (2) [P23 MISS - honest] the seed expected compression too, but Katona's engine is the CIRCLE METHOD (cyclic-permutation counting), not compression - the honest same-batch engine contrast with K2/K3; (3) lineage note: the circle method debuts in Katona 1964 (K7, this batch), returns here, and later gives the celebrated one-page EKR proof (1972) - the retrospective engine recorded at I2; the arc is the survey's cleanest single-technique lineage inside one batch.
+- New-pattern candidates: none.
+- Full text: not fetched - open record located at the mtak repository (proceedings volume); flagged-sketch level sufficient; scope rule unused.
+- Corrections log: TITLE pinned vs seed ("A theorem of finite sets" - the seed's "Shadow theorem (verify title)" resolved); VENUE pinned (Tihany 1966 proceedings volume, published 1968).

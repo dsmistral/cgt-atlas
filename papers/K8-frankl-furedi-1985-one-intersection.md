@@ -1,0 +1,8 @@
+# K8 - Frankl, Furedi (1985): Forbidding just one intersection
+
+- Metadata (web-verified 2026-10-13): P. Frankl, Z. Furedi, "Forbidding just one intersection", J. Combin. Theory Ser. A 39: 160-176 (1985). Sources: OPEN PDF on Frankl's Renyi Institute page (https://www.renyi.hu/~pfrankl/j26.pdf), whose header confirms JCTA 39, 160-176 (1985); ScienceDirect record.
+- Summary (general-knowledge level, flagged sketch): the k-uniform forbidden-intersection theorem: for n sufficiently large and k >= 2l+2, the largest k-uniform family on an n-set in which no two members intersect in exactly l points consists of all k-sets containing a fixed (l+1)-element set (asymptotically, and exactly for n beyond a threshold) - forbidding a single intersection size forces a star-type structure.
+- Decisive moves: (1) [P23 HIT] the engine is shifting/compression: the family is normalized to a canonical (intersection-closed) form via shifting, after which the counting argument applies - flagged-sketch reading from the open PDF's structure; (2) lineage note: this is the uniform companion of I5 Frankl-Rodl's forbidden-intersections theorem - the Frankl-Rodl proof cites the FF theorems as its engine dependency ([FF1], [FF2] in that paper), the survey's first recorded batch-K -> batch-I engine dependency.
+- New-pattern candidates: none.
+- Full text: not fetched - open renyi.hu PDF located; flagged-sketch level sufficient; scope rule unused.
+- Corrections log: TITLE pinned vs seed ("Forbidding just one intersection" - the seed's "Forbidden intersections (verify exact)" resolved); year pinned 1985; venue pinned (JCTA 39: 160-176).

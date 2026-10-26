@@ -1,0 +1,8 @@
+# K1 - Erdos (1945): On a lemma of Littlewood and Offord
+
+- Metadata (web-verified 2026-10-13): P. Erdos, "On a lemma of Littlewood and Offord", Bull. Amer. Math. Soc. 51(12): 898-902 (1945), DOI 10.1090/S0002-9904-1945-08454-7. Sources: OPEN AMS PDF https://www.ams.org/journals/bull/1945-51-12/S0002-9904-1945-08454-7/S0002-9904-1945-08454-7.pdf; Project Euclid record; Semantic Scholar page.
+- Summary (general-knowledge level, flagged sketch): the Littlewood-Offord lemma in its combinatorial form: if the real numbers a_1, ..., a_n all have |a_i| >= 1, then among the 2^n signed sums, no interval of length 2 contains more than C(n, floor(n/2)) of them; the bound is tight (all a_i = 1).
+- Decisive moves: (1) [P9 HIT] the engine: map each signed sum to the subset of indices with + signs; sums in a common short interval are pairwise INCOMPARABLE under the subset order, so the subsets form an antichain - Sperner's theorem finishes; (2) [P10 MISS - honest] and [P28 MISS - honest] the seed expected averaging/concentration, but the 1945 proof predates both engines: no averaging is used, and the concentration-of-measure story (P28's batch-B home) is retrospective - the L-O lemma is that story's discrete ANCESTOR, with Kleitman's diametric theorem (K6) as the combinatorial descendant. Lineage note: K1 -> K6 -> batch B concentration, recorded as the survey's cleanest ancestral arc inside one batch.
+- New-pattern candidates: none.
+- Full text: not fetched - open AMS PDF located; flagged-sketch level sufficient; scope rule unused.
+- Corrections log: none vs seed (title, venue, year confirmed).

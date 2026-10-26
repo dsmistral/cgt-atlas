@@ -1,0 +1,8 @@
+# K7 - Katona (1964): Intersection theorems for systems of finite sets
+
+- Metadata (web-verified 2026-10-13): G. O. H. Katona, "Intersection theorems for systems of finite sets", Acta Math. Acad. Sci. Hungar. 15: 329-337 (1964), DOI 10.1007/BF01897141. Sources: Springer article page; Akademiai Kiado journal record (vol. 15, issue 3-4, start page 329).
+- Summary (general-knowledge level, flagged sketch): bounds t-intersecting families of subsets in the NON-uniform setting (the 2-intersecting case in particular) - the analogue of EKR without the uniformity restriction. Note for the gather record: the paper's title is identical to the Erdos-Ko-Rado 1961 title (I2) - a recorded coincidence, no correction needed.
+- Decisive moves: (1) [P20 MISS - honest, THE designed-home test] the seed expected weight shifting/symmetrization - P20's designed home - but the engine is the CIRCLE METHOD, here making its debut: place the ground set on a circle, count cyclic intervals, average over cyclic permutations; (2) [P10 partial] the symmetrization work is done by averaging over the cyclic group, not by pushing weight - credited as a partial firing of averaging. With the I2/E-batch misses, P20 is now recorded as genuinely under-used by the field's classics: the symmetrization the Atlas expected is performed by P23 shifting or P10 averaging - synthesis call on the P20 entry.
+- New-pattern candidates: none.
+- Full text: not fetched - Springer record paywalled; the circle method is documented in textbooks; scope rule unused.
+- Corrections log: none vs seed (title, venue, year confirmed; the shared-title coincidence with EKR 1961 recorded).

@@ -1,0 +1,12 @@
+# L1 - Witt designs and the Mathieu groups
+
+- Metadata: Ernst Witt, "Die 5-fach transitiven Gruppen von Mathieu", Abh. Math. Sem. Univ. Hamburg 12: 256-264 (1938), DOI 10.1007/BF02948947; companion paper "Uber Steinersche Systeme", Abh. Math. Sem. Univ. Hamburg 12: 265-275 (1938), DOI 10.1007/BF02948948. Verified via the Springer Nature Link article page and the Mathieu group Wikipedia reference list carrying both DOIs; the Semantic Scholar record's 1937 year variant recorded as a citation error (volume 12 is the 1938 volume).
+- Abstract or faithful summary (summarized, flagged sketch): the pair of papers constructs the large Mathieu groups M12 and M24 as successive transitive extensions of permutation groups and simultaneously as automorphism groups of the Steiner systems S(5,6,12) and S(5,8,24) (the Witt designs W12 and W24). The companion builds the systems by explicit stepwise extension of smaller Steiner systems (S(5,6,12) from S(4,5,11), S(5,8,24) from S(4,7,23)), checking the arithmetic admissibility conditions on the way, and establishes the uniqueness of the small systems. This ended the existence doubts about the Mathieu groups (Carmichael 1931 had left gaps; Miller's 1898 false nonexistence proof is part of the recorded history).
+- The decisive moves:
+  1. [P11] Explicit construction: the Steiner systems are built block-by-block; no counting or averaging argument delivers them.
+  2. [P4 partial] Stepwise extension: each system is grown from the preceding one (S(5,6,12) from S(4,5,11), etc.) - a genuine recursive skeleton, though the blocks are placed by hand.
+  3. [P41 partial] Admissibility arithmetic: the divisibility conditions are checked as the precondition of each construction step.
+  4. [P25 partial] Group-theoretic carrier: the groups are constructed together with the systems - each design-extension step is also a transitive group extension; the combinatorics and the group theory carry each other.
+- New-pattern candidates: none. (The successive-transitive-extension method is group theory, not a combinatorial pattern; recorded as P25 carrier use.)
+- Full text: not needed - the constructions are standard textbook material; scope rule unused.
+- Corrections log: title pinned (seed asked to verify exact); the TWO-PAPER unit recorded (the design construction lives largely in the companion); the 1937 variant recorded as a citation error; 1938 standard.

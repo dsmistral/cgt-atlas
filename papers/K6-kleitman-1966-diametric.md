@@ -1,0 +1,8 @@
+# K6 - Kleitman (1966): On a combinatorial conjecture of Erdos
+
+- Metadata (web-verified 2026-10-13): D. J. Kleitman, "On a combinatorial conjecture of Erdos", J. Combin. Theory 1: 209-214 (1966), DOI 10.1016/S0021-9800(66)80027-3. Sources: ScienceDirect article page; the SIAM EKR-for-sequences paper's reference list pinning "J. Combin. Theory, 1 (1966), pp. 209-214".
+- Summary (general-knowledge level, flagged sketch): the diametric theorem in the Hamming cube: a family of 0-1 sequences of length n, any two of which differ in at most 2k places, has size at most the sum of the k largest binomial coefficients C(n, i) - i.e., Hamming balls are extremal. The result settles a conjecture of Erdos and is the exact combinatorial kernel of measure concentration on the cube.
+- Decisive moves: (1) [P23 partial] the extremal families are Hamming balls - the push-toward-the-ball intuition is compression-flavored, but the original engine is a coordinate-split induction on n, and the clean compression proofs are retrospective - credited partial only (mirror of the I1 treatment); (2) lineage note: K1 -> K6 -> batch B is the survey's cleanest ancestral arc: the Littlewood-Offord lemma's antichain bound is the combinatorial seed, the diametric theorem is its cube-isoperimetric ripening, and concentration of measure (P28) is the analytic harvest.
+- New-pattern candidates: none.
+- Full text: not fetched - ScienceDirect record paywalled; the theorem is standard in textbooks; scope rule unused.
+- Corrections log: TITLE pinned vs seed ("On a combinatorial conjecture of Erdos" - the seed's "Diametric theorem in the cube (verify)" resolved: this is the paper proving it); VENUE pinned (J. Combin. Theory 1: 209-214 (1966)).
