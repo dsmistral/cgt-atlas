@@ -13,7 +13,7 @@ icon: 📕
 - **`cgt-ch1-counting.md` … `cgt-ch21-engines.md`** — the 21 chapter masters (the source of truth).
 - **`cgt-ch1-web.html` … `cgt-ch21-web.html`** — the 21 pre-rendered, script-free web editions.
 - **`cgt-pattern-map.html`** — the pattern registry (canonical names, all aliases, machine-readable JSON payload; P-IDs are immutable join keys).
-- **`cgt-ch1-web.md`** — the canonical `renderMd` engine master (how the HTML editions are built from the masters).
+- **`cgt-render-engine.md`** — the canonical `renderMd` engine master (how the HTML editions are built from the masters).
 - **`cgt-publishing.md`** — the publishing/pipeline toolkit (export config + verification scripts + standalone lab code).
 - **`cgt-lean-track.md`** — the unnumbered Lean Formal Track companion.
 
