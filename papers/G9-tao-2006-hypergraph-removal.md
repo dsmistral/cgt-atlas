@@ -1,0 +1,8 @@
+# G9 - Tao (2006): A variant of the hypergraph removal lemma
+
+- Metadata (web-verified 2026-10-13): T. Tao, "A variant of the hypergraph removal lemma", J. Combin. Theory Ser. A 113(7): 1257-1280 (2006), arXiv math/0503572. OPEN: arXiv. Sources: SpringerLink reference lists (JCTA 113 (2006), 1257-1280), Semantic Scholar, ScienceDirect record (pii S0097316505002177), arXiv abstract page.
+- Summary (general-knowledge level, flagged sketch): a self-contained proof of the hypergraph removal lemma for k-uniform hypergraphs, together with a strengthened "relative" variant - removal for sets that are dense only relative to a pseudorandom host - designed for applications such as constellations in the Gaussian primes and the Green-Tao transference program (G11).
+- Decisive moves: (1) [P31 hypergraph flagship] the counting-removal pattern lifted to uniformity k, with counting supplied by dense-decomposition tools; (2) [P4] induction reducing k-uniform removal to lower uniformity, slicing hypergraphs into graph layers; (3) [P30-adjacent] the proof deliberately avoids the full hypergraph regularity machinery of G10 - a lighter route to the same P31 conclusions; recorded as adjacent, not a P30 firing; (4) [CAND-G1 lineage] the relative-to-pseudorandom-host variant is the technical seed of the transference principle credited at G11.
+- New-pattern candidates: CAND-G1 (transference / dense-model) gains its within-batch lineage instance here; the flagship firing is G11.
+- Full text: not fetched - OPEN arXiv copy located; moves documented at flagged-sketch level.
+- Corrections log: none vs seed.

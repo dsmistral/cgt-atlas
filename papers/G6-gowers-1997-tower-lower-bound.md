@@ -1,0 +1,8 @@
+# G6 - Gowers (1997): Lower bounds of tower type for Szemeredi's uniformity lemma
+
+- Metadata (web-verified 2026-10-13): W. T. Gowers, "Lower bounds of tower type for Szemeredi's uniformity lemma", Geom. Funct. Anal. 7: 322-337 (1997), DOI 10.1007/PL00001621. Sources: SpringerLink (GAFA 7, 322-337), Semantic Scholar record, Combinatorica 2016 reference.
+- Summary (general-knowledge level, flagged sketch): the negative complement to the regularity method: there exist graphs for which every epsilon-regular partition requires a tower of twos of height polynomial in 1/epsilon as the number of parts. The regularity lemma cannot be quantitatively improved; any application that consumes the tower is inherently expensive. G6 is the paper that makes P30 teachable with its limits visible.
+- Decisive moves: (1) [P30] the limits face of regularity - when P30 is the right tool and when it is quantitatively prohibitive; (2) [P11 explicit construction] the recursive blow-up construction: at each scale the graph is replaced by a blow-up whose structure forces any regular partition to recurse, so the required partition size towers - a deterministic, iterated, self-similar counterexample; (3) [P9/P10] the argument that a partition with too few parts must expose an irregular pair is counting/averaging bookkeeping over pairs of parts.
+- New-pattern candidates: none.
+- Full text: not fetched - GAFA is paywalled; the construction is documented in open expositions and in the located open short-proof companion (Conlon-Fox, Combinatorica, open PDF at Caltech).
+- Corrections log: none vs seed; pages pinned 322-337.

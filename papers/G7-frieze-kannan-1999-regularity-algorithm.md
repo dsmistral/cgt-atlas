@@ -1,0 +1,8 @@
+# G7 - Frieze-Kannan (1999): A simple algorithm for constructing Szemeredi's regularity partition
+
+- Metadata (web-verified 2026-10-13): A. Frieze and R. Kannan, "A simple algorithm for constructing Szemeredi's regularity partition", Electron. J. Combin. 6(1): R17, 7 pp. (1999), DOI 10.37236/1449. OPEN: the Electronic Journal of Combinatorics is fully open access (combinatorics.org article v6i1r17). Sources: EJC article page, EUDML record, DOI record.
+- Summary (general-knowledge level, flagged sketch): the algorithmic face of regularity: a polynomial-time algorithm that constructs an epsilon-regular partition of any given graph. The existence proof of G1 is made constructive by chasing witness irregular pairs: find an irregular pair, split by the witnessing subsets, re-index, repeat.
+- Decisive moves: (1) [P18 algorithmic proof] the proof-to-algorithm conversion of the regularity lemma - the corpus's founding instance of P30 meeting P18; (2) [P4 + monovariant] the algorithm loop terminates by the same index/energy increment as G1, now an explicit potential function inside an algorithm - the monovariant watch-item fires a second time in this batch (G1+G7), confirming cross-batch recurrence (D: D4/D6; G: G1/G7); (3) [P30] lineage: the paper is also the algorithmic companion to the Frieze-Kannan weak regularity lemma (cut-norm approximation by step functions), the version underlying algorithmic applications and G12's analyst view.
+- New-pattern candidates: none; the monovariant recurrence is recorded under the existing watch-item.
+- Full text: not fetched - EJC is open access and the decisive moves are documented at survey level.
+- Corrections log: none vs seed.

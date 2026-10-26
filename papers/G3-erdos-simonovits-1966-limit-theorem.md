@@ -1,0 +1,8 @@
+# G3 - Erdos-Simonovits (1966): A limit theorem in graph theory
+
+- Metadata (web-verified 2026-10-13): P. Erdos and M. Simonovits, "A limit theorem in graph theory", Studia Sci. Math. Hungar. 1: 51-57 (1966). OPEN PDF located: users.renyi.hu/~p_erdos/1966-01.pdf (the Erdos renyi.hu archive). Sources: SpringerLink reference lists (two articles citing Studia Sci. Math. Hungar. 1 (1966), 51-57), the archive PDF itself, Simonovits's renyi.hu download page.
+- Summary (general-knowledge level, flagged sketch): the paper that converts Erdos-Stone (G2) into the limit theorem of extremal graph theory: the limit lim ex(n,H)/binom(n,2) = 1 - 1/(chi(H)-1) exists for every fixed H, so the extremal density at the n^2 scale is determined by the chromatic number alone. The bipartite case is correctly identified as the degenerate exception where the limit theorem carries no information (density tends to 0).
+- Decisive moves: (1) [P25] the reduction that organizes the field: the general extremal problem at the n^2 scale is reduced to one invariant, the chromatic number; (2) [P10] inherits the Erdos-Stone averaging/embedding engine (via Erdos's 1962 error-term sharpening) unchanged - the paper's contribution is the limit reformulation, not a new proof technique (an F4-style conjecture-seeding/conceptual contribution); (3) [P32 - EXPECTED, MISSED] the seed expected stability here too; the 1966 paper contains no stability argument - stability is G4's contribution. Recorded honestly.
+- New-pattern candidates: none.
+- Full text: not fetched - OPEN renyi.hu PDF located.
+- Corrections log: none vs seed.
