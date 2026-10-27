@@ -6,6 +6,6 @@
   1. [P12] Random construction: the nibble is a guided random greedy - existence by iterated sampling; the corpus's canonical adaptive-random construction after A6/A8/B4, and this paper is the ORIGIN of the method.
   2. [CAND-A2, ORIGIN firing] Semi-random nibble + parameter tracking: each step is random but small, and the proof tracks residual densities (quasi-uniformity) across steps; the candidate's very name ("the Rodl nibble") descends from this paper. Third batch for the candidate (A: A6/A8; B: B4; L: L6 origin).
   3. [P10 partial] Averaging maintenance: second-moment/equidistribution estimates keep each nibble near-uniform - the averaging engine does the maintenance work inside the P12 flagship, not the headline move.
-- New-pattern candidates: none new; CAND-A2 (already gate-crossed) gains its origin-paper firing - materially strengthening its P43+ case; recorded in the candidates dossier and STATE.md.
+- New-pattern candidates: none new; CAND-A2 (already gate-crossed) gains its origin-paper firing - materially strengthening its P43+ case; recorded in the candidates dossier.
 - Full text: not fetched; the conjecture and method are standard survey material (the Oxford nibble notes record the history incl. EH's partial cases; a MathOverflow thread records Spencer's branching-process alternative proof - an engine-contrast lineage for teaching); scope rule unused.
 - Corrections log: title/venue confirmed as seeded; pages not pinned (honest record); the Erdos-Hanani source pinned via citing bibliographies.
