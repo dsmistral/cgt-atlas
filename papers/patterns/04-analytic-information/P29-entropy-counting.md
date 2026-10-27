@@ -4,9 +4,9 @@
 - Atlas one-line: Count by description cost: H <= log support + the chain rule
 - Home chapters (Atlas): 13
 - Status (through chunk 14a): EXITED the silent registry (chunk 2): first genuine evidence B4 (Kahn entropy list-coloring); 14a honest note: the Kahn-conjecture settlement (N2) AVOIDS entropy - the lineage's convexity face carried the frontier (see the hypothesis note). Batch W 25b: W11 partial (the Bregman-Minc origin - the entropy-family face at its classic, the engine retrospective). Batch X 26b (extension corpus): X6 scanned, not credited (the entropy-wave route - the walk's information content, not the counting engine; the H11 precedent)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch B (chunk 2)
 - Fires in: B4 (Kahn guided-random + entropy)
@@ -20,7 +20,7 @@
 - Fires in: X6 (scanned, not credited)
 - Notes: the title's "entropy waves" scanned against the entropy-counting pattern and NOT credited (the H11 scanned-not-credited precedent): the entropy there is the walk's information content - the information-theoretic expansion analysis of the zig-zag product - not the entropy-as-counting-currency engine (Bregman/Shearer); recorded as a coverage note for synthesis
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch N, sub-chunk 14a (chunk 14)
 - N2 P29 MISSED as the in-proof engine (expected flagship by seed): the paper settling Kahn's conjecture (a conjecture BORN from Kahn's entropy argument) avoids entropy - Shearer's inequality is not applicable losslessly in the irregular case; the verification runs on Holder + computation (recorded as the P10 convexity face, with the Lubetzky-Zhao note that Holder reinterprets Kahn's entropy proof for the regular case). The lineage stands: Kahn 2001 (the B4 flagship) -> Zhao 2009/2010 (swapping) -> N2 2019. The Batch-N accessibility lesson: the entropy engine was NOT the accessible move at the frontier - the recursion and the swap were.

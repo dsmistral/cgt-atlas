@@ -4,9 +4,9 @@
 - Atlas one-line: Prove existence by sampling
 - Home chapters (Atlas): 4
 - Status (through chunk 21b; extension corpus opened): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch O 17a (extension corpus, NEXT100 seeds): O1 genuine, O3 partial - the arc's sampled-object move. Batch S 21a (extension corpus): S1 partial (the random-greedy cover phases of the absorption cascade) + S2 genuine (the random graph as the near-optimal universal object); Batch S 21b (extension corpus): S3 partial (the nibble-based approximate-decomposition machinery) + S4 genuine (the random-STS comparison theorem). Batch Y 27a (extension corpus): Y2 partial (the random-placement embedding engine inside the regularity framework) + Y3 partial (the conditional second-moment existence side over the 1RSB pure states). Batch Y 27b (extension corpus): Y6 partial (the Achlioptas-process origin - the random process the object of study, the N6 precedent) + Y5 HONEST MISS (the Book Algorithm deterministic - the seed's expectation NOT met)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch A (chunk 1)
 - Fires in: A1, A2, A3, A4, A6, A8
@@ -58,7 +58,7 @@
 - Notes: Y6: the Achlioptas process born - the two-choice rule delaying the giant component past the Erdos-Renyi threshold (Achlioptas's 2000 question answered positively at the origin); partial honestly per the N6 object-of-study precedent: the random process is the OBJECT OF STUDY, not a deployed sampling engine (the B4 guided-random lineage naming). Y5: HONEST MISS - the seed expected the random-construction face, but the Book Algorithm is deterministic and deliberately elementary ("more elementary", "does not involve any notion of quasirandomness" - the paper's own words; the paper's "random" mentions all refer to other work); no firing, the miss recorded honestly
 
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch L, sub-chunk 12b (chunk 12)
 - L6 P12 CONFIRMED (expected): the nibble's origin paper.

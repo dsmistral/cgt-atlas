@@ -4,9 +4,9 @@
 - Atlas one-line: Improve a partial solution along a path
 - Home chapters (Atlas): 5
 - Status (through chunk 14b): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch N 14b: N5 honest miss (expected by seed) - the accessibility datum: the SMP canon at the middle-school level runs on the proposing algorithm, not augmentation. Batch V 24a: V3 partial (the factor-theorem origin - the augmentation family's counting-existence theorem born before the augmenting-path engine existed). Batch V 24b: V7 partial (Menger's disjoint-paths theorem origin) + V8 partial (Hall's representatives-theorem origin). Batch V 24c: V15 partial (the 1-factor theorem origin - the origin quartet complete). Batch W 25b: W12 partial (the matching polyhedron - the augmenting family polyhedral face at the 1965 origin) + W9 honest miss (the seed expectation re-anchored: the designed target is the tree-packing theorem)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch D (chunk 4)
 - Fires in: D1, D2, D3, D6
@@ -32,7 +32,7 @@
 - Fires in: W12 (partial)
 - Notes: the matching polyhedron odd-set (blossom) inequalities - the augmenting family POLYHEDRAL face at the origin (the LP dual read back as the combinatorial min-max certificate; P37 genuine the same paper); the D3 "Paths, Trees and Flowers" companion the same-year combinatorial twin - the engine stays D3, no double credit; W9 recorded as an HONEST MISS (see the hypothesis note), the origin quartet stays closed at V15
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch N, sub-chunk 14b (chunk 14)
 - N5 P16 MISSED (expected by seed as P16? - stable matching augmenting structure): no alternating-path/augmentation move anywhere in the SMP <-> Sudoku paper; the matching structure runs on blocking pairs + the Gale-Shapley proposing procedure. The accessibility datum for the synthesis: the SMP canon at the pre-doctoral level does NOT use augmentation.

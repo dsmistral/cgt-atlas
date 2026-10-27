@@ -4,9 +4,9 @@
 - Atlas one-line: The proof is a procedure; termination = theorem
 - Home chapters (Atlas): 2, 5
 - Status (through chunk 22a): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch M: the isomorphism column M1/M2 (proof = procedure at its largest scale), the property-testing column M5/M6 (the testers), and 13c the classic-algorithms column (M7 flagship, M8 genuine, M9 partial). Batch N 14b: N6 partial (the Gale-Shapley round traces). Batch O 17a (extension corpus): O2 genuine - the LLL's first algorithmization; 17b: O4, O5 genuine (the constructive arc); Batch T 22a (extension corpus): T2 genuine - the machine-verification face (proof-by-execution), T1/T3 partial. Batch T 22b (extension corpus): T6 genuine - the linear-time treewidth algorithm (proof-equals-procedure, the f(k) constant honestly recorded as enormous). Batch W 25a: W1 genuine (deferred acceptance - the algorithm IS the proof) + W3 genuine (the Gomory-Hu cut tree). Batch X 26b (extension corpus): X6 genuine (the zig-zag iteration - the construction procedure whose correctness proof IS the expansion analysis). Batch Y 27a (extension corpus): Y1 partial (the LOCAL model's birth - the distributed model itself the object of study; the paper's own theorems impossibility lower bounds, no proof-equals-procedure firing). Batch Y 27b (extension corpus): Y5 genuine unplanned (the Book Algorithm - the Erdos-Szekeres argument reframed as an explicit algorithm and upgraded; proof-equals-procedure at the Ramsey upper-bound frontier)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch A (chunk 1)
 - Fires in: A9
@@ -74,7 +74,7 @@
 - Notes: the Book Algorithm - the 1935 Erdos-Szekeres upper-bound argument reframed as an explicit algorithm and upgraded (the Zigzag Lemma the key step; the paper's sections organized around the algorithm); proof-equals-procedure at the Ramsey upper-bound frontier: the algorithm IS the argument, its termination the theorem (R(k) <= (4-eps)^k, two proofs; UNPLANNED by seed - the seed expected P12)
 
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch M, sub-chunk 13a (chunk 13)
 - M1/M2 P18 confirmed (unplanned by seed - the M1/M2 seed rows expected P25/P19 and P8/P30; the algorithmic character of the whole batch is the surprise the census records).

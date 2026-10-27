@@ -4,9 +4,9 @@
 - Atlas one-line: Up-sets lean together: P(intersection of good) >= product of P(good) is a floor - FKG beyond product measure
 - Home chapters (Atlas): 13
 - Status (through chunk 23a): EXITED THE SILENT REGISTRY at its designed home (chunk 23a, extension corpus, NEXT100 Batch U): U1 the FKG origin flagship, U2 the four-functions combinatorial face, U3 the BK disjoint-occurrence face - the FKG up-set face the chunk-17 census said was unfired now fires at its designed home; the in-corpus silence was a usage datum (the chunk-15 state preserved in the Synthesis call section below); the O6 partial (dependency-graph face) was the first touch
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (no census row through chunk 11 - honest)
 
@@ -18,7 +18,7 @@
 - Fires in: U1 (flagship, genuine), U2 (genuine), U3 (genuine)
 - Notes: U1 - the FKG origin: the lattice condition (log-supermodular measure on a finite distributive lattice) => increasing functions positively correlated - the Atlas one-line IS the theorem; the designed-home test answered; U2 - the four-functions theorem: the combinatorial master inequality, FKG and Kleitman's 1966 lemma as corollaries; U3 - the BK inequality: the disjoint-occurrence face, the OPPOSITE-SIGN face recorded honestly (the joint ceiling where FKG gives the joint floor)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch O, sub-chunk 17b (chunk 17)
 - O6 P27 first-touch partial confirmed UNPLANNED by seed (the NEXT100 row expected the CAND-A1-family and Poisson-paradigm faces, not P27).

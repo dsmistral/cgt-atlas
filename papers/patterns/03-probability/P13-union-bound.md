@@ -4,9 +4,9 @@
 - Atlas one-line: If failure probabilities sum below 1, success exists
 - Home chapters (Atlas): 4
 - Status (through chunk 14a): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch N 14a: N3 genuine - SECOND census batch for this rarely-firing pattern. Batch W 25b: W7 partial (the Erdos-Selfridge criterion - the union-bound family deterministic face)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch N, sub-chunk 14a (chunk 14)
 - Fires in: N3 (genuine)
@@ -20,7 +20,7 @@
 - Fires in: W7 (partial)
 - Notes: the Erdos-Selfridge criterion - if the sum of 2^{-|E|} over the winning sets is below 1/2, Breaker (the second player) wins: the union-bound family deterministic face (the seed B4/P13 family expectation met); the criterion tight up to the constant (the Krivelevich survey assessment); the proof engine the potential function (the WATCH monovariant/potential datum - see the hypothesis note)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch N, sub-chunk 14a (chunk 14)
 - N3 P13 CONFIRMED (expected by seed - in the proof interior, not visible at abstract level; the open full text was fetched for this decision per the scope rule).

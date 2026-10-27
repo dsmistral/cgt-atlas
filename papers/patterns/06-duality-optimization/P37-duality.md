@@ -4,9 +4,9 @@
 - Atlas one-line: Two theories, one object: plane duals exchange vertex-coloring with edge-flowing
 - Home chapters (Atlas): 15
 - Status (through chunk 20a): EXITED the silent registry (chunk 5): E4 planar-duality flagship; second H10 (Konig minimax); third family I11 (LP duality); J2 secondary; FIFTH family M3/M4 SDP certificates (13a/13b); Batch R 20a (extension corpus): the SDP-certificate partial face repeats at R1 Reiher (the program-completing flagship) - synthesis call. Batch W 25b: W12 GENUINE (the LP-duality/polyhedral ORIGIN - Edmonds 1965, polyhedral combinatorics born)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch E (chunk 5)
 - Fires in: E4 (flagship: plane dual exchanges coloring with flows)
@@ -40,7 +40,7 @@
 - Fires in: W12 (genuine)
 - Notes: the LP-duality/polyhedral ORIGIN: the matching polyhedron described by the odd-set (blossom) inequalities, integral with 0,1-vertices - the combinatorial optimum as an LP, the dual read back as the combinatorial min-max certificate (polyhedral combinatorics born); the family note widens: E4 (planar) -> H10 (Konig) -> I11 (LP) -> J2 (optimization duality) -> Edmonds 1965 (the matching polyhedron - the ORIGIN); J. Res. Nat. Bur. Standards 69B(1-2) (1965) 125-130, the NIST scan
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I11 P40 MISSED (expected): Delsarte's algebra is spectral/LP, not incidence-Mobius. P19 confirmed; P37 fires as a third family (LP duality).

@@ -4,9 +4,9 @@
 - Atlas one-line: Some object beats the average
 - Home chapters (Atlas): 3, 4
 - Status (through chunk 14c): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch N 14a: N3 genuine (the density-transfer move) + N2 partial (the Holder/convexity face). Batch N 14c: N8 genuine (the graphical Brascamp-Lieb machinery - the Holder lineage promoted from verification step to whole engine). Batch P 18b (extension corpus): P3 genuine (the balanced supersaturation theorem - the H5 supersaturation face modernized as the container algorithm's input form). Batch W 25b: W8 partial (the Erdos-Renyi connectivity threshold - the Poisson/moment engine)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch A (chunk 1)
 - Fires in: A2, A3, A4, A6, A7, A8
@@ -56,7 +56,7 @@
 - Fires in: W8 (partial)
 - Notes: the moment/Poisson engine at the random-graph origin: the isolated-vertex count Poisson limit locates the connectivity threshold at about (n/2) log n edges - the obstruction IS the isolated vertices (the last-obstruction phenomenon, the citing canon standard account); partial honestly: the threshold statement the theorem, the moments the interior machinery
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I5 P19 AND P30 BOTH MISSED (both expected): the richest miss of the batch - the natural linear-algebra engine (suggested by I3/I4) does NOT prove forbidden intersections; the original engine is sphere averaging + anticode bounds (P10), with later re-proofs via dependent random choice recorded in the survey literature.

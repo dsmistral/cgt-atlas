@@ -4,9 +4,9 @@
 - Atlas one-line: Bounded exposure cannot stray far from its mean - Azuma, Talagrand
 - Home chapters (Atlas): 13
 - Status (through chunk 14a): EXITED the silent registry (chunk 2): first genuine evidence B1/B2 - B2 names Talagrand, one of the two tools in the Atlas P28 description; SECOND census batch N3 (14a): the sharp binomial small-ball comparison - the Littlewood-Offord lineage's modern face
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch N, sub-chunk 14a (chunk 14)
 - Fires in: N3 (genuine)
@@ -16,7 +16,7 @@
 - Fires in: B1 (Janson inequality), B2 (Talagrand)
 - Notes: FIRST GENUINE USAGE EVIDENCE for this silent forward-registry pattern - and B2 is one of the two tools named in the atlas P28 description itself
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch K (chunk 11)
 - K1 P10 AND P28 MISSED (both expected): the 1945 engine maps signed sums to subsets forming an ANTICHAIN and applies Sperner - P9 fires instead. The concentration-of-measure story (P28's batch-B home) is retrospective: the L-O lemma is its discrete ancestor. Lineage arc recorded: K1 -> K6 -> batch B concentration.

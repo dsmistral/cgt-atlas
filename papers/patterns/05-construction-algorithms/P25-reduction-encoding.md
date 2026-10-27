@@ -4,9 +4,9 @@
 - Atlas one-line: Translate one problem into another language; the target structure carries the proof or the hardness
 - Home chapters (Atlas): 3, 10, 11
 - Status (through chunk 22b): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch M: the isomorphism column fires it twice (M1/M2 genuine), M3 the flagship encoding, M4 the second framework firing (genuine), M5/M6 the property-testing partials, and 13c M7 partial (DFS/path encoding) + M9 genuine (the CSP classification). Batch N 14a: N2 genuine - Zhao's bipartite-swapping reduction reused as the Kahn-conjecture settlement's step 1 - see the census rows. Batch N 14b: N5 flagship genuine (the SMP <-> Sudoku translation) + N4 partial (the base-k digit encoding). Batch N 14c: N8 genuine (the homomorphism encoding) + N7 partial (the orbit reduction). Batch O 17b (extension corpus): O4 partial (the witness-tree encoding). Batch P 18a (extension corpus): P1 partial (the KW certificate encoding) + P2 partial (the container algorithm's profile encoding). Batch R 20a (extension corpus): R1 genuine + R2 genuine - the flag-algebra translation move at the extremal level (the K_r density problem in the algebra's positivity language) and the meta level (inequalities as quantum-graph positivity statements); Batch R 20b (extension corpus): R3 genuine (the pentagons line's flag encoding) + R4 genuine (the homomorphism-counting framework encoding - the N8/M9 cross-notes); Batch T 22b (extension corpus): T5 partial (the graph-as-term encoding, unplanned by seed - standard-tool credit per the M9 precedent). Batch V 24b (extension corpus): V10 partial (the de Bruijn sequence - the encoding IS the object: all 2^n words of length n packed into one cyclic word of length 2^n; the object-vs-engine split, honestly partial). Batch V 24c: V13 partial (the forbidden-subdivision reduction) + V14 partial (the confusability-graph encoding - the zero-error origin). Batch W 25a: W3 partial (the cut-tree encoding - n-1 tree edges carrying every pairwise cut value). Batch X 26a (extension corpus): X2 + X3 partial (the concentrator/superconcentrator encodings - the objects ARE the translations). Batch Y 27a (extension corpus): Y4 genuine (the long-code encoding + gap-preserving reductions - the PCP program's optimization boundary). Batch Y 27b (extension corpus): Y5 partial unplanned (the book reduction - "to bound R(k) it suffices to find a large book", the inherited framing traced to Ramsey's original paper)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch B (chunk 2)
 - Fires in: B7
@@ -106,7 +106,7 @@
 - Notes: the book reduction - "to bound R(k) it suffices to find a large book" - the translation inherited from Ramsey's original paper (the paper's own framing of the reduction); partial honestly per the V10 object-vs-engine precedent: the framing inherited, not a deployed encoding; UNPLANNED by seed (the seed expected P12)
 
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch M, sub-chunk 13a (chunk 13)
 - M1 P25 CONFIRMED (expected by seed); M3 P25 CONFIRMED (expected, flagship); M2 P25 confirmed UNPLANNED by seed (the M2 seed row expected P8/P30, both missed) - the reduction chain GI -> String Isomorphism -> Coset Intersection is the abstract's own framing.

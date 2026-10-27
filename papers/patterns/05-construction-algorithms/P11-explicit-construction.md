@@ -4,9 +4,9 @@
 - Atlas one-line: Beat the bound by building the object
 - Home chapters (Atlas): 3
 - Status (through chunk 12c): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch W 25a: W6 partial (the height-level antichain cover built explicitly). Batch X 26a (extension corpus): X2 + X3 genuine (the first explicit expander families - the pattern born at the expansion origin) Batch X 26b (extension corpus): X4 genuine (the LPS apex - the threshold met exactly), X6 partial (the combinatorial composition era - explicit expanders without algebra)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch A (chunk 1)
 - Fires in: A8 (dense triangle-free graph with small alpha)
@@ -52,7 +52,7 @@
 - Fires in: X4 (genuine), X6 (partial)
 - Notes: X4: the LPS construction - the quaternion-arithmetic explicit family (the p+1 four-squares solutions acting by linear fractional transformations on the projective line; the PSL_2/PGL_2 Cayley graphs at the optimal spectral bound) - the explicit-construction pattern's Ramanujan-era apex, the X2/X3 origin line completed at the threshold (the seed's expectation met). X6: partial UNPLANNED (the seed's expected-pattern column named only P18/P21) - the combinatorial composition era: one constant-size expander to arbitrary sizes by iterated graph products, the algebra replaced by elementary graph operations; the construction face genuinely present, the paper's own engine the composition analysis
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch J (chunk 10)
 - J1, J3: single-pattern seeds, both confirmed (P21; J3 with a P11 secondary).
