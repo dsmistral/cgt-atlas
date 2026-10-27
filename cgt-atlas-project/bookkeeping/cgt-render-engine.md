@@ -1,5 +1,5 @@
 ---
-name: "cgt-ch1-web"
+name: "cgt-render-engine"
 title: "Chapter 1 — Web Edition (Reference Export)"
 type: "text/html"
 ---
