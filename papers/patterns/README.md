@@ -1,12 +1,12 @@
 # The pattern layer - one file per pattern, grouped by similarity and interdependence
 
-Added 2026-10-13 (work style v2, user-directed; charter amendment in ../README.md).
+Added 2026-10-13 (work style v2, user-directed; the ../README.md charter it amended was removed at the 2026-10-26 cleanup).
 
 ## What this layer is
 
-An index and accumulator OVER the batch files - never a replacement. Each pattern file quotes the census rows and hypothesis-test notes from papers/BATCH-*.md, which remain the gather record and source of truth. Purposes:
+An index and accumulator of the survey's gather record. Correction note (2026-10-26): each pattern file quotes the census rows and hypothesis-test notes from the batch gather files (papers/BATCH-A.md through papers/BATCH-Y.md), which were removed at the great cleanup; the quoted blocks in these dossiers are the surviving record and the pattern layer's source of truth. Purposes:
 
-1. Resume: a new chat reads ONE small pattern dossier instead of eleven batch files.
+1. Resume: a new chat reads ONE small pattern dossier instead of scanning the whole corpus.
 2. Synthesis: chunk 14 builds papers/ANALYSIS.md from these dossiers (load-bearing test, silent-registry evidence, P43+ proposals).
 3. Incremental safety: every gather sub-chunk appends only to the pattern files it touched, then pushes.
 
@@ -39,4 +39,4 @@ An index and accumulator OVER the batch files - never a replacement. Each patter
 
 ## Update rule (standing)
 
-At every sub-chunk close: append the sub-chunk's census rows and hypothesis-test notes to each touched pattern file (quoted, tagged by sub-chunk), refresh the pattern's status line and INDEX.md, and push together with the batch files and STATE.md. Extend, never rewrite; corrections to a quoted census row go into the pattern file as a dated correction note, never silent edits. All files under papers/ stay ASCII-only.
+At every sub-chunk close: append the sub-chunk's census rows and hypothesis-test notes to each touched pattern file (quoted, tagged by sub-chunk), refresh the pattern's status line and INDEX.md, and push. Extend, never rewrite; corrections to a quoted census row go into the pattern file as a dated correction note, never silent edits. All files under papers/ stay ASCII-only.
