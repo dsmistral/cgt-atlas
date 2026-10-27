@@ -4,9 +4,9 @@
 - Atlas one-line: Integrality of the replication numbers r and lambda is a design's birth certificate: non-integral parameters forbid existence before any search
 - Home chapters (Atlas): 16
 - Status (through chunk 21b): EXITED the silent registry (sub-chunk 12a, the designed home): L2 flagship (the Bruck-Ryser origin paper - arithmetic forbids existence before any search), L3 genuine (admissibility shown SUFFICIENT - the converse direction), L1 partial (admissibility checks inside Witt's construction); L4 continuation (sub-chunk 12b): the existence conjecture itself - divisibility becomes the WHOLE story asymptotically; L8 continuation (sub-chunk 12c): the Existence Conjecture - divisibility is the whole story for Steiner systems (lambda=1, all t); S1 continuation (chunk 21a, extension corpus): the GKLO monograph - divisibility SUFFICIENT for arbitrary F; S4 partial (chunk 21b, extension corpus): the divisibility boundary delimits the STS perfect-matching range
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch L, sub-chunk 12a (chunk 12)
 - Fires in: L2 (flagship: the origin paper), L3 (genuine: the sufficiency converse), L1 (partial)
@@ -29,7 +29,7 @@
 - Fires in: S4 (partial)
 - Notes: the divisibility-boundary face at the random-structures setting: a parallel class needs divisibility by 3, and the S4 theorem's range is exactly all divisible orders ("for any n divisible by 3, almost all order-n STS have a perfect matching"); framing-level credit - no divisibility machinery, the birth certificate read off the statement's boundary
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch L, sub-chunk 12a (chunk 12)
 - L2 P41 CONFIRMED (expected, flagship origin); the authorship correction (Chowla 1950) does not change the firing.

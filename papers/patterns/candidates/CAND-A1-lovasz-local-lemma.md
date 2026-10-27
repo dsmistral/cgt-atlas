@@ -13,7 +13,7 @@
 
 ## Extension evidence - sub-chunk 17a (chunk 17, 2026-10-13)
 
-Batch O (the LLL arc, NEXT100 seeds; quoted from papers/BATCH-O.md):
+Batch O (the LLL arc, NEXT100 seeds; quoted from the deleted papers/BATCH-O.md):
 - Fires in: O1 (genuine), O2 (genuine), O3 (genuine)
 - O1 Spencer 1977 - the LLL's first application flagship ("a probability theorem, due to Lovasz" derives the Ramsey lower bounds; the ASYMMETRIC x_i-certificate form credited to this paper at survey level, flagged honestly); O2 Beck 1991 - the FIRST algorithmization (existence proof -> explicit search procedure, under a stronger constant); O3 Erdos-Spencer 1991 - the LOPSIDED dependency-graph refinement + the n/4 Latin-transversal flagship.
 - The chunk-15 external-canon recommendation gains its arc: three more load-bearing firings beyond A5/A7/A9, each a different adaptation (form, procedure, hypothesis).
@@ -22,4 +22,4 @@ Batch O (the LLL arc, NEXT100 seeds; quoted from papers/BATCH-O.md):
 
 - Fires in: O4 (genuine), O5 (genuine); O6 adjacent (NOT a firing)
 - O4 Moser 2009 - the solo constructive debut (resampling + witness trees; superseded in scope by A9's general version, but the arc's own paper); O5 Kolipaka-Szegedy 2011 - the Shearer-threshold completion: constructive = existential at the abstract lemma's exact boundary (the A7 <-> A9 <-> O5 line); O6 Suen 1990 - the dependency-graph correlation companion bounding the same P(no bad event) quantity (recorded adjacent, not a firing).
-- **THE ARC (1975-2011) IS COMPLETE: origin A5 (1975), application/asymmetric O1 (1977), Shearer refinement A7 (1985), algorithmization O2 (1991), lopsided O3 (1991), analytic companion O6 (1990), constructive O4 (2009), general constructive A9 (2010), threshold completion O5 (2011). RECOMMENDATION STRENGTHENED: name the Lovasz Local Lemma in the Atlas or record it as P13's sparse-dependency strengthening - the arc shows the engine adapting at every level (form, procedure, hypothesis, threshold).** Recorded in papers/BATCH-O.md.
+- **THE ARC (1975-2011) IS COMPLETE: origin A5 (1975), application/asymmetric O1 (1977), Shearer refinement A7 (1985), algorithmization O2 (1991), lopsided O3 (1991), analytic companion O6 (1990), constructive O4 (2009), general constructive A9 (2010), threshold completion O5 (2011). RECOMMENDATION STRENGTHENED: name the Lovasz Local Lemma in the Atlas or record it as P13's sparse-dependency strengthening - the arc shows the engine adapting at every level (form, procedure, hypothesis, threshold).** Recorded in the deleted papers/BATCH-O.md.

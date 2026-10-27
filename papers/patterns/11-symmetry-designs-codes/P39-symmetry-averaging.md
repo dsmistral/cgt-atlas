@@ -4,9 +4,9 @@
 - Atlas one-line: To count what symmetry identifies, average fixed points over the group; the cycle index prices each symmetry's orbit structure
 - Home chapters (Atlas): 16
 - Status (FINAL - chunk 15, RECONCILED 2026-10-13): P39 EXITED the silent registry at batch C (C1 cycle-index flagship, C7) - the STATE.md ledger omission was migration-era bookkeeping, not a census error; see the Synthesis resolution section and papers/ANALYSIS.md section 3. UPDATE AT 24b (Batch V, chunk 24): the ORIGIN record added - V6 Redfield 1927 (the engine's true origin, a decade before Polya); see the 24b census row
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch C (chunk 3)
 - Fires in: C1 (flagship: the cycle index), C7 (two-group generalization)
@@ -16,7 +16,7 @@
 - Fires in: V6 (genuine, ORIGIN)
 - Notes: the symmetry-averaging engine's TRUE ORIGIN: the group-reduced-distribution machinery (counting under group action by cycle-structure bookkeeping), Amer. J. Math. 49(3) (1927) 433-455, published a decade before Polya's 1937 independent rediscovery (the corpus's C1 flagship) and neglected for three decades (Littlewood 1950 attention, Harary 1960 publicity; "appears to contain or anticipate virtually all of the enumeration results for graphs" - the rediscovery literature's assessment) - the P39 line gathered end-to-end: V6 origin -> C1 rediscovery -> C7 the two-group generalization
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (none)
 
