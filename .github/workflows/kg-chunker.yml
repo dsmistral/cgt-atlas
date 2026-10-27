@@ -1,0 +1,23 @@
+name: kg-chunker
+on:
+  push:
+    paths:
+      - '.github/workflows/kg-chunker.yml'
+permissions:
+  contents: write
+jobs:
+  chunk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: chunk parts
+        run: |
+          mkdir -p kg-chunks
+          for f in kg_part_aa kg_part_ab kg_part_ac; do
+            split -b 900000 -d -a 2 "$f" "kg-chunks/${f}_"
+          done
+          git config user.name "kg-chunker"
+          git config user.email "kg-chunker@users.noreply.github.com"
+          git add kg-chunks
+          git commit -m "kg chunks ready" || echo "nothing to commit"
+          git push || echo "nothing to push"
