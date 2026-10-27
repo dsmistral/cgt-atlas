@@ -109,7 +109,7 @@ Face-naming notes (existing P-IDs whose Atlas entries should name a celebrated f
 - B9's DIMACS oddity kept for lineage, not verification-grade: Johansson's technical report was never journal-published, and its LLL step is exposition-level (Molloy-Reed); the paper stays in the corpus for the lineage it anchors, marked honestly.
 - Migration-parser duplicate blocks collapsed with dated correction notes wherever found: P19 (12a), P10 (12b), P28 (14a), P23 (14b), P20 (this push).
 - No-double-credit discipline held throughout (e.g. N8's P4/P15 list-coloring form credited to P4 only).
-- Metadata corrections (title/venue/year pins) were logged at every batch, never silently rewritten; the correction log lives in the batch files and STATE.md.
+- Metadata corrections (title/venue/year pins) were logged at every batch, never silently rewritten; the correction log lives in the per-paper files' corrections logs (the batch-file and STATE.md copies were removed at the 2026-10-26 cleanup).
 
 ## 8. Recommendations for the Atlas (ALL PENDING a user-approved Atlas session)
 

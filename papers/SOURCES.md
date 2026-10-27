@@ -1,6 +1,6 @@
 # Sources register - the books and papers behind the pattern survey
 
-Added 2026-10-13 (user-directed): a durable record of every book and paper used so far for pattern finding, so the survey can be extended with new books and papers later. SOURCES.md is the register; CORPUS.md remains the authoritative seed list for gathered batches; the per-paper files and batch files are the gather record; papers/patterns/ is the accumulated pattern layer. Updated incrementally, never pruned silently.
+Added 2026-10-13 (user-directed): a durable record of every book and paper used so far for pattern finding, so the survey can be extended with new books and papers later. SOURCES.md is the register; CORPUS.md remains the authoritative seed list for gathered batches; the per-paper files are the gather record; papers/patterns/ is the accumulated pattern layer. Correction note (2026-10-26): the batch gather files and the STATE.md ledger were removed at the great cleanup; the census rows and hypothesis-test notes quoted in the pattern dossiers (papers/patterns/) are the surviving record. Updated incrementally, never pruned silently.
 
 ## 1. The pattern source (the book)
 
@@ -9,7 +9,7 @@ The CGT Atlas - a multi-chapter combinatorics and graph theory book, the survey'
 ## 2. The test corpus gathered so far (papers A1-M9, chunks 0-13)
 
 - Seed list: papers/CORPUS.md - 126 seed rows, 125 DISTINCT papers (L5 Ray-Chaudhuri-Wilson confirmed a duplicate of I3 at 12b; count 126 -> 125, flagged for the synthesis).
-- Gather record: per-paper files papers/A1-*.md through papers/M9-*.md (template: metadata / flagged-sketch summary / decisive moves with P-ID tags / new-pattern candidates / full-text status / corrections log); batch files papers/BATCH-A.md through papers/BATCH-M.md (verification tables, pattern censuses, honest hypothesis-test results, lineages, verification-levels statements).
+- Gather record: per-paper files papers/A1-*.md through papers/M9-*.md (template: metadata / flagged-sketch summary / decisive moves with P-ID tags / new-pattern candidates / full-text status / corrections log); the deleted batch files papers/BATCH-A.md through papers/BATCH-M.md (verification tables, pattern censuses, honest hypothesis-test results, lineages, verification-levels statements).
 - Pattern layer: papers/patterns/ - INDEX.md + the 42 pattern dossiers in 11 family folders + candidates/ (7 CAND/WATCH dossiers).
 - Batch themes: A probabilistic method, random graphs (9); B thresholds, entropy, containers (9); C enumerative counting (7); D matching, flows, greedy, algorithms (10); E coloring, list coloring, flows (11); F Ramsey theory (10); G regularity, density, removal (12); H extremal graph theory and structure (13); I algebraic and polynomial methods (12); J spectral methods (4); K shadows and compression (8); L designs, packing, codes (12 rows, 11 distinct); M modern structural and algorithmic (9).
 
@@ -18,7 +18,7 @@ The CGT Atlas - a multi-chapter combinatorics and graph theory book, the survey'
 1. ACCEPTED papers only: a row enters the corpus only with evidence of journal acceptance (a peer-reviewed venue with a pinned citation). Never proposals, never mere surveys.
 2. Metadata web-verified; moves at flagged-sketch level from publisher/author/open-access records; zero paywalled fetches; open full text fetched only when a pattern decision needs it (the standing scope rule).
 3. Corrections and honest misses logged, never silently.
-4. New books or papers enter through this register first (seed rows with verification status), then gather per work style v2 (sub-chunks of about three papers, one push_files commit each, STATE.md + INDEX.md + touched dossiers updated in the same commit).
+4. New books or papers enter through this register first (seed rows with verification status), then gather per work style v2 (sub-chunks of about three papers, one push_files commit each, INDEX.md + touched dossiers updated in the same commit).
 
 ## 4. Batch N seed rows - youth-authored ACCEPTED papers (undergraduate and below)
 
