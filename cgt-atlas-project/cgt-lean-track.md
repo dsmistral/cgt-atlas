@@ -6,7 +6,7 @@ type: "text/markdown"
 
 # The Lean Formal Track
 
-*Not a chapter of the book — an unnumbered companion that shadows the whole book (its Ch. 17 number was cancelled at session 80; the track is touched at the very end, after every numbered chapter). As each chapter is written (or rewritten), its key statements get Lean 4 drafts here. One track, updated forever, covering everything before and after it.*
+*Not a chapter of the book — an unnumbered companion that shadows the whole book (the track is touched at the very end, after every numbered chapter). As each chapter is written (or rewritten), its key statements get Lean 4 drafts here. One track, updated forever, covering everything before and after it.*
 
 ## 0. Why this track exists
 
@@ -124,5 +124,3 @@ Ordering principle: one warm-up loop open at a time; each closed loop stamps its
 - Every proof block labeled: **DRAFT — NOT YET COMPILED** → *(reader build: pending)* → **machine-verified (reader build N)** with date and reporter.
 - `sorry` is allowed in *open* drafts (it marks the frontier of the loop honestly) but a machine-verified stamp requires zero sorries and `#print axioms` free of sorryAx.
 - Human proof and formal draft always cite each other's section numbers.
----
-*Chapter status: 🌱 seeded (session 6). Warm-up 1 drafted, awaiting first reader build. This chapter is updated as every other chapter is written or rewritten — never one Lean chapter per math chapter.*
