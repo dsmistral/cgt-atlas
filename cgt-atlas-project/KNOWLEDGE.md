@@ -5,22 +5,22 @@ display_name: "CGT Atlas — The Book"
 icon: 📕
 ---
 
-# CGT Atlas — The Book (post-cleanup state)
+# CGT Atlas — The Book
 
-**What this topic holds** — the complete durable state of *The Combinatorics & Graph Theory Atlas*, a 21-chapter lecture-course textbook:
+**What this topic holds** — the complete durable state of *The Combinatorics & Graph Theory Atlas*, a 21-chapter lecture-course textbook, reorganized for study on 2026-10-26:
 
-- **`cgt-book-basis.md`** — START HERE. What the book is, the chapter map (Vols I–V), the Master Pattern Index P1–P45, the editorial/verification conventions, the build pipeline, the sources, and the rebuild protocol.
 - **`cgt-ch1-counting.md` … `cgt-ch21-engines.md`** — the 21 chapter masters (the source of truth).
 - **`cgt-ch1-web.html` … `cgt-ch21-web.html`** — the 21 pre-rendered, script-free web editions.
 - **`cgt-pattern-map.html`** — the pattern registry (canonical names, all aliases, machine-readable JSON payload; P-IDs are immutable join keys).
-- **`cgt-render-engine.md`** — the canonical `renderMd` engine master (how the HTML editions are built from the masters).
-- **`cgt-publishing.md`** — the publishing/pipeline toolkit (export config + verification scripts + standalone lab code).
 - **`cgt-lean-track.md`** — the unnumbered Lean Formal Track companion.
+- **`bookkeeping/`** — everything that is NOT study content: **`cgt-book-basis.md`** (START HERE — what the book is, the chapter map, the Master Pattern Index P1–P45, the editorial/verification conventions, the sources, the rebuild protocol), **`cgt-publishing.md`** (the publishing/pipeline toolkit), **`cgt-render-engine.md`** (the canonical renderMd engine master), and **`rev-ch01.md` … `rev-ch21.md`** — each chapter's individual Revision History & Verification Notes log, extracted verbatim from its master at the reorganization.
 
-**The gathered sources live in the repo** (`papers/`): `SOURCES.md` (the source list), ~160 per-paper notes, `CORPUS.md`/`ANALYSIS.md`, the teaching/contest censuses, and the `patterns/` census. The classic-text sources of truth are named in the book basis.
+**Content rule (standing).** The chapter masters, the web editions, the pattern map, and the Lean track carry ONLY what is relevant for study — mathematics, labs, exercises, receipts. No session logs, no book-building records, no pipeline prose. All logs, provenance, and build methodology live under `bookkeeping/`, with one individual log per chapter.
 
-**Repo (the self-sufficient resume point):** `dsmistral/cgt-atlas` — mirrors this folder plus `papers/` plus `youth-math-research-collection/` (a separate future-project idea kept in the same repo).
+**The gathered sources live in the repo** (`papers/`): `SOURCES.md` (the source list), 208 per-paper notes (`A1–Y7`: one note per paper — claim, proof idea, pattern read), `CORPUS.md`/`ANALYSIS.md`, the teaching/contest censuses, and `patterns/` (the per-pattern dossier census, including `candidates/`). The classic-text sources of truth are named in the book basis.
 
-**Resume protocol (a new chat):** read this file, then `cgt-book-basis.md`; verify repo == local by a directory listing (names + sizes) if any work is planned. To extend a chapter: extend-never-rewrite on the master, machine-verify every claim before install (labs re-run exactly as printed), re-render the web edition through the engine (oracle-first: render the old payload byte-exact before rebuilding), keep the master's revision appendix current. For new book material, follow a book-building skill pipeline rather than rewriting wholesale.
+**Repo is MAIN (standing rule).** `dsmistral/cgt-atlas` is the master of record. At every resume: check the repo first (directory listing + commit head) and treat any local mirror as secondary. If the local file layer becomes inaccessible, push any dangling changes, results, and logs to the repo and flag them in this file — the main resume point — so the next pass reads them here, syncs the repo-only extras down, and cleans up.
 
-**History note.** All session logs, the old master plan (atlas), the survey working records, the canvases, and the old repo (`cgt-atlas-backup`, including its full git history) were deliberately and irrecoverably deleted at the great cleanup, 2026-10-26, at the owner's direction — the chapters, the basis, the registry, and the sources above are the complete intended survivors. The chapters' own Revision History appendices remain (they are part of the books).
+**Resume protocol (a new chat).** Read this file, then `bookkeeping/cgt-book-basis.md`; verify repo == local by a directory listing (names + sizes) before any work is planned. To extend a chapter: extend-never-rewrite on the master, machine-verify every claim before install (labs re-run exactly as printed), re-render the web edition through `bookkeeping/cgt-render-engine.md` (oracle-first: render the old payload byte-exact before rebuilding), and update the chapter's log `bookkeeping/rev-chNN.md`. For new book material, follow a book-building skill pipeline rather than rewriting wholesale.
+
+**History note.** All session logs, the old master plan (atlas), the survey working records, the canvases, and the old repo (`cgt-atlas-backup`, including its full git history) were deliberately and unrecoverably deleted at the great cleanup, 2026-10-26, at the owner's direction. The chapters' revision logs survive under `bookkeeping/`; nothing else from the history does.
