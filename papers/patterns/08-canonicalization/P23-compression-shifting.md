@@ -4,9 +4,9 @@
 - Atlas one-line: Replace sets by canonical heavier ones without losing the property
 - Home chapters (Atlas): 7
 - Status (through chunk 14c): Atlas-named (Ch. 7). First genuine classic-paper firings at chunk 11 (K2 flagship, K8; partials I1/K3/K6). Batch N 14b: N6 honest miss (expected by seed). Batch N 14c: N7 honest miss (expected by seed)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - Fires in: I1 (partial)
@@ -16,7 +16,7 @@
 - Fires in: K2 (flagship), K8, K3 (partial), K6 (partial)
 - Notes: the Atlas-named pattern's first genuine classic-paper firings after the I1 partial: Harper's cube compressions toward the simplicial order (the founding large-scale deployment), Frankl-Furedi's shift-to-intersection-closed normalization; partials where the original engine is transformation/induction and the compression proof is retrospective (Clements-Lindstrom)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I1 P23 PARTIAL (expected): the original engine is a replacement argument, not compression; the clean LYM proof is retrospective (Lubell-Yamamoto-Meshalkin) - mirror of the H1 Turan treatment.

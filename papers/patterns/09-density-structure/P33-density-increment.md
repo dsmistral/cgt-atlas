@@ -4,15 +4,15 @@
 - Atlas one-line: If the structure you want is nowhere, refine: some cell gains density
 - Home chapters (Atlas): 14
 - Status (through chunk 11): EXITED the silent registry (chunk 6): F5 archetype, F6, F7
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch F (chunk 6)
 - Fires in: F5 (archetype), F6, F7
 - Notes: FIRST GENUINE USAGE EVIDENCE for silent forward-registry P33 - Roth 1953 is the pattern's founding instance
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (none)
 

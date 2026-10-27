@@ -4,9 +4,9 @@
 - Atlas one-line: Encode sets as vectors; dimension bounds
 - Home chapters (Atlas): 6
 - Status (through chunk 20a): Atlas-named (Ch. 6). First genuine in-corpus firings at chunk 9 (I3/I4/I10/I11) after the H3/H10 hypothesis misses; second batch J4 (minrank); third batch L2 Bruck-Ryser (12a); FOURTH batch L11 MacWilliams (12d, genuine - character orthogonality), with L10/L12 partials; FIFTH batch touch M3 Razborov flag algebras (13a, partial), the same partial face repeating at M4 (13b) - the sum-of-squares/Cauchy-Schwarz positivity engine. Batch R 20a (extension corpus): a SIXTH batch touch at R1 Reiher (partial - the machinery's SOS/Cauchy-Schwarz face credited per the M3/M4 precedent, at the program-completing flagship). The L5 seed row is a CONFIRMED DUPLICATE of I3 (12b) - no double credit; see the 12b hypothesis note. Batch W 25a: W4 genuine (the address-matrix rank argument - the Graham-Pollak theorem born)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch C (chunk 3)
 - Fires in: C4
@@ -48,7 +48,7 @@
 - Fires in: W4 (genuine)
 - Notes: the address/distance matrix rank lower bound: the loop-switching addressing problem reduced to rank - the Graham-Pollak theorem (K_n's edges need at least n-1 complete bipartite graphs) born in connection (Witsenhausen's key lemma credited); the pre-polynomial-method-era linear-algebra lower bound (the I-batch rank firings I3/I4 the modern program)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I3 P24 MISSED (expected): no Kruskal-Katona shadow pricing despite the shadow-adjacent statement. P19 confirmed - the first genuine in-corpus firing.

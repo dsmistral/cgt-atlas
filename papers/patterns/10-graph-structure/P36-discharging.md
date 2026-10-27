@@ -4,9 +4,9 @@
 - Atlas one-line: Give every local object a charge; Euler's formula fixes the total; some local configuration must go into deficit
 - Home chapters (Atlas): 15
 - Status (through chunk 22b): EXITED THE SILENT REGISTRY at the designed repair batch (chunks 22a+22b, extension corpus, NEXT100 Batch T): T1 the origin-at-scale flagship (P36's first firing anywhere in the survey), T2 partial, T3 genuine (the 32-rule second proof), T4 genuine (the human-scale face: Borodin's Grunbaum-conjecture resolution with no machine in the loop); the chunk-15 corpus-sampling-gap diagnosis CONFIRMED - never silent in the field, only unsampled (the chunk-15 state preserved in the Synthesis call section below)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (no census row through chunk 11 - honest)
 
@@ -18,7 +18,7 @@
 - Fires in: T4 (genuine)
 - Notes: the human-scale firing - reducible configurations + discharging resolving Grunbaum's 1973 acyclic 5-coloring conjecture, no machine in the loop (the 1977 computer proofs' contrast two years on); the planar-discharging tradition's non-four-color face - the pattern's field currency extends beyond the four-color arc
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (none)
 

@@ -4,9 +4,9 @@
 - Atlas one-line: Encode sets as polynomials; dimension counting
 - Home chapters (Atlas): 6
 - Status (through chunk 11): Atlas-named (Ch. 6). Designed flagship batch I: six firings I4/I6/I7/I8/I9/I10 (chunk 9). Batch X 26b (extension corpus): X5 partial (the analytic face - the polynomial bridge at the Kadison-Singer resolution)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - Fires in: I4, I6, I7, I8, I9, I10
@@ -16,7 +16,7 @@
 - Fires in: X5 (partial)
 - Notes: the polynomial bridge fires its ANALYTIC face: the method of interlacing families (some polynomial in the family bounded by the max root of the average), the mixed characteristic polynomial of a sum of random rank-one matrices (the expected characteristic polynomial's closed form), the multivariate barrier argument (the BSS sparsifier engine generalized) - the whole proof polynomial bookkeeping; partial honestly: the Atlas dimension-counting face ABSENT (the seed's "P22-adjacent" hedge confirmed); the interlacing-families method itself a coverage OBSERVATION (single firing, the kernel-method/Q3 precedent, NOT a WATCH)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I4 P19 AND P22 BOTH CONFIRMED (both expected) - the flagship double hit; I10 P19 AND P22 both confirmed (slice rank = tensor rank + polynomial method).

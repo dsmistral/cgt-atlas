@@ -4,9 +4,9 @@
 - Atlas one-line: Every large graph is a bounded quasirandom blow-up; refine until the noise is uniform
 - Home chapters (Atlas): 14
 - Status (through chunk 14c): EXITED the silent registry (chunk 7): G1 named-lemma flagship (F6 was the birthplace - no double credit); Batch M 13b: the designed watch-M firing - M5 genuine, M6 flagship (the subtitle names the pattern). Batch N 14c: N8 honest miss (expected by seed as the quasirandomness family). Batch Y 27a (extension corpus): Y2 genuine (the blow-up lemma - the regularity program's spanning-embedding flagship)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch F (chunk 6)
 - Fires in: F6 (proto-evidence: the birthplace)
@@ -25,7 +25,7 @@
 - Notes: the blow-up lemma - the superregular pair (an epsilon-regular pair with the expansion property) shown SUFFICIENT to host any bounded-degree spanning graph; the regularity program's spanning half at its flagship (the seed's "regularity's flagship application" expectation met)
 
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I5 P19 AND P30 BOTH MISSED (both expected): the richest miss of the batch - the natural linear-algebra engine (suggested by I3/I4) does NOT prove forbidden intersections; the original engine is sphere averaging + anticode bounds (P10), with later re-proofs via dependent random choice recorded in the survey literature.

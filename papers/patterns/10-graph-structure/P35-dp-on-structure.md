@@ -4,9 +4,9 @@
 - Atlas one-line: Tree decompositions turn global problems into bag-local recurrences
 - Home chapters (Atlas): 15
 - Status (through chunk 22b): EXITED THE SILENT REGISTRY at the designed flagship (chunk 22b, extension corpus, NEXT100 Batch T): T5 Courcelle the designed flagship (the MSO automaton's run over a tree decomposition IS the DP - the M9 partial's follow-through), T6 the companion enabler; the chunk-15 NO-genuine-firing-in-the-corpus verdict superseded by the extension corpus (the chunk-15 state preserved in the Synthesis call section below)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (no census row through chunk 11 - honest)
 
@@ -18,7 +18,7 @@
 - Fires in: T5 (flagship, genuine), T6 (companion partial)
 - Notes: T5 - the designed flagship fires GENUINELY: the MSO formula compiled to a finite-state tree automaton whose run over a tree decomposition is a bag-local finite-state recurrence (Courcelle's theorem: every MSO-definable property decidable in linear time on bounded-treewidth graphs) - the DP pattern at theory scale, the theorem and the pattern the same object; T6 - the companion enabler: the linear-time construction supplies exactly the object the recurrences run on (companion credit per the designed-batch plan, not a DP firing itself)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch M, sub-chunk 13c (chunk 13)
 - M9 P35 partial (UNPLANNED by seed - the M9 seed row expected only P25): the tractability side of Grohe's classification runs DP over tree decompositions; standard-tool credit, but the silent-registry pattern records its FIRST in-corpus touch - whether a genuine firing exists in the corpus is now a chunk-14 synthesis question.

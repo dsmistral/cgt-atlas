@@ -4,15 +4,15 @@
 - Atlas one-line: Price a family by its own real parameter x: a k-family of size C(x, k) forces every j-shadow to size >= C(x, j) - equality only at integer x and the complete families
 - Home chapters (Atlas): 7, 9
 - Status (through chunk 11): EXITED the silent registry (chunk 11): first genuine firings K3/K4 - the origin papers of its named theorem
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch K (chunk 11)
 - Fires in: K3, K4
 - Notes: FIRST GENUINE FIRINGS - the silent pattern exits the registry in its named theorem's origin papers: Kruskal's cascade representation (price the family by its own real parameter x) and Katona's independent proof of the same bound. The theorem's FIVE independent discoveries (Schutzenberger 1959, Kruskal 1963, Harper 1966, Katona 1968, Clements-Lindstrom 1969, per the standard history) are the survey's strongest load-bearing evidence: the field needed this pattern five separate times
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I3 P24 MISSED (expected): no Kruskal-Katona shadow pricing despite the shadow-adjacent statement. P19 confirmed - the first genuine in-corpus firing.

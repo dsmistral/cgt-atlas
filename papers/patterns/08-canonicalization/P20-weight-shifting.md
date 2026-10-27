@@ -4,15 +4,15 @@
 - Atlas one-line: Push weight to the extremal configuration
 - Home chapters (Atlas): 3, 6
 - Status (FINAL - chunk 15 synthesis call EXECUTED): GENUINELY UNDER-USED by the field's classics - no genuine firing through the WHOLE corpus (missed at I2, adjacent only at E8, missed at its designed home K7); RECOMMENDATION (pending the Atlas session): the Atlas P20 entry should note that the expected symmetrization work is performed by P23 shifting or P10 averaging
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch E (chunk 5)
 - Fires in: E8 adjacent only
 - Notes: weak/adjacent; the real P20 test is Katona (Batch K)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I2 P20 MISSED (expected): the original engine is induction + case analysis; shifting proofs and Katona's circle method are retrospective. P8 confirmed.

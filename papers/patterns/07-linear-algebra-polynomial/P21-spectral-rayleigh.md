@@ -4,9 +4,9 @@
 - Atlas one-line: Eigenvalues as averaging devices; operator norm on 1-perp
 - Home chapters (Atlas): 6
 - Status (through chunk 11): Atlas-named (Ch. 8). Designed flagship batch J confirmed J1-J4 (chunk 10) - confirmation firing, not a silent-registry event. Batch W 25a: W2 genuine (the adjacency-matrix eigenvalue classification of the Moore graphs). Batch X 26a (extension corpus): X1 genuine (the expander yardstick + the Alon-Boppana bound at the origin) Batch X 26b (extension corpus): X4 genuine (the Ramanujan threshold met exactly) + X6 genuine (the zig-zag spectral inheritance) + X5 partial (the spectral-norm object, the polynomial certificate)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch J (chunk 10)
 - Fires in: J1, J2, J3, J4 (secondary)
@@ -24,7 +24,7 @@
 - Fires in: X4 (genuine), X6 (genuine), X5 (partial)
 - Notes: X4: the Ramanujan threshold met exactly - every nontrivial eigenvalue of the LPS Cayley graphs bounded by 2 sqrt(k-1), the certificate engine the Ramanujan conjecture for weight-2 modular forms (Deligne's bound): the X1 Alon-Boppana obstruction answered by construction, the yardstick loop closed (the seed's "P21 flagship" expectation met). X6: the spectral-inheritance theorem - the zig-zag product's second eigenvalue bounded in terms of both factors' second eigenvalues; the dictionary at work in the combinatorial composition era (the seed's "P21" expectation met). X5: partial honestly - the object IS the spectral-norm bound (the largest eigenvalue of a random rank-one sum; Weaver's KS_2 partition theorem), but the certificate engine is the polynomial method (the interlacing/barrier route), not the Rayleigh-quotient move - the object-vs-engine datum (the X3 honest-miss precedent graded up to partial: the theorem's face IS the spectral bound)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch J (chunk 10)
 - J1, J3: single-pattern seeds, both confirmed (P21; J3 with a P11 secondary).
