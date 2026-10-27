@@ -36,7 +36,7 @@
 
 ## Extension census (chunk 17, 2026-10-13)
 
-**First touch: O6 (Suen 1990) - partial, dependency-graph face.** The 14-batch in-corpus silence is broken by the extension corpus's Suen correlation inequality (joint non-occurrence bounded from pairwise dependency data). The FKG up-set face itself remains unfired - the designed-home test moves to Batch U (U1 FKG; U2 Ahlswede-Daykin). Recorded in papers/BATCH-O.md, sub-chunk 17b.
+**First touch: O6 (Suen 1990) - partial, dependency-graph face.** The 14-batch in-corpus silence is broken by the extension corpus's Suen correlation inequality (joint non-occurrence bounded from pairwise dependency data). The FKG up-set face itself remains unfired - the designed-home test moves to Batch U (U1 FKG; U2 Ahlswede-Daykin). Recorded in the deleted papers/BATCH-O.md, sub-chunk 17b.
 
 ## Extension-corpus exit (chunk 23a, 2026-10-13)
 

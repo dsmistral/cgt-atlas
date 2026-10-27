@@ -34,7 +34,7 @@
 
 ### Batch R, sub-chunk 20a (chunk 20; extension corpus - NEXT100 seeds)
 - Fires in: R1 (partial)
-- Notes: the SDP certificates carry the clique-density inequality - the same partial face as at M3/M4, at the program's capstone; the Delsarte-LP lineage's density-era descendant repeats; R2's undecidability boundary makes the SDP fragment precious (the engine-contrast datum, recorded in BATCH-R.md)
+- Notes: the SDP certificates carry the clique-density inequality - the same partial face as at M3/M4, at the program's capstone; the Delsarte-LP lineage's density-era descendant repeats; R2's undecidability boundary makes the SDP fragment precious (the engine-contrast datum, recorded in the deleted papers/BATCH-R.md)
 
 ### Batch W, sub-chunk 25b (chunk 25; extension corpus - NEXT100 seeds)
 - Fires in: W12 (genuine)
