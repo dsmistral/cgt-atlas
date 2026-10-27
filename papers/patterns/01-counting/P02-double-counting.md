@@ -4,9 +4,9 @@
 - Atlas one-line: Count the same set two ways; equate
 - Home chapters (Atlas): 1, 2, 3
 - Status (through chunk 14a): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch N 14a: N3 partial (the injective sumset identity). Batch N 14b: N4 partial (the chip-flow accounting identity) + N6 partial (staged products + the (n^2)! encoding bound). Batch V 24a: V4 partial (the Heawood bound's Euler-formula counting). Batch X 26a: X3 partial (the torus-neighborhood counting)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch H (chunk 8)
 - Fires in: H3 (the star-counting engine), H12 (cell counting), H1 partial
@@ -32,7 +32,7 @@
 - Fires in: X3 (partial)
 - Notes: the torus-neighborhood counting: the expansion certified by counting the distinct points reached by the four maps' compositions (the Gabber-Galil weight/counting argument, the Lee account's presentation; the coordinate bookkeeping the tool) - the double-counting family's face at the expander origin; partial honestly (a lower-bound certificate, not a bijection-equality engine)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch N, sub-chunk 14a (chunk 14)
 - N3 P2 partial confirmed (UNPLANNED by seed; the seed expected the P28-family/P10/P13): the sumset injectivity (Lemma 2.2, inherited from Nederlof et al.) converts |A| into the probability identity that launches the proof.

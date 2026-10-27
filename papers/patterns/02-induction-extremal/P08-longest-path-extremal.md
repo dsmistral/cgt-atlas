@@ -4,9 +4,9 @@
 - Atlas one-line: Take an extremal object; its structure forces a cycle, leaf, etc.
 - Home chapters (Atlas): 2, 3
 - Status (through chunk 11): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch W 25a: W5 genuine (the longest-blue-path reduction - the path Ramsey values) + W2 partial (the Moore-bound extremal frame)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch D (chunk 4)
 - Fires in: D6 (short augmenting path unless near-max), D9 (tour minus edge = spanning tree)
@@ -32,7 +32,7 @@
 - Fires in: W5 (genuine), W2 (partial)
 - Notes: W5 - the longest-monochromatic-path reduction determines the exact two-colour path Ramsey values R(P_k, P_l) = k - 1 + ceil(l/2) (k >= l), the floor(2n/3)+1 mono-path lemma the standard corollary (the F-batch extension's exact-setting origin; the P4 induction frame cross-noted, no census row). W2 - the degree-diameter extremal objects (the Moore bound Moore's problem; the classification the paper's own engine - partial honestly)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I2 P20 MISSED (expected): the original engine is induction + case analysis; shifting proofs and Katona's circle method are retrospective. P8 confirmed.

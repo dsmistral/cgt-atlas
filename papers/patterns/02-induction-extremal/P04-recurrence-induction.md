@@ -4,9 +4,9 @@
 - Atlas one-line: Relate case n to smaller cases
 - Home chapters (Atlas): 1, 2, 3
 - Status (through chunk 14c): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch M 13a: the isomorphism column's recursions (M1 partial composition-series divide-and-conquer; M2 genuine aggregate-consumption). Batch N 14a: N2 genuine - the freshman-level independent-set recursion at a maximum-degree vertex is the Kahn-conjecture proof's skeleton (the accessibility datum). Batch N 14b: N4 genuine (the chip-firing paper's spine) + N5 genuine (the soulmate-removal induction). Batch N 14c: N7 genuine (the class-count recurrences) + N8 genuine (the strengthened list-coloring induction on |V(G)|). Batch V 24a: V2 partial (the minimal-counterexample induction frame) + V5 partial (the reducibility concept institutionalizing it). Batch V 24c: V12 genuine (the tournament insertion induction - the parity classic's spine)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch A (chunk 1)
 - Fires in: A5, A7, A8 (process bookkeeping)
@@ -68,7 +68,7 @@
 - Fires in: V12 (genuine)
 - Notes: the insertion induction - a new vertex slots into a Hamiltonian path of the preceding subtournament; the parity refinement's spine and the proof every standard treatment of Redei's theorem runs (the odd-count statement: every tournament has an ODD number of directed Hamiltonian paths)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch I (chunk 9)
 - I12 P23 MISSED (expected): the Stanley-Wilf bound is pure structural induction; no compression appears. P4 confirmed.

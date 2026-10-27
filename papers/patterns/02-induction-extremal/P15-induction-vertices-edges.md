@@ -4,9 +4,9 @@
 - Atlas one-line: Delete a vertex, extend the solution
 - Home chapters (Atlas): 2, 3
 - Status (through chunk 11): Atlas-named textbook-canon pattern; in-corpus firings recorded below
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch E (chunk 5)
 - Fires in: E1, E3, E7, E8, E9
@@ -24,7 +24,7 @@
 - Fires in: J1 (secondary)
 - Notes: the spectral bound enters the chromatic-number toolkit as the classical Hoffman bound
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (none)
 

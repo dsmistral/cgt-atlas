@@ -4,9 +4,9 @@
 - Atlas one-line: Count A by matching it 1-to-1 with a set B you can count
 - Home chapters (Atlas): 1, 2
 - Status (through chunk 14c): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch N 14b: N6 genuine (the joint-profiles count) + N5 partial (the key-function bijective structure). Batch N 14c: N7 genuine (the pattern-replacement class enumerations matched to counted structures) Batch U 23b: U4 partial (Andre's first-tie-swap bijection - the actual engine behind the reflection name) + U5 partial (the Kreweras complement, the noncrossing lattice's self-duality anti-isomorphism). Batch V 24a: V1 partial (the tree-counting origin; the Prufer bijection face retrospective). Batch V 24c: V12 partial (the parity-pairing face - the sign-reversing-involution ancestor)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch C (chunk 3)
 - Fires in: C4 (the nonintersecting-path involution)
@@ -32,7 +32,7 @@
 - Fires in: V12 (partial)
 - Notes: the parity-pairing face at the origin: the standard invariance argument pairs the Hamiltonian paths affected by an arc reversal (the count changes by an even number, forcing the odd parity) - the sign-reversing-involution face's oldest ancestor in the corpus; partial, honestly - the pairing engine recorded through the standard presentations (Berge's Theorem 6), the original's own argument not independently verified
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch N, sub-chunk 14b (chunk 14)
 - N6 P1 confirmed UNPLANNED by seed (the seed expected P5/P2/P23); N5 P1 partial UNPLANNED (the seed expected P25/P9/P16): the bijection is the middle-school engine's backbone across the companion pair.

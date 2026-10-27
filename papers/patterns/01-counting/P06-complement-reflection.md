@@ -4,9 +4,9 @@
 - Atlas one-line: Count the complement or reflect the bad objects
 - Home chapters (Atlas): 1
 - Status (through chunk 23b): EXITED THE ZERO-FIRING REGISTRY at its designed home (chunk 23b, extension corpus, NEXT100 Batch U): U4 the ballot-problem origin - the pattern's Atlas one-line IS the proof's structure; the in-corpus zero-firing record (the chunk-15 verdict: the only textbook-canon pattern with none) preserved in the Synthesis call section below; U5 scanned, NOT credited (the noncrossing adjacency is not the paper's own engine)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 (no census row through chunk 11 - honest)
 
@@ -14,7 +14,7 @@
 - Fires in: U4 (flagship, genuine)
 - Notes: the designed-home origin: the favourable ballot sequences counted through the unfavourable complement, the bad sequences matched to an easily-counted image - the pattern's Atlas one-line IS the proof's structure; P6 EXITS THE ZERO-FIRING REGISTRY (the only textbook-canon pattern with no firing anywhere fires at its origin). HONEST ATTRIBUTION NOTE: Andre's own 1887 note uses the first-tie-swap bijection, not a geometric reflection - the reflection form is the later textbook repackaging (the Renault historical study; Comtet's "essentially due to Andre"); the two-case equality is P1's face (see the P1 dossier). U5 scanned, NOT credited: the noncrossing lattice's counts are the reflection family's numbers (Catalan/Narayana) via MODERN Dyck-path bijections, but the 1972 paper's own engine is not the reflection principle (the H11/WATCH scanned-not-credited precedent)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch U, sub-chunk 23b (chunk 23)
 - U4 P6 CONFIRMED (expected by seed - the designed-home test): the chunk-15 verdict ("deployed in the field implicitly rather than as a named move") is corrected at the origin - the field's own canon name ("Andre's reflection method") IS the named move; the misattribution literature quoted honestly (Andre did not use reflections)

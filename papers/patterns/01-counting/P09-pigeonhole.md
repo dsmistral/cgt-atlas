@@ -4,9 +4,9 @@
 - Atlas one-line: n+1 objects, n boxes
 - Home chapters (Atlas): 3
 - Status (through chunk 14a): Atlas-named textbook-canon pattern; in-corpus firings recorded below. Batch N 14a: N2 honest miss (expected by seed). Batch N 14b: N5 genuine (the key-function pigeonhole). Batch V 24c: V11 genuine (the Dilworth origin - the antichain bottleneck IS the theorem). Batch W 25b: W9 partial (the tree-packing theorem partition-crossing necessity)
-- Migration: this dossier was machine-migrated 2026-10-13 from the batch files (the gather record and source of truth); every census row and hypothesis-test note below is QUOTED, not rewritten.
+- Migration: this dossier was machine-migrated 2026-10-13 from the batch files; every census row and hypothesis-test note below is QUOTED, not rewritten. The batch files were removed at the 2026-10-26 cleanup - the quoted blocks below are the surviving record.
 
-## Census rows (quoted; source = papers/BATCH-*.md)
+## Census rows (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch A (chunk 1)
 - Fires in: A1 (the framing being departed from)
@@ -44,7 +44,7 @@
 - Fires in: W9 (partial)
 - Notes: the partition-crossing necessity IS pigeonhole: k edge-disjoint spanning trees must cross any r-partition in at least k(r-1) edges (each tree needs r-1 crossing edges, disjointness forbids sharing); the sufficiency the hard direction (the modern matroid-union route, retrospective); the seed gloss corrected (the 1961 paper is the TREE-PACKING theorem, not the n-factor theorem - see the P16 hypothesis note)
 
-## Hypothesis-test notes (quoted; source = papers/BATCH-*.md)
+## Hypothesis-test notes (quoted; source = papers/BATCH-*.md, removed at the 2026-10-26 cleanup - the quotes are the surviving record)
 
 ### Batch K (chunk 11)
 - K1 P10 AND P28 MISSED (both expected): the 1945 engine maps signed sums to subsets forming an ANTICHAIN and applies Sperner - P9 fires instead. The concentration-of-measure story (P28's batch-B home) is retrospective: the L-O lemma is its discrete ancestor. Lineage arc recorded: K1 -> K6 -> batch B concentration.
