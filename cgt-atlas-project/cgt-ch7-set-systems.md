@@ -405,7 +405,7 @@ Shifting is the most portable deformation tool in extremal set theory: it preser
 ---
 ## Computational Lab (verified)
 
-Five parts, all deterministic — the randomized parts use a fixed Lehmer generator (seed 12345, multiplier 48271, modulus 2³¹−1), so every run reproduces every digit. The printed outputs were produced by machine runs of exactly this logic (the verification record in the appendix enumerates the runs). Runtimes: Part 2's (8, 3) census and Part 4's exact-fraction skew recursions take a few seconds to a couple of minutes; everything else is instantaneous.
+Five parts, all deterministic — the randomized parts use a fixed Lehmer generator (seed 12345, multiplier 48271, modulus 2³¹−1), so every run reproduces every digit. The printed outputs were produced by machine runs of exactly this logic. Runtimes: Part 2's (8, 3) census and Part 4's exact-fraction skew recursions take a few seconds to a couple of minutes; everything else is instantaneous.
 
 ### Part 1 — Sperner, LYM, and the symmetric chain decomposition, actually built
 
