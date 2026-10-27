@@ -431,7 +431,7 @@ The windmill's spectrum is explicit (Exercise 9 derives it): W_t has eigenvalues
 
 ## Computational Lab (verified)
 
-Two parts, all deterministic; the printed outputs were produced by machine runs of exactly this logic (the verification record in the appendix enumerates the runs). Part 1 verifies the F_p rank machine on Oddtown, Eventown, and the F₃ singletons, the determinant lemma on the Fano plane and the near-pencils, the linear spaces on [4], and the Frankl–Wilson Ramsey parameters. Part 2 runs the friendship census for n = 3 … 7, the Claim 1 excision diagnostic across all 1,320 non-adjacent pairs, and the matrix equation A² = J + (D − I) on W_2. Runtime note: Part 2's n = 7 census takes a few minutes.
+Two parts, all deterministic; the printed outputs were produced by machine runs of exactly this logic. Part 1 verifies the F_p rank machine on Oddtown, Eventown, and the F₃ singletons, the determinant lemma on the Fano plane and the near-pencils, the linear spaces on [4], and the Frankl–Wilson Ramsey parameters. Part 2 runs the friendship census for n = 3 … 7, the Claim 1 excision diagnostic across all 1,320 non-adjacent pairs, and the matrix equation A² = J + (D − I) on W_2. Runtime note: Part 2's n = 7 census takes a few minutes.
 
 ### Part 1 — Rank machines over F_p, determinants, linear spaces, and Frankl–Wilson
 
